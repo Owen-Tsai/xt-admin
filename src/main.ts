@@ -4,6 +4,7 @@ import ArcoIcon from '@arco-design/web-vue/es/icon'
 import App from './App.vue'
 import router from '@/router'
 import store from '@/store'
+import directives from '@/directives'
 import './mock'
 import './api/request'
 
@@ -12,6 +13,7 @@ import '@arco-design/web-vue/dist/arco.css'
 import '@/styles/index.scss'
 
 import SIcon from '@/components/s-icon.vue'
+import SNavs from '@/components/s-navs.vue'
 
 const app = createApp(App)
 
@@ -20,6 +22,9 @@ app.use(router)
 app.use(store)
 app.use(ArcoIcon)
 
+app.use(directives)
+
 app.component('SIcon', SIcon)
+app.component('SNavs', SNavs)
 
 app.mount('#app')

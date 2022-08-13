@@ -97,9 +97,8 @@ header {
     li {
       @apply ml-6;
       .btn {
-        border-color: rgb(var(--gray-2));
-        color: rgb(var(--gray-8));
         font-size: 16px;
+        @apply border border-gray-200 text-base text-gray-600 hover:border-gray-300 hover:bg-gray-50;
       }
     }
   }
