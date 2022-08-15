@@ -23,9 +23,14 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/login.vue')
+      component: () => import('@/views/login/index.vue')
     },
     ...appRoutes,
+    {
+      path: '/not-allowed',
+      name: 'not-allowed',
+      component: () => import('@/views/exception/not-allowed.vue')
+    },
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
