@@ -1,6 +1,6 @@
 import type { Router, RouteRecordNormalized } from 'vue-router'
 import NProgress from 'nprogress'
-import { menuFromServer } from '@config'
+import { menuFromServer, toNoPermissionPage } from '@config'
 import usePermission from '@/hooks/use-permission'
 import { useUserStore, useMenuStore } from '@/store'
 import { appRoutes } from '../routes'
@@ -44,7 +44,9 @@ const setupPermissionGuard = (router: Router) => {
       if (permissionAllow) {
         next()
       } else {
-        const dest = permission.getFirstAccessibleRoute(appRoutes, userStore.role)
+        const dest = !toNoPermissionPage
+          ? permission.getFirstAccessibleRoute(appRoutes, userStore.role)
+          : { name: 'not-allowed' }
         next(dest || { name: 'not-found' })
       }
     }
