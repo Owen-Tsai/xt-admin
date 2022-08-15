@@ -14,7 +14,7 @@ axios.interceptors.request.use((config) => {
     if (!config.headers) {
       config.headers = {}
     }
-    config.headers.Authorization = `Bearer ${token}`
+    config.headers['X-Access-Token'] = token
   }
 
   return config

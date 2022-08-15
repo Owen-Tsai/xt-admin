@@ -2,10 +2,13 @@ import { defineStore } from 'pinia'
 import type { UserRole } from '@config'
 import {
   login as doLogin,
+  logout as doLogout,
   LoginData,
   getUserInfo
 } from '@/api/user'
 import { clearToken, setToken } from '@/utils/auth'
+import { removeListener } from '@/utils/route-listener'
+import { useMenuStore } from '@/store'
 
 export interface UserState {
   name?: string,
@@ -50,6 +53,17 @@ const useUserStore = defineStore('user', {
       } catch (err) {
         clearToken()
         throw err
+      }
+    },
+    async logout() {
+      try {
+        await doLogout()
+      } finally {
+        const menuStore = useMenuStore()
+        menuStore.clearAsyncMenu()
+        clearToken()
+        removeListener()
+        this.resetInfo()
       }
     }
   }

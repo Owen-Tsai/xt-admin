@@ -6,13 +6,13 @@ export default ({ mock, setup }: { mock?: boolean; setup: () => void }) => {
 
 export const responseWrap = (data: unknown) => ({
   data,
-  status: 'ok',
+  success: true,
   code: 20000
 })
 
 export const failedResponseWrap = (data: unknown, msg: string, code = 500) => ({
   data,
-  status: 'fail',
+  success: false,
   msg,
   code
 })

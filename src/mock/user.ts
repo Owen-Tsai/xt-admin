@@ -50,5 +50,13 @@ setupMock({
 
       return failedResponseWrap(null, '未登录', 50008)
     })
+
+    Mock.mock(new RegExp('/api/user/logout'), () => {
+      if (isAuthed()) {
+        return responseWrap({})
+      }
+
+      return failedResponseWrap(null, '未登录', 50008)
+    })
   }
 })

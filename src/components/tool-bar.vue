@@ -51,7 +51,7 @@
                 <span>用户设置</span>
               </a-space>
             </a-doption>
-            <a-doption>
+            <a-doption @click="handleLogout">
               <a-space>
                 <s-icon :name="LogoutBox" />
                 <span>注销登录</span>
@@ -74,9 +74,14 @@ import {
 } from '@salmon-ui/icons'
 import MessageBox from './message-box/index.vue'
 import { useUserStore } from '@/store'
+import useLogout from '@/hooks/use-logout'
 
 const userStore = useUserStore()
 const avatar = computed(() => userStore.avatar)
+const { logout } = useLogout()
+const handleLogout = () => {
+  logout()
+}
 </script>
 
 <style lang="scss" scoped>
