@@ -1,16 +1,45 @@
-# Vue 3 + TypeScript + Vite
+# XT Admin
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+XT Admin 是前端中、后台的前端应用级框架，使用了如下的技术构建：
 
-## Recommended IDE Setup
+- Vue 3
+- TypeScript
+- Vite 3
+- TailwindCSS 3
+- sass
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## 推荐开发环境
 
-## Type Support For `.vue` Imports in TS
+推荐使用 [VS Code](https://code.visualstudio.com/)，安装如下插件：
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+- [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+**注意：不要使用 vuter，该插件为 vue 2 开发，现已废弃维护。官方推荐使用 Volar 代替。**
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+## 命令
+
+安装依赖（首次下载时）：
+
+```sh
+npm install
+```
+
+运行服务：
+
+```sh
+npm run dev
+```
+
+检查代码风格：
+
+```sh
+npm run lint
+```
+
+检查类型错误并编译打包：
+
+```sh
+npm run build
+```

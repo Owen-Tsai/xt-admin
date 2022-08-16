@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "npx eslint \"src/\" --ext .ts,.js,.tsx,.jsx,.vue"
   },
   "dependencies": {
     "@arco-design/web-vue": "^2.34.0",
