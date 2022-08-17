@@ -7,18 +7,25 @@
       v-for="(item) in navs"
       :key="item"
     >
-      {{ item }}
+      {{ useLocale ? t(item) : item }}
     </a-breadcrumb-item>
   </a-breadcrumb>
 </template>
 
 <script lang="ts" setup>
 import type { PropType } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-const props = defineProps({
+const { t } = useI18n()
+
+defineProps({
   navs: {
     type: Array as PropType<string[]>,
     default: () => []
+  },
+  useLocale: {
+    type: Boolean,
+    default: true
   }
 })
 </script>

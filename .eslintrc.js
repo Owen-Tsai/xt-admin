@@ -26,7 +26,11 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'vue/block-tag-newline': 'warn',
-    'vue/script-indent': 'warn',
+    'vue/script-indent': [
+      'error', 2, {
+        switchCase: 1
+      }
+    ],
     'comma-dangle': 'off',
     'semi': 'off',
     'quote-props': 'off',
@@ -42,6 +46,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'prefer-regex-literals': 'off',
     'vue/multi-word-component-names': 'off',
-    'no-plusplus': 'off'
+    'no-plusplus': 'off',
   }
 }

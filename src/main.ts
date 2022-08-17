@@ -5,6 +5,8 @@ import App from './App.vue'
 import router from '@/router'
 import store from '@/store'
 import directives from '@/directives'
+import i18n from '@/locale'
+
 import './mock'
 import './api/request'
 
@@ -21,6 +23,7 @@ app.use(Arco)
 app.use(router)
 app.use(store)
 app.use(ArcoIcon)
+app.use(i18n)
 
 app.use(directives)
 

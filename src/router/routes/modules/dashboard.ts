@@ -6,7 +6,7 @@ const dashboardRoutes: AppRouteRecordRaw = {
   name: 'dashboard',
   component: defaultLayout,
   meta: {
-    title: '工作台',
+    locale: 'menu.dashboard',
     requireAuth: true,
     order: 0,
     icon: 'icon-apps'
@@ -17,7 +17,7 @@ const dashboardRoutes: AppRouteRecordRaw = {
       name: 'workplace',
       component: () => import('@/views/dashboard/workplace.vue'),
       meta: {
-        title: '主页',
+        locale: 'menu.dashboard.workplace',
         requireAuth: true,
         roles: ['*']
       }
@@ -27,7 +27,7 @@ const dashboardRoutes: AppRouteRecordRaw = {
       name: 'monitor',
       component: () => import('@/views/dashboard/monitor.vue'),
       meta: {
-        title: '监控页',
+        locale: 'menu.dashboard.monitor',
         requireAuth: true,
         roles: ['admin']
       }

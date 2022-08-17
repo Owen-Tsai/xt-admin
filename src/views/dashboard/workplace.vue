@@ -1,6 +1,6 @@
 <template>
   <main class="px-6">
-    <s-navs :navs="['工作台', '主页']" />
+    <s-navs :navs="['menu.dashboard', 'menu.dashboard.workplace']" />
 
     <div class="bg-white px-6 py-4">
       <h1>权限测试</h1>

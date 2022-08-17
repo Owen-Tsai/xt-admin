@@ -32,6 +32,30 @@
       </li>
       <li>
         <a-dropdown trigger="click">
+          <a-tooltip
+            position="bottom"
+            content="语言"
+          >
+            <a-button
+              type="outline"
+              shape="circle"
+              class="btn"
+            >
+              <icon-language />
+            </a-button>
+          </a-tooltip>
+          <template #content>
+            <a-doption
+              @click="changeLocale('zh-CN')"
+            >中文</a-doption>
+            <a-doption
+              @click="changeLocale('en-US')"
+            >English</a-doption>
+          </template>
+        </a-dropdown>
+      </li>
+      <li>
+        <a-dropdown trigger="click">
           <a-avatar
             :size="32"
             class="cursor-pointer mr-2"
@@ -66,7 +90,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { IconNotification } from '@arco-design/web-vue/es/icon'
+import { IconNotification, IconLanguage } from '@arco-design/web-vue/es/icon'
 import {
   Settings,
   LogoutBox,
@@ -75,8 +99,10 @@ import {
 import MessageBox from './message-box/index.vue'
 import { useUserStore } from '@/store'
 import useLogout from '@/hooks/use-logout'
+import useLocale from '@/hooks/use-locale'
 
 const userStore = useUserStore()
+const { changeLocale } = useLocale()
 const avatar = computed(() => userStore.avatar)
 const { logout } = useLogout()
 const handleLogout = () => {

@@ -4,6 +4,7 @@ import {
 } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import type { RouteRecordRaw, RouteMeta } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { listenRouteChange } from '@/utils/route-listener'
 import { openWindow, regexUrl } from '@/utils'
 import { useMenuStore } from '@/store'
@@ -19,6 +20,7 @@ export default defineComponent({
     const route = useRoute()
     const { menuTree } = useMenuTree()
     const menuStore = useMenuStore()
+    const { t } = useI18n()
 
     const openKeys = ref<string[]>([])
     const selectedKeys = ref<string[]>([])
@@ -108,7 +110,7 @@ export default defineComponent({
               <a-sub-menu
                 key={el?.name}
                 v-slots={{
-                  title: () => el?.meta?.title as string,
+                  title: () => h(compile(t(el?.meta?.locale as string || ''))),
                   icon
                 }}
               >
@@ -121,7 +123,7 @@ export default defineComponent({
                 v-slots={{ icon }}
                 onClick={() => goTo(el)}
               >
-                {el?.meta?.title}
+                {t(el?.meta?.locale as string)}
               </a-menu-item>
               )
 
