@@ -47,5 +47,6 @@ module.exports = {
     'prefer-regex-literals': 'off',
     'vue/multi-word-component-names': 'off',
     'no-plusplus': 'off',
+    'class-methods-use-this': 'off'
   }
 }

@@ -1,5 +1,0 @@
-name: 姓名|*
-gender: 性别|*|[女,男]
-birthday: 出生日期|d
-workDuration: 从业年限|n
-contractRange: 合约期|dr

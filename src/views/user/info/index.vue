@@ -1,5 +1,5 @@
 <template>
-  <main class="px-6">
+  <main class="px-6 pb-4">
     <s-navs :navs="['menu.user', 'menu.user.info']" />
 
     <div class="s-section">
@@ -11,7 +11,9 @@
         <a-tab-pane
           key="info"
           title="基本信息"
-        >12</a-tab-pane>
+        >
+          <info-form />
+        </a-tab-pane>
         <a-tab-pane
           key="security"
           title="安全设置"
@@ -27,4 +29,5 @@
 
 <script lang="ts" setup>
 import profileBanner from './widgets/profile-banner.vue'
+import infoForm from './widgets/info-form.vue'
 </script>
