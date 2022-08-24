@@ -47,6 +47,14 @@ module.exports = {
     'prefer-regex-literals': 'off',
     'vue/multi-word-component-names': 'off',
     'no-plusplus': 'off',
-    'class-methods-use-this': 'off'
+    'class-methods-use-this': 'off',
+    'vue/max-attributes-per-line': ['error', {
+      'singleline': {
+        'max': 2
+      },
+      'multiline': {
+        'max': 1
+      }
+    }]
   }
 }
