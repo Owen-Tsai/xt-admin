@@ -6,7 +6,7 @@ export default {
   'menu.user.info': 'Profile',
   'menu.list': 'List Page',
   'menu.list.card': 'Business',
-  'menu.list.normal': 'Talent Database',
+  'menu.list.normal': 'Business Records',
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': 'My Github',
 }

@@ -3,3 +3,8 @@ export interface MockParams {
   type: string,
   body: string
 }
+
+export interface MockGetParams {
+  url: string,
+  type: string
+}

@@ -55,10 +55,10 @@
 import { ref } from 'vue'
 import { Message } from '@arco-design/web-vue'
 import SCard from './widgets/policy-item.vue'
-import { getGroups, GroupedBusinessRecord } from '@/api/business'
+import { getGroups, GroupedBusinessEntry } from '@/api/business'
 import useLoading from '@/hooks/use-loading'
 
-const policies = ref<GroupedBusinessRecord[]>([])
+const policies = ref<GroupedBusinessEntry[]>([])
 const { setLoading, isLoading } = useLoading()
 
 setLoading(true)

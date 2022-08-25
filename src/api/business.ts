@@ -1,6 +1,7 @@
 import axios from 'axios'
+import qs from 'query-string'
 
-export interface BusinessRecord {
+export interface BusinessEntry {
   id: number,
   name: string,
   active?: boolean,
@@ -8,9 +9,30 @@ export interface BusinessRecord {
   endTime?: string
 }
 
-export interface GroupedBusinessRecord {
+export interface GroupedBusinessEntry {
   name: string,
-  items: BusinessRecord[]
+  items: BusinessEntry[]
 }
 
-export const getGroups = async () => axios.get<GroupedBusinessRecord[]>('/api/business/getGroups')
+export interface BusinessRecord {
+  seriealNo: string,
+  name: string,
+  time: string,
+  updatedTime?: string,
+  category: string,
+  status: number
+}
+
+export interface PaginationParams {
+  current: number,
+  pageSize: number
+}
+
+export const getGroups = async () => axios.get<GroupedBusinessEntry[]>('/api/business/getGroups')
+export const getRecords = async (params: PaginationParams) => axios.get<{
+  list: BusinessRecord[],
+  total: number
+}>('/api/business/records', {
+  params,
+  paramsSerializer: (obj) => qs.stringify(obj)
+})
