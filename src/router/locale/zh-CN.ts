@@ -7,6 +7,10 @@ export default {
   'menu.list': '列表页',
   'menu.list.card': '业务办理',
   'menu.list.normal': '业务明细',
+  'menu.form': '表单页',
+  'menu.form.complex-step': '复杂分步表单',
+  'menu.form.step': '分步表单',
+  'menu.form.grouped': '分组表单',
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': '我的 Github',
 }

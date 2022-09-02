@@ -8,7 +8,7 @@ const userRoutes: AppRouteRecordRaw = {
   meta: {
     locale: 'menu.user',
     requireAuth: true,
-    order: 0,
+    order: 2,
     icon: 'icon-user'
   },
   children: [
