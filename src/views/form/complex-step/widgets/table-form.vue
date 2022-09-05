@@ -1,6 +1,6 @@
 <template>
   <div class="px-4">
-    <a-alert>从左侧输入框内输入姓名过滤查找，查找结果将对应的人员添加到扶持对象列表内。<b>您可能需要补充额外的信息方可提交。</b></a-alert>
+    <a-alert>从左侧输入框内输入姓名进行过滤查找，点击查找结果将对应的人员添加到扶持对象列表内。<b>注意，您可能需要补充额外的信息方可提交。</b></a-alert>
     <div class="my-4 flex items-stretch">
       <div class="w-60 pr-4 mr-4 border-r">
         <a-input-search
@@ -29,7 +29,7 @@
       <a-table
         :data="tableData"
         row-key="id"
-        class="flex-grow"
+        class="flex-grow min-h-[300px]"
         :bordered="false"
       >
         <template #columns>
@@ -48,9 +48,16 @@
           </a-table-column>
         </template>
         <template #empty>
-          <a-empty>没有已添加的扶持对象<br>请从左侧输入框内输入姓名搜索</a-empty>
+          <a-empty class="min-h-[300px] flex flex-col items-center justify-center">没有已添加的扶持对象<br>请从左侧输入框内输入姓名搜索</a-empty>
         </template>
       </a-table>
+    </div>
+
+    <div class="text-center mt-4">
+      <a-space>
+        <a-button>上一步</a-button>
+        <a-button type="primary">下一步</a-button>
+      </a-space>
     </div>
 
     <a-modal

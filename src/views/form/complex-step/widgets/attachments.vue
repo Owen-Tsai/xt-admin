@@ -1,16 +1,49 @@
 <template>
   <div class="px-4">
-    <a-row>
-      <a-col :span="8">
-        <div>营业执照</div>
-        <a-upload draggable :limit="1" />
-      </a-col>
-    </a-row>
-    <a-row class="mt-4">
-      <a-col :span="8">
-        <div>本年度完税证明</div>
-        <a-upload draggable :limit="1" />
-      </a-col>
-    </a-row>
+    <div class="flex">
+      <span class="label">营业执照</span>
+      <a-upload class="upload-wrapper flex-grow" :limit="2">
+        <template #upload-button>
+          <div class="mb-2">
+            <a-button type="outline">选择文件</a-button>
+            <span class="text-gray-500 inline-block text-sm ml-4">允许的格式：jpg, png, pdf</span>
+          </div>
+        </template>
+      </a-upload>
+    </div>
+
+    <div class="flex mt-4">
+      <span class="label">完税证明</span>
+      <a-upload class="upload-wrapper flex-grow">
+        <template #upload-button>
+          <div class="mb-2">
+            <a-button type="outline">选择文件</a-button>
+            <span class="text-gray-500 inline-block text-sm ml-4">允许的格式：jpg, png, pdf</span>
+          </div>
+        </template>
+      </a-upload>
+    </div>
+
+    <div class="mt-4">
+      <span class="label">发票截图</span>
+      <a-upload
+        :list-type="'picture-card'"
+        image-preview
+      />
+    </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.upload-wrapper {
+  :deep(.arco-upload-list-item) {
+    margin-top: 0px !important;
+  }
+  :deep(.arco-upload-list-item + .arco-upload-list-item) {
+    margin-top: 8px !important;
+  }
+}
+.label {
+  @apply w-20 leading-[32px];
+}
+</style>
