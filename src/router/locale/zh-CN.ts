@@ -13,4 +13,6 @@ export default {
   'menu.form.grouped': '分组表单',
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': '我的 Github',
+  'menu.sub-system': '子系统',
+  'menu.sub-system.main': '首页'
 }

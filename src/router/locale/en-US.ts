@@ -13,4 +13,6 @@ export default {
   'menu.form.grouped': 'Grouped Form',
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': 'My Github',
+  'menu.sub-system': 'Sub System',
+  'menu.sub-system.main': 'Main'
 }

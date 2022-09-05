@@ -1,6 +1,11 @@
 <script lang="tsx">
 import {
-  defineComponent, ref, h, computed, compile
+  defineComponent,
+  ref,
+  h,
+  computed,
+  compile,
+  PropType
 } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import type { RouteRecordRaw, RouteMeta } from 'vue-router'
@@ -12,18 +17,24 @@ import useMenuTree from './use-menu'
 
 export default defineComponent({
   props: {
-    collpased: Boolean
+    collpased: Boolean,
+    menu: {
+      type: Object as PropType<any>,
+      default: undefined
+    }
   },
   emits: ['collapse'],
-  setup() {
+  setup(props) {
     const router = useRouter()
     const route = useRoute()
-    const { menuTree } = useMenuTree()
+    const { menuTree: menuPreset } = useMenuTree()
     const menuStore = useMenuStore()
     const { t } = useI18n()
 
     const openKeys = ref<string[]>([])
     const selectedKeys = ref<string[]>([])
+
+    const menuTree = props.menu || menuPreset.value
 
     const isCollpased = computed({
       get() {
@@ -38,7 +49,10 @@ export default defineComponent({
       // external links
       if (regexUrl.test(item.path)) {
         openWindow(item.path)
-        selectedKeys.value = [item.name as string]
+        return
+      }
+      if (item.meta?.openInNewWindow) {
+        openWindow(`${window.location.origin}${item.path}`)
         return
       }
       // eliminate external link side effects
@@ -73,7 +87,7 @@ export default defineComponent({
         }
       }
 
-      menuTree.value.forEach((el: RouteRecordRaw) => {
+      menuTree.forEach((el: RouteRecordRaw) => {
         if (found) return
         backTrace(el, [el.name as string], name)
       })
@@ -103,28 +117,28 @@ export default defineComponent({
           _route.forEach((el) => {
             const icon = el?.meta?.icon
               ? () => h(compile(`<${el?.meta?.icon}/>`))
-              : null;
+              : null
 
             const node = el?.children && el?.children.length !== 0
               ? (
-              <a-sub-menu
-                key={el?.name}
-                v-slots={{
-                  title: () => h(compile(t(el?.meta?.locale as string || ''))),
-                  icon
-                }}
-              >
-                {travel(el?.children)}
-              </a-sub-menu>
+                <a-sub-menu
+                  key={el?.name}
+                  v-slots={{
+                    title: () => h(compile(t(el?.meta?.locale as string || ''))),
+                    icon
+                  }}
+                >
+                  {travel(el?.children, [])}
+                </a-sub-menu>
               ) : (
-              <a-menu-item
-                key={el?.name}
-                data-key={selectedKeys.value}
-                v-slots={{ icon }}
-                onClick={() => goTo(el)}
-              >
-                {t(el?.meta?.locale as string)}
-              </a-menu-item>
+                <a-menu-item
+                  key={el?.name}
+                  data-key={selectedKeys.value}
+                  v-slots={{ icon }}
+                  onClick={() => goTo(el)}
+                >
+                  {t(el?.meta?.locale as string)}
+                </a-menu-item>
               )
 
             nodes.push(node as never)
@@ -134,7 +148,7 @@ export default defineComponent({
         return nodes
       }
 
-      return travel(menuTree.value)
+      return travel(menuTree)
     }
 
     const setCollapse = (val: boolean) => {
@@ -164,6 +178,7 @@ export default defineComponent({
   .arco-menu-inline-header {
     @apply flex items-center;
   }
+
   .arco-icon {
     &:not(.arco-icon-down) {
       @apply text-lg;

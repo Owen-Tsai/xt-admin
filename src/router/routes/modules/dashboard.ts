@@ -5,11 +5,13 @@ const dashboardRoutes: AppRouteRecordRaw = {
   path: '/dashboard',
   name: 'dashboard',
   component: defaultLayout,
+  redirect: '/dashboard/workplace',
   meta: {
     locale: 'menu.dashboard',
     requireAuth: true,
     order: 0,
-    icon: 'icon-apps'
+    icon: 'icon-apps',
+    hideChildrenInMenu: true
   },
   children: [
     {
@@ -19,19 +21,20 @@ const dashboardRoutes: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.dashboard.workplace',
         requireAuth: true,
-        roles: ['*']
+        roles: ['*'],
+        activeMenu: 'dashboard'
       }
     },
-    {
-      path: 'monitor',
-      name: 'monitor',
-      component: () => import('@/views/dashboard/monitor.vue'),
-      meta: {
-        locale: 'menu.dashboard.monitor',
-        requireAuth: true,
-        roles: ['admin']
-      }
-    },
+    // {
+    //   path: 'monitor',
+    //   name: 'monitor',
+    //   component: () => import('@/views/dashboard/monitor.vue'),
+    //   meta: {
+    //     locale: 'menu.dashboard.monitor',
+    //     requireAuth: true,
+    //     roles: ['admin']
+    //   }
+    // },
   ]
 }
 

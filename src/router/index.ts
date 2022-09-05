@@ -6,7 +6,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import { appRoutes } from './routes'
+import { appRoutes, subModuleRoutes } from './routes'
 import createRouteGuards from './guards'
 
 NProgress.configure({
@@ -26,6 +26,7 @@ const router = createRouter({
       component: () => import('@/views/login/index.vue')
     },
     ...appRoutes,
+    ...subModuleRoutes,
     {
       path: '/not-allowed',
       name: 'not-allowed',

@@ -6,6 +6,9 @@ const modules = import.meta.glob('./modules/*.ts', {
 const externalModules = import.meta.glob('./external-modules/*.ts', {
   eager: true
 })
+const subModules = import.meta.glob('./sub-modules/*.ts', {
+  eager: true
+})
 
 const formatRoutes = (_modules: any, result: RouteRecordNormalized[]) => {
   Object.keys(_modules).forEach((key) => {
@@ -25,6 +28,7 @@ const formatRoutes = (_modules: any, result: RouteRecordNormalized[]) => {
 
 export const appRoutes = formatRoutes(modules, [])
 export const externalRoutes = formatRoutes(externalModules, [])
+export const subModuleRoutes = formatRoutes(subModules, [])
 
 export const defaultRouteName = 'workplace'
 

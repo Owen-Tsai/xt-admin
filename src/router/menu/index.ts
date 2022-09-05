@@ -1,8 +1,8 @@
 import {
-  appRoutes, externalRoutes
+  appRoutes, externalRoutes, subModuleRoutes
 } from '../routes'
 
-const mixinRoutes = [...appRoutes, ...externalRoutes]
+const mixinRoutes = [...appRoutes, ...externalRoutes, ...subModuleRoutes]
 
 const appClientMenus = mixinRoutes.map((el) => {
   const {
