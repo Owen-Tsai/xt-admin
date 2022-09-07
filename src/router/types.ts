@@ -8,7 +8,7 @@ export interface AppRouteRecordRaw {
   redirect?: string,
   component: Component | string,
   children?: AppRouteRecordRaw[],
-  props?: Record<string, any>,
+  props?: Record<string, any> | boolean,
   beforeEnter?: NavigationGuard | NavigationGuard[],
   fullPath?: string
 }

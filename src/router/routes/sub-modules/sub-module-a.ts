@@ -16,13 +16,19 @@ const listRoutes: AppRouteRecordRaw = {
   children: [
     {
       path: 'main',
-      name: 'sub-system-a-main',
+      name: 'sub-system-main',
       component: () => import('@/views/dashboard/monitor.vue'),
       meta: {
         locale: 'menu.sub-system.main',
         requireAuth: true,
         rules: ['*'],
       }
+    },
+    {
+      path: 'detail/:type/:id',
+      name: 'detail',
+      component: () => import('@/views/detail/index.vue'),
+      props: true
     }
   ]
 }

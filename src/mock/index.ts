@@ -4,6 +4,7 @@ import Mock from 'mockjs'
 import './user'
 import './dept'
 import './business'
+import './common'
 
 Mock.setup({
   timeout: '600-1200'

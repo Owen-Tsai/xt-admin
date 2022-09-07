@@ -35,13 +35,25 @@
         <template #columns>
           <a-table-column title="姓名" data-index="name" />
           <a-table-column title="证件号" data-index="cardNo" />
-          <a-table-column title="学历" data-index="degree" />
-          <a-table-column title="研究领域" data-index="field" />
-          <a-table-column title="申请额度" data-index="fund" />
-          <a-table-column title="操作" data-index="actions">
+          <a-table-column title="学历" data-index="degree">
             <template #cell="{ record }">
+              {{ degrees.filter((e) => e.value === record.degree)[0]?.label || '' }}
+            </template>
+          </a-table-column>
+          <a-table-column title="研究领域" data-index="field">
+            <template #cell="{ record }">
+              {{ degrees.filter((e) => e.value === record.field)[0]?.label || '' }}
+            </template>
+          </a-table-column>
+          <a-table-column title="申请额度" data-index="fund">
+            <template #cell="{ record }">
+              {{ record.fund || 0 }} 万元
+            </template>
+          </a-table-column>
+          <a-table-column title="操作" data-index="actions">
+            <template #cell="{ record, rowIndex }">
               <a-space>
-                <a-button size="small" @click="handleEdit(record)">编辑</a-button>
+                <a-button size="small" @click="handleEdit(record, rowIndex)">编辑</a-button>
                 <a-button size="small" @click="handleRemove(record)">移除</a-button>
               </a-space>
             </template>
@@ -65,44 +77,26 @@
       :title="dialogTitle"
       :hide-cancel="dialogReadonly"
       :ok-text="dialogReadonly ? '关闭' : '保存'"
+      @ok="saveEdittedRecord"
     >
       <a-form :model="form">
         <a-form-item label="姓名">
           <a-input v-model="form.name" readonly />
         </a-form-item>
         <a-form-item label="性别">
-          <a-select v-model="form.gender">
-            <a-option :value="0">女</a-option>
-            <a-option :value="1">男</a-option>
-          </a-select>
+          <a-select v-model="form.gender" :options="genders" />
         </a-form-item>
         <a-form-item label="证件号">
           <a-input v-model="form.cardNo" readonly />
         </a-form-item>
         <a-form-item label="学历">
-          <a-select v-model="form.degree">
-            <a-option :value="0">高中及以下</a-option>
-            <a-option :value="1">大学专科</a-option>
-            <a-option :value="2">大学本科</a-option>
-            <a-option :value="4">硕士研究生</a-option>
-            <a-option :value="5">博士研究生</a-option>
-          </a-select>
+          <a-select v-model="form.degree" :options="degrees" />
         </a-form-item>
         <a-form-item label="学位">
-          <a-select v-model="form.diploma">
-            <a-option :value="0">无</a-option>
-            <a-option :value="1">学士</a-option>
-            <a-option :value="2">硕士</a-option>
-            <a-option :value="4">博士</a-option>
-          </a-select>
+          <a-select v-model="form.diploma" :options="diplomas" />
         </a-form-item>
         <a-form-item label="专业领域">
-          <a-select v-model="form.field">
-            <a-option :value="0">计算机科学</a-option>
-            <a-option :value="1">软件工程</a-option>
-            <a-option :value="2">人工智能</a-option>
-            <a-option :value="4">通信工程</a-option>
-          </a-select>
+          <a-select v-model="form.field" :options="fields" />
         </a-form-item>
         <a-form-item label="扶持额度">
           <a-input-number
@@ -121,7 +115,9 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import type { SelectOptionData as Opts } from '@arco-design/web-vue'
 import avatar from '@/assets/avatar-user.png'
+import useOptions from './use-select-options'
 
 type PersonnelData = {
   id?: number,
@@ -135,8 +131,21 @@ type PersonnelData = {
   fund?: number,
 }
 
+const degrees = ref<Opts[]>([])
+const diplomas = ref<Opts[]>([])
+const fields = ref<Opts[]>([])
+const genders = ref<Opts[]>([])
+
+useOptions().then((data) => {
+  degrees.value = data.degrees
+  diplomas.value = data.diplomas
+  fields.value = data.fields
+  genders.value = data.genders
+})
+
 const form = ref<PersonnelData>({})
 const tableData = ref<PersonnelData[]>([])
+const edittingIndex = ref(-1)
 
 const searchModel = ref('')
 const dialogTitle = ref('')
@@ -149,13 +158,18 @@ const showDialog = (readonly?: boolean) => {
   dialogVisible.value = true
 }
 
-const handleEdit = (row: PersonnelData) => {
-  console.log(row)
-  form.value = { ...row }
+const handleEdit = (row: PersonnelData, idx: number) => {
+  form.value = { ...row, fund: 5 }
+  edittingIndex.value = idx
   showDialog()
 }
 const handleRemove = (row: PersonnelData) => {
   console.log(row)
+}
+const saveEdittedRecord = () => {
+  if (edittingIndex.value > -1 && tableData.value.length > edittingIndex.value) {
+    tableData.value[edittingIndex.value] = form.value
+  }
 }
 
 const filteredList = ref<PersonnelData[]>([

@@ -63,7 +63,7 @@ export default defineComponent({
       }
 
       // trigger router change
-      router.push({ name: item.name })
+      router.push(item.path)
     }
 
     const findMenuOpenKeys = (name: string) => {

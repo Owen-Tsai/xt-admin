@@ -11,7 +11,8 @@
         hide-trigger
       >
         <div class="menu-wrapper">
-          <s-menu :menu="systemAMenu" @collapse="setCollapsed" />
+          <!-- <s-menu :menu="systemAMenu" @collapse="setCollapsed" /> -->
+          <s-menu :menu="menu" @collapse="setCollapsed" />
         </div>
       </a-layout-sider>
       <a-layout :style="{ paddingLeft: `${menuWidth}px` }">
@@ -28,7 +29,7 @@ import { computed } from 'vue'
 import { menuWidth as w } from '@config'
 import { useMenuStore } from '@/store'
 import ToolBar from '@/components/tool-bar.vue'
-import SMenu from '@/components/menu/index.vue'
+import SMenu from '@/components/menu/manual-menu.vue'
 import PageView from './inner-layout.vue'
 
 const menuStore = useMenuStore()
@@ -38,23 +39,16 @@ const setCollapsed = (val: boolean) => {
   menuStore.updateMenuCollpase(val)
 }
 const menuWidth = computed(() => (collapsed.value ? 48 : w))
-const systemAMenu = [{
-  name: 'sub-system',
-  meta: {
-    locale: 'menu.sub-system',
-    icon: 'icon-star'
-  },
-  children: [{
-    path: 'main',
-    name: 'sub-system-a-main',
-    meta: {
-      locale: 'menu.sub-system.main',
-      requireAuth: true,
-      rules: ['*'],
-      openInNewWindow: true
-    }
-  }]
-}]
+const menu = [
+  {
+    key: 'sub-system',
+    label: '政策兑现审核',
+    icon: 'icon-star',
+    children: [
+      { key: 'sub-system-main', label: '待审核', path: '/sub-system/main' }
+    ]
+  }
+]
 </script>
 
 <style lang="scss" scoped>
