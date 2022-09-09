@@ -117,6 +117,7 @@ const onSubmit = async ({
   errors: Record<string, ValidatedError> | undefined,
   values: Record<string, any>
 }) => {
+  if (isLoading.value) return
   await loginForm.value.validate()
   if (!errors) {
     setLoading(true)
@@ -141,6 +142,8 @@ const onSubmit = async ({
     } catch (err) {
       console.error(err)
       errorMessage.value = (err as Error).message
+    } finally {
+      setLoading(false)
     }
   }
 }
