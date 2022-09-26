@@ -142,7 +142,6 @@ const onSubmit = async ({
     } catch (err) {
       console.error(err)
       errorMessage.value = (err as Error).message
-    } finally {
       setLoading(false)
     }
   }

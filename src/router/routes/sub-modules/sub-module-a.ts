@@ -17,7 +17,7 @@ const listRoutes: AppRouteRecordRaw = {
     {
       path: 'main',
       name: 'sub-system-main',
-      component: () => import('@/views/dashboard/monitor.vue'),
+      component: () => import('@/views/audit/temp.vue'),
       meta: {
         locale: 'menu.sub-system.main',
         requireAuth: true,

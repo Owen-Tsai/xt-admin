@@ -11,6 +11,7 @@ export default {
   'menu.form.complex-step': 'Complex Stepped Form',
   'menu.form.step': 'Stepped Form',
   'menu.form.grouped': 'Grouped Form',
+  'menu.form.designer': 'Form Designer',
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': 'My Github',
   'menu.sub-system': 'Sub System',
