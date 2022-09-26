@@ -11,6 +11,7 @@ export default {
   'menu.form.complex-step': '复杂分步表单',
   'menu.form.step': '分步表单',
   'menu.form.grouped': '分组表单',
+  'menu.form.designer': '表单设计器',
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': '我的 Github',
   'menu.sub-system': '政策兑现管理',
