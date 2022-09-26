@@ -1,6 +1,6 @@
 <template>
   <a-config-provider :locale="locale">
-    <router-view />123
+    <router-view />
   </a-config-provider>
 </template>
 
