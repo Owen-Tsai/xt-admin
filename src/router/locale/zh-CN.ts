@@ -15,5 +15,7 @@ export default {
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': '我的 Github',
   'menu.sub-system': '政策兑现管理',
-  'menu.sub-system.main': '待审核'
+  'menu.sub-system.main': '待审核',
+  'menu.complex': '详情页',
+  'menu.complex.detailspage': '高级详情页'
 }
