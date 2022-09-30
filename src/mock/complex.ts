@@ -5,9 +5,9 @@ import setupMock, {
   responseWrap,
 } from '@/utils/mock'
 import { isAuthed } from '@/utils/auth'
-import type { falsedata, userinfo, step } from '../api/business'
+import type { FalseData, UserInfo, Step } from '../api/business'
 
-const suiji1 = Mock.mock({
+const randomList = Mock.mock({
   'name': '@cname',
   'odd|1000000-9999999': 1,
   'products': '@cword',
@@ -18,40 +18,39 @@ const suiji1 = Mock.mock({
   'money|1000-9999': 1,
   'examineapprove|1': '待审批'
 })
-const userinfo = Mock.mock({
+const userInfo = Mock.mock({
   'uname': '@cname',
-  'membershipnumber|10000000000000000000-99999999999999999999': 1,
-  'identitycard': '@city(true)',
-  'contactinformation|10000000000-99999999999': 1,
-  'contactaddress': '@csentence(10)',
-  'messageblock': [
-    { 'uname': '@cname', 'unamedata': '@date(yyyy-MM-dd)' },
-    { 'uname': '@cname', 'unamedata': '@date(yyyy-MM-dd)' },
+  'membershipNo|10000000000000000000-99999999999999999999': 1,
+  'identityCard': '@city(true)',
+  'contactInfo|10000000000-99999999999': 1,
+  'address': '@csentence(10)',
+  'infoGroups': [
+    { 'updateTime': '@date(yyyy-MM-dd)' },
     {
-      'Multilayerinformationgroup': [
+      'groupsData': [
         {
-          'Groupname': '@cname',
-          'principal': '@cname',
-          'Charactercode|100000-999999': 1,
-          'department': '@csentence(10)',
-          'expirationtime': '@date(yyyy-MM-dd)',
-          'describe': '@csentence(10)'
+          'Groupnamename': '@cname',
+          'supervisor': '@cname',
+          'code|100000-999999': 1,
+          'dept': '@csentence(10)',
+          'time': '@date(yyyy-MM-dd)',
+          'desc': '@csentence(10)'
         },
         {
-          'Groupname': '@cname',
-          'principal': '@cname',
-          'Charactercode|100000-999999': 1,
-          'department': '@csentence(10)',
-          'expirationtime': '@date(yyyy-MM-dd)',
-          'describe': '@csentence(10)'
+          'Groupnamename': '@cname',
+          'supervisor': '@cname',
+          'code|100000-999999': 1,
+          'dept': '@csentence(10)',
+          'time': '@date(yyyy-MM-dd)',
+          'desc': '@csentence(10)'
         },
         {
-          'Groupname': '@cname',
-          'principal': '@cname',
-          'Charactercode|100000-999999': 1,
-          'department': '@csentence(10)',
-          'expirationtime': '@date(yyyy-MM-dd)',
-          'describe': '@csentence(10)'
+          'Groupnamename': '@cname',
+          'supervisor': '@cname',
+          'code|100000-999999': 1,
+          'dept': '@csentence(10)',
+          'time': '@date(yyyy-MM-dd)',
+          'desc': '@csentence(10)'
         },
       ]
     }
@@ -65,30 +64,30 @@ const flow = Mock.mock([
   { 'title': '财务复核' },
   { 'title': '完成', },
 ])
-const flows = Mock.mock({ 'atpresent': 2 },)
+const flows = Mock.mock({ 'atpresent': 2 })
 setupMock({
   setup() {
-    Mock.mock(new RegExp('/api/get_user_data'), () => {
+    Mock.mock(new RegExp('/api/get-user-data'), () => {
       if (isAuthed()) {
-        return responseWrap<falsedata>(suiji1)
+        return responseWrap<FalseData>(randomList)
       }
       return failedResponseWrap(null, '未登录', 50000)
     })
-    Mock.mock(new RegExp('/api/get_userinfo'), () => {
+    Mock.mock(new RegExp('/api/get-user-info'), () => {
       if (isAuthed()) {
-        return responseWrap<userinfo>(userinfo)
+        return responseWrap<UserInfo>(userInfo)
       }
       return failedResponseWrap(null, '未登录', 50000)
     })
-    Mock.mock(new RegExp('/api/get_step'), () => {
+    Mock.mock(new RegExp('/api/get-step'), () => {
       if (isAuthed()) {
-        return responseWrap<step>(flow)
+        return responseWrap<Step[]>(flow)
       }
       return failedResponseWrap(null, '未登录', 50000)
     })
-    Mock.mock(new RegExp('/api/atpresent'), () => {
+    Mock.mock(new RegExp('/api/at-present'), () => {
       if (isAuthed()) {
-        return responseWrap<step>(flows)
+        return responseWrap<Step>(flows)
       }
       return failedResponseWrap(null, '未登录', 50000)
     })

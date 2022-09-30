@@ -1,7 +1,7 @@
 import axios from 'axios'
-import type { falsedata, userinfo } from './business'
+import type { FalseData, UserInfo, Step } from './business'
 
-export const documents = () => axios.get<falsedata>('/api/get_user_data')
-export const getuserinfo = () => axios.get<userinfo>('/api/get_userinfo')
-export const getstep = () => axios.get<userinfo>('/api/get_step')
-export const getatpresent = () => axios.get<userinfo>('/api/atpresent')
+export const Documents = () => axios.get<FalseData>('/api/get-user-data')
+export const getUserInfo = () => axios.get<UserInfo>('/api/get-user-info')
+export const getStep = () => axios.get<Step[]>('/api/get-step')
+export const getAtPresent = () => axios.get<Step>('/api/at-present')
