@@ -16,5 +16,7 @@ export default {
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': 'My Github',
   'menu.sub-system': 'Sub System',
-  'menu.sub-system.main': 'Main'
+  'menu.sub-system.main': 'Main',
+  'menu.complex': 'Details page',
+  'menu.complex.detailspage': 'Advanced Details Page'
 }
