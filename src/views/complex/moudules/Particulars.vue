@@ -2,7 +2,7 @@
   <!-- 流程进度 -->
   <a-card :bordered="false" title="流程进度">
     <a-steps
-      :current="atpresent"
+      :current="atPresent"
       progress-dot
     >
       <a-step
