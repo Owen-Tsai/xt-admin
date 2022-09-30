@@ -89,14 +89,14 @@ getUserInfo().then((res) => {
   userInfo.value = res.data
 })
 const setp = ref<Step[]>()
-const atpresent = ref<number>()
+const atPresent = ref<number>()
 getStep().then((res) => {
   setp.value = res.data
   // console.log(setp.value);
 })
 getAtPresent().then((res) => {
   // console.log(res);
-  atpresent.value = res.data.atpresent
+  atPresent.value = res.data.atpresent
 })
 </script>
 
