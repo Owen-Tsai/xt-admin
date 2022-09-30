@@ -21,6 +21,16 @@ const formRoutes: AppRouteRecordRaw = {
         requireAuth: true,
         role: ['*']
       }
+    },
+    {
+      path: 'advanced-form',
+      name: 'advanced-form',
+      component: () => import('@/views/form/advanced-form/index.vue'),
+      meta: {
+        locale: 'menu.form.advanced-form',
+        requireAuth: true,
+        role: ['*']
+      }
     }
   ]
 }

@@ -9,6 +9,7 @@ export default {
   'menu.list.normal': 'Business Records',
   'menu.form': 'Form Page',
   'menu.form.complex-step': 'Complex Stepped Form',
+  'menu.form.advanced-form': 'Advanced Form',
   'menu.form.step': 'Stepped Form',
   'menu.form.grouped': 'Grouped Form',
   'menu.form.designer': 'Form Designer',

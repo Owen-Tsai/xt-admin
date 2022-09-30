@@ -9,11 +9,12 @@ export default {
   'menu.list.normal': '业务明细',
   'menu.form': '表单页',
   'menu.form.complex-step': '复杂分步表单',
+  'menu.form.advanced-form': '高级表单',
   'menu.form.step': '分步表单',
   'menu.form.grouped': '分组表单',
   'menu.form.designer': '表单设计器',
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': '我的 Github',
   'menu.sub-system': '政策兑现管理',
-  'menu.sub-system.main': '待审核'
+  'menu.sub-system.main': '待审核',
 }
