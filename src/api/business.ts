@@ -69,6 +69,12 @@ export interface PaginationParams {
   pageSize: number
 }
 
+export type IName = {
+  name: string,
+  number: string,
+  department:string
+}
+
 export const getGroups = async () => axios.get<GroupedBusinessEntry[]>('/api/business/getGroups')
 export const getRecords = async (params: PaginationParams) => axios.get<{
   list: BusinessRecord[],
