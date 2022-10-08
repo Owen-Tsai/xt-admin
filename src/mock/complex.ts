@@ -5,7 +5,7 @@ import setupMock, {
   responseWrap,
 } from '@/utils/mock'
 import { isAuthed } from '@/utils/auth'
-import type { FalseData, UserInfo, Step } from '../api/business'
+import type { OrderForm, UserInfo, Step } from '../api/business'
 
 const randomList = Mock.mock({
   'name': '@cname',
@@ -69,7 +69,7 @@ setupMock({
   setup() {
     Mock.mock(new RegExp('/api/get-user-data'), () => {
       if (isAuthed()) {
-        return responseWrap<FalseData>(randomList)
+        return responseWrap<OrderForm>(randomList)
       }
       return failedResponseWrap(null, '未登录', 50000)
     })

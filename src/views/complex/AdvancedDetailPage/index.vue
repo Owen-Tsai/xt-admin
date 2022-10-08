@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import DescribeHead from './moudules/DescribeHead.vue';
-import Particulars from './moudules/Particulars.vue';
+import DescribeHead from './widgets/DescribeHead.vue';
+import Particulars from './widgets/Particulars.vue';
 </script>
 
 <style lang="scss" scoped>

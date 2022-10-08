@@ -27,7 +27,7 @@ export interface InfoGroup {
   }>
 }
 
-export interface FalseData {
+export interface OrderForm {
   name?: string,
   products?: string,
   creationtime?: string | Date,

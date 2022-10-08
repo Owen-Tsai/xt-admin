@@ -6,17 +6,17 @@
       progress-dot
     >
       <a-step
-        v-for="(StepDate,i) in setp"
+        v-for="(item,i) in setp"
         :key="i"
       >
         <div>
-          <span>{{ StepDate?.title }}</span>
+          <span>{{ item?.title }}</span>
         </div>
         <div class="text-xs">
-          {{ StepDate?.name }}
-          <div v-if="StepDate?.data">{{ StepDate?.data }}</div>
+          {{ item?.name }}
+          <div v-if="item?.data">{{ item?.data }}</div>
           <div v-else class=" text-blue-300">
-            <a>{{ StepDate?.remark }}</a>
+            <a>{{ item?.remark }}</a>
           </div>
         </div>
       </a-step>
