@@ -1,7 +1,11 @@
 <template>
   <h2 class="font-light text-base">成员管理</h2>
   <a-divider style="margin: 16px 0;" />
-  <a-table :data="data" style="margin-top: 20px">
+  <a-table
+    :data="data"
+    style="margin-top: 20px"
+    :pagination="false"
+  >
     <template #columns>
       <a-table-column title="成员姓名">
         <template #cell="{ record, rowIndex }">
@@ -24,14 +28,14 @@
       <a-table-column title="操作">
         <template #cell="{ rowIndex }">
           <div v-if="editLine !== rowIndex">
-            <a-button @click="handleEdit(rowIndex)">操作</a-button>
+            <span @click="handleEdit(rowIndex)">编辑</span>
           </div>
           <div v-else>
-            <a-button @click="determine(rowIndex)">确定</a-button>
-            <a-popconfirm content="你确定要删除吗？" @ok="delet(rowIndex)">
-              <a-button>删除</a-button>
+            <span @click="conserve(rowIndex)">保存</span>
+            <a-popconfirm content="你确定要删除吗？" @ok="cut(rowIndex)">
+              <span>删除</span>
             </a-popconfirm>
-            <a-button @click="cancel">取消</a-button>
+            <span @click="cancel">取消</span>
           </div>
         </template>
       </a-table-column>
@@ -41,16 +45,12 @@
   <a-button
     style="width: 100%; margin-top: 16px; margin-bottom: 8px"
     type="dashed"
-    icon="plus"
     @click="add"
-  >新增成员</a-button>
-  <!-- fixed footer toolbar -->
-  <footer-tool-bar>
-    <a-button
-      type="primary"
-      @click="primary"
-    >提交</a-button>
-  </footer-tool-bar>
+  >
+    <template #icon>
+      <icon-plus />
+    </template>
+    添加一行数据</a-button>
 </template>
 
 <script lang="ts" setup>
@@ -77,7 +77,7 @@ getFormTab().then((res) => {
   // console.log(data)
 })
 // assignment(data)
-const qing = () => {
+const clear = () => {
   edittedData.value.name = ''
   edittedData.value.number = ''
   edittedData.value.department = ''
@@ -89,23 +89,24 @@ const handleEdit = (rowIndex: number) => {
     edittedData.value = { ...data[rowIndex] }
     // operation.value = true
     editLine.value = rowIndex
-    // qing()
+    // clear()
   }
 }
-const delet = (rowIndex: number) => {
+const cut = (rowIndex: number) => {
   editLine.value = undefined
   data.splice(rowIndex, 1)
+  clear()
 }
 const cancel = () => {
   // operation.value = false
   editLine.value = undefined
-  qing()
+  clear()
 }
-const determine = (rowIndex: number) => {
+const conserve = (rowIndex: number) => {
   // operation.value = false
   editLine.value = undefined
   data[rowIndex] = { ...edittedData.value }
-  qing()
+  clear()
 }
 const add = () => {
   if (editLine.value >= 0) {
@@ -114,10 +115,49 @@ const add = () => {
     data.push({ name: '', number: '', department: '' })
     // operation.value = true
     editLine.value = data.length - 1
-    // qing()
+    // clear()
   }
 }
 const primary = () => {
   Notification.info('提交成功')
 }
 </script>
+
+<style lang="scss" scoped>
+  ::v-deep .arco-table-th {
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      &::before {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 1px;
+        height: 1.6em;
+        background-color: rgba(0,0,0,.06);
+        transform: translateY(-50%);
+        content: "";
+      }
+    }
+  }
+   ::v-deep .arco-table-td {
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(4) {
+      width: 20%;
+    }
+    &:nth-child(3) {
+      width: 40%;
+    }
+    &:nth-child(4) {
+      span {
+        color: #1890ff;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+    }
+  }
+  ::v-deep .arco-table-tr {
+    height: 51px;
+  }
+</style>

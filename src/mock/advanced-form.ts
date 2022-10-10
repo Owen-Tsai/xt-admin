@@ -5,7 +5,7 @@ import setupMock, {
 
 setupMock({
   setup() {
-    Mock.mock(new RegExp('/get_from_tab'), () => responseWrap([
+    Mock.mock(new RegExp('/get-from-tab'), () => responseWrap([
       {
         'name': Random.cname(),
         'number': Random.integer(10000, 99999),
