@@ -44,11 +44,11 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { documents } from '@/api/complex';
-// import { falsedata } from '@/api/types';
+import { getDocuments } from '@/api/complex';
+import { OrderForm } from '@/api/business'
 
-const suiji1 = ref()
-documents().then((res) => {
+const suiji1 = ref<OrderForm>()
+getDocuments().then((res) => {
   // console.log('1', res);
   suiji1.value = res.data
   // console.log(suiji1.value);
