@@ -21,15 +21,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, reactive } from 'vue';
+import { computed, ref } from 'vue';
 import { EChartsOption } from 'echarts';
 import { TableColumnData } from '@arco-design/web-vue';
 import BaseEchart from '@/echats'
+import { getSeriesData, getTableList, getXTime } from '@/api/data-analysis';
+import { ISeriesData } from '@/api/business';
 
-const store = [
-  '0:00', '2:00', '4:00', '6:00', '8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'
-]
-
+const store = ref()
+const seriesdata = ref<ISeriesData>()
 const options = computed<EChartsOption>(() => ({
   title: {
     text: '内容时段分析'
@@ -70,7 +70,7 @@ const options = computed<EChartsOption>(() => ({
   },
   xAxis: {
     type: 'category',
-    data: store,
+    data: store.value,
     axisLine: {
       lineStyle: {
         color: 'rgba(255,255,255,0.45)',
@@ -117,66 +117,17 @@ const options = computed<EChartsOption>(() => ({
   },
   series: [
     {
-      name: '图文类', type: 'bar', barWidth: 10, stack: 'total', data: [4587, 4459, 2571, 2944, 4368, 3104, 3751, 2700, 1405, 2963, 3997, 3748]
+      name: '图文类', type: 'bar', barWidth: 10, stack: 'total', data: seriesdata.value?.Graphic
     },
     {
-      name: '视频类', type: 'bar', barWidth: 10, stack: 'total', data: [2014, 3241, 1817, 4233, 4368, 3104, 3751, 2700, 1405, 2963, 3997, 3748]
+      name: '视频类', type: 'bar', barWidth: 10, stack: 'total', data: seriesdata.value?.Writing
     },
     {
-      name: '纯文本', type: 'bar', barWidth: 10, stack: 'total', data: [2014, 3241, 1817, 4233, 4368, 3104, 3751, 2700, 1405, 2963, 3997, 3748]
+      name: '纯文本', type: 'bar', barWidth: 10, stack: 'total', data: seriesdata.value?.Video
     }
   ]
 }))
-const data = reactive([
-  {
-    key: '1',
-    name: 'Christopher',
-    salary: '23000',
-    address: '111,45',
-  },
-  {
-    key: '2',
-    name: 'Christopher',
-    salary: '25000',
-    address: '123,45',
-  },
-  {
-    key: '3',
-    name: '叫我小李好了',
-    salary: '22000',
-    address: '123,45',
-  },
-  {
-    key: '4',
-    name: '叫我小李好了',
-    salary: '17000',
-    address: '123,45',
-  },
-  {
-    key: '5',
-    name: '叫我小李好了',
-    salary: '27000',
-    address: '123,45',
-  },
-  {
-    key: '6',
-    name: '叫我小李好了',
-    salary: '27000',
-    address: '123,45',
-  },
-  {
-    key: '7',
-    name: '叫我小李好了',
-    salary: '27000',
-    address: '123,45',
-  },
-  {
-    key: '8',
-    name: '叫我小李好了',
-    salary: '27000',
-    address: '123,45',
-  },
-]);
+const data = ref<any[]>();
 const columns:TableColumnData[] = [
   {
     title: '排名',
@@ -201,8 +152,23 @@ const columns:TableColumnData[] = [
     }
   },
 ];
+
+getTableList().then((res) => {
+  // console.log(res);
+  data.value = res.data
+})
+getXTime().then((res) => {
+  // console.log(res);
+  store.value = res.data
+  // console.log(store.value);
+})
+getSeriesData().then((res) => {
+  // console.log(res);
+  seriesdata.value = res.data
+  // console.log(seriesdata.value.Writing);
+})
 </script>
 
-<style lang="scss" sc0oped>
+<style lang="scss" scoped>
 
 </style>

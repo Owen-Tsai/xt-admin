@@ -5,14 +5,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, reactive } from 'vue';
+import { computed, ref } from 'vue';
 import { EChartsOption } from 'echarts';
-import { TableColumnData } from '@arco-design/web-vue';
 import BaseEchart from '@/echats'
+import { getBigSeriesData } from '@/api/data-analysis';
+import { ISeriesData } from '@/api/business';
 
-const xAxis = ref<string[]>([
+const bigdata = ref<ISeriesData>()
 
-]);
 const options = computed<EChartsOption>(() => ({
   dataZoom: [
     {
@@ -62,32 +62,30 @@ const options = computed<EChartsOption>(() => ({
     {
       symbol: 'none',
       smooth: true,
-      data: [
-        10, 20, 100, 30, 20, 35, 15, 25, 66, 75, 50, 60
-      ],
+      data: bigdata.value?.Video,
       type: 'line',
       name: '纯文本'
     },
     {
       symbol: 'none',
       smooth: true,
-      data: [
-        15, 25, 66, 100, 50, 60, 10, 20, 40, 30, 20, 35,
-      ],
+      data: bigdata.value?.Graphic,
       name: '图文类',
       type: 'line',
     },
     {
       symbol: 'none',
       smooth: true,
-      data: [
-        10, 20, 40, 30, 75, 50, 100, 20, 35, 15, 25, 66,
-      ],
+      data: bigdata.value?.Writing,
       name: '视频类',
       type: 'line',
     },
   ]
 }))
+getBigSeriesData().then((res) => {
+  // console.log('res', res);
+  bigdata.value = res.data
+})
 </script>
 
 <style lang="scss" scoped>
