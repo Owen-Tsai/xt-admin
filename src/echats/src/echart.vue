@@ -3,7 +3,6 @@
     <div ref="echartDivRef" :style="{ width: processSize(width), height: processSize(height) }" />
   </div>
 </template>
-
 <script lang="ts" setup>
 import {
   ref, onMounted, defineProps, watchEffect,
