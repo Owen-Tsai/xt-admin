@@ -31,10 +31,14 @@ const props = defineProps({
 const echartDivRef = ref<HTMLElement>()
 
 onMounted(() => {
-  const { setOptions } = useEchart(echartDivRef.value as HTMLElement)
+  const { setOptions, echartInstance } = useEchart(echartDivRef.value as HTMLElement)
 
   watchEffect(() => {
     setOptions(props.options)
+  })
+
+  defineExpose({
+    echartInstance
   })
 })
 </script>

@@ -47,10 +47,89 @@
         </div>
       </div>
     </div>
+    <base-echart
+      :options="options"
+      :height="352"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue';
+import { EChartsOption } from 'echarts';
+import BaseEchart from '@/echats'
+import { getBigSeriesData } from '@/api/data-analysis';
+import { ISeriesData } from '@/api/business';
+
+const bigdata = ref<ISeriesData>()
+
+const options = computed<EChartsOption>(() => ({
+  xAxis: {
+    type: 'category',
+    offset: 2,
+    axisTick: { alignWithLabel: true },
+    axisLabel: {
+      color: '#4E5969',
+    },
+    data: ['10-12', '10-11', '10-10', '10-9', '10-8', '10-7', '10-6', '10-5', '10-4', '10-3'],
+    axisPointer: {
+      show: true,
+      lineStyle: {
+        color: '#23ADFF',
+        width: 2,
+      },
+    },
+  },
+  yAxis: [{
+    type: 'value',
+    name: '',
+    axisLine: {
+      show: false,
+    },
+    axisLabel: {
+      show: true,
+      interval: 'auto',
+      formatter(value: number, idx: number) {
+        if (idx === 0) return String(value);
+        return `${value / 1000}k`;
+      },
+    },
+  }],
+  grid: {
+    containLabel: true,
+    left: '0',
+    right: '4',
+    top: '40',
+    bottom: '40',
+  },
+  series: [
+    {
+      symbol: 'none',
+      smooth: true,
+      data: ['1000', '2000', '3000', '4000', '5000', '6000', '7000', '8000', '10-4', '10-3'],
+      type: 'line',
+      name: '纯文本'
+    },
+    {
+      symbol: 'none',
+      smooth: true,
+      data: bigdata.value?.Graphic,
+      name: '图文类',
+      type: 'line',
+    },
+    {
+      symbol: 'none',
+      smooth: true,
+      data: bigdata.value?.Writing,
+      name: '视频类',
+      type: 'line',
+    },
+  ]
+}))
+getBigSeriesData().then((res) => {
+  // console.log('res', res);
+  bigdata.value = res.data
+})
 </script>
 
 <style lang="scss" scoped>
