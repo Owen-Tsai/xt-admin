@@ -72,6 +72,13 @@ export type IName = {
   department:string
 }
 
+export interface IAnalysis {
+  name: string,
+  odd: number,
+  edd: number,
+  isgrowth: string | number | boolean
+}
+
 export const getGroups = async () => axios.get<GroupedBusinessEntry[]>('/api/business/getGroups')
 export const getRecords = async (params: PaginationParams) => axios.get<{
   list: BusinessRecord[],

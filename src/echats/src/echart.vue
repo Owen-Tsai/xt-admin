@@ -3,10 +3,9 @@
     <div ref="echartDivRef" :style="{ width: processSize(width), height: processSize(height) }" />
   </div>
 </template>
-
 <script lang="ts" setup>
 import {
-  ref, onMounted, defineProps, withDefaults, watchEffect,
+  ref, onMounted, defineProps, watchEffect,
   PropType
 } from 'vue'
 import { EChartsOption } from 'echarts'
