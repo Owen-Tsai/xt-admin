@@ -1,5 +1,5 @@
 <template>
-  <s-navs :navs="['menu.data-visualization', 'menu.data-visualization.multidimensional-data-analysis']" />
+  <s-navs :navs="['menu.data-visualization', 'menu.data-visualization.data-analysis']" />
 
   <a-card class="p-2" title="舆情分析">
     <a-grid
