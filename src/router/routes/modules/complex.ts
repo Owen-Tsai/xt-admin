@@ -16,7 +16,7 @@ const complexdRoutes: AppRouteRecordRaw = {
     {
       path: 'detailspage',
       name: 'detailspage',
-      component: () => import('@/views/complex/index.vue'),
+      component: () => import('@/views/complex/AdvancedDetailPage/index.vue'),
       meta: {
         locale: 'menu.complex.detailspage',
         requireAuth: true,

@@ -1,9 +1,9 @@
 import axios from 'axios'
 import qs from 'query-string'
 
-export interface step {
+export interface Step {
   atpresent?: number,
-  name: string,
+  name?: string,
   data?: string|Date,
   title?: string,
   remark?: string,
@@ -15,21 +15,19 @@ export interface BusinessEntry {
   startTime?: string,
   endTime?: string
 }
-export interface userinfoshuzus {
-  Groupname?: string,
-  principal?: string,
-  Charactercode?: number | string,
-  department: string,
-  expirationtime: string | Date,
-  describe:string
+export interface InfoGroup {
+  updateTime: string | Date,
+  groupsData: Array<{
+    name: string,
+    supervisor: string,
+    time: string | Date,
+    dept: string,
+    code: string,
+    desc: string
+  }>
 }
-export interface userinfoshuzu {
-  uname?: string,
-  unamedata?: string | Date,
-  Groupname?:string
-  Multilayerinformationgroup?: userinfoshuzus[]
-}
-export interface falsedata {
+
+export interface OrderForm {
   name?: string,
   products?: string,
   creationtime?: string | Date,
@@ -41,14 +39,13 @@ export interface falsedata {
   examineapprove?: string
 }
 
-export interface userinfo {
-  atpresent: step | number,
+export interface UserInfo {
   uname?: string,
-  membershipnumber?: string | number,
-  identitycard?: string | number,
-  contactinformation?: number | string,
-  contactaddress?: number | string,
-  messageblock?: userinfoshuzu[]
+  membershipNo?: string | number,
+  identityCard?: string | number,
+  contactInfo?: number | string,
+  address?: string,
+  infoGroups?: InfoGroup[]
 }
 export interface GroupedBusinessEntry {
   name: string,
@@ -69,6 +66,29 @@ export interface PaginationParams {
   pageSize: number
 }
 
+export type IName = {
+  name: string,
+  number: string,
+  department:string
+}
+
+export interface IAnalysis {
+  name: string,
+  odd: number,
+  edd: number,
+  isgrowth: string | number | boolean
+}
+export interface ITableList {
+  name: string,
+  salary: number,
+  address: number,
+  key: number
+}
+export interface ISeriesData {
+  Graphic: [],
+  Writing: [],
+  Video: [],
+}
 export const getGroups = async () => axios.get<GroupedBusinessEntry[]>('/api/business/getGroups')
 export const getRecords = async (params: PaginationParams) => axios.get<{
   list: BusinessRecord[],
