@@ -2,7 +2,13 @@
   <header>
     <div class="left-sec">
       <img src="@/assets/logo-temp.svg">
-      <h1>XT Admin</h1>
+      <h1>
+        XT Admin
+        <span v-if="title">
+          <a-divider :direction="'vertical'" />
+          <span>{{ title }}</span>
+        </span>
+      </h1>
     </div>
     <ul class="right-sec">
       <li>
@@ -32,10 +38,7 @@
       </li>
       <li>
         <a-dropdown trigger="click">
-          <a-tooltip
-            position="bottom"
-            content="语言"
-          >
+          <a-tooltip position="bottom" content="语言">
             <a-button
               type="outline"
               shape="circle"
@@ -56,10 +59,7 @@
       </li>
       <li>
         <a-dropdown trigger="click">
-          <a-avatar
-            :size="32"
-            class="cursor-pointer mr-2"
-          >
+          <a-avatar :size="32" class="cursor-pointer mr-2">
             <img :src="avatar">
           </a-avatar>
           <template #content>
@@ -90,7 +90,10 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { IconNotification, IconLanguage } from '@arco-design/web-vue/es/icon'
+import {
+  IconNotification,
+  IconLanguage
+} from '@arco-design/web-vue/es/icon'
 import {
   Settings,
   LogoutBox,
@@ -100,6 +103,13 @@ import MessageBox from './message-box/index.vue'
 import { useUserStore } from '@/store'
 import useLogout from '@/hooks/use-logout'
 import useLocale from '@/hooks/use-locale'
+
+defineProps({
+  title: {
+    type: String,
+    default: undefined
+  }
+})
 
 const userStore = useUserStore()
 const { changeLocale } = useLocale()

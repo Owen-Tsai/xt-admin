@@ -45,13 +45,17 @@ export default defineComponent({
       }
     })
 
-    const goTo = (item: RouteRecordRaw) => {
+    const goTo = (item: RouteRecordRaw, urlPrefix?: string) => {
       // external links
       if (regexUrl.test(item.path)) {
         openWindow(item.path)
         return
       }
       if (item.meta?.openInNewWindow) {
+        if (urlPrefix) {
+          openWindow(`${window.location.origin}${urlPrefix}/${item.path}`)
+          return
+        }
         openWindow(`${window.location.origin}${item.path}`)
         return
       }
@@ -112,7 +116,7 @@ export default defineComponent({
     }, true)
 
     const renderSubMenu = () => {
-      const travel = (_route: RouteRecordRaw[], nodes = []) => {
+      const travel = (_route: RouteRecordRaw[], nodes = [], pathPrefix: string | undefined = undefined) => {
         if (_route) {
           _route.forEach((el) => {
             const icon = el?.meta?.icon
@@ -128,14 +132,13 @@ export default defineComponent({
                     icon
                   }}
                 >
-                  {travel(el?.children, [])}
+                  {travel(el?.children, [], pathPrefix ? pathPrefix + el.path : el.path)}
                 </a-sub-menu>
               ) : (
                 <a-menu-item
                   key={el?.name}
-                  data-key={selectedKeys.value}
                   v-slots={{ icon }}
-                  onClick={() => goTo(el)}
+                  onClick={() => goTo(el, el?.meta?.openInNewWindow ? pathPrefix : undefined)}
                 >
                   {t(el?.meta?.locale as string)}
                 </a-menu-item>
