@@ -1,15 +1,16 @@
-import { defaultLayout } from '@/router/constants'
+import { fullPageLayout } from '@/router/constants'
 import { AppRouteRecordRaw } from '../../types'
 
 const exAbilityRoutes: AppRouteRecordRaw = {
   path: '/extended',
   name: 'extended-abilities',
-  component: defaultLayout,
+  component: fullPageLayout,
   meta: {
     locale: 'menu.extended-ability',
     order: 5,
     requireAuth: true,
-    icon: 'icon-scissor'
+    icon: 'icon-scissor',
+    openInNewWindow: true
   },
   children: [
     {
@@ -18,7 +19,8 @@ const exAbilityRoutes: AppRouteRecordRaw = {
       component: () => import('@/views/extended/form-designer/index.vue'),
       meta: {
         locale: 'menu.extended-ability.form-designer',
-        requireAuth: true
+        requireAuth: true,
+        openInNewWindow: true
       }
     },
   ]
