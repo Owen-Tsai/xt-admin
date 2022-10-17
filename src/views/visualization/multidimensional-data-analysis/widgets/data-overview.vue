@@ -64,6 +64,15 @@ import { ISeriesData } from '@/api/business';
 const bigdata = ref<ISeriesData>()
 
 const options = computed<EChartsOption>(() => ({
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
   xAxis: {
     type: 'category',
     offset: 2,
@@ -94,6 +103,9 @@ const options = computed<EChartsOption>(() => ({
         return `${value / 1000}k`;
       },
     },
+    axisPointer: {
+      show: false
+    },
   }],
   grid: {
     containLabel: true,
@@ -106,23 +118,69 @@ const options = computed<EChartsOption>(() => ({
     {
       symbol: 'none',
       smooth: true,
-      data: ['1000', '2000', '3000', '4000', '5000', '6000', '7000', '8000', '10-4', '10-3'],
+      stack: 'Total',
+      data: ['300', '600', '400', '500', '30', '70', '400', '200', '400', '600'],
+      // data: bigdata.value?.Writing,
+      lineStyle: {
+        width: 2,
+        color: 'purple'
+      },
+      areaStyle: {
+        opacity: 0.1,
+        color: 'purple',
+      },
+      name: '活跃用户数',
       type: 'line',
-      name: '纯文本'
     },
     {
       symbol: 'none',
       smooth: true,
-      data: bigdata.value?.Graphic,
-      name: '图文类',
+      stack: 'Total',
+      data: ['600', '900', '900', '800', '700', '700', '900', '700', '600', '1000'],
+      // data: bigdata.value?.Writing,
+      lineStyle: {
+        width: 2,
+        color: 'green'
+      },
+      areaStyle: {
+        opacity: 0.1,
+        color: 'green',
+      },
+      name: '内容生产量',
       type: 'line',
     },
     {
       symbol: 'none',
       smooth: true,
-      data: bigdata.value?.Writing,
-      name: '视频类',
+      stack: 'Total',
+      data: ['5000', '2000', '4000', '1000', '3000', '10000', '7000', '9000', '6000', '8000'],
+      // data: bigdata.value?.Graphic,
+      lineStyle: {
+        width: 2,
+        color: 'orange'
+      },
+      areaStyle: {
+        opacity: 0.1,
+        color: 'orange',
+      },
+      name: '内容点击量',
       type: 'line',
+    },
+    {
+      symbol: 'none',
+      smooth: true,
+      stack: 'Total',
+      data: ['5000', '2000', '4000', '1000', '3000', '10000', '7000', '9000', '6000', '8000'],
+      lineStyle: {
+        width: 2,
+        color: 'blue'
+      },
+      areaStyle: {
+        opacity: 0.1,
+        color: 'blue',
+      },
+      type: 'line',
+      name: '内容曝光量'
     },
   ]
 }))
