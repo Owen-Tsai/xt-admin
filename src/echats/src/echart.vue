@@ -8,7 +8,7 @@ import {
   ref, onMounted, defineProps, watchEffect,
   PropType
 } from 'vue'
-import { EChartsOption } from 'echarts'
+import { EChartsOption, ECharts } from 'echarts'
 import { processSize } from '@/utils'
 import useEchart from '../hooks/useEchart'
 
@@ -29,12 +29,18 @@ const props = defineProps({
 })
 
 const echartDivRef = ref<HTMLElement>()
+const instance = ref<ECharts>()
 
 onMounted(() => {
   const { setOptions } = useEchart(echartDivRef.value as HTMLElement)
+  const { echartInstance } = useEchart(echartDivRef.value as HTMLElement)
+  instance.value = echartInstance
 
   watchEffect(() => {
     setOptions(props.options)
   })
+})
+defineExpose({
+  instance
 })
 </script>

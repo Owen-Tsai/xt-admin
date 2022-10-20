@@ -1,4 +1,4 @@
-import Mock from 'mockjs'
+import Mock, { Random } from 'mockjs'
 import setupMock, {
   failedResponseWrap,
   responseWrap,
@@ -96,6 +96,21 @@ const bigSeriesData = Mock.mock(
     Video: []
   }
 )
+const getrandom = (n: number, sum: number) => {
+  //
+  const Arr = []
+  let fSumTmp = sum;
+  let iAcc = 0;
+  for (let i = 0; i < (n - 1); i++) {
+    const iTmp = Random.float(0, 0, 1, 2)
+    Arr.push(iTmp);
+    fSumTmp -= iTmp;
+    iAcc += iTmp;
+  }
+  Arr.push(sum - iAcc);
+  console.log(Arr);
+}
+getrandom(5, 1)
 const Generates = () => {
   for (let i = 0; i <= 12; i++) {
     bigSeriesData.Graphic.push(Math.floor(Math.random() * 100) + 1)

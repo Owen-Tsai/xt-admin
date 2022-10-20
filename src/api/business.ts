@@ -91,33 +91,39 @@ export interface ISeriesData {
 }
 
 export interface IOverviewData {
-  Production: [],
-  Click: [],
-  Exposure: [],
-  User: [],
+  Production?: [],
+  Click?: [],
+  Exposure?: [],
+  User?: [],
+  XTime?: []
 }
 export interface IAction {
-  share: number,
-  comment: number,
-  thumbsup: number,
+  share?: number,
+  name?: string
 }
 export interface IDistributionData {
-  Graphic: [],
-  Writing: [],
-  Video: [],
+  name?: string,
+  most?: string|number,
+  value?: []
 }
-// export interface IAnalysis {
-//   name: string,
-//   odd: number,
-//   edd: number,
-//   isgrowth: string | number | boolean
-// }
+export interface DataScreening {
+  name: string,
+  volume: number | string
+}
+
+export interface IUserContent {
+  name: string,
+  odd: number,
+  edd: number,
+  isgrowth: string | number | boolean
+}
 export interface ISourceData {
-  UGC: [],
-  Website: [],
-  Article: [],
-  Report: [],
-  Other: [],
+  name: string,
+  ugc: number | string,
+  website: number | string,
+  article: number | string,
+  report: number | string,
+  other: number | string,
 }
 export const getGroups = async () => axios.get<GroupedBusinessEntry[]>('/api/business/getGroups')
 export const getRecords = async (params: PaginationParams) => axios.get<{

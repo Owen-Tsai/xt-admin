@@ -12,7 +12,6 @@ import { getBigSeriesData } from '@/api/data-analysis';
 import { ISeriesData } from '@/api/business';
 
 const bigdata = ref<ISeriesData>()
-
 const options = computed<EChartsOption>(() => ({
   dataZoom: [
     {
@@ -87,7 +86,6 @@ getBigSeriesData().then((res) => {
   bigdata.value = res.data
 })
 </script>
-
 <style lang="scss" scoped>
 
 </style>

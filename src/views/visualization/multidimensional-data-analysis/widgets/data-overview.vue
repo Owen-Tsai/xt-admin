@@ -3,47 +3,47 @@
     <h2 class="text-base mb-4">数据总览</h2>
     <div class="flex">
       <div class="w-1/4 p-5 pt-1.5">
-        <h6 class="text-xs mb-2">内容生产量</h6>
+        <h6 class="text-xs mb-2">{{ dataList?.[0].name }}</h6>
         <div class="number-father flex leading-8">
           <div
             class="rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
             style="background-color: rgb(255,228,186); color: rgb(255,125,0);"
           ><icon-edit />
           </div>
-          <span class="font-medium" style="font-size: 26px">2,000</span>
+          <span class="font-medium" style="font-size: 26px">{{ dataList?.[0].volume }}</span>
         </div>
       </div>
       <div class="w-1/4 p-5 pt-1.5">
-        <h6 class="text-xs mb-2">内容点击量</h6>
+        <h6 class="text-xs mb-2">{{ dataList?.[1].name }}</h6>
         <div class="number-father flex leading-8">
           <div
             class="rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
             style="background-color: rgb(183,244,236); color: rgb(20,201,201);"
           ><icon-thumb-up />
           </div>
-          <span class="font-medium" style="font-size: 26px">3,000</span>
+          <span class="font-medium" style="font-size: 26px">{{ dataList?.[1].volume }}</span>
         </div>
       </div>
       <div class="w-1/4 p-5 pt-1.5">
-        <h6 class="text-xs mb-2">内容曝光量</h6>
+        <h6 class="text-xs mb-2">{{ dataList?.[2].name }}</h6>
         <div class="number-father flex leading-8">
           <div
             class="rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
             style="background-color: rgb(232,243,255); color: rgb(22,93,255);"
           ><icon-heart />
           </div>
-          <span class="font-medium" style="font-size: 26px">4,000</span>
+          <span class="font-medium" style="font-size: 26px">{{ dataList?.[2].volume }}</span>
         </div>
       </div>
       <div class="w-1/4 p-5 pt-1.5">
-        <h6 class="text-xs mb-2">活跃用户数</h6>
+        <h6 class="text-xs mb-2">{{ dataList?.[3].name }}</h6>
         <div class="number-father flex leading-8">
           <div
             class="rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
             style="background-color: rgb(245,232,255); color: rgb(114,46,209);"
           ><icon-user />
           </div>
-          <span class="font-medium" style="font-size: 26px">5,000</span>
+          <span class="font-medium" style="font-size: 26px">{{ dataList?.[3].volume }}</span>
         </div>
       </div>
     </div>
@@ -59,10 +59,11 @@ import { computed, ref } from 'vue';
 import { EChartsOption } from 'echarts';
 import BaseEchart from '@/echats'
 import { getBigSeriesData } from '@/api/data-analysis';
-import { ISeriesData } from '@/api/business';
+import { DataScreening, IOverviewData, ISeriesData } from '@/api/business';
+import { getDataListTime, getDataScreening } from '@/api/multidimensional-data-analysis';
 
 const bigdata = ref<ISeriesData>()
-
+const list = ref<IOverviewData>()
 const options = computed<EChartsOption>(() => ({
   tooltip: {
     trigger: 'axis',
@@ -80,7 +81,7 @@ const options = computed<EChartsOption>(() => ({
     axisLabel: {
       color: '#4E5969',
     },
-    data: ['10-12', '10-11', '10-10', '10-9', '10-8', '10-7', '10-6', '10-5', '10-4', '10-3'],
+    data: list.value?.XTime,
     axisPointer: {
       show: true,
       lineStyle: {
@@ -119,49 +120,32 @@ const options = computed<EChartsOption>(() => ({
       symbol: 'none',
       smooth: true,
       stack: 'Total',
-      data: ['300', '600', '400', '500', '30', '70', '400', '200', '400', '600'],
+      data: list.value?.Production,
       // data: bigdata.value?.Writing,
       lineStyle: {
         width: 2,
-        color: 'purple'
+        color: ' rgb(22,93,255)'
       },
       areaStyle: {
         opacity: 0.1,
-        color: 'purple',
+        color: ' rgb(22,93,255)'
       },
-      name: '活跃用户数',
+      name: '内容曝光量',
       type: 'line',
     },
     {
       symbol: 'none',
       smooth: true,
       stack: 'Total',
-      data: ['600', '900', '900', '800', '700', '700', '900', '700', '600', '1000'],
+      data: list.value?.Click,
       // data: bigdata.value?.Writing,
       lineStyle: {
         width: 2,
-        color: 'green'
+        color: 'rgb(20,201,201)'
       },
       areaStyle: {
         opacity: 0.1,
-        color: 'green',
-      },
-      name: '内容生产量',
-      type: 'line',
-    },
-    {
-      symbol: 'none',
-      smooth: true,
-      stack: 'Total',
-      data: ['5000', '2000', '4000', '1000', '3000', '10000', '7000', '9000', '6000', '8000'],
-      // data: bigdata.value?.Graphic,
-      lineStyle: {
-        width: 2,
-        color: 'orange'
-      },
-      areaStyle: {
-        opacity: 0.1,
-        color: 'orange',
+        color: 'rgb(20,201,201)',
       },
       name: '内容点击量',
       type: 'line',
@@ -170,23 +154,50 @@ const options = computed<EChartsOption>(() => ({
       symbol: 'none',
       smooth: true,
       stack: 'Total',
-      data: ['5000', '2000', '4000', '1000', '3000', '10000', '7000', '9000', '6000', '8000'],
+      data: list.value?.Exposure,
+      // data: bigdata.value?.Graphic,
       lineStyle: {
         width: 2,
-        color: 'blue'
+        color: 'rgb(255,125,0)'
       },
       areaStyle: {
         opacity: 0.1,
-        color: 'blue',
+        color: 'rgb(255,125,0)',
+      },
+      name: '内容生产量',
+      type: 'line',
+    },
+    {
+      symbol: 'none',
+      smooth: true,
+      stack: 'Total',
+      data: list.value?.User,
+      lineStyle: {
+        width: 2,
+        color: 'rgb(114,46,209)'
+      },
+      areaStyle: {
+        opacity: 0.1,
+        color: 'rgb(114,46,209)',
       },
       type: 'line',
-      name: '内容曝光量'
+      name: '活跃用户数'
     },
   ]
 }))
 getBigSeriesData().then((res) => {
   // console.log('res', res);
   bigdata.value = res.data
+})
+const dataList = ref<DataScreening[]>()
+getDataScreening().then((res) => {
+  dataList.value = res.data
+  // console.log(res)
+})
+
+getDataListTime().then((res) => {
+  // console.log(res)
+  list.value = res.data
 })
 </script>
 

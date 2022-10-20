@@ -162,6 +162,7 @@
               </div>
               <div class="w-2/3">
                 <base-echart
+                  ref="EChatsData"
                   :options="options3"
                   :height="127"
                   :width="180"
@@ -176,8 +177,8 @@
 </template>
 
 <script setup lang="ts">
-import { EChartsOption } from 'echarts';
-import { computed, ref } from 'vue';
+import { ECharts, EChartsOption } from 'echarts';
+import { computed, ref, onMounted } from 'vue';
 import BaseEchart from '@/echats'
 import { getDataAnalysis } from '@/api/data-analysis';
 import { IAnalysis } from '@/api/business';
@@ -420,7 +421,13 @@ const options3 = computed<EChartsOption>(() => ({
 }
 ))
 const dataList = ref<IAnalysis[]>()
-
+const EChatsData = ref<any>()
+onMounted(() => {
+  // console.log(EChatsData.value as ECharts);
+  (EChatsData.value.instance as ECharts).on('click', (param: any) => {
+    console.log(param);
+  })
+})
 // const testStr = ref('')
 getDataAnalysis().then((res) => {
   // console.log(res);
