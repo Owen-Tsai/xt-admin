@@ -32,7 +32,7 @@ const echartDivRef = ref<HTMLElement>()
 const instance = ref<ECharts>()
 
 onMounted(() => {
-  const { setOptions, echartInstance } = useEchart(echartDivRef.value as HTMLElement)
+  const { setOptions } = useEchart(echartDivRef.value as HTMLElement)
 
   instance.value = echartInstance
 
