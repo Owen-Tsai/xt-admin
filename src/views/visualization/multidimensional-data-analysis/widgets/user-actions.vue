@@ -11,9 +11,11 @@
 import { EChartsOption } from 'echarts';
 import { computed, ref } from 'vue';
 import BaseEchart from '@/echats'
-import { getDataAnalysis } from '@/api/data-analysis';
-import { IAnalysis } from '@/api/business';
+import { getDataAction } from '@/api/multidimensional-data-analysis';
+import { IAction } from '@/api/business';
 
+const i = ref<string[]>([])
+const g = ref<number[]>([])
 const options = computed<EChartsOption>(() => ({
   tooltip: {
     trigger: 'axis',
@@ -52,7 +54,7 @@ const options = computed<EChartsOption>(() => ({
     type: 'category',
     show: true,
     axisTick: { alignWithLabel: true },
-    data: ['点赞量', '评论量', '分享量'],
+    data: i.value,
     axisLine: {
       show: false,
     },
@@ -63,13 +65,9 @@ const options = computed<EChartsOption>(() => ({
       disabled: true
     },
     name: 'total',
-    data: [
-      { value: 8400 },
-      { value: 1700 },
-      { value: 2000 }
-    ],
+    data: g.value,
     type: 'bar',
-    barWidth: 7,
+    barWidth: 10,
     barGap: '80%',
     barCategoryGap: '50%',
     itemStyle: {
@@ -78,6 +76,13 @@ const options = computed<EChartsOption>(() => ({
     },
   },
 }))
+getDataAction().then((res) => {
+  res.data.forEach((a) => {
+    i.value.push(a.name as string)
+    g.value.push(a.share as number)
+  })
+  // console.log(action.value)
+})
 </script>
 
 <style lang="scss" scoped>

@@ -8,6 +8,7 @@ import './common'
 import './complex'
 import './advanced-form'
 import './data-analysis'
+import './multidimensional-data-analysis'
 
 Mock.setup({
   timeout: '600-1200'

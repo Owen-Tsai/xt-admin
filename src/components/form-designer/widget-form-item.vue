@@ -2,7 +2,9 @@
   <a-form-item
     :label="widget.name"
     :required="widget.config.required"
-    class="group relative p-2 border-dashed border"
+    class="group wrapper"
+    :class="{ 'is-selected': isSelected }"
+    @click="onWidgetSelect"
   >
     <template v-if="widget.type === 'input'">
       <a-input
@@ -34,21 +36,60 @@
     </template>
 
     <!-- drag handler -->
-    <div class="absolute top-0 left-0 bg-blue-400 text-white leading-none">
+    <div
+      v-show="isSelected"
+      class="absolute top-0 left-0 action-icon cursor-move drag-handler"
+    >
       <s-icon :name="DragMove" :size="16" />
     </div>
+    <!--  -->
   </a-form-item>
 </template>
 
 <script lang="ts" setup>
-import { PropType } from 'vue'
+import {
+  PropType,
+  inject,
+  computed
+} from 'vue'
 import { DragMove } from '@salmon-ui/icons'
-import type { FormWidgetsConfig } from './types'
+import {
+  FormWidgetsConfig,
+  FormDesignerContext,
+  contextSymbol
+} from './types'
 
 const props = defineProps({
   widget: {
     type: Object as PropType<FormWidgetsConfig>,
     required: true
+  },
+  index: {
+    type: Number,
+    required: true
   }
 })
+
+const context = inject(contextSymbol) as FormDesignerContext
+
+const isSelected = computed(() => context.selectedIndex.value === props.index)
+
+const onWidgetSelect = () => {
+  context.selectedIndex.value = props.index
+}
 </script>
+
+<style lang="scss" scoped>
+.action-icon {
+  @apply inline-flex items-center justify-center h-5 w-5 bg-blue-400 text-white;
+}
+.wrapper {
+  @apply relative p-2 before:absolute before:w-full before:h-full before:top-0 before:left-0 mb-1
+    outline-dashed outline-gray-300 outline-1
+    hover:outline hover:outline-blue-400 hover:bg-blue-50;
+
+  &.is-selected {
+    @apply outline outline-2 outline-blue-400;
+  }
+}
+</style>

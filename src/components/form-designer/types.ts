@@ -1,3 +1,5 @@
+import type { Ref } from 'vue'
+
 export interface FormConfig {
   size: 'mini' | 'small' | 'medium' | 'large',
   layout: 'horizontal' | 'vertical',
@@ -75,3 +77,12 @@ export type AST = {
   widgetsConfig: WidgetsConfig[],
   dataSources: DataSourcesConfig[]
 }
+
+export type FormDesignerContext = {
+  selectedIndex: Ref<number>,
+  addWidget: (widget: WidgetsConfig, idx?: number) => void,
+  removeWidget: (index: number) => void,
+  duplicateWidget: (index: number) => void
+}
+
+export const contextSymbol = Symbol('formDesignerContext')
