@@ -33,7 +33,7 @@ const instance = ref<ECharts>()
 
 onMounted(() => {
   const { setOptions } = useEchart(echartDivRef.value as HTMLElement)
-
+  const { echartInstance } = useEchart(echartDivRef.value as HTMLElement)
   instance.value = echartInstance
 
   watchEffect(() => {

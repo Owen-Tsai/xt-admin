@@ -16,6 +16,6 @@ export default (el: HTMLElement) => {
   return {
     echartInstance,
     setOptions,
-    updateSize
+    updateSize,
   }
 }
