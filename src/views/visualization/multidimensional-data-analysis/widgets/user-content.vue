@@ -1,9 +1,18 @@
 <template>
   <div class="basis-1/4 bg-white p-5 mr-4">
-    <h2 class="text-base mb-3">用户留存趋势</h2>
+    <h2 class="text-base mb-3">{{ numberList?.[0].name }}</h2>
     <div class="num-father mb-1">
-      <span class="text-2xl leading-7 mr-3">2,000</span>
-      <span class="text-sm leading-5" style="color: rgb(245,63,63);">200<icon-arrow-fall /></span>
+      <span class="text-2xl leading-7 mr-3">{{ numberList?.[0].odd }}</span>
+      <span class="text-sm leading-5">
+        <a-statistic
+          :value="numberList?.[0].edd"
+          :value-style="iscolre(0)"
+        >
+          <template #prefix>
+            <icon-arrow-fall v-if="numberList?.[0].isgrowth === true" />
+            <icon-arrow-rise v-else />
+          </template>
+        </a-statistic></span>
     </div>
     <base-echart
       :options="options1"
@@ -11,10 +20,19 @@
     />
   </div>
   <div class="basis-1/4 bg-white p-5 mr-4">
-    <h2 class="text-base mb-3">用户留存量</h2>
+    <h2 class="text-base mb-3">{{ numberList?.[1].name }}</h2>
     <div class="num-father mb-1">
-      <span class="text-2xl leading-7 mr-3">3,000</span>
-      <span class="text-sm leading-5" style="color: rgb(0,180,42);">300<icon-arrow-rise /></span>
+      <span class="text-2xl leading-7 mr-3">{{ numberList?.[1].odd }}</span>
+      <span class="text-sm leading-5">
+        <a-statistic
+          :value="numberList?.[1].edd"
+          :value-style="iscolre(1)"
+        >
+          <template #prefix>
+            <icon-arrow-fall v-if="numberList?.[1].isgrowth === true" />
+            <icon-arrow-rise v-else />
+          </template>
+        </a-statistic></span>
     </div>
     <base-echart
       :options="options"
@@ -22,10 +40,19 @@
     />
   </div>
   <div class="basis-1/4 bg-white p-5 mr-4">
-    <h2 class="text-base mb-3">内容消费趋势</h2>
+    <h2 class="text-base mb-3">{{ numberList?.[2].name }}</h2>
     <div class="num-father mb-1">
-      <span class="text-2xl leading-7 mr-3">4,000</span>
-      <span class="text-sm leading-5" style="color: rgb(0,180,42);">400<icon-arrow-rise /></span>
+      <span class="text-2xl leading-7 mr-3">{{ numberList?.[2].odd }}</span>
+      <span class="text-sm leading-5">
+        <a-statistic
+          :value="numberList?.[2].edd"
+          :value-style="iscolre(2)"
+        >
+          <template #prefix>
+            <icon-arrow-fall v-if="numberList?.[2].isgrowth === true" />
+            <icon-arrow-rise v-else />
+          </template>
+        </a-statistic></span>
     </div>
     <base-echart
       :options="options2"
@@ -33,10 +60,19 @@
     />
   </div>
   <div class="basis-1/4 bg-white p-5">
-    <h2 class="text-base mb-3">内容消费量</h2>
+    <h2 class="text-base mb-3">{{ numberList?.[3].name }}</h2>
     <div class="num-father mb-1">
-      <span class="text-2xl leading-7 mr-3">5,000</span>
-      <span class="text-sm leading-5" style="color: rgb(245,63,63);">500<icon-arrow-fall /></span>
+      <span class="text-2xl leading-7 mr-3">{{ numberList?.[3].odd }}</span>
+      <span class="text-sm leading-5">
+        <a-statistic
+          :value="numberList?.[3].edd"
+          :value-style="iscolre(3)"
+        >
+          <template #prefix>
+            <icon-arrow-fall v-if="numberList?.[3].isgrowth === true" />
+            <icon-arrow-rise v-else />
+          </template>
+        </a-statistic></span>
     </div>
     <base-echart
       :options="options3"
@@ -49,8 +85,8 @@
 import { EChartsOption } from 'echarts';
 import { computed, ref } from 'vue';
 import BaseEchart from '@/echats'
-import { getDataAnalysis } from '@/api/data-analysis';
-import { IAnalysis } from '@/api/business';
+import { getDataUserContent } from '@/api/multidimensional-data-analysis';
+import { IUserContent } from '@/api/business';
 
 // import PieEchart from '@/components/echats/pie-echart.vue';
 const options = computed<EChartsOption>(() => ({
@@ -267,8 +303,30 @@ const options3 = computed<EChartsOption>(() => ({
   },
 }
 ))
+
+const numberList = ref<IUserContent[]>()
+
+// const testStr = ref('')
+getDataUserContent().then((res) => {
+  numberList.value = res.data
+})
+const iscolre = (val: number) => {
+  if (numberList.value?.[val].isgrowth === true) {
+    return { color: 'red' }
+  }
+  return { color: 'green' }
+}
 </script>
 
 <style lang="scss" scoped>
-
+*{
+  ::v-deep .arco-statistic-value {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+  ::v-deep .arco-statistic-value-integer {
+    @apply text-sm
+  }
+}
 </style>
