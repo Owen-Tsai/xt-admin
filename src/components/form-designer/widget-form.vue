@@ -1,5 +1,5 @@
 <template>
-  <div class="container select-none" :class="{ empty: isWidgetsEmpty }">
+  <div class="container select-none" :class="{ 'empty': isWidgetsEmpty }">
     <div
       v-if="isWidgetsEmpty"
       class="text-2xl text-gray-400"
@@ -19,10 +19,14 @@
             animation: 200,
             handle: '.drag-handler'
           }"
-          @add="onWidgetAdded"
+          item-key="type"
         >
-          <template #item="{ element }">
-            <widget-form-item :widget="element" />
+          <template #item="{ element, index }: ItemSlot">
+            <widget-form-item
+              :widget="element"
+              :index="index"
+              @select="onWidgetSelect(index)"
+            />
           </template>
         </draggable>
       </a-form>
@@ -34,11 +38,26 @@
 import {
   PropType,
   computed,
-  reactive
+  reactive,
+  ref,
+  inject
 } from 'vue'
 import Draggable from 'vuedraggable'
-import type { AST, FormWidgetsConfig } from './types'
+import {
+  AST,
+  FormWidgetsConfig,
+  WidgetsConfig,
+  FormDesignerContext,
+  contextSymbol
+} from './types'
 import WidgetFormItem from './widget-form-item.vue'
+import { fieldsMap } from './use-draggable-data'
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type ItemSlot = {
+  element: FormWidgetsConfig,
+  index: number
+}
 
 const props = defineProps({
   ast: {
@@ -47,12 +66,28 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits(['update:ast'])
+
+const context = inject<FormDesignerContext>(contextSymbol)
+
+const selectedWidget = ref<WidgetsConfig>()
+const selectedIndex = ref(-1)
+
 const isWidgetsEmpty = computed(() => props.ast.widgetsConfig.length === 0)
 const data = reactive({})
-const widgetsList = computed(() => props.ast.widgetsConfig)
+const widgetsList = computed({
+  get: () => props.ast.widgetsConfig,
+  set: (val) => {
+    emit('update:ast', {
+      ...props.ast,
+      widgetsConfig: val
+    })
+  }
+})
 
-const onWidgetAdded = (e: any) => {
-  console.log(e)
+const onWidgetSelect = (idx: number) => {
+  selectedWidget.value = props.ast.widgetsConfig[idx]
+  selectedIndex.value = idx
 }
 </script>
 
