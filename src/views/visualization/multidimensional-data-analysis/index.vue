@@ -4,7 +4,7 @@
 
     <div class="flex">
       <data-overview />
-      <div class="basis-1/3 bg-white p-5">
+      <div class="basis-1/3 bg-white">
         <user-actions />
         <type-distribution />
       </div>
