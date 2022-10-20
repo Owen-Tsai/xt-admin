@@ -19,7 +19,9 @@
             animation: 200,
             handle: '.drag-handler'
           }"
-          item-key="type"
+          :item-key="getUUID"
+          @add="onWidgetAdd"
+          @end="onDragEnd"
         >
           <template #item="{ element, index }: ItemSlot">
             <widget-form-item
@@ -51,7 +53,6 @@ import {
   contextSymbol
 } from './types'
 import WidgetFormItem from './widget-form-item.vue'
-import { fieldsMap } from './use-draggable-data'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type ItemSlot = {
@@ -88,6 +89,22 @@ const widgetsList = computed({
 const onWidgetSelect = (idx: number) => {
   selectedWidget.value = props.ast.widgetsConfig[idx]
   selectedIndex.value = idx
+}
+
+const onDragEnd = ({ newIndex }: { newIndex: number }) => {
+  (context as FormDesignerContext).selectedIndex.value = newIndex
+}
+
+const onWidgetAdd = (e: any) => {
+  console.log(e)
+  const idx = e.newIndex
+  console.log(widgetsList.value[idx])
+}
+
+const getUUID = (e: any) => {
+  console.log(e)
+  const t = Date.now().toString()
+  return Symbol(t)
 }
 </script>
 
