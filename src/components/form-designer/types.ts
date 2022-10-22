@@ -11,15 +11,12 @@ export interface DataSourcesConfig {
   url: string
 }
 
-export interface IOptShared {
+export interface IOptInput {
   required?: boolean,
   disabled?: boolean,
   readonly?: boolean,
-  label?: string
-}
-
-export interface IOptInput {
-  width?: string | number,
+  label?: string,
+  width?: string,
   allowClear?: boolean,
   maxLength?: number,
   showWordLimit?: boolean,
@@ -28,7 +25,11 @@ export interface IOptInput {
 }
 
 export interface IOptSelect {
-  width?: string | number,
+  required?: boolean,
+  disabled?: boolean,
+  readonly?: boolean,
+  label?: string,
+  width?: string,
   allowClear?: boolean,
   allowSearch?: boolean,
   allowCreate?: boolean,
@@ -54,23 +55,25 @@ export interface IOptGrid {
   align?: 'start' | 'center' | 'end' | 'stretch'
 }
 
-export type FormWidgetsConfig = {
-  type: 'input',
-  name: string,
-  config: IOptInput & IOptShared
-} | {
-  type: 'select',
-  name: string,
-  config: IOptSelect & IOptShared
-}
-
-export type LayoutWidgetsConfig = {
+export type IConfigGrid = {
   type: 'grid',
   name: string,
   config: IOptGrid
 }
 
-export type WidgetsConfig = FormWidgetsConfig | LayoutWidgetsConfig
+export type IConfigInput = {
+  type: 'input',
+  name: string,
+  config: IOptInput
+}
+
+export type IConfigSelect = {
+  type: 'select',
+  name: string,
+  config: IOptSelect
+}
+
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid
 
 export type AST = {
   formConfig: FormConfig,

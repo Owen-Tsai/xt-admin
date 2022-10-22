@@ -1,15 +1,12 @@
 <template>
-  <div class="container select-none" :class="{ 'empty': isWidgetsEmpty }">
-    <div
-      v-if="isWidgetsEmpty"
-      class="text-2xl text-gray-400"
-    >请添加一个组件</div>
-    <div v-else class="p-6">
+  <div class="container select-none">
+    <div class="p-6 min-h-full flex-grow flex flex-col">
       <a-form
         :model="data"
         :label-align="ast.formConfig.labelAlign"
         :layout="ast.formConfig.layout"
         :size="ast.formConfig.size"
+        class="min-h-full flex-grow flex flex-col"
       >
         <draggable
           v-model="widgetsList"
@@ -19,15 +16,14 @@
             animation: 200,
             handle: '.drag-handler'
           }"
+          class="min-h-full flex-grow"
           :item-key="getUUID"
-          @add="onWidgetAdd"
           @end="onDragEnd"
         >
           <template #item="{ element, index }: ItemSlot">
             <widget-form-item
               :widget="element"
               :index="index"
-              @select="onWidgetSelect(index)"
             />
           </template>
         </draggable>
@@ -47,16 +43,16 @@ import {
 import Draggable from 'vuedraggable'
 import {
   AST,
-  FormWidgetsConfig,
   WidgetsConfig,
   FormDesignerContext,
+  IConfigGrid,
   contextSymbol
 } from './types'
 import WidgetFormItem from './widget-form-item.vue'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 type ItemSlot = {
-  element: FormWidgetsConfig,
+  element: Exclude<WidgetsConfig, IConfigGrid>,
   index: number
 }
 
@@ -95,23 +91,12 @@ const onDragEnd = ({ newIndex }: { newIndex: number }) => {
   (context as FormDesignerContext).selectedIndex.value = newIndex
 }
 
-const onWidgetAdd = (e: any) => {
-  console.log(e)
-  const idx = e.newIndex
-  console.log(widgetsList.value[idx])
-}
-
-const getUUID = (e: any) => {
-  console.log(e)
-  const t = Date.now().toString()
-  return Symbol(t)
-}
+const getUUID = () => Symbol('widget')
 </script>
 
 <style lang="scss" scoped>
 .container {
-  @apply my-6 bg-white shadow-sm border;
-  min-height: calc(100% - 48px);
+  @apply bg-white flex flex-col shadow-sm border min-h-full;
 }
 .empty {
   @apply flex items-center justify-center;

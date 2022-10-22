@@ -1,6 +1,6 @@
 <template>
   <a-form-item
-    :label="widget.name"
+    :label="widget.config.label || widget.name"
     :required="widget.config.required"
     class="group wrapper"
     :class="{ 'is-selected': isSelected }"
@@ -54,14 +54,15 @@ import {
 } from 'vue'
 import { DragMove } from '@salmon-ui/icons'
 import {
-  FormWidgetsConfig,
+  WidgetsConfig,
+  IConfigGrid,
   FormDesignerContext,
   contextSymbol
 } from './types'
 
 const props = defineProps({
   widget: {
-    type: Object as PropType<FormWidgetsConfig>,
+    type: Object as PropType<Exclude<WidgetsConfig, IConfigGrid>>,
     required: true
   },
   index: {
