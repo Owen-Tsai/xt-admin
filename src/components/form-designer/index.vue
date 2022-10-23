@@ -5,10 +5,11 @@
         <div class="p-4">
           <div class="font-bold">组件</div>
           <draggable
-            v-model="fields"
+            :list="fields"
             :group="{ name: 'widgets', pull: 'clone', put: false }"
             item-key="type"
             :sort="false"
+            :clone="cloneWidgetConfigFromRaw"
             class="drag-section-container"
           >
             <template #item="{ element }: { element: WidgetsConfig }">
@@ -42,7 +43,11 @@
             :config="ast.formConfig"
           />
           <div v-show="activeTab !== 0">
-            当前选择的组件的配置：
+            <config-panel-widget
+              v-if="ast.widgetsConfig.length > 0"
+              v-model:widget-config="ast.widgetsConfig[selectedIndex]"
+            />
+            当前选择的组件 {{ selectedIndex }} 的配置：
             {{ ast.widgetsConfig[selectedIndex] }}
           </div>
         </div>
@@ -80,6 +85,12 @@ const ast = ref<AST>({
   widgetsConfig: []
 })
 
+const cloneWidgetConfigFromRaw = (config: WidgetsConfig) => ({
+  name: config.name,
+  type: config.type,
+  config: { ...config.config }
+})
+
 const activeTab = ref(0)
 
 const removeWidget = (idx: number) => {
@@ -101,12 +112,17 @@ const addWidget = (widget: WidgetsConfig, idx?: number) => {
 
 const selectedIndex = ref(0)
 
-provide(contextSymbol, {
+const setSelectedIndex = (idx: number) => {
+  selectedIndex.value = idx
+}
+
+provide<FormDesignerContext>(contextSymbol, {
   selectedIndex,
+  setSelectedIndex,
   addWidget,
   removeWidget,
   duplicateWidget
-} as FormDesignerContext)
+})
 </script>
 
 <style lang="scss" scoped>

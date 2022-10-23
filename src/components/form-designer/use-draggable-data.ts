@@ -2,6 +2,22 @@ import type {
   WidgetsConfig
 } from './types'
 
+/**
+ * input
+ * input-number
+ * select
+ * checkbox-group
+ * radio-group
+ * slider
+ * switch
+ * cascader
+ * date-picker
+ * rate
+ * textarea
+ * time-picker
+ * upload
+ */
+
 export const fieldsMap: Record<string, WidgetsConfig> = {
   grid: {
     type: 'grid',

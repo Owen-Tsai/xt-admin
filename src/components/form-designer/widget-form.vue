@@ -9,7 +9,7 @@
         class="min-h-full flex-grow flex flex-col"
       >
         <draggable
-          v-model="widgetsList"
+          :list="widgetsList"
           v-bind="{
             group: 'widgets',
             ghostClass: 'ghost',
@@ -36,7 +36,6 @@
 import {
   PropType,
   computed,
-  reactive,
   ref,
   inject
 } from 'vue'
@@ -63,32 +62,21 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:ast'])
+// an empty reactive data for form model
+const data = ref({})
 
+const emit = defineEmits(['update:ast'])
 const context = inject<FormDesignerContext>(contextSymbol)
 
-const selectedWidget = ref<WidgetsConfig>()
-const selectedIndex = ref(-1)
-
 const isWidgetsEmpty = computed(() => props.ast.widgetsConfig.length === 0)
-const data = reactive({})
-const widgetsList = computed({
-  get: () => props.ast.widgetsConfig,
-  set: (val) => {
-    emit('update:ast', {
-      ...props.ast,
-      widgetsConfig: val
-    })
-  }
-})
-
-const onWidgetSelect = (idx: number) => {
-  selectedWidget.value = props.ast.widgetsConfig[idx]
-  selectedIndex.value = idx
-}
+const widgetsList = ref<WidgetsConfig[]>(props.ast.widgetsConfig)
 
 const onDragEnd = ({ newIndex }: { newIndex: number }) => {
-  (context as FormDesignerContext).selectedIndex.value = newIndex
+  (context as FormDesignerContext).setSelectedIndex(newIndex)
+}
+
+const onChange = (e: any) => {
+  console.log(e)
 }
 
 const getUUID = () => Symbol('widget')

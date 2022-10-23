@@ -83,6 +83,7 @@ export type AST = {
 
 export type FormDesignerContext = {
   selectedIndex: Ref<number>,
+  setSelectedIndex: (idx: number) => void,
   addWidget: (widget: WidgetsConfig, idx?: number) => void,
   removeWidget: (index: number) => void,
   duplicateWidget: (index: number) => void

@@ -76,7 +76,7 @@ const context = inject(contextSymbol) as FormDesignerContext
 const isSelected = computed(() => context.selectedIndex.value === props.index)
 
 const onWidgetSelect = () => {
-  context.selectedIndex.value = props.index
+  context.setSelectedIndex(props.index)
 }
 </script>
 
