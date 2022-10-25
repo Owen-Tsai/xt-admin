@@ -117,6 +117,10 @@ export interface IUserContent {
   edd: number,
   isgrowth: string | number | boolean
 }
+export interface IChartData {
+  value: number | string
+}
+
 export interface ISourceData {
   name: string,
   ugc: number | string,

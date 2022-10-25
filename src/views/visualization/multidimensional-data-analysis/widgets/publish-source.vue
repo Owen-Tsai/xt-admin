@@ -10,9 +10,14 @@
 import { EChartsOption } from 'echarts';
 import { computed, ref } from 'vue';
 import BaseEchart from '@/echats'
-import { getDataAnalysis } from '@/api/data-analysis';
+// import { getrandom } from '@/api/data-analysis';
 import { IAnalysis } from '@/api/business';
+import { getPublish, getPublish1, getPublish2 } from '@/api/multidimensional-data-analysis';
 
+// const pieList =
+const value = ref<any[]>()
+const value1 = ref<any[]>()
+const value2 = ref<any[]>()
 const options = computed<EChartsOption>(() => ({
   legend: {
     left: 'center',
@@ -77,35 +82,35 @@ const options = computed<EChartsOption>(() => ({
       },
       data: [
         {
-          value: [148564],
+          value: value.value?.[0],
           name: 'UGC原创',
           itemStyle: {
             color: '#249EFF',
           },
         },
         {
-          value: [334271],
+          value: value.value?.[1],
           name: '国外网站',
           itemStyle: {
             color: '#846BCE',
           },
         },
         {
-          value: [445694],
+          value: value.value?.[2],
           name: '转载文章',
           itemStyle: {
             color: '#21CCFF',
           },
         },
         {
-          value: [445694],
+          value: value.value?.[3],
           name: '行业报告',
           itemStyle: {
             color: '#86DF6C',
           },
         },
         {
-          value: [445694],
+          value: value.value?.[4],
           name: '其他',
           itemStyle: {
             color: '#0E42D2',
@@ -127,38 +132,38 @@ const options = computed<EChartsOption>(() => ({
       },
       data: [
         {
-          value: [148564],
+          value: value1.value?.[0],
           name: 'UGC原创',
           itemStyle: {
             color: '#249EFF',
           },
         },
         {
-          value: [334271],
+          value: value1.value?.[1],
           name: '国外网站',
           itemStyle: {
             color: '#846BCE',
           },
         },
         {
-          value: [445694],
+          value: value1.value?.[2],
           name: '转载文章',
           itemStyle: {
             color: '#21CCFF',
           },
         },
         {
-          value: [445694],
+          value: value1.value?.[3],
           name: '行业报告',
           itemStyle: {
-            color: '#0E42D2',
+            color: '#86DF6C',
           },
         },
         {
-          value: [445694],
+          value: value1.value?.[4],
           name: '其他',
           itemStyle: {
-            color: '#86DF6C',
+            color: '#0E42D2',
           },
         },
       ],
@@ -177,38 +182,38 @@ const options = computed<EChartsOption>(() => ({
       },
       data: [
         {
-          value: [148564],
+          value: value2.value?.[0],
           name: 'UGC原创',
           itemStyle: {
             color: '#249EFF',
           },
         },
         {
-          value: [334271],
+          value: value2.value?.[1],
           name: '国外网站',
           itemStyle: {
             color: '#846BCE',
           },
         },
         {
-          value: [445694],
+          value: value2.value?.[2],
           name: '转载文章',
           itemStyle: {
             color: '#21CCFF',
           },
         },
         {
-          value: [445694],
+          value: value2.value?.[3],
           name: '行业报告',
           itemStyle: {
-            color: '#0E42D2',
+            color: '#86DF6C',
           },
         },
         {
-          value: [445694],
+          value: value2.value?.[4],
           name: '其他',
           itemStyle: {
-            color: '#86DF6C',
+            color: '#0E42D2',
           },
         },
       ],
@@ -216,6 +221,19 @@ const options = computed<EChartsOption>(() => ({
   ],
 }
 ))
+
+getPublish().then((res) => {
+  // console.log(res)
+  value.value = res.data
+})
+getPublish1().then((res) => {
+  // console.log(res)
+  value1.value = res.data
+})
+getPublish2().then((res) => {
+  // console.log(res)
+  value2.value = res.data
+})
 </script>
 
 <style lang="scss" scoped>
