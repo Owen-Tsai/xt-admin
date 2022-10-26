@@ -58,6 +58,10 @@ module.exports = {
       'multiline': {
         'max': 1
       }
+    }],
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error', {
+      'typedefs': false
     }]
   }
 }

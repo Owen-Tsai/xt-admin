@@ -1,5 +1,3 @@
-import type { SelectOptionData } from '@arco-design/web-vue'
-
 type TargetContext = '_self' | '_parent' | '_blank' | '_top'
 
 export const openWindow = (
@@ -27,4 +25,14 @@ export const regexUrl = new RegExp(
 export const processSize = (val: number | string): string => {
   if (typeof val === 'string') return val
   return `${val}px`
+}
+
+export const generateUID = (len = 8) => {
+  let result = ''
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = characters.length;
+  for (let i = 0; i < len; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength))
+  }
+  return result
 }

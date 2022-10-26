@@ -73,10 +73,10 @@ const props = defineProps({
 
 const context = inject(contextSymbol) as FormDesignerContext
 
-const isSelected = computed(() => context.selectedIndex.value === props.index)
+const isSelected = computed(() => context.selectedUID.value === props.widget.uid)
 
 const onWidgetSelect = () => {
-  context.setSelectedIndex(props.index)
+  context.setSelectedUID(props.widget.uid)
 }
 </script>
 
@@ -85,7 +85,7 @@ const onWidgetSelect = () => {
   @apply inline-flex items-center justify-center h-5 w-5 bg-blue-400 text-white;
 }
 .wrapper {
-  @apply relative p-2 before:absolute before:w-full before:h-full before:top-0 before:left-0 mb-1
+  @apply relative p-2 before:absolute before:w-full before:h-full before:top-0 before:left-0 mb-0
     outline-dashed outline-gray-300 outline-1
     hover:outline hover:outline-blue-400 hover:bg-blue-50;
 

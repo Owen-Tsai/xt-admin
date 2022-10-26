@@ -1,5 +1,10 @@
 import type { Ref } from 'vue'
 
+export type ItemSlot = {
+  element: WidgetsConfig,
+  index: number
+}
+
 export interface FormConfig {
   size: 'mini' | 'small' | 'medium' | 'large',
   layout: 'horizontal' | 'vertical',
@@ -52,24 +57,33 @@ export interface IOptTextarea {
 export interface IOptGrid {
   gutter?: number,
   justify?: 'start' | 'center' | 'end' | 'space-around' | 'space-between',
-  align?: 'start' | 'center' | 'end' | 'stretch'
+  align?: 'start' | 'center' | 'end' | 'stretch',
+}
+
+export type IConfigCol = {
+  span?: number,
+  widgets: Exclude<WidgetsConfig, IConfigGrid>[]
 }
 
 export type IConfigGrid = {
   type: 'grid',
   name: string,
-  config: IOptGrid
+  uid: string,
+  config: IOptGrid,
+  cols: Array<IConfigCol>
 }
 
 export type IConfigInput = {
   type: 'input',
   name: string,
+  uid: string,
   config: IOptInput
 }
 
 export type IConfigSelect = {
   type: 'select',
   name: string,
+  uid: string,
   config: IOptSelect
 }
 
@@ -82,8 +96,8 @@ export type AST = {
 }
 
 export type FormDesignerContext = {
-  selectedIndex: Ref<number>,
-  setSelectedIndex: (idx: number) => void,
+  selectedUID: Ref<string>,
+  setSelectedUID: (uid: string) => void,
   addWidget: (widget: WidgetsConfig, idx?: number) => void,
   removeWidget: (index: number) => void,
   duplicateWidget: (index: number) => void

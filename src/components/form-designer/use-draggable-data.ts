@@ -22,6 +22,13 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
   grid: {
     type: 'grid',
     name: '栅格布局',
+    cols: [
+      {
+        span: 24,
+        widgets: []
+      }
+    ],
+    uid: '',
     config: {
       gutter: 0,
       justify: 'start',
@@ -31,6 +38,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
   input: {
     type: 'input',
     name: '输入框',
+    uid: '',
     config: {
       width: '100%',
       label: '输入框',
@@ -47,6 +55,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
   select: {
     type: 'select',
     name: '下拉选择器',
+    uid: '',
     config: {
       width: '100%',
       label: '下拉选择器',

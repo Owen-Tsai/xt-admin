@@ -44,11 +44,11 @@
           />
           <div v-show="activeTab !== 0">
             <config-panel-widget
-              v-if="ast.widgetsConfig.length > 0"
-              v-model:widget-config="ast.widgetsConfig[selectedIndex]"
+              v-if="selectedWidget"
+              v-model:widget-config="selectedWidget"
             />
-            当前选择的组件 {{ selectedIndex }} 的配置：
-            {{ ast.widgetsConfig[selectedIndex] }}
+            当前选择的组件 {{ selectedUID }} 的配置：
+            {{ selectedWidget }}
           </div>
         </div>
       </a-layout-sider>
@@ -59,20 +59,24 @@
 <script lang="ts" setup>
 import {
   ref,
-  provide
+  provide,
+  computed
 } from 'vue'
 import Draggable from 'vuedraggable'
+import { cloneDeep } from 'lodash'
 import { fields } from './use-draggable-data'
 import WidgetForm from './widget-form.vue'
 import ConfigPanelForm from './config-panel-form.vue'
 import ConfigPanelWidget from './config-panel-widget.vue'
+import { generateUID } from '@/utils'
 import {
   // imported type used in template incorrectly throws warning
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   WidgetsConfig,
   AST,
   FormDesignerContext,
-  contextSymbol
+  contextSymbol,
+  IConfigGrid
 } from './types'
 
 const ast = ref<AST>({
@@ -85,11 +89,11 @@ const ast = ref<AST>({
   widgetsConfig: []
 })
 
-const cloneWidgetConfigFromRaw = (config: WidgetsConfig) => ({
-  name: config.name,
-  type: config.type,
-  config: { ...config.config }
-})
+const cloneWidgetConfigFromRaw = (config: WidgetsConfig) => {
+  const uid = generateUID()
+  config.uid = uid
+  return cloneDeep(config)
+}
 
 const activeTab = ref(0)
 
@@ -110,15 +114,34 @@ const addWidget = (widget: WidgetsConfig, idx?: number) => {
   }
 }
 
-const selectedIndex = ref(0)
+const selectedUID = ref<string>('')
+const selectedWidget = computed(() => {
+  let res: WidgetsConfig | undefined
+  ast.value.widgetsConfig.forEach((widget) => {
+    if (widget.uid === selectedUID.value) {
+      res = widget
+    }
+    if ((widget as IConfigGrid).cols && (widget as IConfigGrid).cols.length > 0) {
+      (widget as IConfigGrid).cols.forEach((col) => {
+        col.widgets.forEach((subWidget) => {
+          if (subWidget.uid === selectedUID.value) {
+            res = subWidget
+          }
+        })
+      })
+    }
+  })
 
-const setSelectedIndex = (idx: number) => {
-  selectedIndex.value = idx
+  return res
+})
+
+const setSelectedUID = (uid: string) => {
+  selectedUID.value = uid
 }
 
 provide<FormDesignerContext>(contextSymbol, {
-  selectedIndex,
-  setSelectedIndex,
+  selectedUID,
+  setSelectedUID,
   addWidget,
   removeWidget,
   duplicateWidget

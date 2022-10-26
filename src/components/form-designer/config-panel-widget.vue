@@ -1,12 +1,14 @@
 <template>
-  <p class="mb-4" v-if="widgetConfig.type !== 'grid'">{{ config }}</p>
   <a-form :model="config" layout="vertical">
     <a-form-item v-if="config.type !== 'grid'" label="标签">
       <a-input v-model="config.config.label" />
     </a-form-item>
-    <!-- <a-form-item v-if="config.type !== 'grid'" label="宽度">
+    <a-form-item v-if="config.type !== 'grid'" label="宽度">
       <a-input v-model="config.config.width" />
-    </a-form-item> -->
+    </a-form-item>
+    <a-form-item v-if="config.type === 'grid'" label="gutter">
+      <a-input-number v-model="config.config.gutter" />
+    </a-form-item>
     <!-- <a-form-item label="默认值">
       <a-input v-model="config.config.defaultValue" />
     </a-form-item>
@@ -39,8 +41,7 @@
 <script lang="ts" setup>
 import {
   PropType,
-  computed,
-  watch
+  computed
 } from 'vue'
 import { WidgetsConfig } from './types'
 
@@ -56,7 +57,6 @@ const emit = defineEmits(['update:widgetConfig'])
 const config = computed({
   get: () => props.widgetConfig,
   set: (val) => {
-    console.log(val)
     emit('update:widgetConfig', val)
   }
 })
