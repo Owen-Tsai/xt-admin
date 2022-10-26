@@ -85,9 +85,15 @@
 import { EChartsOption } from 'echarts';
 import { computed, ref } from 'vue';
 import BaseEchart from '@/echats'
-import { getDataUserContent } from '@/api/multidimensional-data-analysis';
-import { IUserContent } from '@/api/business';
+import {
+  getDataUserContent, getDataChartList, getDataChart1List, getDataChart2List, getDataChart3List
+} from '@/api/multidimensional-data-analysis';
+import { IUserContent, IChartData } from '@/api/business';
 
+const chartList = ref<IChartData[]>()
+const chartList1 = ref<IChartData[]>()
+const chartList2 = ref<IChartData[]>()
+const chartList3 = ref<IChartData[]>()
 // import PieEchart from '@/components/echats/pie-echart.vue';
 const options = computed<EChartsOption>(() => ({
   grid: {
@@ -117,20 +123,7 @@ const options = computed<EChartsOption>(() => ({
       disabled: true
     },
     name: 'total',
-    data: [
-      { value: 252 },
-      { value: 213 },
-      { value: 211 },
-      { value: 222 },
-      { value: 155 },
-      { value: 200 },
-      { value: 177 },
-      { value: 123 },
-      { value: 111 },
-      { value: 144 },
-      { value: 122 },
-      { value: 155 },
-    ],
+    data: chartList.value,
     type: 'bar',
     barWidth: 10,
     barGap: 0,
@@ -171,20 +164,7 @@ const options1 = computed<EChartsOption>(() => ({
         disabled: true
       },
       name: '2001',
-      data: [
-        { value: 123 },
-        { value: 111 },
-        { value: 144 },
-        { value: 122 },
-        { value: 155 },
-        { value: 166 },
-        { value: 100 },
-        { value: 211 },
-        { value: 222 },
-        { value: 155 },
-        { value: 200 },
-        { value: 177 },
-      ],
+      data: chartList1.value,
       type: 'line',
       showSymbol: false,
       smooth: true,
@@ -223,20 +203,7 @@ const options2 = computed<EChartsOption>(() => ({
         disabled: true
       },
       name: '2001',
-      data: [
-        { value: 252 },
-        { value: 213 },
-        { value: 211 },
-        { value: 222 },
-        { value: 155 },
-        { value: 200 },
-        { value: 177 },
-        { value: 123 },
-        { value: 111 },
-        { value: 144 },
-        { value: 122 },
-        { value: 155 },
-      ],
+      data: chartList2.value,
       type: 'line',
       showSymbol: false,
       smooth: true,
@@ -276,20 +243,7 @@ const options3 = computed<EChartsOption>(() => ({
       disabled: true
     },
     name: 'total',
-    data: [
-      { value: 252 },
-      { value: 213 },
-      { value: 211 },
-      { value: 222 },
-      { value: 155 },
-      { value: 200 },
-      { value: 177 },
-      { value: 123 },
-      { value: 111 },
-      { value: 144 },
-      { value: 122 },
-      { value: 155 },
-    ],
+    data: chartList3.value,
     type: 'bar',
     barWidth: 10,
     barGap: 0,
@@ -310,6 +264,23 @@ const numberList = ref<IUserContent[]>()
 getDataUserContent().then((res) => {
   numberList.value = res.data
 })
+getDataChartList().then((res) => {
+  // console.log(res)
+  chartList.value = res.data
+})
+getDataChart1List().then((res) => {
+  // console.log(res)
+  chartList1.value = res.data
+})
+getDataChart2List().then((res) => {
+  // console.log(res)
+  chartList2.value = res.data
+})
+getDataChart3List().then((res) => {
+  // console.log(res)
+  chartList3.value = res.data
+})
+
 const iscolre = (val: number) => {
   if (numberList.value?.[val].isgrowth === true) {
     return { color: 'red' }

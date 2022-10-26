@@ -1,4 +1,4 @@
-import Mock from 'mockjs'
+import Mock, { Random } from 'mockjs'
 import dayjs from 'dayjs'
 import setupMock, {
   failedResponseWrap,
@@ -6,7 +6,7 @@ import setupMock, {
 } from '@/utils/mock'
 import { isAuthed } from '@/utils/auth'
 import type {
-  DataScreening, IOverviewData, IAction, IDistributionData, IUserContent, ISourceData
+  DataScreening, IOverviewData, IAction, IDistributionData, IUserContent, ISourceData, IChartData
 } from '../api/business'
 import { getXTime } from '@/api/data-analysis'
 
@@ -127,49 +127,157 @@ const userContentList = Mock.mock([
   }
 ])
 
-const sourceList = Mock.mock([
+const chartList = Mock.mock([
   {
-    'name': 'UGC原创',
-    'value|100000-999999': [1],
-    'itemStyle': {
-      'color': '#249EFF'
-    },
+    'value|1000-3500': 1
   },
   {
-    'name': '国外网站',
-    'value|100000-999999': [1],
-    'itemStyle': {
-      'color': '#249EFF'
-    },
+    'value|1000-5000': 1
   },
   {
-    'name': '转载文章',
-    'value|100000-999999': [1],
-    'itemStyle': {
-      'color': '#249EFF'
-    },
+    'value|1000-5000': 1
   },
   {
-    'name': 'UGC原创',
-    'value|100000-999999': [1],
-    'itemStyle': {
-      'color': '#249EFF'
-    },
+    'value|1000-6000': 1
   },
   {
-    'name': '行业报告',
-    'value|100000-999999': [1],
-    'itemStyle': {
-      'color': '#249EFF'
-    },
+    'value|1000-7000': 1
   },
   {
-    'name': '其他',
-    'value|100000-999999': [1],
-    'itemStyle': {
-      'color': '#249EFF'
-    },
+    'value|1000-8000': 1
   },
+  {
+    'value|3000-7000': 1
+  },
+  {
+    'value|5000-8500': 1
+  },
+  {
+    'value|6000-8500': 1
+  },
+  {
+    'value|6000-9500': 1
+  },
+  {
+    'value|7000-9999': 1
+  },
+  {
+    'value|8000-9999': 1
+  }
+])
+const chartList1 = Mock.mock([
+  {
+    'value|1000-3500': 1
+  },
+  {
+    'value|1000-5000': 1
+  },
+  {
+    'value|1000-5000': 1
+  },
+  {
+    'value|1000-6000': 1
+  },
+  {
+    'value|1000-7000': 1
+  },
+  {
+    'value|1000-8000': 1
+  },
+  {
+    'value|3000-7000': 1
+  },
+  {
+    'value|5000-8500': 1
+  },
+  {
+    'value|6000-8500': 1
+  },
+  {
+    'value|6000-9500': 1
+  },
+  {
+    'value|7000-9999': 1
+  },
+  {
+    'value|8000-9999': 1
+  }
+])
+const chartList2 = Mock.mock([
+  {
+    'value|1000-3500': 1
+  },
+  {
+    'value|1000-5000': 1
+  },
+  {
+    'value|1000-5000': 1
+  },
+  {
+    'value|1000-6000': 1
+  },
+  {
+    'value|1000-7000': 1
+  },
+  {
+    'value|1000-8000': 1
+  },
+  {
+    'value|3000-7000': 1
+  },
+  {
+    'value|5000-8500': 1
+  },
+  {
+    'value|6000-8500': 1
+  },
+  {
+    'value|6000-9500': 1
+  },
+  {
+    'value|7000-9999': 1
+  },
+  {
+    'value|8000-9999': 1
+  }
+])
+const chartList3 = Mock.mock([
+  {
+    'value|1000-3500': 1
+  },
+  {
+    'value|1000-5000': 1
+  },
+  {
+    'value|1000-5000': 1
+  },
+  {
+    'value|1000-6000': 1
+  },
+  {
+    'value|1000-7000': 1
+  },
+  {
+    'value|1000-8000': 1
+  },
+  {
+    'value|3000-7000': 1
+  },
+  {
+    'value|5000-8500': 1
+  },
+  {
+    'value|6000-8500': 1
+  },
+  {
+    'value|6000-9500': 1
+  },
+  {
+    'value|7000-9999': 1
+  },
+  {
+    'value|8000-9999': 1
+  }
 ])
 const Generates = () => {
   for (let i = 0; i <= 9; i++) {
@@ -187,6 +295,30 @@ const isentertainment = () => {
     }
   }
 }
+const getrandom = (n: number, sum: number) => {
+  //
+  const Arr = []
+  let fSumTmp = sum;
+  let iAcc = 0;
+  for (let i = 0; i < (n - 1); i++) {
+    // const iTmp = (Math.random() * (fSumTmp - 0.25)).toFixed(2)
+    // console.log(iTmp)
+    const iTmp = Random.integer(10, 24)
+    // Arr.push(iTmp);
+    // console.log(iTmp)
+    fSumTmp -= Number(iTmp);
+    iAcc += Number(iTmp)
+    Arr.push((Number(iTmp)) / 100);
+  }
+  Arr.push((sum - iAcc) / 100);
+  // console.log(Arr);
+  return Arr
+}
+getrandom(5, 100)
+const publish = Mock.mock(getrandom(5, 100))
+const publish1 = Mock.mock(getrandom(5, 100))
+const publish2 = Mock.mock(getrandom(5, 100))
+// console.log(publish)
 isentertainment()
 Generates()
 setupMock({
@@ -224,6 +356,48 @@ setupMock({
     Mock.mock(new RegExp('/api/get-data-distri-list'), () => {
       if (isAuthed()) {
         return responseWrap<IDistributionData[]>(distrilist)
+      }
+      return failedResponseWrap(null, '未登录', 50000)
+    })
+    Mock.mock(new RegExp('/api/get-data-chart-list'), () => {
+      if (isAuthed()) {
+        return responseWrap<IChartData[]>(chartList)
+      }
+      return failedResponseWrap(null, '未登录', 50000)
+    })
+    Mock.mock(new RegExp('/api/get-data-chart1-list'), () => {
+      if (isAuthed()) {
+        return responseWrap<IChartData[]>(chartList1)
+      }
+      return failedResponseWrap(null, '未登录', 50000)
+    })
+    Mock.mock(new RegExp('/api/get-data-chart2-list'), () => {
+      if (isAuthed()) {
+        return responseWrap<IChartData[]>(chartList2)
+      }
+      return failedResponseWrap(null, '未登录', 50000)
+    })
+    Mock.mock(new RegExp('/api/get-data-chart3-list'), () => {
+      if (isAuthed()) {
+        return responseWrap<IChartData[]>(chartList3)
+      }
+      return failedResponseWrap(null, '未登录', 50000)
+    })
+    Mock.mock(new RegExp('/api/get-data-publish-value'), () => {
+      if (isAuthed()) {
+        return responseWrap<any[]>(publish)
+      }
+      return failedResponseWrap(null, '未登录', 50000)
+    })
+    Mock.mock(new RegExp('/api/get-data-publish1-value'), () => {
+      if (isAuthed()) {
+        return responseWrap<any[]>(publish1)
+      }
+      return failedResponseWrap(null, '未登录', 50000)
+    })
+    Mock.mock(new RegExp('/api/get-data-publish2-value'), () => {
+      if (isAuthed()) {
+        return responseWrap<any[]>(publish2)
       }
       return failedResponseWrap(null, '未登录', 50000)
     })

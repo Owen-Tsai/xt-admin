@@ -65,6 +65,7 @@ const options = ref<EChartsOption>({
       areaStyle: {
         opacity: 0.2,
       },
+      symbol: 'none',
       data: [],
     },
   ],
