@@ -6,10 +6,22 @@
     <a-form-item v-if="config.type !== 'grid'" label="宽度">
       <a-input v-model="config.config.width" />
     </a-form-item>
-    <a-form-item v-if="config.type === 'grid'" label="gutter">
-      <a-input-number v-model="config.config.gutter" />
-    </a-form-item>
+    <template v-if="config.type === 'grid'">
+      <a-form-item label="栅格间距">
+        <a-input-number v-model="config.config.gutter" />
+      </a-form-item>
+      <a-form-item label="水平排列方式">
+        <a-select v-model="config.config.justify">
+          <a-option value="start">左对齐</a-option>
+          <a-option value="center">居中</a-option>
+          <a-option value="end">左对齐</a-option>
+          <a-option value="space-around">均匀分布</a-option>
+          <a-option value="space-between">两端对齐</a-option>
+        </a-select>
+      </a-form-item>
+    </template>
     <!-- <a-form-item label="默认值">
+    </template>
       <a-input v-model="config.config.defaultValue" />
     </a-form-item>
     <a-form-item label="占位文字">

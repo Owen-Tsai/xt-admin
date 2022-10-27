@@ -2,7 +2,7 @@
   <a-form-item
     :label="widget.config.label || widget.name"
     :required="widget.config.required"
-    class="group wrapper"
+    class="group wrapper bg-white"
     :class="{ 'is-selected': isSelected }"
     @click="onWidgetSelect"
   >
@@ -34,15 +34,25 @@
         >{{ opt.label }}</a-option>
       </a-select>
     </template>
+    <template v-if="(widget as any).type === 'grid'">
+      <div class="text-red-500 font-bold">栅格布局不可嵌套，请移除此控件</div>
+    </template>
 
     <!-- drag handler -->
-    <div
+    <button
       v-show="isSelected"
       class="absolute top-0 left-0 action-icon cursor-move drag-handler"
     >
       <s-icon :name="DragMove" :size="16" />
-    </div>
-    <!--  -->
+    </button>
+    <!-- delete -->
+    <button
+      v-show="isSelected"
+      class="absolute bottom-0 right-0 action-icon"
+      @click="context.removeWidget(index, widget.uid)"
+    >
+      <s-icon :name="DeleteBinFill" :size="16" />
+    </button>
   </a-form-item>
 </template>
 
@@ -52,7 +62,10 @@ import {
   inject,
   computed
 } from 'vue'
-import { DragMove } from '@salmon-ui/icons'
+import {
+  DragMove,
+  DeleteBinFill
+} from '@salmon-ui/icons'
 import {
   WidgetsConfig,
   IConfigGrid,
@@ -82,7 +95,7 @@ const onWidgetSelect = () => {
 
 <style lang="scss" scoped>
 .action-icon {
-  @apply inline-flex items-center justify-center h-5 w-5 bg-blue-400 text-white;
+  @apply inline-flex items-center justify-center h-6 w-6 bg-blue-400 text-white;
 }
 .wrapper {
   @apply relative p-2 before:absolute before:w-full before:h-full before:top-0 before:left-0 mb-0

@@ -55,13 +55,13 @@ export interface IOptTextarea {
 }
 
 export interface IOptGrid {
-  gutter?: number,
-  justify?: 'start' | 'center' | 'end' | 'space-around' | 'space-between',
-  align?: 'start' | 'center' | 'end' | 'stretch',
+  gutter: number,
+  justify: 'start' | 'center' | 'end' | 'space-around' | 'space-between',
+  align: 'start' | 'center' | 'end' | 'stretch',
 }
 
 export type IConfigCol = {
-  span?: number,
+  span: number,
   widgets: Exclude<WidgetsConfig, IConfigGrid>[]
 }
 
@@ -99,7 +99,7 @@ export type FormDesignerContext = {
   selectedUID: Ref<string>,
   setSelectedUID: (uid: string) => void,
   addWidget: (widget: WidgetsConfig, idx?: number) => void,
-  removeWidget: (index: number) => void,
+  removeWidget: (index: number, uid: string) => void,
   duplicateWidget: (index: number) => void
 }
 

@@ -24,13 +24,17 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     name: '栅格布局',
     cols: [
       {
-        span: 24,
+        span: 12,
+        widgets: []
+      },
+      {
+        span: 12,
         widgets: []
       }
     ],
     uid: '',
     config: {
-      gutter: 0,
+      gutter: 16,
       justify: 'start',
       align: 'start'
     }
@@ -77,3 +81,24 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
 }
 
 export const fields = Object.values(fieldsMap)
+
+export const findWidgetWithUID = (widgets: WidgetsConfig[], uid: string) => {
+  for (let i = 0; i < widgets.length; i++) {
+    const widget = widgets[i]
+    if (widget.uid === uid) {
+      return widget
+    }
+    if (widget.type === 'grid' && widget.cols.length > 0) {
+      for (let j = 0; j < widget.cols.length; j++) {
+        const subWidgets = widget.cols[j].widgets
+        for (let k = 0; k < subWidgets.length; k++) {
+          if (subWidgets[k].uid === uid) {
+            return subWidgets[k]
+          }
+        }
+      }
+    }
+  }
+
+  return undefined
+}

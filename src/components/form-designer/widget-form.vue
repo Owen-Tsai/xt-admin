@@ -1,6 +1,6 @@
 <template>
   <div class="container select-none">
-    <div class="p-6 min-h-full flex-grow flex flex-col">
+    <div class="min-h-full flex-grow flex flex-col">
       <a-form
         :model="data"
         :label-align="ast.formConfig.labelAlign"
@@ -16,9 +16,9 @@
             animation: 200,
             handle: '.drag-handler'
           }"
-          class="min-h-full flex-grow"
+          class="min-h-full flex-grow p-6"
           :swap-threshold="0.01"
-          :item-key="getUUID"
+          item-key="uid"
           @end="onDragEnd"
         >
           <template #item="{ element, index }: ItemSlot">
@@ -35,10 +35,18 @@
                   v-for="(col, i) in element.cols"
                   :key="i"
                   :span="col.span || 0"
+                  class="relative"
                 >
-                  <div class="nested-widget-list">
+                  <div class="nested-widget-list bg-green-50">
                     <nested-draggable :nested-list="col.widgets" />
                   </div>
+                  <button
+                    v-show="context?.selectedUID.value === element.uid"
+                    class="absolute bottom-0 right-0 action-icon"
+                    @click="context?.removeWidget(index, element.uid)"
+                  >
+                    <s-icon :name="DeleteBinFill" :size="16" />
+                  </button>
                 </a-col>
               </a-row>
             </template>
@@ -64,13 +72,12 @@ import {
   inject
 } from 'vue'
 import Draggable from 'vuedraggable'
+import { DeleteBinFill } from '@salmon-ui/icons'
 import NestedDraggable from './nested-draggable.vue'
-
 import {
   AST,
   WidgetsConfig,
   FormDesignerContext,
-  IConfigGrid,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ItemSlot,
   contextSymbol
@@ -87,7 +94,6 @@ const props = defineProps({
 // an empty reactive data for form model
 const data = ref({})
 
-const emit = defineEmits(['update:ast'])
 const context = inject<FormDesignerContext>(contextSymbol)
 
 const isWidgetsEmpty = computed(() => props.ast.widgetsConfig.length === 0)
@@ -96,12 +102,6 @@ const widgetsList = ref<WidgetsConfig[]>(props.ast.widgetsConfig)
 const onDragEnd = (e: any) => {
   console.log(e)
 }
-
-const onChange = (e: any) => {
-  console.log(e)
-}
-
-const getUUID = () => Symbol('widget')
 </script>
 
 <style lang="scss" scoped>
@@ -113,7 +113,16 @@ const getUUID = () => Symbol('widget')
 }
 .widget-row {
   @apply relative before:absolute before:w-full before:h-full before:top-0 before:left-0 mb-1
-    outline-dashed outline-gray-300 outline-1
+    outline-dashed outline-gray-300 outline-1 p-3
+    hover:outline hover:outline-blue-400 hover:bg-blue-50;
+
+  &.is-selected {
+    @apply outline outline-2 outline-blue-400;
+  }
+}
+.widget-col {
+  @apply relative before:absolute before:w-full before:h-full before:top-0 before:left-0
+    outline-dashed outline-gray-300 outline-1 p-3
     hover:outline hover:outline-blue-400 hover:bg-blue-50;
 
   &.is-selected {
@@ -121,6 +130,6 @@ const getUUID = () => Symbol('widget')
   }
 }
 .nested-widget-list {
-  @apply min-h-[50px] p-3;
+  @apply min-h-[24px];
 }
 </style>

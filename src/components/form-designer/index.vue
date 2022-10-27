@@ -64,7 +64,7 @@ import {
 } from 'vue'
 import Draggable from 'vuedraggable'
 import { cloneDeep } from 'lodash'
-import { fields } from './use-draggable-data'
+import { fields, findWidgetWithUID } from './use-draggable-data'
 import WidgetForm from './widget-form.vue'
 import ConfigPanelForm from './config-panel-form.vue'
 import ConfigPanelWidget from './config-panel-widget.vue'
@@ -97,8 +97,25 @@ const cloneWidgetConfigFromRaw = (config: WidgetsConfig) => {
 
 const activeTab = ref(0)
 
-const removeWidget = (idx: number) => {
-  ast.value.widgetsConfig.splice(idx, 1)
+const removeWidget = (idx: number, uid: string) => {
+  console.log(`delete ${idx} element with uid ${uid}`)
+  if (ast.value.widgetsConfig[idx].uid === uid) {
+    ast.value.widgetsConfig.splice(idx, 1)
+  } else {
+    for (let i = 0; i < ast.value.widgetsConfig.length; i++) {
+      const widget = ast.value.widgetsConfig[i]
+      if (widget.type === 'grid' && widget.cols.length > 0) {
+        for (let j = 0; j < widget.cols.length; j++) {
+          const subWidgets = widget.cols[j].widgets
+          for (let k = 0; k < widget.cols[j].widgets.length; k++) {
+            if (subWidgets[k].uid === uid) {
+              subWidgets.splice(k, 1)
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 const duplicateWidget = (idx: number) => {
@@ -115,25 +132,7 @@ const addWidget = (widget: WidgetsConfig, idx?: number) => {
 }
 
 const selectedUID = ref<string>('')
-const selectedWidget = computed(() => {
-  let res: WidgetsConfig | undefined
-  ast.value.widgetsConfig.forEach((widget) => {
-    if (widget.uid === selectedUID.value) {
-      res = widget
-    }
-    if ((widget as IConfigGrid).cols && (widget as IConfigGrid).cols.length > 0) {
-      (widget as IConfigGrid).cols.forEach((col) => {
-        col.widgets.forEach((subWidget) => {
-          if (subWidget.uid === selectedUID.value) {
-            res = subWidget
-          }
-        })
-      })
-    }
-  })
-
-  return res
-})
+const selectedWidget = computed(() => findWidgetWithUID(ast.value.widgetsConfig, selectedUID.value))
 
 const setSelectedUID = (uid: string) => {
   selectedUID.value = uid
