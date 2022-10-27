@@ -40,14 +40,14 @@
                   <div class="nested-widget-list bg-green-50">
                     <nested-draggable :nested-list="col.widgets" />
                   </div>
-                  <button
-                    v-show="context?.selectedUID.value === element.uid"
-                    class="absolute bottom-0 right-0 action-icon"
-                    @click="context?.removeWidget(index, element.uid)"
-                  >
-                    <s-icon :name="DeleteBinFill" :size="16" />
-                  </button>
                 </a-col>
+                <button
+                  v-show="context?.selectedUID.value === element.uid"
+                  class="absolute bottom-0 right-0 action-icon"
+                  @click="context?.removeWidget(index, element.uid)"
+                >
+                  <s-icon :name="DeleteBinFill" :size="16" />
+                </button>
               </a-row>
             </template>
             <template v-else>
@@ -131,5 +131,8 @@ const onDragEnd = (e: any) => {
 }
 .nested-widget-list {
   @apply min-h-[24px];
+}
+.action-icon {
+  @apply inline-flex items-center justify-center h-6 w-6 bg-blue-400 text-white;
 }
 </style>
