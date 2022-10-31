@@ -31,7 +31,17 @@ const formRoutes: AppRouteRecordRaw = {
         requireAuth: true,
         role: ['*']
       }
-    }
+    },
+    {
+      path: 'step',
+      name: 'step',
+      component: () => import('@/views/form/step/index.vue'),
+      meta: {
+        locale: 'menu.form.step',
+        requireAuth: true,
+        role: ['*']
+      }
+    },
   ]
 }
 
