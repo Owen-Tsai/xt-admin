@@ -306,6 +306,7 @@ const getrandom = (n: number, sum: number) => {
     const iTmp = Random.integer(10, 24)
     // Arr.push(iTmp);
     // console.log(iTmp)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fSumTmp -= Number(iTmp);
     iAcc += Number(iTmp)
     Arr.push((Number(iTmp)) / 100);
