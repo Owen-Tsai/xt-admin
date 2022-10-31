@@ -10,8 +10,6 @@
 import { EChartsOption } from 'echarts';
 import { computed, ref } from 'vue';
 import BaseEchart from '@/echats'
-// import { getrandom } from '@/api/data-analysis';
-import { IAnalysis } from '@/api/business';
 import { getPublish, getPublish1, getPublish2 } from '@/api/multidimensional-data-analysis';
 
 // const pieList =

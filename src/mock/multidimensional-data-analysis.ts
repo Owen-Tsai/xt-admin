@@ -6,9 +6,9 @@ import setupMock, {
 } from '@/utils/mock'
 import { isAuthed } from '@/utils/auth'
 import type {
-  DataScreening, IOverviewData, IAction, IDistributionData, IUserContent, ISourceData, IChartData
+  DataScreening, IOverviewData, IAction, IDistributionData, IUserContent, IChartData
 } from '../api/business'
-import { getXTime } from '@/api/data-analysis'
+// import { getXTime } from '@/api/data-analysis'
 
 dayjs().format()
 const list = Mock.mock({
@@ -298,7 +298,6 @@ const isentertainment = () => {
 const getrandom = (n: number, sum: number) => {
   //
   const Arr = []
-  let fSumTmp = sum;
   let iAcc = 0;
   for (let i = 0; i < (n - 1); i++) {
     // const iTmp = (Math.random() * (fSumTmp - 0.25)).toFixed(2)
@@ -306,7 +305,6 @@ const getrandom = (n: number, sum: number) => {
     const iTmp = Random.integer(10, 24)
     // Arr.push(iTmp);
     // console.log(iTmp)
-    fSumTmp -= Number(iTmp);
     iAcc += Number(iTmp)
     Arr.push((Number(iTmp)) / 100);
   }
