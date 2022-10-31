@@ -8,7 +8,7 @@
       }"
     >
       <template #title>
-        {{ ('内容类型占比') }}
+        {{ '内容类型占比' }}
       </template>
       <base-echart
         :options="chartOption"

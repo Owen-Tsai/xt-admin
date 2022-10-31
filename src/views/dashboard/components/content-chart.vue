@@ -6,10 +6,10 @@
       :body-style="{
         paddingTop: '10px',
       }"
-      :title="('内容数据')"
+      :title="'内容数据'"
     >
       <template #extra>
-        <a-link>{{ ('查看更多') }}</a-link>
+        <a-link>{{ '查看更多' }}</a-link>
       </template>
       <base-echart
         :options="chartOption"

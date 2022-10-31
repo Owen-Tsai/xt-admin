@@ -65,7 +65,7 @@
           >
         </a-avatar>
         <a-statistic
-          :title="('日新增评论')"
+          :title="'日新增评论'"
           :value="8874"
           :value-from="0"
           animation
@@ -90,7 +90,7 @@
           >
         </a-avatar>
         <a-statistic
-          :title="$t('较昨日新增')"
+          :title="'较昨日新增'"
           :value="2.8"
           :precision="1"
           :value-from="0"
