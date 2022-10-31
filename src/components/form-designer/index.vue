@@ -20,7 +20,10 @@
           </draggable>
         </div>
       </a-layout-sider>
-      <a-layout-content class="bg-gray-50 px-8 py-6">
+      <a-layout-content class="bg-gray-50">
+        <div class="bg-white border-b px-4 py-1">
+          <a-button type="primary">预览</a-button>
+        </div>
         <!-- insert widget-form -->
         <widget-form v-model:ast="ast" />
       </a-layout-content>
@@ -47,8 +50,6 @@
               v-if="selectedWidget"
               v-model:widget-config="selectedWidget"
             />
-            当前选择的组件 {{ selectedUID }} 的配置：
-            {{ selectedWidget }}
           </div>
         </div>
       </a-layout-sider>
@@ -75,8 +76,7 @@ import {
   WidgetsConfig,
   AST,
   FormDesignerContext,
-  contextSymbol,
-  IConfigGrid
+  contextSymbol
 } from './types'
 
 const ast = ref<AST>({
