@@ -299,6 +299,7 @@ const getrandom = (n: number, sum: number) => {
   //
   const Arr = []
   let iAcc = 0;
+  let fSumTmp = 0
   for (let i = 0; i < (n - 1); i++) {
     // const iTmp = (Math.random() * (fSumTmp - 0.25)).toFixed(2)
     // console.log(iTmp)
