@@ -44,9 +44,6 @@
       </a-grid>
     </div>
   </div>
-  <div class="footer">
-    <Footer />
-  </div>
 </template>
 
 <script lang="ts" setup>
@@ -60,13 +57,6 @@ import QuickOperation from './components/quick-operation.vue';
 import Announcement from './components/announcement.vue';
 import Carousel from './components/carousel.vue';
 import Docs from './components/docs.vue';
-import Footer from './components/footer.vue';
-</script>
-
-<script lang="ts">
-export default {
-  name: 'Dashboard',
-};
 </script>
 
 <style lang="scss" scoped>
@@ -143,21 +133,6 @@ export default {
       text-align: center;
       background-color: rgb(var(--gray-1));
       border-radius: 4px;
-    }
-  }
-</style>
-
-<style lang="scss" scoped>
-  // responsive
-  .mobile {
-    .container {
-      display: block;
-    }
-    .right-side {
-      // display: none;
-      width: 100%;
-      margin-left: 0;
-      margin-top: 16px;
     }
   }
 </style>
