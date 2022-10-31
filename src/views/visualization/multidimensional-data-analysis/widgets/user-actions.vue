@@ -12,7 +12,7 @@ import { EChartsOption } from 'echarts';
 import { computed, ref } from 'vue';
 import BaseEchart from '@/echats'
 import { getDataAction } from '@/api/multidimensional-data-analysis';
-import { IAction } from '@/api/business';
+// import { IAction } from '@/api/business';
 
 const i = ref<string[]>([])
 const g = ref<number[]>([])

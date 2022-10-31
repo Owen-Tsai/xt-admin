@@ -6,9 +6,9 @@ import setupMock, {
 } from '@/utils/mock'
 import { isAuthed } from '@/utils/auth'
 import type {
-  DataScreening, IOverviewData, IAction, IDistributionData, IUserContent, ISourceData, IChartData
+  DataScreening, IOverviewData, IAction, IDistributionData, IUserContent, IChartData
 } from '../api/business'
-import { getXTime } from '@/api/data-analysis'
+// import { getXTime } from '@/api/data-analysis'
 
 dayjs().format()
 const list = Mock.mock({
@@ -306,6 +306,7 @@ const getrandom = (n: number, sum: number) => {
     const iTmp = Random.integer(10, 24)
     // Arr.push(iTmp);
     // console.log(iTmp)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fSumTmp -= Number(iTmp);
     iAcc += Number(iTmp)
     Arr.push((Number(iTmp)) / 100);

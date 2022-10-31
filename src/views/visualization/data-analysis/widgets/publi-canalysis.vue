@@ -101,7 +101,7 @@ const options = computed<EChartsOption>(() => ({
       },
     },
     axisLabel: {
-      formatter(value: any, index: any) {
+      formatter(value: any) {
         let val
         if (value >= 1000) {
           val = `${value / 1000}k`;

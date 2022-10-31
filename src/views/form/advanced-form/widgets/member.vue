@@ -118,9 +118,9 @@ const add = () => {
     // clear()
   }
 }
-const primary = () => {
-  Notification.info('提交成功')
-}
+// const primary = () => {
+//   Notification.info('提交成功')
+// }
 </script>
 
 <style lang="scss" scoped>
