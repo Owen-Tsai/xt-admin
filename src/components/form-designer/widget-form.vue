@@ -24,7 +24,7 @@
           <template #item="{ element, index }: ItemSlot">
             <template v-if="element.type === 'grid'">
               <a-row
-                class="widget-row"
+                class="widget-wrapper !mx-0"
                 :class="{ 'is-selected': context?.selectedUID.value === element.uid }"
                 :align="element.config.align"
                 :justify="element.config.justify"
@@ -35,7 +35,7 @@
                   v-for="(col, i) in element.cols"
                   :key="i"
                   :span="col.span || 0"
-                  class="relative"
+                  class="relative first:pl-0 last:pr-0"
                 >
                   <div class="nested-widget-list bg-green-50">
                     <nested-draggable :nested-list="col.widgets" />
@@ -43,7 +43,7 @@
                 </a-col>
                 <button
                   v-show="context?.selectedUID.value === element.uid"
-                  class="absolute bottom-0 right-0 action-icon"
+                  class="widget-action-icon absolute bottom-0 right-0"
                   @click="context?.removeWidget(index, element.uid)"
                 >
                   <s-icon :name="DeleteBinFill" :size="16" />
@@ -111,28 +111,7 @@ const onDragEnd = (e: any) => {
 .empty {
   @apply flex items-center justify-center;
 }
-.widget-row {
-  @apply relative before:absolute before:w-full before:h-full before:top-0 before:left-0 mb-1
-    outline-dashed outline-gray-300 outline-1 p-3
-    hover:outline hover:outline-blue-400 hover:bg-blue-50;
-
-  &.is-selected {
-    @apply outline outline-2 outline-blue-400;
-  }
-}
-.widget-col {
-  @apply relative before:absolute before:w-full before:h-full before:top-0 before:left-0
-    outline-dashed outline-gray-300 outline-1 p-3
-    hover:outline hover:outline-blue-400 hover:bg-blue-50;
-
-  &.is-selected {
-    @apply outline outline-2 outline-blue-400;
-  }
-}
 .nested-widget-list {
-  @apply min-h-[24px];
-}
-.action-icon {
-  @apply inline-flex items-center justify-center h-6 w-6 bg-blue-400 text-white;
+  min-height: 32px;
 }
 </style>

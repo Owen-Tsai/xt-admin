@@ -2,7 +2,7 @@
   <a-form-item
     :label="widget.config.label || widget.name"
     :required="widget.config.required"
-    class="group wrapper bg-white"
+    class="group widget-wrapper bg-white"
     :class="{ 'is-selected': isSelected }"
     @click="onWidgetSelect"
   >
@@ -41,14 +41,14 @@
     <!-- drag handler -->
     <button
       v-show="isSelected"
-      class="absolute top-0 left-0 action-icon cursor-move drag-handler"
+      class="widget-action-icon absolute top-0 left-0 cursor-move drag-handler"
     >
       <s-icon :name="DragMove" :size="16" />
     </button>
     <!-- delete -->
     <button
       v-show="isSelected"
-      class="absolute bottom-0 right-0 action-icon"
+      class="widget-action-icon absolute bottom-0 right-0"
       @click="context.removeWidget(index, widget.uid)"
     >
       <s-icon :name="DeleteBinFill" :size="16" />
@@ -92,18 +92,3 @@ const onWidgetSelect = () => {
   context.setSelectedUID(props.widget.uid)
 }
 </script>
-
-<style lang="scss" scoped>
-.action-icon {
-  @apply inline-flex items-center justify-center h-6 w-6 bg-blue-400 text-white;
-}
-.wrapper {
-  @apply relative p-2 before:absolute before:w-full before:h-full before:top-0 before:left-0 mb-0
-    outline-dashed outline-gray-300 outline-1
-    hover:outline hover:outline-blue-400 hover:bg-blue-50;
-
-  &.is-selected {
-    @apply outline outline-2 outline-blue-400;
-  }
-}
-</style>

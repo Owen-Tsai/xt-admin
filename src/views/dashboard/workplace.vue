@@ -144,18 +144,3 @@ export default {
     }
   }
 </style>
-
-<style lang="scss" scoped>
-  // responsive
-  .mobile {
-    .container {
-      display: block;
-    }
-    .right-side {
-      // display: none;
-      width: 100%;
-      margin-left: 0;
-      margin-top: 16px;
-    }
-  }
-</style>

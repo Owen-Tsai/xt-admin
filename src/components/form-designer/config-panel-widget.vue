@@ -82,7 +82,7 @@
     <a-form-item label="是否显示字符数限制">
       <a-switch v-model="config.config.showWordLimit" />
     </a-form-item> -->
-    <a-collapse>
+    <a-collapse class="ast-pre">
       <a-collapse-item key="json" header="控件配置 JSON">
         <pre>{{ config }}</pre>
       </a-collapse-item>
