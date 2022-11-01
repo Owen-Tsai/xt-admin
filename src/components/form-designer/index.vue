@@ -20,10 +20,7 @@
           </draggable>
         </div>
       </a-layout-sider>
-      <a-layout-content class="bg-gray-50">
-        <div class="bg-white border-b px-4 py-1">
-          <a-button type="primary">预览</a-button>
-        </div>
+      <a-layout-content class="bg-gray-50 p-4">
         <!-- insert widget-form -->
         <widget-form v-model:ast="ast" />
       </a-layout-content>

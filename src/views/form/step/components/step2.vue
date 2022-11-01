@@ -3,7 +3,7 @@
     <a-form
       :model="form"
       class="pt-8"
-      :style="{width:'450px',}"
+      :style="{width:'450px'}"
     >
       <a-alert closable>确认转账后，资金将直接打入对方账户，无法退回。</a-alert>
       <a-form-item
@@ -36,7 +36,7 @@
         class="stepFormText"
       >
         <a-input-password
-          :style="{width:'200px',}"
+          :style="{width:'200px'}"
           :invisible-button="false"
           placeholder="请输入支付密码"
         />
@@ -46,45 +46,35 @@
           type="primary"
           @click="sendMsgToParent"
         >提交</a-button>
-        <a-button style="margin-left: 8px" @click="sendMsgToParent1">上一步</a-button>
+        <a-button class="ml-4" @click="sendMsgToParent1">上一步</a-button>
       </a-form-item>
     </a-form>
   </div>
 </template>
-<script>
-import { reactive } from 'vue';
+<script setup lang="ts">
+import { reactive, inject } from 'vue';
 
-export default {
-  setup() {
-    const form = reactive({
-      name: '',
-      post: '',
-    })
-    const handleSubmit = (data) => {
-      console.log(data)
-    }
-
-    return {
-      form,
-      handleSubmit
-    }
-  },
-  methods: {
-    sendMsgToParent() {
-      this.$emit('childMsg1', '3');
-    },
-    sendMsgToParent1() {
-      this.$emit('childMsg3', '1');
-    },
-  }
+const form = reactive({
+  name: '',
+  post: '',
+})
+const changeable:any = inject('changeable1')
+const sendMsgToParent = () => {
+  // console.log(1);
+  changeable.childMsg(3)
+}
+// const changeable = () => '2'
+const sendMsgToParent1 = () => {
+  // console.log(1);
+  changeable.childMsg(1)
 }
 </script>
-  <style lang="scss" scoped>
-     .arco-alert{
-        padding: 16px 15px;
-        font-size: 15px;
-      }
-      .arco-alert-info{
-        border: 1px solid #196ad68c;
-      }
-  </style>
+<style lang="scss" scoped>
+  .arco-alert{
+    padding: 16px 15px;
+    font-size: 15px;
+  }
+  .arco-alert-info{
+    border: 1px solid #196ad68c;
+  }
+</style>

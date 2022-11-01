@@ -1,15 +1,15 @@
 <template>
-  <a-spin style="width: 100%">
+  <a-spin class="spin">
     <a-card
       class="general-card"
       :header-style="{ paddingBottom: 0 }"
       :body-style="{
         paddingTop: '10px',
       }"
-      :title="('内容数据')"
+      title="内容数据"
     >
       <template #extra>
-        <a-link>{{ ('查看更多') }}</a-link>
+        <a-link>查看更多</a-link>
       </template>
       <base-echart
         :options="chartOption"
@@ -102,4 +102,8 @@ const chartOption = computed<EChartsOption>(() => ({
 
 }))
 </script>
-  <style scoped lang="scss"></style>
+  <style scoped lang="scss">
+  .spin{
+    width: 100%;
+  }
+</style>

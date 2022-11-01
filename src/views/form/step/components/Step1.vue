@@ -3,7 +3,6 @@
     class="pt-8 pl-10"
     :model="form"
     :style="{width:'600px'}"
-    @submit="handleSubmit"
   >
     <a-form-item field="fk" label="付款账户：">
       <a-select :style="{width:'320px'}" placeholder="请选择付款账户">
@@ -46,26 +45,18 @@
     </a-form-item>
   </a-form>
 </template>
+<script setup lang="ts">
+import { reactive, inject } from 'vue';
 
-<script>
-import { reactive } from 'vue';
-
-export default {
-  // emits: ['nextStep', 'childMsg'],
-  setup() {
-    const form = reactive({
-      name: '',
-      post: '',
-      isRead: false,
-    })
-    return {
-      form,
-    }
-  },
-  methods: {
-    sendMsgToParent() {
-      this.$emit('childMsg', '2');
-    },
-  }
+// emits: ['nextStep', 'childMsg'],
+const form = reactive({
+  name: '',
+  post: '',
+  isRead: false,
+})
+const changeable:any = inject('changeable')
+// const changeable = () => '2'
+const sendMsgToParent = () => {
+  changeable.childMsg(2)
 }
 </script>

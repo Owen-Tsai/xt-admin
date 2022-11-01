@@ -13,60 +13,37 @@
         <a-step title="完成" />
       </a-steps>
       <div class="content">
-        <step1 v-if="currentTab == 1" @childMsg="showChildMsg" />
+        <step1 v-if="currentTab == 1" />
         <step2
           v-if="currentTab == 2"
-          @childMsg1="showChildMsg1"
-          @childMsg3="showChildMsg3"
         />
         <step3
           v-if="currentTab == 3"
-          @childMsg2="showChildMsg2"
         />
       </div>
     </a-card>
   </main>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import {
+  provide, ref
+} from 'vue';
 import Step1 from './components/Step1.vue'
 import Step2 from './components/Step2.vue'
 import Step3 from './components/Step3.vue'
 
-export default {
-  name: 'StepForm',
-  components: {
-    Step1,
-    Step2,
-    Step3
-  },
-  data() {
-    return {
-      currentTab: 1,
-      form: null
-    }
-  },
-  methods: {
-    showChildMsg(data: number) {
-      this.currentTab = data
-      console.log(data);
-    },
-    showChildMsg1(data: number) {
-      this.currentTab = data
-      console.log(data);
-    },
-    showChildMsg2(data: number) {
-      this.currentTab = data
-      console.log(data);
-    },
-    showChildMsg3(data: number) {
-      this.currentTab = data
-      console.log(data);
-    }
-  }
+const currentTab = ref(1)
+const childMsg = (n: number) => {
+  currentTab.value = n
 }
+provide('changeable', {
+  childMsg
+})
+provide('changeable1', {
+  childMsg
+})
 </script>
-
   <style lang="scss" scoped>
   .steps {
       max-width: 750px;

@@ -1,5 +1,5 @@
 <template>
-  <a-spin style="width: 100%">
+  <a-spin class="spin">
     <a-card
       class="general-card"
       :header-style="{ paddingBottom: '0' }"
@@ -8,7 +8,7 @@
       }"
     >
       <template #title>
-        {{ ('内容类型占比') }}
+        内容类型占比
       </template>
       <base-echart
         :options="chartOption"
@@ -68,3 +68,9 @@ const chartOption = computed<EChartsOption>(() => ({
   ],
 }))
 </script>
+
+<style lang="scss" scoped>
+  .spin{
+    width: 100%
+  }
+</style>
