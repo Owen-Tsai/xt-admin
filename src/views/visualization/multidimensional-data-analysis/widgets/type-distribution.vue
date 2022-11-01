@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { EChartsOption, RadarComponentOption, RadarSeriesOption } from 'echarts';
 import { ref } from 'vue';
-import BaseEchart from '@/echats'
+import BaseEchart from '@/components/echart.vue'
 import { getDataDataDistriList, getDataDistribution } from '@/api/multidimensional-data-analysis';
 
 const options = ref<EChartsOption>({

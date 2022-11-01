@@ -63,7 +63,7 @@ import AMessageList from './message-list.vue'
 import ANoticeList from './notice-list.vue'
 
 const messageType = ref('notice')
-const { isLoading, setLoading } = useLoading()
+const { isLoading } = useLoading()
 
 const messageList = reactive<MessageRecord[]>([
   {

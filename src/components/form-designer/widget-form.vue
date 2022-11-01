@@ -67,7 +67,7 @@
 <script lang="ts" setup>
 import {
   PropType,
-  computed,
+  // computed,
   ref,
   inject
 } from 'vue'
@@ -96,7 +96,7 @@ const data = ref({})
 
 const context = inject<FormDesignerContext>(contextSymbol)
 
-const isWidgetsEmpty = computed(() => props.ast.widgetsConfig.length === 0)
+// const isWidgetsEmpty = computed(() => props.ast.widgetsConfig.length === 0)
 const widgetsList = ref<WidgetsConfig[]>(props.ast.widgetsConfig)
 
 const onDragEnd = (e: any) => {

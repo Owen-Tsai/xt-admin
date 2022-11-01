@@ -24,7 +24,7 @@
 import { computed, ref } from 'vue';
 import { EChartsOption } from 'echarts';
 import { TableColumnData } from '@arco-design/web-vue';
-import BaseEchart from '@/echats'
+import BaseEchart from '@/components/echart.vue'
 import { getSeriesData, getTableList, getXTime } from '@/api/data-analysis';
 import { ISeriesData } from '@/api/business';
 
@@ -101,7 +101,7 @@ const options = computed<EChartsOption>(() => ({
       },
     },
     axisLabel: {
-      formatter(value: any, index: any) {
+      formatter(value: any) {
         let val
         if (value >= 1000) {
           val = `${value / 1000}k`;

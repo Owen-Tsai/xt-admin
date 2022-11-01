@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { EChartsOption } from 'echarts';
-import BaseEchart from '@/echats'
+import BaseEchart from '@/components/echart.vue'
 import { getBigSeriesData } from '@/api/data-analysis';
 import { ISeriesData } from '@/api/business';
 
