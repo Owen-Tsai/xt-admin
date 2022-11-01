@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { EChartsOption } from 'echarts';
 import { computed, ref } from 'vue';
-import BaseEchart from '@/echats'
+import BaseEchart from '@/components/echart.vue'
 import { getDataAction } from '@/api/multidimensional-data-analysis';
 // import { IAction } from '@/api/business';
 

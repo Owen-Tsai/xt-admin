@@ -10,7 +10,7 @@ import {
 } from 'vue'
 import { EChartsOption, ECharts } from 'echarts'
 import { processSize } from '@/utils'
-import useEchart from '../hooks/useEchart'
+import useEchart from '../hooks/use-echart'
 
 // 定义props
 const props = defineProps({

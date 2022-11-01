@@ -179,7 +179,7 @@
 <script setup lang="ts">
 import { ECharts, EChartsOption } from 'echarts';
 import { computed, ref, onMounted } from 'vue';
-import BaseEchart from '@/echats'
+import BaseEchart from '@/components/echart.vue'
 import { getDataAnalysis } from '@/api/data-analysis';
 import { IAnalysis } from '@/api/business';
 

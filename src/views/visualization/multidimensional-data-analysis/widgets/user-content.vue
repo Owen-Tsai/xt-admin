@@ -84,7 +84,7 @@
 <script setup lang="ts">
 import { EChartsOption } from 'echarts';
 import { computed, ref } from 'vue';
-import BaseEchart from '@/echats'
+import BaseEchart from '@/components/echart.vue'
 import {
   getDataUserContent, getDataChartList, getDataChart1List, getDataChart2List, getDataChart3List
 } from '@/api/multidimensional-data-analysis';

@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { EChartsOption } from 'echarts';
 import { computed } from 'vue';
-import BaseEchart from '@/echats'
+import BaseEchart from '@/components/echart.vue'
 
 const chartOption = computed<EChartsOption>(() => ({
 
