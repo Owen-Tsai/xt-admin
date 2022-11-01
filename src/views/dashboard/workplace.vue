@@ -60,12 +60,6 @@ import docsWidget from './components/docs-widget.vue';
 // import Footer from './components/footer.vue';
 </script>
 
-<script lang="ts">
-export default {
-  name: 'Dashboard',
-};
-</script>
-
 <style lang="scss" scoped>
   .container {
     background-color: var(--color-fill-2);
