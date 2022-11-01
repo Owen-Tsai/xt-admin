@@ -27,6 +27,12 @@ const chartOption = computed<EChartsOption>(() => ({
   tooltip: {
     trigger: 'item'
   },
+  // title: {
+  //   text: '内容量',
+  //   subtext: '1111',
+  //   left: 'center',
+  //   y: 'center',
+  // },
   color: ['#33CCFF', '#0099FF', '#0066FF'],
   legend: {
     left: 'center',
@@ -40,6 +46,28 @@ const chartOption = computed<EChartsOption>(() => ({
   },
   axisTick: {
     show: false,
+  },
+  graphic: {
+    elements: [
+      {
+        type: 'text',
+        left: '45%',
+        top: '33%',
+        style: {
+          fontSize: '14',
+          text: '内容量',
+        },
+      },
+      {
+        type: 'text',
+        left: '44%',
+        top: '43%',
+        style: {
+          fontSize: '14',
+          text: '935,794',
+        },
+      },
+    ],
   },
   series: [
     {
@@ -55,6 +83,7 @@ const chartOption = computed<EChartsOption>(() => ({
       },
       label: {
         show: true,
+        // position: 'center'
       },
       type: 'pie',
       center: ['50%', '40%'],
