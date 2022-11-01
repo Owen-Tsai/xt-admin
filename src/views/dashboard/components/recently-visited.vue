@@ -1,7 +1,7 @@
 <template>
   <a-card
     class="general-card"
-    :title="('最近访问')"
+    title="最近访问"
     :header-style="{ paddingBottom: '0' }"
     :body-style="{ paddingTop: '26px' }"
   >

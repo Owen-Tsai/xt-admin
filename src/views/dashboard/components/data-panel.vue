@@ -16,7 +16,7 @@
           >
         </a-avatar>
         <a-statistic
-          :title="('线上总内容')"
+          title="线上总内容"
           :value="373.5"
           :precision="1"
           :value-from="0"
@@ -24,7 +24,7 @@
           show-group-separator
         >
           <template #suffix>
-            W+ <span class="unit">{{ ('个') }}</span>
+            W+ <span class="unit">个</span>
           </template>
         </a-statistic>
       </a-space>
@@ -41,14 +41,14 @@
           >
         </a-avatar>
         <a-statistic
-          :title="('投放中内容')"
+          title="投放中内容"
           :value="368"
           :value-from="0"
           animation
           show-group-separator
         >
           <template #suffix>
-            <span class="unit">{{ ('个') }}</span>
+            <span class="unit">个</span>
           </template>
         </a-statistic>
       </a-space>
@@ -65,14 +65,14 @@
           >
         </a-avatar>
         <a-statistic
-          :title="'日新增评论'"
+          title="日新增评论"
           :value="8874"
           :value-from="0"
           animation
           show-group-separator
         >
           <template #suffix>
-            <span class="unit">{{ ('个') }}</span>
+            <span class="unit">个</span>
           </template>
         </a-statistic>
       </a-space>
@@ -90,7 +90,7 @@
           >
         </a-avatar>
         <a-statistic
-          :title="'较昨日新增'"
+          title="较昨日新增"
           :value="2.8"
           :precision="1"
           :value-from="0"

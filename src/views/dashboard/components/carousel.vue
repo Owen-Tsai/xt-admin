@@ -1,13 +1,13 @@
 <template>
   <a-carousel
+    class="asel"
     indicator-type="slider"
     show-arrow="hover"
     auto-play
-    style="width: 100%; height: 170px; border-radius: 4px; overflow: hidden"
   >
     <a-carousel-item v-for="(src, idx) in imageSrc" :key="idx">
       <div>
-        <img :src="src" style="width: 100%">
+        <img class="img" :src="src">
       </div>
     </a-carousel-item>
   </a-carousel>
@@ -22,3 +22,14 @@ const imageSrc = [
   '//p3-armor.byteimg.com/tos-cn-i-49unhts6dw/ea095a2c9c72b5d8f2f2818040db736d.jpg~tplv-49unhts6dw-image.image',
 ];
 </script>
+<style lang="scss" scoped>
+  .asel{
+    width: 100%;
+    height: 170px;
+    border-radius: 4px;
+    overflow: hidden
+  }
+  .img{
+    width: 100%
+  }
+</style>

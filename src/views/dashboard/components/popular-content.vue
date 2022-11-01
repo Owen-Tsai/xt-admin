@@ -6,10 +6,10 @@
       :body-style="{ padding: '17px 20px 21px 20px' }"
     >
       <template #title>
-        {{ '线上热门内容' }}
+        线上热门内容
       </template>
       <template #extra>
-        <a-link>{{ '查看更多' }}</a-link>
+        <a-link>查看更多</a-link>
       </template>
       <a-space
         direction="vertical"
@@ -20,13 +20,13 @@
           type="button"
         >
           <a-radio value="text">
-            {{ '文本' }}
+            文本
           </a-radio>
           <a-radio value="image">
-            {{ '图片' }}
+            图片
           </a-radio>
           <a-radio value="video">
-            {{ '视频' }}
+            视频
           </a-radio>
         </a-radio-group>
         <a-table
