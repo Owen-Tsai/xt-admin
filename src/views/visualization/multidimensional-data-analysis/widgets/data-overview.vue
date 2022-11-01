@@ -6,73 +6,73 @@
         <h6 class="text-xs mb-2">{{ dataList?.[0].name }}</h6>
         <div class="number-father flex leading-8">
           <div
-            class="rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
-            style="background-color: rgb(255,228,186); color: rgb(255,125,0);"
-          ><icon-edit />
+            class="orange rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
+          >
+            <icon-edit />
           </div>
-          <span class="font-medium" style="font-size: 26px">{{ dataList?.[0].volume }}</span>
+          <span class="font-medium">{{ dataList?.[0].volume }}</span>
         </div>
       </div>
       <div class="w-1/4 p-5 pt-1.5">
         <h6 class="text-xs mb-2">{{ dataList?.[1].name }}</h6>
         <div class="number-father flex leading-8">
           <div
-            class="rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
-            style="background-color: rgb(183,244,236); color: rgb(20,201,201);"
-          ><icon-thumb-up />
+            class="green rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
+          >
+            <icon-thumb-up />
           </div>
-          <span class="font-medium" style="font-size: 26px">{{ dataList?.[1].volume }}</span>
+          <span class="font-medium">{{ dataList?.[1].volume }}</span>
         </div>
       </div>
       <div class="w-1/4 p-5 pt-1.5">
         <h6 class="text-xs mb-2">{{ dataList?.[2].name }}</h6>
         <div class="number-father flex leading-8">
           <div
-            class="rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
-            style="background-color: rgb(232,243,255); color: rgb(22,93,255);"
-          ><icon-heart />
+            class="blue rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
+          >
+            <icon-heart />
           </div>
-          <span class="font-medium" style="font-size: 26px">{{ dataList?.[2].volume }}</span>
+          <span class="font-medium">{{ dataList?.[2].volume }}</span>
         </div>
       </div>
       <div class="w-1/4 p-5 pt-1.5">
         <h6 class="text-xs mb-2">{{ dataList?.[3].name }}</h6>
         <div class="number-father flex leading-8">
           <div
-            class="rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
-            style="background-color: rgb(245,232,255); color: rgb(114,46,209);"
-          ><icon-user />
+            class="purple rounded-md text-lg w-8 h-8 leading-8 mr-2 text-center"
+          >
+            <icon-user />
           </div>
-          <span class="font-medium" style="font-size: 26px">{{ dataList?.[3].volume }}</span>
+          <span class="font-medium">{{ dataList?.[3].volume }}</span>
         </div>
       </div>
     </div>
-    <base-echart
-      :options="options"
-      :height="352"
-    />
+    <base-echart :options="options" :height="352" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { EChartsOption } from 'echarts';
-import BaseEchart from '@/echats'
+import BaseEchart from '@/echats';
 import { getBigSeriesData } from '@/api/data-analysis';
 import { DataScreening, IOverviewData, ISeriesData } from '@/api/business';
-import { getDataListTime, getDataScreening } from '@/api/multidimensional-data-analysis';
+import {
+  getDataListTime,
+  getDataScreening,
+} from '@/api/multidimensional-data-analysis';
 
-const bigdata = ref<ISeriesData>()
-const list = ref<IOverviewData>()
+const bigdata = ref<ISeriesData>();
+const list = ref<IOverviewData>();
 const options = computed<EChartsOption>(() => ({
   tooltip: {
     trigger: 'axis',
     axisPointer: {
       type: 'cross',
       label: {
-        backgroundColor: '#6a7985'
-      }
-    }
+        backgroundColor: '#6a7985',
+      },
+    },
   },
   xAxis: {
     type: 'category',
@@ -90,24 +90,26 @@ const options = computed<EChartsOption>(() => ({
       },
     },
   },
-  yAxis: [{
-    type: 'value',
-    name: '',
-    axisLine: {
-      show: false,
-    },
-    axisLabel: {
-      show: true,
-      interval: 'auto',
-      formatter(value: number, idx: number) {
-        if (idx === 0) return String(value);
-        return `${value / 1000}k`;
+  yAxis: [
+    {
+      type: 'value',
+      name: '',
+      axisLine: {
+        show: false,
+      },
+      axisLabel: {
+        show: true,
+        interval: 'auto',
+        formatter(value: number, idx: number) {
+          if (idx === 0) return String(value);
+          return `${value / 1000}k`;
+        },
+      },
+      axisPointer: {
+        show: false,
       },
     },
-    axisPointer: {
-      show: false
-    },
-  }],
+  ],
   grid: {
     containLabel: true,
     left: '0',
@@ -124,11 +126,11 @@ const options = computed<EChartsOption>(() => ({
       // data: bigdata.value?.Writing,
       lineStyle: {
         width: 2,
-        color: ' rgb(22,93,255)'
+        color: ' rgb(22,93,255)',
       },
       areaStyle: {
         opacity: 0.1,
-        color: ' rgb(22,93,255)'
+        color: ' rgb(22,93,255)',
       },
       name: '内容曝光量',
       type: 'line',
@@ -141,7 +143,7 @@ const options = computed<EChartsOption>(() => ({
       // data: bigdata.value?.Writing,
       lineStyle: {
         width: 2,
-        color: 'rgb(20,201,201)'
+        color: 'rgb(20,201,201)',
       },
       areaStyle: {
         opacity: 0.1,
@@ -158,7 +160,7 @@ const options = computed<EChartsOption>(() => ({
       // data: bigdata.value?.Graphic,
       lineStyle: {
         width: 2,
-        color: 'rgb(255,125,0)'
+        color: 'rgb(255,125,0)',
       },
       areaStyle: {
         opacity: 0.1,
@@ -174,33 +176,51 @@ const options = computed<EChartsOption>(() => ({
       data: list.value?.User,
       lineStyle: {
         width: 2,
-        color: 'rgb(114,46,209)'
+        color: 'rgb(114,46,209)',
       },
       areaStyle: {
         opacity: 0.1,
         color: 'rgb(114,46,209)',
       },
       type: 'line',
-      name: '活跃用户数'
+      name: '活跃用户数',
     },
-  ]
-}))
+  ],
+}));
 getBigSeriesData().then((res) => {
   // console.log('res', res);
-  bigdata.value = res.data
-})
-const dataList = ref<DataScreening[]>()
+  bigdata.value = res.data;
+});
+const dataList = ref<DataScreening[]>();
 getDataScreening().then((res) => {
-  dataList.value = res.data
+  dataList.value = res.data;
   // console.log(res)
-})
+});
 
 getDataListTime().then((res) => {
   // console.log(res)
-  list.value = res.data
-})
+  list.value = res.data;
+});
 </script>
 
 <style lang="scss" scoped>
-
+.orange {
+  background-color: rgb(255, 228, 186);
+  color: rgb(255, 125, 0);
+}
+.green {
+  background-color: rgb(183, 244, 236);
+  color: rgb(20, 201, 201);
+}
+.blue {
+  background-color: rgb(232, 243, 255);
+  color: rgb(22, 93, 255);
+}
+.purple {
+  background-color: rgb(245, 232, 255);
+  color: rgb(114, 46, 209);
+}
+.font-medium {
+  font-size: 26px;
+}
 </style>
