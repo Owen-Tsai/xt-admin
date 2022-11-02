@@ -34,6 +34,20 @@
         >{{ opt.label }}</a-option>
       </a-select>
     </template>
+    <template v-if="widget.type === 'radio'">
+      <a-radio-group>
+        <template v-for="(item, i) in widget.config.options" :key="i">
+          <a-radio
+            :disabled="widget.config.disabled"
+            :default-value="widget.config.defaultValue"
+            :value="item.value"
+            :direction="widget.config.direction"
+          >
+            {{ item.label }}
+          </a-radio>
+        </template>
+      </a-radio-group>
+    </template>
     <template v-if="(widget as any).type === 'grid'">
       <div class="text-red-500 font-bold">栅格布局不可嵌套，请移除此控件</div>
     </template>

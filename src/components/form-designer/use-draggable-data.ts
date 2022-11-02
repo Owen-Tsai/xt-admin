@@ -77,6 +77,22 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
         { label: '选项3', value: 3 }
       ]
     }
+  },
+  radio: {
+    type: 'radio',
+    name: '单选框',
+    uid: '',
+    config: {
+      label: '单选框',
+      disabled: false,
+      direction: '',
+      defaultValue: '',
+      width: '100%',
+      options: [
+        { label: '男', value: 0 },
+        { label: '女', value: 1 },
+      ]
+    }
   }
 }
 

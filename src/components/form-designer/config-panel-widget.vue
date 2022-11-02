@@ -6,6 +6,9 @@
     <a-form-item v-if="config.type !== 'grid'" label="宽度">
       <a-input v-model="config.config.width" />
     </a-form-item>
+    <template v-if="config.type === 'radio'">
+      <a-input v-model="config.config.direction" />
+    </template>
     <template v-if="config.type === 'grid'">
       <div class="mb-6">
         <span class="label">栅格列</span>

@@ -46,7 +46,18 @@ export interface IOptSelect {
     value?: string | number | Record<string, unknown>
   }>
 }
-
+export interface IOptRadio {
+  required?: boolean,
+  label: string,
+  disabled?: boolean,
+  width?: string,
+  direction?:string,
+  defaultValue?:string | number | boolean,
+  options?: Array<{
+    label?: string,
+    value?: string | number
+  }>
+}
 export interface IOptTextarea {
   width?: string,
   rows?: number,
@@ -86,8 +97,14 @@ export type IConfigSelect = {
   uid: string,
   config: IOptSelect
 }
+export type IConfigRadio = {
+  type: 'radio',
+  name: string,
+  uid: string,
+  config: IOptRadio
+}
 
-export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio
 
 export type AST = {
   formConfig: FormConfig,
