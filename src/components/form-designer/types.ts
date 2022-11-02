@@ -49,13 +49,15 @@ export interface IOptSelect {
 export interface IOptRadio {
   required?: boolean,
   label: string,
-  disabled?: boolean,
+  disabled?: boolean | string | number,
+  type: 'radio' | 'button',
   width?: string,
-  direction?:string,
-  defaultValue?:string | number | boolean,
+  size?: 'mini' | 'small' | 'medium' | 'large',
+  direction?: 'vertical' | 'horizontal',
+  defaultValue?:string | number,
   options?: Array<{
     label?: string,
-    value?: string | number
+    value?: number
   }>
 }
 export interface IOptTextarea {
@@ -101,7 +103,8 @@ export type IConfigRadio = {
   type: 'radio',
   name: string,
   uid: string,
-  config: IOptRadio
+  config: IOptRadio,
+  cols?: Array<IConfigCol>
 }
 
 export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio

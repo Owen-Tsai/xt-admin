@@ -35,13 +35,19 @@
       </a-select>
     </template>
     <template v-if="widget.type === 'radio'">
-      <a-radio-group>
-        <template v-for="(item, i) in widget.config.options" :key="i">
+      <a-radio-group
+        :direction="widget.config.direction"
+        :size="widget.config.size"
+        :type="widget.config.type"
+        :default-value="widget.config.defaultValue"
+        :disabled="widget.config.disabled as boolean"
+      >
+        <template
+          v-for="(item, i) in widget.config.options"
+          :key="i"
+        >
           <a-radio
-            :disabled="widget.config.disabled"
-            :default-value="widget.config.defaultValue"
             :value="item.value"
-            :direction="widget.config.direction"
           >
             {{ item.label }}
           </a-radio>
