@@ -57,7 +57,7 @@ export interface IOptRadio {
   defaultValue?:string | number,
   options?: Array<{
     label?: string,
-    value?: number
+    value?: number | string
   }>
 }
 export interface IOptTextarea {

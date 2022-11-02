@@ -3,7 +3,7 @@
     <a-form-item v-if="config.type !== 'grid'" label="标签">
       <a-input v-model="config.config.label" />
     </a-form-item>
-    <a-form-item v-if="config.type !== 'grid'" label="宽度">
+    <a-form-item v-if="config.type !== 'grid' && config.type !== 'radio' " label="宽度">
       <a-input v-model="config.config.width" />
     </a-form-item>
     <template v-if="config.type === 'radio'">
@@ -27,13 +27,17 @@
           <a-option value="button">按钮</a-option>
         </a-select>
       </a-form-item>
-      <div>
-        <span>内容</span>
+      <div class="mb-2">
+        <span>选项</span>
         <div v-for="(item,i) in config.config.options" :key="i">
           <div class="mt-2 flex items-center gap-4">
-            <a-input v-model="item.label" />
-            <a-input-number v-model="item.value" />
-            <a-button status="danger" @click="removeColFromRadio(i)">
+            <a-input v-model="item.label" class="w-1/3" />
+            <a-input-number v-model:number="item.value" class="w-1/3" />
+            <a-button
+              status="danger"
+              class="flex-shrink-0"
+              @click="removeColFromRadio(i)"
+            >
               <template #icon>
                 <icon-minus />
               </template>
@@ -51,12 +55,6 @@
           增加列
         </a-button>
       </div>
-      <div class="flex mt-4 mb-2">
-        <span class="w-1/3 block">是否禁用</span>
-        <a-switch
-          v-model="config.config.disabled"
-        />
-      </div>
       <a-form-item label="默认选中">
         <a-select v-model="config.config.defaultValue">
           <div v-for="(item, i) in config.config.options" :key="i">
@@ -64,6 +62,12 @@
           </div>
         </a-select>
       </a-form-item>
+      <div class="flex mt-2 mb-2">
+        <span class="w-1/3 block">是否禁用</span>
+        <a-switch
+          v-model="config.config.disabled"
+        />
+      </div>
     </template>
     <template v-if="config.type === 'grid'">
       <div class="mb-6">
@@ -81,7 +85,6 @@
               </template>
             </a-button>
           </div>
-
           <a-button
             long
             class="mt-2"
