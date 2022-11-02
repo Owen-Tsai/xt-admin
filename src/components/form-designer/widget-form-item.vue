@@ -54,6 +54,21 @@
         </template>
       </a-radio-group>
     </template>
+    <template v-if="widget.type === 'slider'">
+      <a-slider
+        :default-value="widget.config.defaultValue"
+        :step="widget.config.step"
+        :min="widget.config.min"
+        :marks="widget.config.marks"
+        :max="widget.config.max"
+        :direction="widget.config.direction"
+        :disabled="widget.config.disabled"
+        :show-ticks="widget.config.showTicks"
+        :show-input="widget.config.showInput"
+        :range="widget.config.range"
+        :style="{ width: widget.config.width }"
+      />
+    </template>
     <template v-if="(widget as any).type === 'grid'">
       <div class="text-red-500 font-bold">栅格布局不可嵌套，请移除此控件</div>
     </template>

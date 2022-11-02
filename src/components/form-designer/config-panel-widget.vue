@@ -6,69 +6,7 @@
     <a-form-item v-if="config.type !== 'grid' && config.type !== 'radio' " label="宽度">
       <a-input v-model="config.config.width" />
     </a-form-item>
-    <template v-if="config.type === 'radio'">
-      <a-form-item label="排列方式">
-        <a-select v-model="config.config.direction">
-          <a-option value="horizontal">水平排列</a-option>
-          <a-option value="vertical">垂直排列</a-option>
-        </a-select>
-      </a-form-item>
-      <a-form-item label="按钮尺寸">
-        <a-select v-model="config.config.size">
-          <a-option value="mini">迷你</a-option>
-          <a-option value="small">小</a-option>
-          <a-option value="medium">中</a-option>
-          <a-option value="large">大</a-option>
-        </a-select>
-      </a-form-item>
-      <a-form-item label="单选框类型">
-        <a-select v-model="config.config.type">
-          <a-option value="radio">圆形</a-option>
-          <a-option value="button">按钮</a-option>
-        </a-select>
-      </a-form-item>
-      <div class="mb-2">
-        <span>选项</span>
-        <div v-for="(item,i) in config.config.options" :key="i">
-          <div class="mt-2 flex items-center gap-4">
-            <a-input v-model="item.label" class="w-1/3" />
-            <a-input-number v-model:number="item.value" class="w-1/3" />
-            <a-button
-              status="danger"
-              class="flex-shrink-0"
-              @click="removeColFromRadio(i)"
-            >
-              <template #icon>
-                <icon-minus />
-              </template>
-            </a-button>
-          </div>
-        </div>
-        <a-button
-          long
-          class="mt-2"
-          @click="addColToRadio"
-        >
-          <template #icon>
-            <icon-plus />
-          </template>
-          增加列
-        </a-button>
-      </div>
-      <a-form-item label="默认选中">
-        <a-select v-model="config.config.defaultValue">
-          <div v-for="(item, i) in config.config.options" :key="i">
-            <a-option :value="item.value">{{ item.label }}</a-option>
-          </div>
-        </a-select>
-      </a-form-item>
-      <div class="flex mt-2 mb-2">
-        <span class="w-1/3 block">是否禁用</span>
-        <a-switch
-          v-model="config.config.disabled"
-        />
-      </div>
-    </template>
+    <radio-config v-if="config.type === 'radio'" v-model:widgetConfig="config" />
     <template v-if="config.type === 'grid'">
       <div class="mb-6">
         <span class="label">栅格列</span>
@@ -117,7 +55,7 @@
         </a-select>
       </a-form-item>
     </template>
-    <!-- <a-form-item label="默认值">
+    <!-- <a-form-item   label="默认值">
     </template>
       <a-input v-model="config.config.defaultValue" />
     </a-form-item>
@@ -155,10 +93,13 @@
 <script lang="ts" setup>
 import {
   PropType,
-  computed
+  computed,
 } from 'vue'
 import { sumBy } from 'lodash'
-import { IConfigGrid, IConfigRadio, WidgetsConfig } from './types'
+import {
+  IConfigGrid, WidgetsConfig
+} from './types'
+import radioConfig from './config/radio-config.vue'
 
 const props = defineProps({
   widgetConfig: {
@@ -166,10 +107,6 @@ const props = defineProps({
     required: true
   }
 })
-const disposeValue = () => {
-  // (config.value as IConfigRadio).config.defaultValue =
-  //
-}
 
 const emit = defineEmits(['update:widgetConfig'])
 
@@ -179,23 +116,15 @@ const config = computed({
     emit('update:widgetConfig', val)
   }
 })
-
 const removeColFromGrid = (index: number) => {
   (config.value as IConfigGrid).cols.splice(index, 1)
 }
-const removeColFromRadio = (index: number) => {
-  (config.value as IConfigRadio).config.options?.splice(index, 1)
-}
+
 const addColToGrid = () => {
   const remains = sumBy((config.value as IConfigGrid).cols, (e) => e.span);
   (config.value as IConfigGrid).cols.push({
     span: remains > 0 ? 24 - remains : 0,
     widgets: []
-  })
-}
-const addColToRadio = () => {
-  (config.value as IConfigRadio).config.options?.push({
-    label: '',
   })
 }
 </script>

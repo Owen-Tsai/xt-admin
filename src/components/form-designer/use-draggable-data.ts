@@ -95,6 +95,25 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
         { label: '女', value: 1 },
       ]
     }
+  },
+  slider: {
+    type: 'slider',
+    name: '滑动输入条',
+    uid: '',
+    config: {
+      label: '滑动输入条',
+      defaultValue: undefined,
+      step: 1,
+      min: 0,
+      marks: '',
+      max: 100,
+      direction: 'horizontal',
+      disabled: false,
+      showTicks: false,
+      showInput: false,
+      range: false,
+      width: '200px',
+    }
   }
 }
 

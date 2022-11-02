@@ -60,6 +60,21 @@ export interface IOptRadio {
     value?: number | string
   }>
 }
+export interface IOptSlider {
+  required?: boolean,
+  label: string,
+  defaultValue?: number | [number, number],
+  step?: number,
+  min?: number,
+  marks?: Record<number, string>,
+  max?: number,
+  direction?: 'horizontal' | 'vertical',
+  disabled?: boolean,
+  showTicks?: boolean,
+  showInput?: boolean,
+  range?: boolean,
+  width?: string,
+}
 export interface IOptTextarea {
   width?: string,
   rows?: number,
@@ -104,10 +119,15 @@ export type IConfigRadio = {
   name: string,
   uid: string,
   config: IOptRadio,
-  cols?: Array<IConfigCol>
+}
+export type IConfigSlider = {
+  type: 'slider',
+  name: string,
+  uid: string,
+  config: IOptSlider,
 }
 
-export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider
 
 export type AST = {
   formConfig: FormConfig,
