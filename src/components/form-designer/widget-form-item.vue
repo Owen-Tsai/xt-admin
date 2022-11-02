@@ -2,7 +2,7 @@
   <a-form-item
     :label="widget.config.label || widget.name"
     :required="widget.config.required"
-    class="group widget-wrapper bg-white"
+    class="group widget-wrapper bg-white z-50"
     :class="{ 'is-selected': isSelected }"
     @click="onWidgetSelect"
   >
@@ -69,6 +69,17 @@
         :style="{ width: widget.config.width }"
       />
     </template>
+    <template v-if="widget.type === 'switch'">
+      <a-switch
+        :disabled="widget.config.disabled"
+        :size="widget.config.size"
+        :type="widget.config.type"
+        :direction="widget.config.checkedValue"
+        :checked-value="widget.config.checkedValue"
+        :unchecked-value="widget.config.uncheckedValue"
+        :default-checked="widget.config.defaultChecked"
+      />
+    </template>
     <template v-if="(widget as any).type === 'grid'">
       <div class="text-red-500 font-bold">栅格布局不可嵌套，请移除此控件</div>
     </template>
@@ -127,3 +138,8 @@ const onWidgetSelect = () => {
   context.setSelectedUID(props.widget.uid)
 }
 </script>
+<style lang="scss">
+.widget-wrapper::before{
+  z-index: 1000;
+}
+</style>

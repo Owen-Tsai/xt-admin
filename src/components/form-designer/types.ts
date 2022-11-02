@@ -60,6 +60,17 @@ export interface IOptRadio {
     value?: number | string
   }>
 }
+export interface IOptSwitch {
+  width?: string,
+  required?:boolean,
+  defaultChecked?: boolean,
+  type?: 'circle' | 'round' | 'line',
+  size?: 'small' | 'medium',
+  checkedValue?: string | number | boolean,
+  uncheckedValue?: string | number | boolean,
+  disabled?: boolean,
+  label?: string
+}
 export interface IOptSlider {
   required?: boolean,
   label: string,
@@ -120,6 +131,12 @@ export type IConfigRadio = {
   uid: string,
   config: IOptRadio,
 }
+export type IConfigSwitch = {
+  type: 'switch',
+  name: string,
+  uid: string,
+  config: IOptSwitch,
+}
 export type IConfigSlider = {
   type: 'slider',
   name: string,
@@ -127,7 +144,7 @@ export type IConfigSlider = {
   config: IOptSlider,
 }
 
-export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch
 
 export type AST = {
   formConfig: FormConfig,
