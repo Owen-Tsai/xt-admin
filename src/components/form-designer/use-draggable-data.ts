@@ -114,6 +114,21 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       range: false,
       width: '200px',
     }
+  },
+  switch: {
+    type: 'switch',
+    name: '开关',
+    uid: '',
+    config: {
+      label: '开关',
+      width: '100%',
+      defaultChecked: false,
+      type: 'circle',
+      size: 'medium',
+      checkedValue: true,
+      uncheckedValue: false,
+      disabled: false,
+    }
   }
 }
 
