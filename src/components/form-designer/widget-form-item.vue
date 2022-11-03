@@ -87,14 +87,14 @@
     <!-- drag handler -->
     <button
       v-show="isSelected"
-      class="widget-action-icon absolute top-0 left-0 cursor-move drag-handler"
+      class="widget-action-icon absolute top-0 left-0 cursor-move drag-handler z-50"
     >
       <s-icon :name="DragMove" :size="16" />
     </button>
     <!-- delete -->
     <button
       v-show="isSelected"
-      class="widget-action-icon absolute bottom-0 right-0"
+      class="widget-action-icon absolute bottom-0 right-0 z-50"
       @click="context.removeWidget(index, widget.uid)"
     >
       <s-icon :name="DeleteBinFill" :size="16" />
@@ -140,6 +140,6 @@ const onWidgetSelect = () => {
 </script>
 <style lang="scss">
 .widget-wrapper::before{
-  z-index: 1000;
+  z-index: 10;
 }
 </style>
