@@ -181,7 +181,52 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
         }
       ]
     }
-  }
+  },
+  datePicker: {
+    type: 'date-picker',
+    name: '日期选择器',
+    uid: '',
+    config: {
+      label: '日期选择器',
+      width: '100%',
+      allowClear: true,
+      readonly: false,
+      error: false,
+      size: 'medium',
+      disabled: false,
+      showTime: false,
+    }
+  },
+  rate: {
+    type: 'rate',
+    name: '评分',
+    uid: '',
+    config: {
+      label: '评分',
+      width: '100%',
+      count: 5,
+      allowHalf: false,
+      grading: false,
+      readonly: false,
+      disabled: false,
+    }
+  },
+  timePicker: {
+    type: 'time-picker',
+    name: '时间选择器',
+    uid: '',
+    config: {
+      label: '时间选择器',
+      width: '100%',
+      type: 'time',
+      disabled: false,
+      allowClear: true,
+      readonly: false,
+      error: false,
+      size: 'medium',
+      placeholder: '请选择时间',
+    }
+  },
 }
 
 export const fields = Object.values(fieldsMap)

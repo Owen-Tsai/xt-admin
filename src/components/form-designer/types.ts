@@ -227,7 +227,26 @@ export type IConfigTextarea = {
   uid: string,
   config: IOptinTextarea,
 }
-export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigCascader | IConfigTextarea
+export type IConfigDatePicker = {
+  type: 'date-picker',
+  name: string,
+  uid: string,
+  config: IOptDatePicker,
+}
+export type IConfigRate = {
+  type: 'rate',
+  name: string,
+  uid: string,
+  config: IOptRate,
+}
+export type IConfigTimePicker = {
+  type: 'time-picker',
+  name: string,
+  uid: string,
+  config: IOptTimePicker,
+}
+
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigDatePicker | IConfigRate | IConfigTimePicker | IConfigCascader | IConfigTextarea
 
 export type AST = {
   formConfig: FormConfig,
