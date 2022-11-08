@@ -1,4 +1,10 @@
 <template>
+  <a-form-item label="选择器类型">
+    <a-select v-model="config.config.type">
+      <a-option value="time">时间输入器</a-option>
+      <a-option value="time-range">范围选择器</a-option>
+    </a-select>
+  </a-form-item>
   <a-form-item label="按钮尺寸">
     <a-select v-model="config.config.size">
       <a-option value="mini">迷你</a-option>
@@ -7,6 +13,15 @@
       <a-option value="large">大</a-option>
     </a-select>
   </a-form-item>
+  <a-form-item label="提示文案">
+    <a-input v-model="config.config.placeholder" />
+  </a-form-item>
+  <div class="flex justify-between items-center mb-2">
+    <span>是否禁用</span>
+    <a-switch
+      v-model="config.config.disabled"
+    />
+  </div>
   <div class="flex justify-between items-center mb-2">
     <span>是否允许清除</span>
     <a-switch
@@ -25,28 +40,16 @@
       v-model="config.config.error"
     />
   </div>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否禁用</span>
-    <a-switch
-      v-model="config.config.disabled"
-    />
-  </div>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否增加时间选择</span>
-    <a-switch
-      v-model="config.config.showTime"
-    />
-  </div>
 </template>
 
 <script setup lang="ts">
 import { computed, PropType } from 'vue'
-import { IConfigDatePicker } from '../types'
+import { IConfigTimePicker } from '../types'
 
 const emit = defineEmits(['update:widgetConfig'])
 const props = defineProps({
   widgetConfig: {
-    type: Object as PropType<IConfigDatePicker>,
+    type: Object as PropType<IConfigTimePicker>,
     required: true
   }
 })

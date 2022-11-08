@@ -95,6 +95,20 @@ export interface IOptDatePicker {
   error?: boolean,
   size?: 'mini' | 'small' | 'medium' | 'large',
   disabled?: boolean,
+  showTime?: boolean,
+  mode?: 'date' | 'year' | 'quarter' | 'month' | 'week',
+  width?: string,
+}
+export interface IOptRate {
+  required?: boolean,
+  label: string,
+  count?: number,
+  defaultValue?: number,
+  allowHalf?: boolean,
+  grading?: boolean,
+  readonly?: boolean,
+  disabled?: boolean,
+  color?: string | Record<string, string>,
   width?: string,
 }
 export interface IOptTextarea {
@@ -102,6 +116,19 @@ export interface IOptTextarea {
   rows?: number,
   limit?: number,
   placeholder?: string
+}
+export interface IOptTimePicker {
+  required?: boolean,
+  label: string,
+  type?: 'time' | 'time-range',
+  defaultValue?: string | number | Date | Array<string | number | Date>,
+  disabled?: boolean,
+  allowClear?: boolean,
+  readonly?: boolean,
+  error?: boolean,
+  size?: 'mini' | 'small' | 'medium' | 'large',
+  placeholder?: string,
+  width?: string,
 }
 
 export interface IOptGrid {
@@ -160,8 +187,20 @@ export type IConfigDatePicker = {
   uid: string,
   config: IOptDatePicker,
 }
+export type IConfigRate = {
+  type: 'rate',
+  name: string,
+  uid: string,
+  config: IOptRate,
+}
+export type IConfigTimePicker = {
+  type: 'time-picker',
+  name: string,
+  uid: string,
+  config: IOptTimePicker,
+}
 
-export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigDatePicker
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigDatePicker | IConfigRate | IConfigTimePicker
 
 export type AST = {
   formConfig: FormConfig,

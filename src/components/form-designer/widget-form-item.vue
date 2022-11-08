@@ -79,13 +79,34 @@
         :unchecked-value="widget.config.uncheckedValue"
         :default-checked="widget.config.defaultChecked"
       />
-    </template><template v-if="widget.type === 'date-picker'">
+    </template>
+    <template v-if="widget.type === 'date-picker'">
       <a-date-picker
         :allow-clear="widget.config.allowClear"
         :readonly="widget.config.readonly"
         :error="widget.config.error"
         :size="widget.config.size"
         :disabled="widget.config.disabled"
+      />
+    </template>
+    <template v-if="widget.type === 'rate'">
+      <a-rate
+        :count="widget.config.count"
+        :allow-half="widget.config.allowHalf"
+        :grading="widget.config.grading"
+        :readonly="widget.config.readonly"
+        :disabled="widget.config.disabled"
+      />
+    </template>
+    <template v-if="widget.type === 'time-picker'">
+      <a-time-picker
+        :type="widget.config.type"
+        :disabled="widget.config.disabled"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :size="widget.config.size"
+        :placeholder="widget.config.placeholder"
       />
     </template>
     <template v-if="(widget as any).type === 'grid'">

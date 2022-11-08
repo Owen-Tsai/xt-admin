@@ -10,6 +10,8 @@
     <slider-config v-if="config.type === 'slider'" v-model:widgetConfig="config" />
     <switch-config v-if="config.type === 'switch'" v-model:widgetConfig="config" />
     <date-picker-config v-if="config.type === 'date-picker'" v-model:widgetConfig="config" />
+    <rate-config v-if="config.type === 'rate'" v-model:widgetConfig="config" />
+    <time-picker-config v-if="config.type === 'time-picker'" v-model:widgetConfig="config" />
     <grid-config v-if="config.type === 'grid'" v-model:widgetConfig="config" />
     <!-- <a-form-item   label="默认值">
     </template>
@@ -58,6 +60,8 @@ import radioConfig from './config/radio-config.vue'
 import sliderConfig from './config/slider-config.vue'
 import switchConfig from './config/switch-config.vue'
 import datePickerConfig from './config/date-picker-config.vue'
+import rateConfig from './config/rate-config.vue'
+import timePickerConfig from './config/time-picker-config.vue'
 
 const props = defineProps({
   widgetConfig: {

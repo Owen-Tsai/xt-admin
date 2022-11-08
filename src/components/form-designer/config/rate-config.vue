@@ -1,16 +1,17 @@
 <template>
-  <a-form-item label="按钮尺寸">
-    <a-select v-model="config.config.size">
-      <a-option value="mini">迷你</a-option>
-      <a-option value="small">小</a-option>
-      <a-option value="medium">中</a-option>
-      <a-option value="large">大</a-option>
-    </a-select>
+  <a-form-item label="评分的总数">
+    <a-input-number v-model="config.config.count" />
   </a-form-item>
   <div class="flex justify-between items-center mb-2">
-    <span>是否允许清除</span>
+    <span>是否允许半选</span>
     <a-switch
-      v-model="config.config.allowClear"
+      v-model="config.config.allowHalf"
+    />
+  </div>
+  <div class="flex justify-between items-center mb-2">
+    <span>是否开启笑脸分级</span>
+    <a-switch
+      v-model="config.config.grading"
     />
   </div>
   <div class="flex justify-between items-center mb-2">
@@ -20,33 +21,21 @@
     />
   </div>
   <div class="flex justify-between items-center mb-2">
-    <span>是否为错误状态</span>
-    <a-switch
-      v-model="config.config.error"
-    />
-  </div>
-  <div class="flex justify-between items-center mb-2">
     <span>是否禁用</span>
     <a-switch
       v-model="config.config.disabled"
-    />
-  </div>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否增加时间选择</span>
-    <a-switch
-      v-model="config.config.showTime"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, PropType } from 'vue'
-import { IConfigDatePicker } from '../types'
+import { IConfigRate } from '../types'
 
 const emit = defineEmits(['update:widgetConfig'])
 const props = defineProps({
   widgetConfig: {
-    type: Object as PropType<IConfigDatePicker>,
+    type: Object as PropType<IConfigRate>,
     required: true
   }
 })
