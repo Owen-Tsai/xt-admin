@@ -79,6 +79,14 @@
         :unchecked-value="widget.config.uncheckedValue"
         :default-checked="widget.config.defaultChecked"
       />
+    </template><template v-if="widget.type === 'date-picker'">
+      <a-date-picker
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :size="widget.config.size"
+        :disabled="widget.config.disabled"
+      />
     </template>
     <template v-if="(widget as any).type === 'grid'">
       <div class="text-red-500 font-bold">栅格布局不可嵌套，请移除此控件</div>

@@ -1,3 +1,4 @@
+import { DatePicker } from '@arco-design/web-vue'
 import type { Ref } from 'vue'
 
 export type ItemSlot = {
@@ -86,6 +87,16 @@ export interface IOptSlider {
   range?: boolean,
   width?: string,
 }
+export interface IOptDatePicker {
+  required?: boolean,
+  label: string,
+  allowClear?: boolean,
+  readonly?: boolean,
+  error?: boolean,
+  size?: 'mini' | 'small' | 'medium' | 'large',
+  disabled?: boolean,
+  width?: string,
+}
 export interface IOptTextarea {
   width?: string,
   rows?: number,
@@ -143,8 +154,14 @@ export type IConfigSlider = {
   uid: string,
   config: IOptSlider,
 }
+export type IConfigDatePicker = {
+  type: 'date-picker',
+  name: string,
+  uid: string,
+  config: IOptDatePicker,
+}
 
-export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigDatePicker
 
 export type AST = {
   formConfig: FormConfig,

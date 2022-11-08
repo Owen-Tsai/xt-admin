@@ -1,3 +1,4 @@
+import { DatePicker } from '@arco-design/web-vue'
 import type {
   WidgetsConfig
 } from './types'
@@ -129,7 +130,21 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       uncheckedValue: false,
       disabled: false,
     }
-  }
+  },
+  datePicker: {
+    type: 'date-picker',
+    name: '日期选择器',
+    uid: '',
+    config: {
+      label: '日期选择器',
+      width: '100%',
+      allowClear: true,
+      readonly: false,
+      error: false,
+      size: 'medium',
+      disabled: false,
+    }
+  },
 }
 
 export const fields = Object.values(fieldsMap)

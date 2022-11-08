@@ -7,8 +7,10 @@
       <a-input v-model="config.config.width" />
     </a-form-item>
     <radio-config v-if="config.type === 'radio'" v-model:widgetConfig="config" />
+    <slider-config v-if="config.type === 'slider'" v-model:widgetConfig="config" />
     <switch-config v-if="config.type === 'switch'" v-model:widgetConfig="config" />
-    <grid-config v-if="config.type === 'grid'" v-model:widgetConfig="config"/>
+    <date-picker-config v-if="config.type === 'date-picker'" v-model:widgetConfig="config" />
+    <grid-config v-if="config.type === 'grid'" v-model:widgetConfig="config" />
     <!-- <a-form-item   label="默认值">
     </template>
       <a-input v-model="config.config.defaultValue" />
@@ -53,7 +55,9 @@ import {
   WidgetsConfig
 } from './types'
 import radioConfig from './config/radio-config.vue'
+import sliderConfig from './config/slider-config.vue'
 import switchConfig from './config/switch-config.vue'
+import datePickerConfig from './config/date-picker-config.vue'
 
 const props = defineProps({
   widgetConfig: {
