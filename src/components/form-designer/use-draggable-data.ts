@@ -129,6 +129,57 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       uncheckedValue: false,
       disabled: false,
     }
+  },
+  textarea: {
+    type: 'textarea',
+    name: '文本域',
+    uid: '',
+    config: {
+      label: '文本域',
+      width: '100%',
+      placeholder: '提示文字',
+      disabled: false,
+      maxLength: 0,
+      showWordLimit: false,
+      allowClear: false,
+      autoSize: false,
+      value: ''
+    }
+  },
+  cascader: {
+    type: 'cascader',
+    name: '级联选择器',
+    uid: '',
+    config: {
+      label: '级联选择器',
+      width: '100%',
+      placeholder: '请选择',
+      defaultValue: '',
+      disabled: false,
+      allowSearch: false,
+      allowClear: false,
+      multiple: false,
+      checkStrictly: false,
+      expandTrigger: 'click',
+      options: [
+        {
+          value: 'beijing',
+          label: 'Beijing',
+          children: [
+            {
+              value: 'chaoyang',
+              label: 'ChaoYang',
+              children: [
+                {
+                  value: 'datunli',
+                  label: 'Datunli',
+                },
+              ],
+            },
+          ]
+        }
+      ]
+    }
   }
 }
 

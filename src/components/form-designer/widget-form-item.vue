@@ -80,6 +80,30 @@
         :default-checked="widget.config.defaultChecked"
       />
     </template>
+    <template v-if="widget.type === 'cascader'">
+      <a-cascader
+        :options="widget.config.options"
+        :placeholder="widget.config.placeholder"
+        :default-value="widget.config.defaultValue"
+        :disabled="widget.config.disabled"
+        :allow-search="widget.config.allowSearch"
+        :allow-clear="widget.config.allowClear"
+        :multiple="widget.config.multiple"
+        :check-strictly="widget.config.checkStrictly"
+        :expand-trigger="widget.config.expandTrigger"
+      />
+    </template>
+    <template v-if="widget.type === 'textarea'">
+      <a-textarea
+        :model-value="widget.config.value"
+        :placeholder="widget.config.placeholder"
+        :disabled="widget.config.disabled"
+        :max-length="widget.config.maxLength"
+        :show-word-limit="widget.config.showWordLimit"
+        :allow-clear="widget.config.allowClear"
+        :auto-size="widget.config.autoSize"
+      />
+    </template>
     <template v-if="(widget as any).type === 'grid'">
       <div class="text-red-500 font-bold">栅格布局不可嵌套，请移除此控件</div>
     </template>

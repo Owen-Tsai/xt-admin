@@ -98,7 +98,41 @@ export interface IOptGrid {
   justify: 'start' | 'center' | 'end' | 'space-around' | 'space-between',
   align: 'start' | 'center' | 'end' | 'stretch',
 }
-
+export interface IOptCascader {
+  required?: boolean,
+  label?: string,
+  width?: string,
+  placeholder?: string,
+  defaultValue?: string | number | Record<string, any> | (| string | number | Record<string, any> | (string | number | Record<string, any>)[])[] | undefined,
+  disabled?: boolean,
+  allowSearch?: boolean,
+  allowClear?: boolean,
+  multiple?:boolean,
+  checkStrictly?: boolean,
+  expandTrigger?: 'click' | 'hover',
+  options: Array<{
+    label?: string,
+    value?: number | string,
+    children?: IOptCascaderChildren[]
+  }>
+}
+export interface IOptinTextarea {
+  required?: boolean,
+  label?: string,
+  width?: string,
+  placeholder?: string,
+  disabled?: boolean,
+  maxLength?: number,
+  showWordLimit?: boolean,
+  allowClear?: boolean,
+  autoSize?: boolean,
+  value?: string
+}
+export interface IOptCascaderChildren{
+  label?: string,
+  value?: number | string,
+  children?: IOptCascaderChildren[]
+}
 export type IConfigCol = {
   span: number,
   widgets: Exclude<WidgetsConfig, IConfigGrid>[]
@@ -143,8 +177,19 @@ export type IConfigSlider = {
   uid: string,
   config: IOptSlider,
 }
-
-export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch
+export type IConfigCascader = {
+  type: 'cascader',
+  name: string,
+  uid: string,
+  config: IOptCascader,
+}
+export type IConfigTextarea = {
+  type: 'textarea',
+  name: string,
+  uid: string,
+  config: IOptinTextarea,
+}
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigCascader | IConfigTextarea
 
 export type AST = {
   formConfig: FormConfig,
