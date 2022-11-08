@@ -21,18 +21,17 @@
       <member />
     </div>
 
-    <div class="footer-tool-bar">
-      <div class="footer-left" />
-      <div class="footer-right">
-        <a-button
-          type="outline"
-          @click="reset"
-        >重置</a-button>
-        <a-button
-          html-type="submit"
-          type="primary"
-          @click="submit"
-        >提交</a-button></div>
+    <div class="fixed bottom-0 w-full left-0 border-t">
+      <div class="w-full bg-white text-right px-6 py-3">
+        <a-space>
+          <a-button @click="reset">重置</a-button>
+          <a-button
+            html-type="submit"
+            type="primary"
+            @click="submit"
+          >提交</a-button>
+        </a-space>
+      </div>
     </div>
   </main>
 </template>
@@ -78,40 +77,4 @@ const reset = () => {
 ::v-deep .arco-form-item-message {
   font-size: 14px;
 }
-.footer-tool-bar {
-    width: calc(100% - 240px);
-    background: rgb(255, 255, 255);
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-    border-left: 1px solid rgba(0, 0, 0, 0.06);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 24px;
-    line-height: 44px;
-    position: fixed;
-    right: 0px;
-    bottom: 0px;
-    z-index: 99;
-    .arco-btn-outline {
-      height: 32px;
-      padding: 4px 15px;
-      margin-right: 8px;
-      font-size: 14px;
-      border-radius: 2px;
-      color: rgba(0,0,0,.85);
-      border: 1px solid #d9d9d9;
-      background: #fff;
-      white-space: nowrap;
-    }
-    .arco-btn-primary {
-      height: 32px;
-      padding: 4px 15px;
-      font-size: 14px;
-      border-radius: 2px;
-      color: #fff;
-      border-color: #1890ff;
-      background-color: #1890ff;
-      white-space: nowrap;
-    }
-  }
 </style>

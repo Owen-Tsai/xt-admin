@@ -1,0 +1,52 @@
+<template>
+  <a-form-item label="评分的总数">
+    <a-input-number v-model="config.config.count" />
+  </a-form-item>
+  <div class="flex justify-between items-center mb-2">
+    <span>是否允许半选</span>
+    <a-switch
+      v-model="config.config.allowHalf"
+    />
+  </div>
+  <div class="flex justify-between items-center mb-2">
+    <span>是否开启笑脸分级</span>
+    <a-switch
+      v-model="config.config.grading"
+    />
+  </div>
+  <div class="flex justify-between items-center mb-2">
+    <span>是否为只读</span>
+    <a-switch
+      v-model="config.config.readonly"
+    />
+  </div>
+  <div class="flex justify-between items-center mb-2">
+    <span>是否禁用</span>
+    <a-switch
+      v-model="config.config.disabled"
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, PropType } from 'vue'
+import { IConfigRate } from '../types'
+
+const emit = defineEmits(['update:widgetConfig'])
+const props = defineProps({
+  widgetConfig: {
+    type: Object as PropType<IConfigRate>,
+    required: true
+  }
+})
+const config = computed({
+  get: () => props.widgetConfig,
+  set: (val) => {
+    emit('update:widgetConfig', val)
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+
+</style>

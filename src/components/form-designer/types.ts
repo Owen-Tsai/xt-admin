@@ -1,3 +1,4 @@
+import { DatePicker } from '@arco-design/web-vue'
 import type { Ref } from 'vue'
 
 export type ItemSlot = {
@@ -86,11 +87,48 @@ export interface IOptSlider {
   range?: boolean,
   width?: string,
 }
+export interface IOptDatePicker {
+  required?: boolean,
+  label: string,
+  allowClear?: boolean,
+  readonly?: boolean,
+  error?: boolean,
+  size?: 'mini' | 'small' | 'medium' | 'large',
+  disabled?: boolean,
+  showTime?: boolean,
+  mode?: 'date' | 'year' | 'quarter' | 'month' | 'week',
+  width?: string,
+}
+export interface IOptRate {
+  required?: boolean,
+  label: string,
+  count?: number,
+  defaultValue?: number,
+  allowHalf?: boolean,
+  grading?: boolean,
+  readonly?: boolean,
+  disabled?: boolean,
+  color?: string | Record<string, string>,
+  width?: string,
+}
 export interface IOptTextarea {
   width?: string,
   rows?: number,
   limit?: number,
   placeholder?: string
+}
+export interface IOptTimePicker {
+  required?: boolean,
+  label: string,
+  type?: 'time' | 'time-range',
+  defaultValue?: string | number | Date | Array<string | number | Date>,
+  disabled?: boolean,
+  allowClear?: boolean,
+  readonly?: boolean,
+  error?: boolean,
+  size?: 'mini' | 'small' | 'medium' | 'large',
+  placeholder?: string,
+  width?: string,
 }
 
 export interface IOptGrid {

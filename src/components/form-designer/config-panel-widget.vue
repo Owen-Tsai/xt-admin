@@ -7,6 +7,7 @@
       <a-input v-model="config.config.width" />
     </a-form-item>
     <radio-config v-if="config.type === 'radio'" v-model:widgetConfig="config" />
+    <slider-config v-if="config.type === 'slider'" v-model:widgetConfig="config" />
     <switch-config v-if="config.type === 'switch'" v-model:widgetConfig="config" />
     <cascader-config v-if="config.type === 'cascader'" v-model:widgetConfig="config" />
     <textarea-config v-if="config.type === 'textarea'" v-model:widgetConfig="config" />
@@ -55,6 +56,7 @@ import {
   WidgetsConfig
 } from './types'
 import radioConfig from './config/radio-config.vue'
+import sliderConfig from './config/slider-config.vue'
 import switchConfig from './config/switch-config.vue'
 import cascaderConfig from './config/cascader-config.vue'
 import textareaConfig from './config/textarea-config.vue'

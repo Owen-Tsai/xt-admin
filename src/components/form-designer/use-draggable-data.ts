@@ -1,3 +1,4 @@
+import { DatePicker } from '@arco-design/web-vue'
 import type {
   WidgetsConfig
 } from './types'
