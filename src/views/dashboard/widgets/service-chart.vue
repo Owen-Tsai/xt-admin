@@ -30,30 +30,31 @@ const option = ref<EChartsOption>({
   title: {
     text: '总服务人次',
     subtext: '93,463',
-    top: '40%',
+    top: '37%',
     left: 'center',
     textStyle: {
       fontSize: 14,
       color: '#272E3B'
     },
     subtextStyle: {
-      fontSize: 18,
+      fontSize: 16,
       color: '#4E5969'
     }
   },
   tooltip: {
-    show: false
+    className: 's-chart-tooltip'
   },
   series: [
     {
       type: 'pie',
       radius: ['50%', '70%'],
-      center: ['50%', '50%'],
+      center: ['50%', '47%'],
       label: {
         formatter: '{b}\n{d}%',
         fontSize: 12,
         color: '#4E5969',
-        alignTo: 'labelLine'
+        alignTo: 'edge',
+        edgeDistance: 24
       },
       data: [
         {

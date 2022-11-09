@@ -14,12 +14,14 @@ const systemRoutes: AppRouteRecordRaw = {
   children: [
     {
       path: 'flow-designer',
-      name: 'extended.flow-designer',
-      component: () => import('@/views/extended/flow-designer/index.vue'),
+      name: 'flow-designer',
+      component: () => import('@/views/system/flow-designer/index.vue'),
       meta: {
-        locale: 'menu.extended-ability.flow-designer',
+        locale: 'menu.system.flow-designer',
         requireAuth: true,
       }
     }
   ]
 }
+
+export default systemRoutes

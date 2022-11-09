@@ -82,11 +82,7 @@ const option = ref<EChartsOption>({
   },
   tooltip: {
     trigger: 'axis',
-    formatter(params) {
-      console.log(params)
-      return '123'
-    },
-    className: 'chart-custom-tooltip'
+    className: 's-chart-tooltip'
   },
   series: [
     {
@@ -94,10 +90,11 @@ const option = ref<EChartsOption>({
       smooth: true,
       data: chartData.value,
       showSymbol: false,
+      symbolSize: 14,
       emphasis: {
         focus: 'series',
         itemStyle: {
-          borderWidth: 2
+          borderWidth: 3,
         }
       },
       lineStyle: {

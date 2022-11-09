@@ -5,10 +5,7 @@ import './user'
 import './dept'
 import './business'
 import './common'
-import './complex'
 import './advanced-form'
-import './data-analysis'
-import './multidimensional-data-analysis'
 import './dashboard'
 
 Mock.setup({
