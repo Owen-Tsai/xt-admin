@@ -9,6 +9,7 @@
     "lint": "npx eslint \"src/\" --ext .ts,.js,.tsx,.jsx,.vue"
   },
   "dependencies": {
+    "@antv/x6": "^1.34.5",
     "@arco-design/web-vue": "^2.34.0",
     "@salmon-ui/icons": "^1.1.8",
     "@vueuse/core": "^9.1.0",

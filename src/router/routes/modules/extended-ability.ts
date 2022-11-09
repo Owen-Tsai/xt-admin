@@ -22,7 +22,7 @@ const exAbilityRoutes: AppRouteRecordRaw = {
         requireAuth: true,
         openInNewWindow: true
       }
-    },
+    }
   ]
 }
 
