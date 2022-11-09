@@ -175,6 +175,15 @@ export type IConfigCol = {
   span: number,
   widgets: Exclude<WidgetsConfig, IConfigGrid>[]
 }
+export interface IOptUpload {
+  required?: boolean,
+  label: string,
+  action?: string,
+  disabled?: boolean,
+  multiple?: boolean,
+  limit?: number,
+  width?: string,
+}
 
 export type IConfigGrid = {
   type: 'grid',
@@ -245,8 +254,14 @@ export type IConfigTimePicker = {
   uid: string,
   config: IOptTimePicker,
 }
+export type IConfigUpload = {
+  type: 'upload',
+  name: string,
+  uid: string,
+  config: IOptUpload,
+}
 
-export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigDatePicker | IConfigRate | IConfigTimePicker | IConfigCascader | IConfigTextarea
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigDatePicker | IConfigRate | IConfigTimePicker | IConfigCascader | IConfigTextarea | IConfigUpload
 
 export type AST = {
   formConfig: FormConfig,

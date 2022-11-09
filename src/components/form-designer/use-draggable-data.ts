@@ -227,6 +227,19 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       placeholder: '请选择时间',
     }
   },
+  upload: {
+    type: 'upload',
+    name: '上传',
+    uid: '',
+    config: {
+      label: '上传',
+      width: '100%',
+      action: '',
+      disabled: false,
+      multiple: false,
+      limit: 9,
+    }
+  },
 }
 
 export const fields = Object.values(fieldsMap)
