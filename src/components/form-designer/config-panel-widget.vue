@@ -14,6 +14,7 @@
     <date-picker-config v-if="config.type === 'date-picker'" v-model:widgetConfig="config" />
     <rate-config v-if="config.type === 'rate'" v-model:widgetConfig="config" />
     <time-picker-config v-if="config.type === 'time-picker'" v-model:widgetConfig="config" />
+    <upload-config v-if="config.type === 'upload'" v-model:widgetConfig="config" />
     <grid-config v-if="config.type === 'grid'" v-model:widgetConfig="config" />
     <!-- <a-form-item   label="默认值">
     </template>
@@ -66,6 +67,7 @@ import textareaConfig from './config/textarea-config.vue'
 import datePickerConfig from './config/date-picker-config.vue'
 import rateConfig from './config/rate-config.vue'
 import timePickerConfig from './config/time-picker-config.vue'
+import uploadConfig from './config/upload-config.vue'
 
 const props = defineProps({
   widgetConfig: {

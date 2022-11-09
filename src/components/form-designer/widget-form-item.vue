@@ -133,6 +133,14 @@
         :auto-size="widget.config.autoSize"
       />
     </template>
+    <template v-if="widget.type === 'upload'">
+      <a-upload
+        :action="widget.config.action"
+        :disabled="widget.config.disabled"
+        :multiple="widget.config.multiple"
+        :limit="widget.config.limit"
+      />
+    </template>
     <template v-if="(widget as any).type === 'grid'">
       <div class="text-red-500 font-bold">栅格布局不可嵌套，请移除此控件</div>
     </template>
