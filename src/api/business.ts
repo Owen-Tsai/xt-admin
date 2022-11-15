@@ -27,26 +27,6 @@ export interface InfoGroup {
   }>
 }
 
-export interface OrderForm {
-  name?: string,
-  products?: string,
-  creationtime?: string | Date,
-  odd?: number | string,
-  documents?: number | string,
-  effectivedate?: string | Date,
-  remark?: string,
-  money?: string,
-  examineapprove?: string
-}
-
-export interface UserInfo {
-  uname?: string,
-  membershipNo?: string | number,
-  identityCard?: string | number,
-  contactInfo?: number | string,
-  address?: string,
-  infoGroups?: InfoGroup[]
-}
 export interface GroupedBusinessEntry {
   name: string,
   items: BusinessEntry[]
@@ -66,63 +46,6 @@ export interface PaginationParams {
   pageSize: number
 }
 
-export interface IAnalysis {
-  name: string,
-  odd: number,
-  edd: number,
-  isgrowth: string | number | boolean
-}
-export interface ITableList {
-  name: string,
-  salary: number,
-  address: number,
-  key: number
-}
-export interface ISeriesData {
-  Graphic: [],
-  Writing: [],
-  Video: [],
-}
-
-export interface IOverviewData {
-  Production?: [],
-  Click?: [],
-  Exposure?: [],
-  User?: [],
-  XTime?: []
-}
-export interface IAction {
-  share?: number,
-  name?: string
-}
-export interface IDistributionData {
-  name?: string,
-  most?: string|number,
-  value?: []
-}
-export interface DataScreening {
-  name: string,
-  volume: number | string
-}
-
-export interface IUserContent {
-  name: string,
-  odd: number,
-  edd: number,
-  isgrowth: string | number | boolean
-}
-export interface IChartData {
-  value: number | string
-}
-
-export interface ISourceData {
-  name: string,
-  ugc: number | string,
-  website: number | string,
-  article: number | string,
-  report: number | string,
-  other: number | string,
-}
 export const getGroups = async () => axios.get<GroupedBusinessEntry[]>('/api/business/getGroups')
 export const getRecords = async (params: PaginationParams) => axios.get<{
   list: BusinessRecord[],
