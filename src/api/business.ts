@@ -66,12 +66,6 @@ export interface PaginationParams {
   pageSize: number
 }
 
-export type IName = {
-  name: string,
-  number: string,
-  department:string
-}
-
 export interface IAnalysis {
   name: string,
   odd: number,

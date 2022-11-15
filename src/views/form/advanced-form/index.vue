@@ -3,21 +3,17 @@
     <s-navs :navs="['menu.form', 'menu.form.advanced-form']" />
 
     <div class="s-section">
-      <warehouse ref="form1" />
-    </div>
-
-    <div class="s-section mt-4">
-      <task ref="form2" />
+      <repo-form ref="repoFormComp" />
     </div>
 
     <div class="s-section mt-4 mb-14">
-      <member />
+      <member-form ref="MemberFormComp" />
     </div>
 
     <div class="fixed bottom-0 w-full left-0 border-t">
       <div class="w-full bg-white text-right px-6 py-3">
         <a-space>
-          <a-button @click="reset">重置</a-button>
+          <a-button>重置</a-button>
           <a-button
             html-type="submit"
             type="primary"
@@ -30,44 +26,16 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  ref,
-  reactive,
-  provide
-} from 'vue'
-import warehouse from './widgets/warehouse.vue'
-import task from './widgets/task.vue'
-import member from './widgets/member.vue'
-// import attachmentsForm from './widgets/attachments.vue'
+import { ref } from 'vue'
+import RepoForm from './widgets/repo-form.vue'
+import MemberForm from './widgets/member-form.vue'
+import type { SubFormCompCtx } from './types'
 
-const form1 = ref<any>()
-const form2 = ref<any>()
-const commonProps = reactive({
-  // 本条申报条目(记录)的 ID
-  id: 1,
-  // 申报的类型
-  type: 1,
-  // 当前操作的类型
-  cmd: 'create'
-})
-
-provide('commonProps', commonProps)
-/**
- * ID of the current business entry should be passed to the
- * children widgets using provide/inject.
- */
+const repoFormComp = ref<SubFormCompCtx>()
+const memberFormComp = ref<SubFormCompCtx>()
 
 const submit = () => {
-  form1.value.handleValidate?.()
-  form2.value.handleValidate?.()
-}
-const reset = () => {
-  form1.value.resetForm?.()
-  form2.value.resetForm?.()
+  repoFormComp.value?.handleValidate()
+  memberFormComp.value?.handleValidate()
 }
 </script>
-<style lang="scss" scoped>
-::v-deep .arco-form-item-message {
-  font-size: 14px;
-}
-</style>
