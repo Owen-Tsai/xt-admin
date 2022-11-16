@@ -64,7 +64,7 @@
       <a-button
         type="primary"
         html-type="submit"
-      >登录</a-button>
+      >保存</a-button>
     </div>
   </a-form>
 </template>

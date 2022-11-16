@@ -50,7 +50,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       allowClear: false,
       defaultValue: '',
       disabled: false,
-      maxLength: 0,
+      maxLength: undefined,
       placeholder: '',
       readonly: false,
       required: false,
@@ -72,10 +72,11 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       placeholder: '',
       readonly: false,
       required: false,
+      optionsType: 'fixed',
       options: [
-        { label: '选项1', value: 1 },
-        { label: '选项2', value: 2 },
-        { label: '选项3', value: 3 }
+        { label: '选项1', value: '1' },
+        { label: '选项2', value: '2' },
+        { label: '选项3', value: '3' }
       ]
     }
   },

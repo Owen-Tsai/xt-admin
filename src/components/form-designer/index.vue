@@ -79,7 +79,7 @@ import {
 const ast = ref<AST>({
   formConfig: {
     labelAlign: 'right',
-    layout: 'horizontal',
+    layout: 'vertical',
     size: 'medium'
   },
   dataSources: [],
@@ -140,7 +140,8 @@ provide<FormDesignerContext>(contextSymbol, {
   setSelectedUID,
   addWidget,
   removeWidget,
-  duplicateWidget
+  duplicateWidget,
+  ast
 })
 </script>
 

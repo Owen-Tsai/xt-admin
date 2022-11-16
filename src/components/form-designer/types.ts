@@ -1,4 +1,3 @@
-import { DatePicker } from '@arco-design/web-vue'
 import type { Ref } from 'vue'
 
 export type ItemSlot = {
@@ -12,10 +11,12 @@ export interface FormConfig {
   labelAlign: 'left' | 'right'
 }
 
-export interface DataSourcesConfig {
+export interface DataSourceConfig {
   name: string,
   url: string
 }
+
+export type DataSourceType = 'fixed' | 'remote'
 
 export interface IOptInput {
   required?: boolean,
@@ -41,16 +42,18 @@ export interface IOptSelect {
   allowCreate?: boolean,
   limit?: number,
   placeholder?: string,
-  defaultValue?: string | number | Record<string, unknown>,
-  options?: Array<{
+  defaultValue?: string,
+  optionsType: DataSourceType,
+  options: Array<{
     label?: string,
-    value?: string | number | Record<string, unknown>
-  }>
+    value?: string
+  }>,
+  optionsUrl?: number
 }
 export interface IOptRadio {
   required?: boolean,
   label: string,
-  disabled?: boolean | string | number,
+  disabled?: boolean,
   type: 'radio' | 'button',
   width?: string,
   size?: 'mini' | 'small' | 'medium' | 'large',
@@ -266,7 +269,7 @@ export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfig
 export type AST = {
   formConfig: FormConfig,
   widgetsConfig: WidgetsConfig[],
-  dataSources: DataSourcesConfig[]
+  dataSources: DataSourceConfig[]
 }
 
 export type FormDesignerContext = {
@@ -274,7 +277,8 @@ export type FormDesignerContext = {
   setSelectedUID: (uid: string) => void,
   addWidget: (widget: WidgetsConfig, idx?: number) => void,
   removeWidget: (index: number, uid: string) => void,
-  duplicateWidget: (index: number) => void
+  duplicateWidget: (index: number) => void,
+  ast: Ref<AST>
 }
 
 export const contextSymbol = Symbol('formDesignerContext')

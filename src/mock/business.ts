@@ -23,7 +23,7 @@ const data = Mock.mock({
 
 setupMock({
   setup() {
-    Mock.mock(new RegExp('/api/business/getGroups'), () => {
+    Mock.mock(new RegExp('/api/business/groups'), () => {
       if (isAuthed()) {
         return responseWrap<GroupedBusinessEntry[]>([
           {

@@ -17,14 +17,14 @@
             handle: '.drag-handler'
           }"
           class="min-h-full flex-grow p-6"
-          :swap-threshold="0.01"
+          :swap-threshold="0.05"
           item-key="uid"
           @end="onDragEnd"
         >
           <template #item="{ element, index }: ItemSlot">
             <template v-if="element.type === 'grid'">
               <a-row
-                class="widget-wrapper !mx-0"
+                class="widget-wrapper !mx-0 !px-2 !py-3"
                 :class="{ 'is-selected': context?.selectedUID.value === element.uid }"
                 :align="element.config.align"
                 :justify="element.config.justify"
@@ -35,19 +35,24 @@
                   v-for="(col, i) in element.cols"
                   :key="i"
                   :span="col.span || 0"
-                  class="relative first:pl-0 last:pr-0"
+                  class="relative first:pl-0 last:pr-0 z-10"
+                  @click="handleColClick(element.uid, col)"
                 >
                   <div class="nested-widget-list bg-green-50">
                     <nested-draggable :nested-list="col.widgets" />
                   </div>
                 </a-col>
-                <button
-                  v-show="context?.selectedUID.value === element.uid"
-                  class="widget-action-icon absolute bottom-0 right-0"
-                  @click="context?.removeWidget(index, element.uid)"
-                >
-                  <s-icon :name="DeleteBinFill" :size="16" />
-                </button>
+                <template v-if="context?.selectedUID.value === element.uid">
+                  <button
+                    class="widget-action-icon absolute bottom-0 right-0 z-20"
+                    @click="context?.removeWidget(index, element.uid)"
+                  >
+                    <s-icon :name="DeleteBinFill" :size="16" />
+                  </button>
+                  <button class="widget-action-icon absolute top-0 left-0 cursor-move drag-handler z-50">
+                    <s-icon :name="DragMove" :size="16" />
+                  </button>
+                </template>
               </a-row>
             </template>
             <template v-else>
@@ -72,15 +77,16 @@ import {
   inject
 } from 'vue'
 import Draggable from 'vuedraggable'
-import { DeleteBinFill } from '@salmon-ui/icons'
+import { DeleteBinFill, DragMove } from '@salmon-ui/icons'
 import NestedDraggable from './nested-draggable.vue'
 import {
   AST,
   WidgetsConfig,
   FormDesignerContext,
+  contextSymbol,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ItemSlot,
-  contextSymbol
+  IConfigCol
 } from './types'
 import WidgetFormItem from './widget-form-item.vue'
 
@@ -96,8 +102,13 @@ const data = ref({})
 
 const context = inject<FormDesignerContext>(contextSymbol)
 
-// const isWidgetsEmpty = computed(() => props.ast.widgetsConfig.length === 0)
 const widgetsList = ref<WidgetsConfig[]>(props.ast.widgetsConfig)
+
+const handleColClick = (uid: string, col: IConfigCol) => {
+  if (col.widgets.length === 0) {
+    context?.setSelectedUID(uid)
+  }
+}
 
 const onDragEnd = (e: any) => {
   console.log(e)
@@ -113,5 +124,6 @@ const onDragEnd = (e: any) => {
 }
 .nested-widget-list {
   min-height: 32px;
+  align-self: stretch;
 }
 </style>

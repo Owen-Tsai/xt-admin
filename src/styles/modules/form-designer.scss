@@ -3,18 +3,22 @@
   * {
     @apply bg-green-400;
   }
-  .widget-action-icon {
+  .widget-action-icon, label {
     @apply opacity-0;
   }
 }
 
 .widget-wrapper {
-  @apply relative p-2 mb-1 last:mb-0 outline-dashed outline-gray-300 outline-1
+  @apply relative px-6 py-2 mb-1 last:mb-0 outline-dashed outline-gray-300 outline-1
   before:absolute before:w-full before:h-full before:top-0 before:left-0
   hover:outline hover:outline-blue-400 hover:bg-blue-50;
 
   &.is-selected {
     @apply outline outline-2 outline-blue-400;
+  }
+
+  .widget-wrapper {
+    @apply px-2 #{!important};
   }
 }
 
@@ -24,4 +28,14 @@
 
 .ast-pre .arco-collapse-item-content-expend {
   overflow-x: auto;
+}
+
+.config-panel {
+  .boolean-config {
+    @apply flex items-center justify-between;
+  }
+  .label {
+    @apply block text-sm mb-2;
+    color: var(--color-text-2);
+  }
 }

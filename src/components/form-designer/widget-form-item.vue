@@ -40,18 +40,15 @@
         :size="widget.config.size"
         :type="widget.config.type"
         :default-value="widget.config.defaultValue"
-        :disabled="widget.config.disabled as boolean"
+        :disabled="widget.config.disabled"
       >
-        <template
+        <a-radio
           v-for="(item, i) in widget.config.options"
           :key="i"
+          :value="item.value"
         >
-          <a-radio
-            :value="item.value"
-          >
-            {{ item.label }}
-          </a-radio>
-        </template>
+          {{ item.label }}
+        </a-radio>
       </a-radio-group>
     </template>
     <template v-if="widget.type === 'slider'">
@@ -199,7 +196,8 @@ const onWidgetSelect = () => {
   context.setSelectedUID(props.widget.uid)
 }
 </script>
-<style lang="scss">
+
+<style lang="scss" scoped>
 .widget-wrapper::before{
   z-index: 10;
 }
