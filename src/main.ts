@@ -6,12 +6,10 @@ import router from '@/router'
 import store from '@/store'
 import directives from '@/directives'
 import i18n from '@/locale'
-import 'simplebar'
 
 import './mock'
 import './api/request'
 
-import 'simplebar/dist/simplebar.css'
 import '@/styles/tailwindcss.scss'
 import '@arco-design/web-vue/dist/arco.css'
 import '@/styles/index.scss'
