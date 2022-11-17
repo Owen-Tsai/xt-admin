@@ -24,7 +24,7 @@
         <!-- insert widget-form -->
         <widget-form v-model:ast="ast" />
       </a-layout-content>
-      <a-layout-sider :width="240">
+      <a-layout-sider :width="240" data-simplebar>
         <div class="flex">
           <div
             class="panel-tab"

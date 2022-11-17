@@ -37,9 +37,7 @@
     <template v-if="widget.type === 'radio'">
       <a-radio-group
         :direction="widget.config.direction"
-        :size="widget.config.size"
         :type="widget.config.type"
-        :default-value="widget.config.defaultValue"
         :disabled="widget.config.disabled"
       >
         <a-radio

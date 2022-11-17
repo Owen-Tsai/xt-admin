@@ -1,7 +1,4 @@
-import { DatePicker } from '@arco-design/web-vue'
-import type {
-  WidgetsConfig
-} from './types'
+import type { WidgetsConfig } from './types'
 
 /**
  * input
@@ -87,14 +84,16 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     config: {
       label: '单选框',
       disabled: false,
-      direction: 'vertical',
-      defaultValue: undefined,
+      direction: 'horizontal',
+      defaultValue: '0',
       type: 'radio',
       width: '100%',
-      size: 'mini',
+      optionsType: 'fixed',
       options: [
-        { label: '男', value: 0 },
-        { label: '女', value: 1 },
+        { label: '选项0', value: '0' },
+        { label: '选项1', value: '1' },
+        { label: '选项2', value: '2' },
+        { label: '选项3', value: '3' }
       ]
     }
   },

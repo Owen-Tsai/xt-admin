@@ -50,19 +50,21 @@ export interface IOptSelect {
   }>,
   optionsUrl?: number
 }
+
 export interface IOptRadio {
   required?: boolean,
   label: string,
   disabled?: boolean,
   type: 'radio' | 'button',
   width?: string,
-  size?: 'mini' | 'small' | 'medium' | 'large',
   direction?: 'vertical' | 'horizontal',
-  defaultValue?:string | number,
-  options?: Array<{
+  defaultValue?: string,
+  optionsType: DataSourceType,
+  options: Array<{
     label?: string,
-    value?: number | string
-  }>
+    value?: string
+  }>,
+  optionsUrl?: number
 }
 export interface IOptSwitch {
   width?: string,
