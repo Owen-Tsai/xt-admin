@@ -2,7 +2,7 @@
   <div class="">
     <a-layout class="h-full">
       <a-layout-sider :width="240">
-        <div class="p-4">
+        <div class="m-4">
           <div class="font-bold">组件</div>
           <draggable
             :list="fields"
@@ -18,6 +18,23 @@
               </div>
             </template>
           </draggable>
+        </div>
+        <a-divider />
+        <div class="m-4">
+          <div class="font-bold">操作</div>
+          <a-space direction="vertical" class="mt-4 w-full">
+            <a-button
+              type="outline"
+              long
+              :disabled="copied"
+              @click="copy()"
+            >{{ copied ? '已复制' : '复制 AST 源码' }}</a-button>
+            <a-button
+              type="primary"
+              long
+              @click="showPreview"
+            >预览表单</a-button>
+          </a-space>
         </div>
       </a-layout-sider>
       <a-layout-content class="bg-gray-50 p-4">
@@ -51,6 +68,11 @@
         </div>
       </a-layout-sider>
     </a-layout>
+
+    <a-modal v-model:visible="previewVisible" fullscreen>
+      <template #title>表单预览</template>
+      <form-preview :ast="ast" />
+    </a-modal>
   </div>
 </template>
 
@@ -62,10 +84,12 @@ import {
 } from 'vue'
 import Draggable from 'vuedraggable'
 import { cloneDeep } from 'lodash'
+import { useClipboard } from '@vueuse/core'
 import { fields, findWidgetWithUID } from './use-draggable-data'
 import WidgetForm from './widget-form.vue'
 import ConfigPanelForm from './config-panel-form.vue'
 import ConfigPanelWidget from './config-panel-widget.vue'
+import FormPreview from './form-preview.vue'
 import { generateUID } from '@/utils'
 import {
   // imported type used in template incorrectly throws warning
@@ -86,13 +110,21 @@ const ast = ref<AST>({
   widgetsConfig: []
 })
 
+const source = computed(() => JSON.stringify(ast.value))
+
+const { copy, copied } = useClipboard({
+  source
+})
+
+const activeTab = ref(0)
+
+const previewVisible = ref(false)
+
 const cloneWidgetConfigFromRaw = (config: WidgetsConfig) => {
   const uid = generateUID()
   config.uid = uid
   return cloneDeep(config)
 }
-
-const activeTab = ref(0)
 
 const removeWidget = (idx: number, uid: string) => {
   console.log(`delete ${idx} element with uid ${uid}`)
@@ -133,6 +165,10 @@ const selectedWidget = computed(() => findWidgetWithUID(ast.value.widgetsConfig,
 
 const setSelectedUID = (uid: string) => {
   selectedUID.value = uid
+}
+
+const showPreview = () => {
+  previewVisible.value = true
 }
 
 provide<FormDesignerContext>(contextSymbol, {
