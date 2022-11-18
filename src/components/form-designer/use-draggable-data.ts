@@ -54,6 +54,41 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       showWordLimit: false
     }
   },
+  checkbox: {
+    type: 'checkbox',
+    name: '复选框',
+    uid: '',
+    config: {
+      label: '复选框',
+      width: '100%',
+      defaultchecked: false,
+      disabled: false,
+      direction: 'horizontal',
+      indeterminate: false,
+      options: [
+        { label: '选项1', value: 0 },
+        { label: '选项2', value: 1 },
+        { label: '选项3', value: 3 }
+      ]
+    }
+  },
+  inputnumber: {
+    type: 'inputnumber',
+    name: '数字输入框',
+    uid: '',
+    config: {
+      width: '100%',
+      label: '数字输入框',
+      allowClear: false,
+      defaultValue: 1,
+      readonly: false,
+      required: false,
+      placeholder: '1',
+      disabled: false,
+      error: false,
+      size: 'medium'
+    }
+  },
   select: {
     type: 'select',
     name: '下拉选择器',

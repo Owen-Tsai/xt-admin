@@ -5,11 +5,13 @@
     class="config-panel"
   >
     <radio-config v-if="config.type === 'radio'" v-model:widgetConfig="config" />
+    <inputnumber-config v-if="config.type === 'inputnumber'" v-model:widgetConfig="config" />
     <slider-config v-if="config.type === 'slider'" v-model:widgetConfig="config" />
     <switch-config v-if="config.type === 'switch'" v-model:widgetConfig="config" />
     <cascader-config v-if="config.type === 'cascader'" v-model:widgetConfig="config" />
     <textarea-config v-if="config.type === 'textarea'" v-model:widgetConfig="config" />
     <date-picker-config v-if="config.type === 'date-picker'" v-model:widgetConfig="config" />
+    <checkbox-config v-if="config.type === 'checkbox'" v-model:widgetConfig="config" />
     <rate-config v-if="config.type === 'rate'" v-model:widgetConfig="config" />
     <time-picker-config v-if="config.type === 'time-picker'" v-model:widgetConfig="config" />
     <upload-config v-if="config.type === 'upload'" v-model:widgetConfig="config" />
@@ -32,6 +34,8 @@ import {
 import {
   WidgetsConfig
 } from './types'
+import checkboxConfig from './config/checkbox-config.vue'
+import inputnumberConfig from './config/inputnumber-config.vue'
 import RadioConfig from './config/radio-config.vue'
 import SliderConfig from './config/slider-config.vue'
 import SwitchConfig from './config/switch-config.vue'
