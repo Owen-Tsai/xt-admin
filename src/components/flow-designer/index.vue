@@ -53,7 +53,7 @@ onMounted(() => {
       router: {
         name: 'manhattan',
         args: {
-          padding: 1
+          padding: 4
         }
       },
       connector: {
