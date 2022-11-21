@@ -64,6 +64,34 @@
         :style="{ width: widget.config.width }"
       />
     </template>
+    <template v-if="widget.type === 'inputnumber'">
+      <a-input-number
+        :default-value="widget.config.defaultValue"
+        :placeholder="widget.config.placeholder"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :disabled="widget.config.disabled"
+        :error="widget.config.error"
+        :size="widget.config.size"
+      />
+    </template>
+    <template v-if="widget.type === 'checkbox'">
+      <a-checkbox-group
+        :disabled="widget.config.disabled"
+        :direction="widget.config.direction"
+        :indeterminate="widget.config.indeterminate"
+        :defaultchecked="widget.config.defaultchecked"
+      >
+        <template
+          v-for="(item, i) in widget.config.options"
+          :key="i"
+        >
+          <a-checkbox :value="item.value">
+            {{ item.label }}
+          </a-checkbox>
+        </template>
+
+      </a-checkbox-group></template>
     <template v-if="widget.type === 'switch'">
       <a-switch
         :disabled="widget.config.disabled"

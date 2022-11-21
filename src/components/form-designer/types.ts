@@ -116,6 +116,50 @@ export interface IOptRate {
   color?: string | Record<string, string>,
   width?: string,
 }
+export interface IOptInputnumber {
+  required?: boolean,
+  disabled?: boolean,
+  readonly?: boolean,
+  label?: string,
+  width?: string,
+  allowClear?: boolean,
+  defaultValue?: number,
+  placeholder?: string,
+  precision?: number,
+  max?: number,
+  min?: number,
+  size?: 'mini' | 'small' | 'medium' | 'large',
+  error?: boolean,
+  step?: boolean
+}
+export type IConfigInputnumber = {
+  type: 'inputnumber',
+  name: string,
+  uid: string,
+  config: IOptInputnumber,
+}
+export interface IOptCheckbox {
+  width?: string,
+  max?: number,
+  label?: string,
+  required?: boolean,
+  defaultvalue?: string | number | boolean,
+  disabled?: boolean,
+  direction?: 'vertical' | 'horizontal',
+  value?: string | number,
+  indeterminate?: boolean,
+  defaultchecked?: boolean,
+  options?: Array<{
+    label?: string,
+    value?: number
+  }>
+}
+export type IConfigCheckbox = {
+  type: 'checkbox',
+  name: string,
+  uid: string,
+  config: IOptCheckbox,
+}
 export interface IOptTextarea {
   width?: string,
   rows?: number,
@@ -266,7 +310,7 @@ export type IConfigUpload = {
   config: IOptUpload,
 }
 
-export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigDatePicker | IConfigRate | IConfigTimePicker | IConfigCascader | IConfigTextarea | IConfigUpload
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigDatePicker | IConfigRate | IConfigTimePicker | IConfigCascader | IConfigTextarea | IConfigUpload | IConfigInputnumber | IConfigCheckbox
 
 export type AST = {
   formConfig: FormConfig,
