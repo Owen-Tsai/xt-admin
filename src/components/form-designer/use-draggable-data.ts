@@ -61,7 +61,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     config: {
       label: '复选框',
       width: '100%',
-      defaultchecked: false,
+      defaultChecked: false,
       disabled: false,
       direction: 'horizontal',
       indeterminate: false,
