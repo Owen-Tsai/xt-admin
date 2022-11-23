@@ -33,8 +33,8 @@
 
 <script lang="ts" setup>
 import { ref, PropType } from 'vue'
-import FormPreviewItem from './form-preview-item.vue'
-import type { AST } from './types'
+import FormPreviewItem from './s-form-item.vue'
+import type { AST } from '@/components/form-designer/types'
 
 defineProps({
   ast: {

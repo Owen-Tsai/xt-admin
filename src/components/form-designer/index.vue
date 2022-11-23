@@ -30,6 +30,11 @@
               @click="copy()"
             >{{ copied ? '已复制' : '复制 AST 源码' }}</a-button>
             <a-button
+              type="outline"
+              long
+              @click="copy()"
+            >编辑数据源</a-button>
+            <a-button
               type="primary"
               long
               @click="showPreview"
@@ -71,7 +76,11 @@
 
     <a-modal v-model:visible="previewVisible" fullscreen>
       <template #title>表单预览</template>
-      <form-preview :ast="ast" />
+      <s-form :ast="ast" />
+    </a-modal>
+
+    <a-modal v-model:visible="dataSourcesEditorVisible" fullscreen>
+      <template #title>数据源编辑</template>
     </a-modal>
   </div>
 </template>
@@ -89,7 +98,7 @@ import { fields, findWidgetWithUID } from './use-draggable-data'
 import WidgetForm from './widget-form.vue'
 import ConfigPanelForm from './config-panel-form.vue'
 import ConfigPanelWidget from './config-panel-widget.vue'
-import FormPreview from './form-preview.vue'
+import SForm from '../s-form/index.vue'
 import { generateUID } from '@/utils'
 import {
   // imported type used in template incorrectly throws warning
@@ -119,6 +128,7 @@ const { copy, copied } = useClipboard({
 const activeTab = ref(0)
 
 const previewVisible = ref(false)
+const dataSourcesEditorVisible = ref(false)
 
 const cloneWidgetConfigFromRaw = (config: WidgetsConfig) => {
   const uid = generateUID()
