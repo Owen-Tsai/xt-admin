@@ -182,6 +182,7 @@ export interface IOptTimePicker {
 }
 
 export interface IOptGrid {
+  width?: string,
   gutter: number,
   justify: 'start' | 'center' | 'end' | 'space-around' | 'space-between',
   align: 'start' | 'center' | 'end' | 'stretch',
@@ -249,7 +250,6 @@ export interface IOptUpload {
 
 export type IConfigGrid = {
   width?: string,
-  label?: string,
   type: 'grid',
   name: string,
   uid: string,

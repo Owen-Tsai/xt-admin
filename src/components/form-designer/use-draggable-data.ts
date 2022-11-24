@@ -32,6 +32,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     ],
     uid: '',
     config: {
+      width: '100%',
       gutter: 16,
       justify: 'start',
       align: 'start'
