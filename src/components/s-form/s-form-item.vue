@@ -166,7 +166,7 @@
 
 <script lang="ts" setup>
 import { PropType } from 'vue'
-import { WidgetsConfig, IConfigGrid } from './types'
+import { WidgetsConfig, IConfigGrid } from '@/components/form-designer/types'
 
 defineProps({
   widget: {

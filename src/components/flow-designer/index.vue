@@ -1,6 +1,6 @@
 <template>
-  <div class="flex">
-    <div ref="aside" class="w-52 flex-shrink-0 border-r relative" />
+  <div class="flex flow-designer-wrapper">
+    <div ref="aside" class="w-52 flex-shrink-0 shadow-lg relative" />
     <div id="canvas" ref="canvas" />
   </div>
 </template>
@@ -8,6 +8,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { Graph, Addon } from '@antv/x6'
+import { setupGraph } from './use-graph-data'
 
 const canvas = ref<HTMLDivElement>()
 const aside = ref<HTMLDivElement>()
@@ -41,81 +42,12 @@ const data = ref({
 })
 
 onMounted(() => {
-  graph.value = new Graph({
-    container: canvas.value,
-    grid: true,
-    mousewheel: {
-      enabled: true,
-      minScale: 0.5,
-      maxScale: 3
-    },
-    connecting: {
-      router: {
-        name: 'manhattan',
-        args: {
-          padding: 1
-        }
-      },
-      connector: {
-        name: 'rounded',
-        args: {
-          radius: 4
-        }
-      },
-      anchor: 'center',
-      allowBlank: false
-    },
-    resizing: true,
-    rotating: true,
-    selecting: {
-      enabled: true,
-      rubberband: true,
-      showNodeSelectionBox: true,
-    },
-    snapline: true,
-    keyboard: true,
-    clipboard: true,
-  })
+  graph.value = setupGraph(
+    canvas.value as HTMLDivElement,
+    aside.value as HTMLDivElement
+  )
 
   graph.value.fromJSON(data.value)
-
-  const stencil = new Addon.Stencil({
-    title: '流程环节',
-    target: graph.value,
-    stencilGraphWidth: 200,
-    stencilGraphHeight: 180,
-    groups: [
-      {
-        title: '基础流程图',
-        name: 'default'
-      }
-    ]
-  })
-
-  const r1 = graph.value.createNode({
-    label: '开始',
-    width: 80,
-    height: 36
-  })
-  const r2 = graph.value.createNode({
-    label: '流转环节',
-    width: 80,
-    height: 36
-  })
-  const r3 = graph.value.createNode({
-    label: '抄送',
-    width: 80,
-    height: 36
-  })
-  const r4 = graph.value.createNode({
-    label: '开始',
-    width: 80,
-    height: 36
-  })
-
-  stencil.load([r1, r2, r3, r4], 'default')
-
-  aside.value?.appendChild(stencil.container)
 })
 </script>
 

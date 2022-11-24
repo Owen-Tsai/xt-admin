@@ -17,7 +17,10 @@
             :key="j"
             :span="col.span"
           >
-            <form-preview-item :widget="col.widgets[0]" />
+            <form-preview-item
+              v-if="col.widgets.length >= 1"
+              :widget="col.widgets[0]"
+            />
           </a-col>
         </a-row>
       </template>
@@ -30,8 +33,8 @@
 
 <script lang="ts" setup>
 import { ref, PropType } from 'vue'
-import FormPreviewItem from './form-preview-item.vue'
-import type { AST } from './types'
+import FormPreviewItem from './s-form-item.vue'
+import type { AST } from '@/components/form-designer/types'
 
 defineProps({
   ast: {
