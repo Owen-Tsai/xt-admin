@@ -81,10 +81,9 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       width: '100%',
       label: '数字输入框',
       allowClear: false,
-      defaultValue: 1,
       readonly: false,
       required: false,
-      placeholder: '1',
+      placeholder: '',
       disabled: false,
       error: false,
       size: 'medium'

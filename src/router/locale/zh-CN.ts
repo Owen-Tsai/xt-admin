@@ -9,6 +9,7 @@ export default {
   'menu.form.advanced-form': '高级表单',
   'menu.form.step': '分步表单',
   'menu.form.grouped': '分组表单',
+  'menu.form.dynamic': '动态表单',
   'menu.user': '用户中心',
   'menu.user.info': '信息维护',
   'menu.extended-ability': '扩展能力',
