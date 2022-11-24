@@ -1,4 +1,14 @@
 <template>
+  <a-form-item label="字段名称">
+    <a-input v-model="config.config.label" allow-clear />
+  </a-form-item>
+  <a-form-item label="宽度">
+    <a-input
+      v-model="config.config.width"
+      placeholder="输入含单位(%/px)的数值"
+      allow-clear
+    />
+  </a-form-item>
   <a-form-item label="开关类型">
     <a-select v-model="config.config.type">
       <a-option value="circle">圆</a-option>
@@ -12,6 +22,18 @@
       <a-option value="medium">大</a-option>
     </a-select>
   </a-form-item>
+  <div class="boolean-config mt-4">
+    <span class="label">是否禁用</span>
+    <a-switch v-model="config.config.disabled" />
+  </div>
+  <div class="boolean-config mt-4">
+    <span class="label">是否为加载状态</span>
+    <a-switch v-model="config.config.loading" />
+  </div>
+  <div class="boolean-config mt-4">
+    <span class="label">默认选中状态</span>
+    <a-switch v-model="config.config.defaultChecked" />
+  </div>
 </template>
 
 <script setup lang="ts">

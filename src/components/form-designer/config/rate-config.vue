@@ -1,30 +1,32 @@
 <template>
+  <a-form-item label="字段名称">
+    <a-input v-model="config.config.label" allow-clear />
+  </a-form-item>
+  <a-form-item label="宽度">
+    <a-input
+      v-model="config.config.width"
+      placeholder="输入含单位(%/px)的数值"
+      allow-clear
+    />
+  </a-form-item>
   <a-form-item label="评分的总数">
     <a-input-number v-model="config.config.count" />
   </a-form-item>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否允许半选</span>
-    <a-switch
-      v-model="config.config.allowHalf"
-    />
+  <div class="boolean-config mt-4">
+    <span class="label">是否允许半选</span>
+    <a-switch v-model="config.config.allowHalf" />
   </div>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否开启笑脸分级</span>
-    <a-switch
-      v-model="config.config.grading"
-    />
+  <div class="boolean-config mt-4">
+    <span class="label">是否开启笑脸分级</span>
+    <a-switch v-model="config.config.grading" />
   </div>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否为只读</span>
-    <a-switch
-      v-model="config.config.readonly"
-    />
+  <div class="boolean-config mt-4">
+    <span class="label">是否为只读</span>
+    <a-switch v-model="config.config.readonly" />
   </div>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否禁用</span>
-    <a-switch
-      v-model="config.config.disabled"
-    />
+  <div class="boolean-config mt-4">
+    <span class="label">是否禁用</span>
+    <a-switch v-model="config.config.disabled" />
   </div>
 </template>
 

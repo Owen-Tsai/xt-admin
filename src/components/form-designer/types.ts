@@ -75,6 +75,7 @@ export interface IOptSwitch {
   checkedValue?: string | number | boolean,
   uncheckedValue?: string | number | boolean,
   disabled?: boolean,
+  loading?: boolean,
   label?: string
 }
 export interface IOptSlider {
@@ -143,12 +144,12 @@ export interface IOptCheckbox {
   max?: number,
   label?: string,
   required?: boolean,
-  defaultvalue?: string | number | boolean,
+  defaultValue?: string | number | boolean,
   disabled?: boolean,
   direction?: 'vertical' | 'horizontal',
   value?: string | number,
   indeterminate?: boolean,
-  defaultchecked?: boolean,
+  defaultChecked?: boolean,
   options?: Array<{
     label?: string,
     value?: number
@@ -232,9 +233,23 @@ export interface IOptUpload {
   multiple?: boolean,
   limit?: number,
   width?: string,
+  draggable?:boolean,
+  withcredentials?:boolean,
+  autoUpload?:boolean,
+  showFileList?:boolean,
+  showRemoveButton?:boolean
+  showRetryButton?:boolean,
+  showCancelButton?:boolean,
+  showUploadButton?:boolean,
+  download?:boolean,
+  showLink?:boolean,
+  imagePreview?:boolean
+
 }
 
 export type IConfigGrid = {
+  width?: string,
+  label?: string,
   type: 'grid',
   name: string,
   uid: string,

@@ -1,4 +1,14 @@
 <template>
+  <a-form-item label="字段名称">
+    <a-input v-model="config.config.label" allow-clear />
+  </a-form-item>
+  <a-form-item label="宽度">
+    <a-input
+      v-model="config.config.width"
+      placeholder="输入含单位(%/px)的数值"
+      allow-clear
+    />
+  </a-form-item>
   <a-form-item label="排列方式">
     <a-select v-model="config.config.direction">
       <a-option value="horizontal">水平排列</a-option>
@@ -9,6 +19,19 @@
     <a-select v-model="config.config.type">
       <a-option value="radio">圆形</a-option>
       <a-option value="button">按钮</a-option>
+    </a-select>
+  </a-form-item>
+  <a-form-item label="默认选中">
+    <a-select
+      v-model="config.config.defaultValue"
+      allow-clear
+      allow-create
+    >
+      <a-option
+        v-for="(item, i) in config.config.options"
+        :key="i"
+        :value="item.value"
+      >{{ item.label }}</a-option>
     </a-select>
   </a-form-item>
   <div class="mb-4">
@@ -39,20 +62,7 @@
       增加列
     </a-button>
   </div>
-  <a-form-item label="默认选中">
-    <a-select
-      v-model="config.config.defaultValue"
-      allow-clear
-      allow-create
-    >
-      <a-option
-        v-for="(item, i) in config.config.options"
-        :key="i"
-        :value="item.value"
-      >{{ item.label }}</a-option>
-    </a-select>
-  </a-form-item>
-  <div class="boolean-config mb-4">
+  <div class="boolean-config mt-4">
     <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
