@@ -157,13 +157,12 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     uid: '',
     config: {
       label: '开关',
-      width: '100%',
       defaultChecked: false,
       type: 'circle',
       size: 'medium',
       checkedValue: true,
       uncheckedValue: false,
-      disabled: false,
+      disabled: false
     }
   },
   textarea: {

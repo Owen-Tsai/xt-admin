@@ -16,6 +16,13 @@
   <a-form-item label="提示文案">
     <a-input v-model="config.config.placeholder" />
   </a-form-item>
+  <a-form-item label="宽度">
+    <a-input
+      v-model="config.config.width"
+      placeholder="输入含单位(%/px)的数值"
+      allow-clear
+    />
+  </a-form-item>
   <div class="flex justify-between items-center mb-2">
     <span>是否禁用</span>
     <a-switch

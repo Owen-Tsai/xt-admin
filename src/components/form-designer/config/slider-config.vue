@@ -2,6 +2,13 @@
   <a-form-item label="滑动步长">
     <a-input-number v-model="config.config.step" />
   </a-form-item>
+  <a-form-item label="宽度">
+    <a-input
+      v-model="config.config.width"
+      placeholder="输入含单位(%/px)的数值"
+      allow-clear
+    />
+  </a-form-item>
   <a-form-item label="滑动输入条方向">
     <a-select v-model="config.config.direction">
       <a-option value="horizontal">水平方向</a-option>
