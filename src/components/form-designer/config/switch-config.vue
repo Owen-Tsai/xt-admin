@@ -2,13 +2,6 @@
   <a-form-item label="字段名称">
     <a-input v-model="config.config.label" allow-clear />
   </a-form-item>
-  <a-form-item label="宽度">
-    <a-input
-      v-model="config.config.width"
-      placeholder="输入含单位(%/px)的数值"
-      allow-clear
-    />
-  </a-form-item>
   <a-form-item label="开关类型">
     <a-select v-model="config.config.type">
       <a-option value="circle">圆</a-option>
