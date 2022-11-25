@@ -150,6 +150,7 @@ export interface IOptCheckbox {
   value?: string | number,
   indeterminate?: boolean,
   defaultChecked?: boolean,
+  optionsUrl?: number,
   options?: Array<{
     label?: string,
     value?: number

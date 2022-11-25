@@ -64,5 +64,7 @@ const config = computed({
 </script>
 
 <style lang="scss" scoped>
-
+.arco-picker{
+  width: 100%;
+}
 </style>
