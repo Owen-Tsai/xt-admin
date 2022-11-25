@@ -9,6 +9,7 @@ export default {
   'menu.form.advanced-form': 'Advanced Form',
   'menu.form.step': 'Stepped Form',
   'menu.form.grouped': 'Grouped Form',
+  'menu.form.dynamic': 'Dynamic Form',
   'menu.user': 'User Center',
   'menu.user.info': 'Profile',
   'menu.extended-ability': 'Extended Abilities',

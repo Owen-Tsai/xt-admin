@@ -110,6 +110,7 @@
         :error="widget.config.error"
         :size="widget.config.size"
         :disabled="widget.config.disabled"
+        :style="{ width: widget.config.width }"
       />
     </template>
     <template v-if="widget.type === 'rate'">
@@ -130,6 +131,7 @@
         :error="widget.config.error"
         :size="widget.config.size"
         :placeholder="widget.config.placeholder"
+        :style="{ width: widget.config.width }"
       />
     </template>
     <template v-if="widget.type === 'cascader'">

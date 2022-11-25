@@ -169,7 +169,7 @@ export interface IOptTextarea {
 }
 export interface IOptTimePicker {
   required?: boolean,
-  label: string,
+  label?: string,
   type?: 'time' | 'time-range',
   defaultValue?: string | number | Date | Array<string | number | Date>,
   disabled?: boolean,
@@ -179,6 +179,7 @@ export interface IOptTimePicker {
   size?: 'mini' | 'small' | 'medium' | 'large',
   placeholder?: string,
   width?: string,
+  style?:string
 }
 
 export interface IOptGrid {
