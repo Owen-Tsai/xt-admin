@@ -2,7 +2,7 @@
   <main class="px-6 pb-4 relative">
     <s-navs :navs="['menu.system', 'menu.system.flow-designer']" />
 
-    <div class="s-section">
+    <div class="bg-white">
       <flow-designer />
     </div>
   </main>

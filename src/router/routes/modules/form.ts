@@ -42,6 +42,16 @@ const formRoutes: AppRouteRecordRaw = {
         role: ['*']
       }
     },
+    {
+      path: 'dynamic-forms',
+      name: 'dynamic-forms',
+      component: () => import('@/views/form/dynamic-forms/index.vue'),
+      meta: {
+        locale: 'menu.form.dynamic',
+        requireAuth: true,
+        role: ['*']
+      }
+    },
   ]
 }
 

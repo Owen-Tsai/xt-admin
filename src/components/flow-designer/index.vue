@@ -1,7 +1,10 @@
 <template>
   <div class="flex flow-designer-wrapper">
-    <div ref="aside" class="w-52 flex-shrink-0 shadow-lg relative" />
+    <div ref="stencilEl" class="w-52 flex-shrink-0 relative" />
     <div id="canvas" ref="canvas" />
+    <div ref="configPanelEl" class="w-52 flex-shrink-0 border-l">
+      123
+    </div>
   </div>
 </template>
 
@@ -11,10 +14,11 @@ import { Graph, Addon } from '@antv/x6'
 import { setupGraph } from './use-graph-data'
 
 const canvas = ref<HTMLDivElement>()
-const aside = ref<HTMLDivElement>()
+const stencilEl = ref<HTMLDivElement>()
+const configPanelEl = ref<HTMLDivElement>()
 const graph = ref<Graph>()
 
-const data = ref({
+const ast = ref({
   nodes: [
     {
       id: 'node1', // String，可选，节点的唯一标识
@@ -44,16 +48,16 @@ const data = ref({
 onMounted(() => {
   graph.value = setupGraph(
     canvas.value as HTMLDivElement,
-    aside.value as HTMLDivElement
+    stencilEl.value as HTMLDivElement
   )
 
-  graph.value.fromJSON(data.value)
+  graph.value.fromJSON(ast.value)
 })
 </script>
 
 <style lang="scss" scoped>
 #canvas {
-  height: calc(100vh - 180px);
+  height: calc(100vh - 140px);
   @apply flex-grow;
 }
 </style>

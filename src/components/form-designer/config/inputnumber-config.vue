@@ -9,7 +9,10 @@
       allow-clear
     />
   </a-form-item>
-  <a-form-item label="默认数字">
+  <a-form-item label="默认值">
+    <a-input-number v-model="config.config.defaultValue" allow-clear />
+  </a-form-item>
+  <a-form-item label="提示数字">
     <a-input v-model="config.config.placeholder" class="mt-2" />
   </a-form-item>
   <a-form-item label="大小">
@@ -20,24 +23,24 @@
       <a-option value="large">大</a-option>
     </a-select>
   </a-form-item>
-  <div class="flex justify-between items-center mb-2 p-2">
-    <span>是否禁用</span>
+  <div class="boolean-config mt-4">
+    <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
-  <div class="flex justify-between items-center mb-2 p-2">
-    <span>是否必填</span>
+  <div class="boolean-config mt-4">
+    <span class="label">是否必填</span>
     <a-switch v-model="config.config.required" />
   </div>
-  <div class="flex justify-between items-center mb-2 p-2">
-    <span>是否只读</span>
+  <div class="boolean-config mt-4">
+    <span class="label">是否只读</span>
     <a-switch v-model="config.config.readonly" />
   </div>
-  <div class="flex justify-between items-center mb-2 p-2">
-    <span>是否清除输入框</span>
+  <div class="boolean-config mt-4">
+    <span class="label">是否清除输入框</span>
     <a-switch v-model="config.config.allowClear" />
   </div>
-  <div class="flex justify-between items-center mb-2 p-2">
-    <span>是否为错误状态</span>
+  <div class="boolean-config mt-4">
+    <span class="label">是否为错误状态</span>
     <a-switch v-model="config.config.error" />
   </div>
 </template>

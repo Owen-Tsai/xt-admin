@@ -32,6 +32,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     ],
     uid: '',
     config: {
+      width: '100%',
       gutter: 16,
       justify: 'start',
       align: 'start'
@@ -61,7 +62,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     config: {
       label: '复选框',
       width: '100%',
-      defaultchecked: false,
+      defaultChecked: false,
       disabled: false,
       direction: 'horizontal',
       indeterminate: false,
@@ -80,10 +81,9 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       width: '100%',
       label: '数字输入框',
       allowClear: false,
-      defaultValue: 1,
       readonly: false,
       required: false,
-      placeholder: '1',
+      placeholder: '',
       disabled: false,
       error: false,
       size: 'medium'

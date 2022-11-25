@@ -1,4 +1,14 @@
 <template>
+  <a-form-item label="字段名称">
+    <a-input v-model="config.config.label" allow-clear />
+  </a-form-item>
+  <a-form-item label="宽度">
+    <a-input
+      v-model="config.config.width"
+      placeholder="输入含单位(%/px)的数值"
+      allow-clear
+    />
+  </a-form-item>
   <a-form-item label="选择器类型">
     <a-select v-model="config.config.type">
       <a-option value="time">时间输入器</a-option>
@@ -29,23 +39,17 @@
       v-model="config.config.disabled"
     />
   </div>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否允许清除</span>
-    <a-switch
-      v-model="config.config.allowClear"
-    />
+  <div class="boolean-config mt-4">
+    <span class="label">是否允许清除</span>
+    <a-switch v-model="config.config.allowClear" />
   </div>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否为只读</span>
-    <a-switch
-      v-model="config.config.readonly"
-    />
+  <div class="boolean-config mt-4">
+    <span class="label">是否为只读</span>
+    <a-switch v-model="config.config.readonly" />
   </div>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否为错误状态</span>
-    <a-switch
-      v-model="config.config.error"
-    />
+  <div class="boolean-config mt-4">
+    <span class="label">是否为错误状态</span>
+    <a-switch v-model="config.config.error" />
   </div>
 </template>
 
@@ -69,5 +73,7 @@ const config = computed({
 </script>
 
 <style lang="scss" scoped>
-
+.arco-picker{
+  width: 100%;
+}
 </style>

@@ -10,58 +10,77 @@
     />
   </a-form-item>
   <div class="mb-4">
-    <span class="label">选项</span>
-    <div v-for="(item, i) in config.config.options" :key="i">
-      <div class="mt-2 flex items-center gap-2">
-        <a-input v-model="item.label" class="w-1/3" />
-        <a-input-number v-model="item.value" class="w-1/3" />
+    <span class="label">可选值</span>
+    <a-tabs>
+      <a-tab-pane key="fixed" title="固定值">
+        <div v-for="(item, i) in config.config.options" :key="i">
+          <div class="mt-2 flex items-center gap-2">
+            <a-input v-model="item.label" class="w-1/3" />
+            <a-input-number v-model="item.value" class="w-1/3" />
+            <a-button
+              status="danger"
+              class="flex-shrink-0"
+              @click="remove(i)"
+            >
+              <template #icon>
+                <icon-minus />
+              </template>
+            </a-button>
+          </div>
+        </div>
         <a-button
-          status="danger"
-          class="flex-shrink-0"
-          @click="remove(i)"
+          long
+          class="mt-2"
+          @click="add"
         >
           <template #icon>
-            <icon-minus />
+            <icon-plus />
           </template>
+          增加列
         </a-button>
-      </div>
-    </div>
-    <a-button
-      long
-      class="mt-2"
-      @click="add"
-    >
-      <template #icon>
-        <icon-plus />
-      </template>
-      增加列
-    </a-button>
+      </a-tab-pane>
+      <a-tab-pane key="remote" title="从接口获取">
+        <a-select v-model="config.config.optionsUrl" placeholder="选择一个数据源">
+          <a-option
+            v-for="(item, i) in ctx?.ast.value.dataSources"
+            :key="i"
+            :value="item.url"
+          >{{ item.name }}</a-option>
+        </a-select>
+      </a-tab-pane>
+    </a-tabs>
   </div>
-  <div class="flex justify-between items-center mb-2 p-2">
-    <span>是否禁用</span>
+  <div class="boolean-config mt-4 mb-4">
+    <span class="label !mb-0 mr-4">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
-  <div class="flex justify-between items-center mb-2 p-2">
-    <span>是否必填</span>
+  <div class="boolean-config mt-4 mb-4">
+    <span class="label !mb-0 mr-4">是否必填</span>
     <a-switch v-model="config.config.required" />
   </div>
-  <div class="flex justify-between items-center mb-2 p-2">
-    <span>是否为半选状态</span>
+  <div class="boolean-config mt-4 mb-4">
+    <span class="label !mb-0 mr-4">是否为半选状态</span>
     <a-switch v-model="config.config.indeterminate" />
   </div>
-  <div class="flex justify-between items-center mb-2 p-2">
-    <span>是否为选中状态</span>
-    <a-switch v-model="config.config.defaultchecked" />
+  <div class="boolean-config mt-4 mb-4">
+    <span class="label !mb-0 mr-4">是否为选中状态</span>
+    <a-switch v-model="config.config.defaultChecked" />
   </div>
 </template>
 
 <script setup lang="ts">
 import {
   computed,
-  PropType
+  PropType,
+  inject,
 } from 'vue'
-import { IConfigCheckbox } from '../types';
+import {
+  IConfigCheckbox,
+  FormDesignerContext,
+  contextSymbol
+} from '../types';
 
+const ctx = inject<FormDesignerContext>(contextSymbol)
 const emit = defineEmits(['update:widgetConfig'])
 const props = defineProps({
   widgetConfig: {

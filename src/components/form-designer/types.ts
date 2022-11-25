@@ -75,6 +75,7 @@ export interface IOptSwitch {
   checkedValue?: string | number | boolean,
   uncheckedValue?: string | number | boolean,
   disabled?: boolean,
+  loading?: boolean,
   label?: string
 }
 export interface IOptSlider {
@@ -143,12 +144,13 @@ export interface IOptCheckbox {
   max?: number,
   label?: string,
   required?: boolean,
-  defaultvalue?: string | number | boolean,
+  defaultValue?: string | number | boolean,
   disabled?: boolean,
   direction?: 'vertical' | 'horizontal',
   value?: string | number,
   indeterminate?: boolean,
-  defaultchecked?: boolean,
+  defaultChecked?: boolean,
+  optionsUrl?: number,
   options?: Array<{
     label?: string,
     value?: number
@@ -168,7 +170,7 @@ export interface IOptTextarea {
 }
 export interface IOptTimePicker {
   required?: boolean,
-  label: string,
+  label?: string,
   type?: 'time' | 'time-range',
   defaultValue?: string | number | Date | Array<string | number | Date>,
   disabled?: boolean,
@@ -178,9 +180,11 @@ export interface IOptTimePicker {
   size?: 'mini' | 'small' | 'medium' | 'large',
   placeholder?: string,
   width?: string,
+  style?:string
 }
 
 export interface IOptGrid {
+  width?: string,
   gutter: number,
   justify: 'start' | 'center' | 'end' | 'space-around' | 'space-between',
   align: 'start' | 'center' | 'end' | 'stretch',
@@ -232,9 +236,22 @@ export interface IOptUpload {
   multiple?: boolean,
   limit?: number,
   width?: string,
+  draggable?:boolean,
+  withcredentials?:boolean,
+  autoUpload?:boolean,
+  showFileList?:boolean,
+  showRemoveButton?:boolean
+  showRetryButton?:boolean,
+  showCancelButton?:boolean,
+  showUploadButton?:boolean,
+  download?:boolean,
+  showLink?:boolean,
+  imagePreview?:boolean
+
 }
 
 export type IConfigGrid = {
+  width?: string,
   type: 'grid',
   name: string,
   uid: string,

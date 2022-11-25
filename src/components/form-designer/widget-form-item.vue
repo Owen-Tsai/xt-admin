@@ -80,7 +80,7 @@
         :disabled="widget.config.disabled"
         :direction="widget.config.direction"
         :indeterminate="widget.config.indeterminate"
-        :defaultchecked="widget.config.defaultchecked"
+        :defaultchecked="widget.config.defaultChecked"
       >
         <template
           v-for="(item, i) in widget.config.options"
@@ -228,5 +228,8 @@ const onWidgetSelect = () => {
 <style lang="scss" scoped>
 .widget-wrapper::before{
   z-index: 10;
+}
+.arco-picker{
+  width: 100%;
 }
 </style>
