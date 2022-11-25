@@ -33,7 +33,7 @@ export default defineConfig({
   },
   // server: {
   //   proxy: {
-  //     '/gxrc': {
+  //     '/api': {
   //       target: 'http://localhost:8080',
   //       changeOrigin: true
   //     }
