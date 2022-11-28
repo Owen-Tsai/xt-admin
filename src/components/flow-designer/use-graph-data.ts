@@ -1,9 +1,11 @@
 import {
-  Graph, Addon, Node, Cell
+  Graph, Addon, Node, Shape
 } from '@antv/x6'
-import { ref } from 'vue'
 import type { Options } from '@antv/x6/lib/graph/options'
-import buildingBlocks from './blocks-config'
+import {
+  buildingBlocks,
+  edge
+} from './blocks-config'
 
 export const defaultConfig: Options.Manual = {
   grid: true,
@@ -24,7 +26,7 @@ export const defaultConfig: Options.Manual = {
   connecting: {
     router: {
       name: 'manhattan',
-      args: { padding: 20 }
+      args: { padding: 10 }
     },
     connector: {
       name: 'rounded',
@@ -33,7 +35,9 @@ export const defaultConfig: Options.Manual = {
     allowBlank: false,
     snap: {
       radius: 16
-    }
+    },
+    createEdge: () => new Shape.Edge(edge),
+    validateConnection: ({ targetMagnet }) => !!targetMagnet
   },
   highlighting: {
     magnetAdsorbed: {
@@ -59,7 +63,7 @@ const setupStencil = (container: HTMLElement, target: Graph) => {
   const stencil = new Addon.Stencil({
     target,
     stencilGraphWidth: 200,
-    stencilGraphHeight: 400,
+    stencilGraphHeight: 240,
     groups: [
       {
         name: 'default',
@@ -149,36 +153,18 @@ const setupPortEvents = (container: HTMLElement, graph: Graph) => {
   })
 }
 
-const setupCellSelectEvent = (graph: Graph, target: Cell | null) => {
-  graph.on('selection:changed', ({ selected }) => {
-    if (selected.length > 0) {
-      if (selected.length > 1) {
-        console.log('selected more than 1')
-      } else {
-        [target] = selected
-        console.log('selected ', target)
-      }
-    } else {
-      target = null
-    }
-  })
-
-  return target
-}
-
-export const setupGraph = (canvas: HTMLDivElement, stencilPanel: HTMLDivElement) => {
+export const useGraphInit = (
+  canvas: HTMLDivElement,
+  stencilPanel: HTMLDivElement
+) => {
   const graphInstance = new Graph({
     ...defaultConfig,
     container: canvas
   })
 
-  const selectedCell = ref<Cell | null>(null)
-
   setupKeyboardHotkeys(graphInstance)
   setupPortEvents(canvas, graphInstance)
-  setupCellSelectEvent(graphInstance, selectedCell.value as Cell | null)
-
-  const stencil = setupStencil(stencilPanel, graphInstance)
+  setupStencil(stencilPanel, graphInstance)
 
   return graphInstance
 }
