@@ -51,7 +51,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       maxLength: undefined,
       placeholder: '',
       readonly: false,
-      required: false,
+      required: true,
       showWordLimit: false
     }
   },
