@@ -1,34 +1,9 @@
 import type { Node } from '@antv/x6/lib/model'
-import type { Attr } from '@antv/x6/lib/registry/attr'
-import type { PortManager } from '@antv/x6/lib/model/port'
-
-// common attributes
-const endpointAttrs = {
-  body: {
-    fill: '#E8FFEA',
-    stroke: '#00B42A',
-    strokeWidth: 1
-  },
-  label: {
-    fill: '#00B42A'
-  }
-}
-
-const stepAttrs = {
-  body: {
-    fill: '#E8F3FF',
-    stroke: '#165DFF',
-    strokeWidth: 1
-  },
-  label: {
-    fill: '#165DFF'
-  }
-}
 
 // ports
 const getPortAttrsByColor = (color: string) => ({
   circle: {
-    r: 4,
+    r: 5,
     magnet: true,
     stroke: color,
     strokeWidth: 1,
@@ -64,14 +39,22 @@ const getPortConfigByColor = (color: string) => ({
   ]
 })
 
-const buildingBlocks: Node.Metadata[] = [
+export const buildingBlocks: Node.Metadata[] = [
   {
     label: '开始',
     shape: 'circle',
     width: 48,
     height: 48,
-    attrs: endpointAttrs,
-    // ports: getPortAttrsByColor('#00B42A')
+    attrs: {
+      body: {
+        fill: '#E8FFEA',
+        stroke: '#00B42A',
+        strokeWidth: 1
+      },
+      label: {
+        fill: '#00B42A'
+      }
+    },
     ports: getPortConfigByColor('#00B42A')
   },
   {
@@ -79,15 +62,33 @@ const buildingBlocks: Node.Metadata[] = [
     shape: 'circle',
     width: 48,
     height: 48,
-    attrs: endpointAttrs,
-    ports: getPortConfigByColor('#00B42A')
+    attrs: {
+      body: {
+        fill: '#fff1f2',
+        stroke: '#f43f5e',
+        strokeWidth: 2.5
+      },
+      label: {
+        fill: '#f43f5e'
+      }
+    },
+    ports: getPortConfigByColor('#f43f5e')
   },
   {
     label: '审批',
     shape: 'rect',
     height: 48,
     width: 80,
-    attrs: stepAttrs,
+    attrs: {
+      body: {
+        fill: '#E8F3FF',
+        stroke: '#165DFF',
+        strokeWidth: 1
+      },
+      label: {
+        fill: '#165DFF'
+      }
+    },
     ports: getPortConfigByColor('#165DFF')
   },
   {
@@ -95,8 +96,17 @@ const buildingBlocks: Node.Metadata[] = [
     shape: 'rect',
     height: 48,
     width: 80,
-    attrs: stepAttrs,
-    ports: getPortConfigByColor('#165DFF')
+    attrs: {
+      body: {
+        fill: '#f8fafc',
+        stroke: '#64748b',
+        strokeWidth: 1
+      },
+      label: {
+        fill: '#64748b'
+      }
+    },
+    ports: getPortConfigByColor('#64748b')
   },
   {
     label: '网关',
@@ -118,4 +128,17 @@ const buildingBlocks: Node.Metadata[] = [
   }
 ]
 
-export default buildingBlocks
+export const edge = {
+  attrs: {
+    line: {
+      stroke: '#A2B1C3',
+      strokeWidth: 2,
+      targetMarker: {
+        name: 'block',
+        width: 12,
+        height: 8,
+      },
+    },
+  },
+  zIndex: 0
+}
