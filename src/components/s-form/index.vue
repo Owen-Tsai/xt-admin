@@ -1,5 +1,6 @@
 <template>
   <a-form
+    ref="form"
     :model="data"
     :size="ast.formConfig.size"
     :layout="ast.formConfig.layout"
@@ -44,4 +45,14 @@ defineProps({
 })
 
 const data = ref({})
+
+const form = ref<any>()
+
+const handleValidate = () => {
+  form.value.validate()
+}
+
+defineExpose({
+  handleValidate
+})
 </script>

@@ -51,7 +51,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       maxLength: undefined,
       placeholder: '',
       readonly: false,
-      required: false,
+      required: true,
       showWordLimit: false
     }
   },
@@ -103,7 +103,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       limit: 0,
       placeholder: '',
       readonly: false,
-      required: false,
+      required: true,
       optionsType: 'fixed',
       options: [
         { label: '选项1', value: '1' },
