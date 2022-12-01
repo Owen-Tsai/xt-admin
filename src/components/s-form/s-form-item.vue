@@ -2,6 +2,8 @@
   <a-form-item
     :label="widget.config.label || widget.name"
     :required="widget.config.required"
+    :field="widget.name"
+    :rules="[{minLength:5,message:'must be greater than 5 characters'}]"
   >
     <template v-if="widget.type === 'input'">
       <a-input

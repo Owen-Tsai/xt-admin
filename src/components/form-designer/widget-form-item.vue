@@ -1,9 +1,9 @@
 <template>
   <a-form-item
     :label="widget.config.label || widget.name"
-    :required="widget.config.required"
     class="group widget-wrapper bg-white z-50"
     :class="{ 'is-selected': isSelected }"
+    :field="widget.name"
     @click="onWidgetSelect"
   >
     <template v-if="widget.type === 'input'">
