@@ -26,8 +26,8 @@
   <a-form-item label="提示文案">
     <a-input v-model="config.config.placeholder" />
   </a-form-item>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否禁用</span>
+  <div class="boolean-config mt-4">
+    <span class="label">是否禁用</span>
     <a-switch
       v-model="config.config.disabled"
     />
@@ -40,7 +40,7 @@
     <span class="label">是否为只读</span>
     <a-switch v-model="config.config.readonly" />
   </div>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config my-4">
     <span class="label">是否为错误状态</span>
     <a-switch v-model="config.config.error" />
   </div>

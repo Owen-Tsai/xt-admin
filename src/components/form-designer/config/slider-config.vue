@@ -30,7 +30,7 @@
     <span class="label">是否显示输入框</span>
     <a-switch v-model="config.config.showInput" />
   </div>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config my-4">
     <span class="label">是否开启范围选择</span>
     <a-switch v-model="config.config.range" />
   </div>

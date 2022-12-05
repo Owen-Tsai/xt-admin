@@ -172,7 +172,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     config: {
       label: '文本域',
       width: '100%',
-      placeholder: '提示文字',
+      placeholder: '',
       disabled: false,
       maxLength: 0,
       showWordLimit: false,
@@ -188,7 +188,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     config: {
       label: '级联选择器',
       width: '100%',
-      placeholder: '请选择',
+      placeholder: '',
       defaultValue: '',
       disabled: false,
       allowSearch: false,
@@ -258,7 +258,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       readonly: false,
       error: false,
       size: 'medium',
-      placeholder: '请选择时间',
+      placeholder: '',
     }
   },
   upload: {

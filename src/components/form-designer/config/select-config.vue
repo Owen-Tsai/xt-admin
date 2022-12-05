@@ -76,7 +76,7 @@
     <a-input v-model="config.defaultValue" />
   </a-form-item>
 
-  <div class="boolean-config">
+  <div class="boolean-config mt-4">
     <span class="label">允许搜索</span>
     <a-switch v-model="config.allowSearch" />
   </div>
@@ -96,7 +96,7 @@
     <span class="label">是否必填</span>
     <a-switch v-model="config.required" />
   </div>
-  <div class="boolean-config mt-4 mb-4">
+  <div class="boolean-config my-4">
     <span class="label">是否禁用</span>
     <a-switch v-model="config.disabled" />
   </div>

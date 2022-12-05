@@ -23,7 +23,7 @@
     <span class="label">是否为加载状态</span>
     <a-switch v-model="config.config.loading" />
   </div>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config my-4">
     <span class="label">默认选中状态</span>
     <a-switch v-model="config.config.defaultChecked" />
   </div>

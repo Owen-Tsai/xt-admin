@@ -17,25 +17,25 @@
       <a-option value="large">大</a-option>
     </a-select>
   </a-form-item>
-  <div class="flex justify-between items-center mb-2">
-    <span>是否允许清除</span>
+  <div class="boolean-config mt-4">
+    <span class="label">是否允许清除</span>
     <a-switch
       v-model="config.config.allowClear"
     />
   </div>
-  <div class="boolean-config mt-4 mb-4">
+  <div class="boolean-config mt-4">
     <span class="label">是否为只读</span>
     <a-switch v-model="config.config.readonly" />
   </div>
-  <div class="boolean-config mt-4 mb-4">
+  <div class="boolean-config mt-4">
     <span class="label">是否为错误状态</span>
     <a-switch v-model="config.config.error" />
   </div>
-  <div class="boolean-config mt-4 mb-4">
+  <div class="boolean-config mt-4">
     <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
-  <div class="boolean-config mt-4 mb-4">
+  <div class="boolean-config my-4">
     <span class="label">是否增加时间选择</span>
     <a-switch v-model="config.config.showTime" />
   </div>

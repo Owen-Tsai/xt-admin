@@ -39,7 +39,7 @@
     <span class="label">是否清除输入框</span>
     <a-switch v-model="config.config.allowClear" />
   </div>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config my-4">
     <span class="label">是否为错误状态</span>
     <a-switch v-model="config.config.error" />
   </div>
@@ -50,12 +50,12 @@ import {
   computed,
   PropType
 } from 'vue'
-import { IConfigInputnumber } from '../types';
+import { IConfigInputNumber } from '../types';
 
 const emit = defineEmits(['update:widgetConfig'])
 const props = defineProps({
   widgetConfig: {
-    type: Object as PropType<IConfigInputnumber>,
+    type: Object as PropType<IConfigInputNumber>,
     required: true
   }
 })

@@ -50,7 +50,7 @@
       </a-tab-pane>
     </a-tabs>
   </div>
-  <div class="boolean-config">
+  <div class="boolean-config mt-4">
     <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
