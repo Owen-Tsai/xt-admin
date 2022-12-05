@@ -2,11 +2,13 @@
   <a-form-item
     :label="widget.config.label || widget.name"
     :required="widget.config.required"
-    :field="widget.name"
-    :rules="[{minLength:5,message:'must be greater than 5 characters'}]"
+    :field="widget.uid"
+    :rules="(JSON.parse(widget.config.rules || '[]') || undefined)"
+    :validate-trigger="['blur']"
   >
     <template v-if="widget.type === 'input'">
       <a-input
+        v-model="ctx[widget.uid]"
         :default-value="widget.config.defaultValue"
         :placeholder="widget.config.placeholder"
         :allow-clear="widget.config.allowClear"
@@ -17,7 +19,7 @@
         :style="{ width: widget.config.width }"
       />
     </template>
-    <template v-if="widget.type === 'inputnumber'">
+    <template v-if="widget.type === 'inputNumber'">
       <a-input-number
         :default-value="widget.config.defaultValue"
         :placeholder="widget.config.placeholder"
@@ -169,8 +171,15 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType } from 'vue'
-import { WidgetsConfig, IConfigGrid } from '@/components/form-designer/types'
+import {
+  PropType,
+  inject
+} from 'vue'
+import type {
+  WidgetsConfig,
+  IConfigGrid
+} from '@/components/form-designer/types'
+import { formData } from './use-form-preview'
 
 defineProps({
   widget: {
@@ -178,4 +187,6 @@ defineProps({
     required: true
   }
 })
+
+const ctx = inject(formData) as any
 </script>

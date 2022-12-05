@@ -26,10 +26,17 @@
     <span class="label !mb-0 mr-4">是否只读</span>
     <a-switch v-model="config.readonly" />
   </div>
-  <div class="boolean-config mt-4 mb-4">
+  <div class="boolean-config mt-4">
     <span class="label !mb-0 mr-4">是否显示输入计数</span>
     <a-switch v-model="config.showWordLimit" />
   </div>
+  <div class="boolean-config my-4">
+    <span class="label !mb-0 mr-4">是否必填</span>
+    <a-switch v-model="config.required" />
+  </div>
+  <a-form-item label="自定义校验规则">
+    <a-textarea v-model="config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+  </a-form-item>
 </template>
 
 <script lang="ts" setup>

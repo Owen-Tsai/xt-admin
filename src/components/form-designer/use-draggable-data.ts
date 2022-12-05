@@ -51,7 +51,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       maxLength: undefined,
       placeholder: '',
       readonly: false,
-      required: true,
+      required: false,
       showWordLimit: false
     }
   },
@@ -74,7 +74,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     }
   },
   inputnumber: {
-    type: 'inputnumber',
+    type: 'inputNumber',
     name: '数字输入框',
     uid: '',
     config: {

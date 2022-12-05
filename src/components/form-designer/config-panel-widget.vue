@@ -5,7 +5,7 @@
     class="config-panel"
   >
     <radio-config v-if="config.type === 'radio'" v-model:widgetConfig="config" />
-    <inputnumber-config v-if="config.type === 'inputnumber'" v-model:widgetConfig="config" />
+    <inputnumber-config v-if="config.type === 'inputNumber'" v-model:widgetConfig="config" />
     <slider-config v-if="config.type === 'slider'" v-model:widgetConfig="config" />
     <switch-config v-if="config.type === 'switch'" v-model:widgetConfig="config" />
     <cascader-config v-if="config.type === 'cascader'" v-model:widgetConfig="config" />

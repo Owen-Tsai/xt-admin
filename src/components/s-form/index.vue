@@ -1,6 +1,5 @@
 <template>
   <a-form
-    ref="form"
     :model="data"
     :size="ast.formConfig.size"
     :layout="ast.formConfig.layout"
@@ -33,7 +32,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, PropType } from 'vue'
+import {
+  ref,
+  provide,
+  PropType
+} from 'vue'
 import FormPreviewItem from './s-form-item.vue'
 import type { AST } from '@/components/form-designer/types'
 
@@ -46,13 +49,5 @@ defineProps({
 
 const data = ref({})
 
-const form = ref<any>()
-
-const handleValidate = () => {
-  form.value.validate()
-}
-
-defineExpose({
-  handleValidate
-})
+provide('formData', data)
 </script>

@@ -58,5 +58,32 @@ setupMock({
 
       return failedResponseWrap(null, '未登录', 50008)
     })
+
+    Mock.mock('/api/user/menu', () => responseWrap([
+      {
+        path: '/dashboard',
+        name: 'dashboard',
+        redirect: '/dashboard/workplace',
+        meta: {
+          locale: 'menu.dashboard',
+          requireAuth: true,
+          order: 0,
+          icon: 'icon-apps',
+          hideChildrenInMenu: true
+        },
+        children: [
+          {
+            path: 'workplace',
+            name: 'workplace',
+            meta: {
+              locale: 'menu.dashboard.workplace',
+              requireAuth: true,
+              roles: ['*'],
+              activeMenu: 'dashboard'
+            }
+          }
+        ]
+      }
+    ]))
   }
 })

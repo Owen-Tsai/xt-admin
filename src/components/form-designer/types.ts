@@ -66,6 +66,7 @@ export interface IOptRadio {
   }>,
   optionsUrl?: number
 }
+
 export interface IOptSwitch {
   width?: string,
   required?:boolean,
@@ -78,6 +79,7 @@ export interface IOptSwitch {
   loading?: boolean,
   label?: string
 }
+
 export interface IOptSlider {
   required?: boolean,
   label: string,
@@ -93,6 +95,7 @@ export interface IOptSlider {
   range?: boolean,
   width?: string,
 }
+
 export interface IOptDatePicker {
   required?: boolean,
   label: string,
@@ -105,6 +108,7 @@ export interface IOptDatePicker {
   mode?: 'date' | 'year' | 'quarter' | 'month' | 'week',
   width?: string,
 }
+
 export interface IOptRate {
   required?: boolean,
   label: string,
@@ -117,7 +121,8 @@ export interface IOptRate {
   color?: string | Record<string, string>,
   width?: string,
 }
-export interface IOptInputnumber {
+
+export interface IOptInputNumber {
   required?: boolean,
   disabled?: boolean,
   readonly?: boolean,
@@ -133,12 +138,7 @@ export interface IOptInputnumber {
   error?: boolean,
   step?: boolean
 }
-export type IConfigInputnumber = {
-  type: 'inputnumber',
-  name: string,
-  uid: string,
-  config: IOptInputnumber,
-}
+
 export interface IOptCheckbox {
   width?: string,
   max?: number,
@@ -156,18 +156,7 @@ export interface IOptCheckbox {
     value?: number
   }>
 }
-export type IConfigCheckbox = {
-  type: 'checkbox',
-  name: string,
-  uid: string,
-  config: IOptCheckbox,
-}
-export interface IOptTextarea {
-  width?: string,
-  rows?: number,
-  limit?: number,
-  placeholder?: string
-}
+
 export interface IOptTimePicker {
   required?: boolean,
   label?: string,
@@ -189,6 +178,7 @@ export interface IOptGrid {
   justify: 'start' | 'center' | 'end' | 'space-around' | 'space-between',
   align: 'start' | 'center' | 'end' | 'stretch',
 }
+
 export interface IOptCascader {
   required?: boolean,
   label?: string,
@@ -207,6 +197,7 @@ export interface IOptCascader {
     children?: IOptCascaderChildren[]
   }>
 }
+
 export interface IOptinTextarea {
   required?: boolean,
   label?: string,
@@ -219,15 +210,18 @@ export interface IOptinTextarea {
   autoSize?: boolean,
   value?: string
 }
+
 export interface IOptCascaderChildren{
   label?: string,
   value?: number | string,
   children?: IOptCascaderChildren[]
 }
+
 export type IConfigCol = {
   span: number,
   widgets: Exclude<WidgetsConfig, IConfigGrid>[]
 }
+
 export interface IOptUpload {
   required?: boolean,
   label: string,
@@ -247,7 +241,13 @@ export interface IOptUpload {
   download?:boolean,
   showLink?:boolean,
   imagePreview?:boolean
+}
 
+export interface IOptTextarea {
+  width?: string,
+  rows?: number,
+  limit?: number,
+  placeholder?: string,
 }
 
 export type IConfigGrid = {
@@ -263,71 +263,120 @@ export type IConfigInput = {
   type: 'input',
   name: string,
   uid: string,
-  config: IOptInput
+  config: IOptInput & {
+    rules?: string
+  }
 }
 
 export type IConfigSelect = {
   type: 'select',
   name: string,
   uid: string,
-  config: IOptSelect
+  config: IOptSelect & {
+    rules?: string
+  }
 }
+
+export type IConfigInputNumber = {
+  type: 'inputNumber',
+  name: string,
+  uid: string,
+  config: IOptInputNumber & {
+    rules?: string
+  }
+}
+
+export type IConfigCheckbox = {
+  type: 'checkbox',
+  name: string,
+  uid: string,
+  config: IOptCheckbox & {
+    rules?: string
+  }
+}
+
 export type IConfigRadio = {
   type: 'radio',
   name: string,
   uid: string,
-  config: IOptRadio,
+  config: IOptRadio & {
+    rules?: string
+  }
 }
+
 export type IConfigSwitch = {
   type: 'switch',
   name: string,
   uid: string,
-  config: IOptSwitch,
+  config: IOptSwitch & {
+    rules?: string
+  }
 }
+
 export type IConfigSlider = {
   type: 'slider',
   name: string,
   uid: string,
-  config: IOptSlider,
+  config: IOptSlider & {
+    rules?: string
+  }
 }
+
 export type IConfigCascader = {
   type: 'cascader',
   name: string,
   uid: string,
-  config: IOptCascader,
+  config: IOptCascader & {
+    rules?: string
+  }
 }
+
 export type IConfigTextarea = {
   type: 'textarea',
   name: string,
   uid: string,
-  config: IOptinTextarea,
+  config: IOptinTextarea & {
+    rules?: string
+  }
 }
+
 export type IConfigDatePicker = {
   type: 'date-picker',
   name: string,
   uid: string,
-  config: IOptDatePicker,
+  config: IOptDatePicker & {
+    rules?: string
+  }
 }
+
 export type IConfigRate = {
   type: 'rate',
   name: string,
   uid: string,
-  config: IOptRate,
+  config: IOptRate & {
+    rules?: string
+  }
 }
+
 export type IConfigTimePicker = {
   type: 'time-picker',
   name: string,
   uid: string,
-  config: IOptTimePicker,
+  config: IOptTimePicker & {
+    rules?: string
+  }
 }
+
 export type IConfigUpload = {
   type: 'upload',
   name: string,
   uid: string,
-  config: IOptUpload,
+  config: IOptUpload & {
+    rules?: string
+  }
 }
 
-export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigDatePicker | IConfigRate | IConfigTimePicker | IConfigCascader | IConfigTextarea | IConfigUpload | IConfigInputnumber | IConfigCheckbox
+export type WidgetsConfig = IConfigInput | IConfigSelect | IConfigGrid | IConfigRadio | IConfigSlider | IConfigSwitch | IConfigDatePicker | IConfigRate | IConfigTimePicker | IConfigCascader | IConfigTextarea | IConfigUpload | IConfigInputNumber | IConfigCheckbox
 
 export type AST = {
   formConfig: FormConfig,

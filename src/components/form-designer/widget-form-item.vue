@@ -4,6 +4,7 @@
     class="group widget-wrapper bg-white z-50"
     :class="{ 'is-selected': isSelected }"
     :field="widget.name"
+    :required="widget.config.required"
     @click="onWidgetSelect"
   >
     <template v-if="widget.type === 'input'">
@@ -64,7 +65,7 @@
         :style="{ width: widget.config.width }"
       />
     </template>
-    <template v-if="widget.type === 'inputnumber'">
+    <template v-if="widget.type === 'inputNumber'">
       <a-input-number
         :default-value="widget.config.defaultValue"
         :placeholder="widget.config.placeholder"
