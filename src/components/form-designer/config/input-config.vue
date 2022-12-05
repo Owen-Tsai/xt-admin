@@ -19,19 +19,19 @@
     <a-input-number v-model="config.maxLength" allow-clear />
   </a-form-item>
   <div class="boolean-config">
-    <span class="label !mb-0 mr-4">是否禁用</span>
+    <span class="label">是否禁用</span>
     <a-switch v-model="config.disabled" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label !mb-0 mr-4">是否只读</span>
+    <span class="label">是否只读</span>
     <a-switch v-model="config.readonly" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label !mb-0 mr-4">是否显示输入计数</span>
+    <span class="label">是否显示输入计数</span>
     <a-switch v-model="config.showWordLimit" />
   </div>
   <div class="boolean-config my-4">
-    <span class="label !mb-0 mr-4">是否必填</span>
+    <span class="label">是否必填</span>
     <a-switch v-model="config.required" />
   </div>
   <a-form-item label="自定义校验规则">

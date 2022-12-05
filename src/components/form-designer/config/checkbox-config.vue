@@ -51,19 +51,19 @@
     </a-tabs>
   </div>
   <div class="boolean-config">
-    <span class="label !mb-0 mr-4">是否禁用</span>
+    <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label !mb-0 mr-4">是否必填</span>
+    <span class="label">是否必填</span>
     <a-switch v-model="config.config.required" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label !mb-0 mr-4">是否为半选状态</span>
+    <span class="label">是否为半选状态</span>
     <a-switch v-model="config.config.indeterminate" />
   </div>
   <div class="boolean-config my-4">
-    <span class="label !mb-0 mr-4">是否为选中状态</span>
+    <span class="label">是否为选中状态</span>
     <a-switch v-model="config.config.defaultChecked" />
   </div>
 </template>

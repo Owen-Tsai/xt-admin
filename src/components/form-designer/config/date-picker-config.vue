@@ -24,19 +24,19 @@
     />
   </div>
   <div class="boolean-config mt-4 mb-4">
-    <span class="label !mb-0 mr-4">是否为只读</span>
+    <span class="label">是否为只读</span>
     <a-switch v-model="config.config.readonly" />
   </div>
   <div class="boolean-config mt-4 mb-4">
-    <span class="label !mb-0 mr-4">是否为错误状态</span>
+    <span class="label">是否为错误状态</span>
     <a-switch v-model="config.config.error" />
   </div>
   <div class="boolean-config mt-4 mb-4">
-    <span class="label !mb-0 mr-4">是否禁用</span>
+    <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
   <div class="boolean-config mt-4 mb-4">
-    <span class="label !mb-0 mr-4">是否增加时间选择</span>
+    <span class="label">是否增加时间选择</span>
     <a-switch v-model="config.config.showTime" />
   </div>
 </template>

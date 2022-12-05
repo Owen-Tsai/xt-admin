@@ -39,6 +39,7 @@ import {
 } from 'vue'
 import FormPreviewItem from './s-form-item.vue'
 import type { AST } from '@/components/form-designer/types'
+import { formData } from './use-form-preview'
 
 defineProps({
   ast: {
@@ -49,5 +50,5 @@ defineProps({
 
 const data = ref({})
 
-provide('formData', data)
+provide(formData, data)
 </script>

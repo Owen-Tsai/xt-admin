@@ -31,11 +31,14 @@
 }
 
 .config-panel {
-  .boolean-config {
-    @apply flex items-center justify-between;
-  }
   .label {
     @apply block text-sm mb-2;
     color: var(--color-text-2);
+  }
+  .boolean-config {
+    @apply flex items-center justify-between;
+    .label {
+      @apply mb-0;
+    }
   }
 }
