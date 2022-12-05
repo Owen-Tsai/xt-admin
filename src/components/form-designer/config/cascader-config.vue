@@ -18,7 +18,7 @@
     </a-select>
   </a-form-item>
   <div class="mb-2">
-    <span>默认内容</span>
+    <span class="label">默认内容</span>
     <a-input v-model="config.config.placeholder" class="mt-2" />
   </div>
   <div class="boolean-config mt-4">
