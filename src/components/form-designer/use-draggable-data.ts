@@ -103,7 +103,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       limit: 0,
       placeholder: '',
       readonly: false,
-      required: true,
+      required: false,
       optionsType: 'fixed',
       options: [
         { label: '选项1', value: '1' },

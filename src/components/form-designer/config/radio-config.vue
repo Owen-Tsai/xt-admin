@@ -75,10 +75,13 @@
       </a-tab-pane>
     </a-tabs>
   </div>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config my-4">
     <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
+  <a-form-item label="自定义校验规则">
+    <a-textarea v-model="config.config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+  </a-form-item>
 </template>
 
 <script lang="ts" setup>

@@ -66,6 +66,9 @@
     <span class="label">是否为选中状态</span>
     <a-switch v-model="config.config.defaultChecked" />
   </div>
+  <a-form-item label="自定义校验规则">
+    <a-textarea v-model="config.config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+  </a-form-item>
 </template>
 
 <script setup lang="ts">
@@ -74,6 +77,7 @@ import {
   PropType,
   inject,
 } from 'vue'
+import { merge } from 'lodash'
 import {
   IConfigCheckbox,
   FormDesignerContext,
@@ -91,7 +95,7 @@ const props = defineProps({
 const config = computed({
   get: () => props.widgetConfig,
   set: (val) => {
-    emit('update:widgetConfig', val)
+    emit('update:widgetConfig', merge(props.widgetConfig, val))
   }
 })
 const remove = (index: number) => {

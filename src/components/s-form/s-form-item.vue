@@ -21,6 +21,7 @@
     </template>
     <template v-if="widget.type === 'inputNumber'">
       <a-input-number
+        v-model="ctx[widget.uid]"
         :default-value="widget.config.defaultValue"
         :placeholder="widget.config.placeholder"
         :allow-clear="widget.config.allowClear"
@@ -32,6 +33,7 @@
     </template>
     <template v-if="widget.type === 'checkbox'">
       <a-checkbox-group
+        v-model="ctx[widget.uid]"
         :disabled="widget.config.disabled"
         :direction="widget.config.direction"
         :indeterminate="widget.config.indeterminate"
@@ -49,6 +51,7 @@
       </a-checkbox-group></template>
     <template v-if="widget.type === 'select'">
       <a-select
+        v-model="ctx[widget.uid]"
         :allow-clear="widget.config.allowClear"
         :allow-create="widget.config.allowCreate"
         :allow-search="widget.config.allowSearch"
@@ -65,6 +68,7 @@
     </template>
     <template v-if="widget.type === 'radio'">
       <a-radio-group
+        v-model="ctx[widget.uid]"
         :direction="widget.config.direction"
         :type="widget.config.type"
         :disabled="widget.config.disabled"
@@ -80,6 +84,7 @@
     </template>
     <template v-if="widget.type === 'slider'">
       <a-slider
+        v-model="ctx[widget.uid]"
         :default-value="widget.config.defaultValue"
         :step="widget.config.step"
         :min="widget.config.min"
@@ -95,6 +100,7 @@
     </template>
     <template v-if="widget.type === 'switch'">
       <a-switch
+        v-model="ctx[widget.uid]"
         :disabled="widget.config.disabled"
         :size="widget.config.size"
         :type="widget.config.type"
@@ -106,6 +112,7 @@
     </template>
     <template v-if="widget.type === 'date-picker'">
       <a-date-picker
+        v-model="ctx[widget.uid]"
         :allow-clear="widget.config.allowClear"
         :readonly="widget.config.readonly"
         :error="widget.config.error"
@@ -116,6 +123,7 @@
     </template>
     <template v-if="widget.type === 'rate'">
       <a-rate
+        v-model="ctx[widget.uid]"
         :count="widget.config.count"
         :allow-half="widget.config.allowHalf"
         :grading="widget.config.grading"
@@ -125,6 +133,7 @@
     </template>
     <template v-if="widget.type === 'time-picker'">
       <a-time-picker
+        v-model="ctx[widget.uid]"
         :type="widget.config.type"
         :disabled="widget.config.disabled"
         :allow-clear="widget.config.allowClear"
@@ -137,6 +146,7 @@
     </template>
     <template v-if="widget.type === 'cascader'">
       <a-cascader
+        v-model="ctx[widget.uid]"
         :options="widget.config.options"
         :placeholder="widget.config.placeholder"
         :default-value="widget.config.defaultValue"
@@ -150,7 +160,7 @@
     </template>
     <template v-if="widget.type === 'textarea'">
       <a-textarea
-        :model-value="widget.config.value"
+        v-model="ctx[widget.uid]"
         :placeholder="widget.config.placeholder"
         :disabled="widget.config.disabled"
         :max-length="widget.config.maxLength"
@@ -161,6 +171,7 @@
     </template>
     <template v-if="widget.type === 'upload'">
       <a-upload
+        v-model="ctx[widget.uid]"
         :action="widget.config.action"
         :disabled="widget.config.disabled"
         :multiple="widget.config.multiple"

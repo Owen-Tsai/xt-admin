@@ -33,10 +33,13 @@
     <span class="label">是否允许清空文本域</span>
     <a-switch v-model="config.config.allowClear" />
   </div>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config my-4">
     <span class="label">是否让文本框自适应内容高度</span>
     <a-switch v-model="config.config.autoSize" />
   </div>
+  <a-form-item label="自定义校验规则">
+    <a-textarea v-model="config.config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+  </a-form-item>
 </template>
 
 <script setup lang="ts">

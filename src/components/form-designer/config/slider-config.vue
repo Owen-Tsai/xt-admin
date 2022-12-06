@@ -18,7 +18,7 @@
       <a-option value="vertical">垂直方向</a-option>
     </a-select>
   </a-form-item>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config">
     <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
@@ -30,10 +30,13 @@
     <span class="label">是否显示输入框</span>
     <a-switch v-model="config.config.showInput" />
   </div>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config my-4">
     <span class="label">是否开启范围选择</span>
     <a-switch v-model="config.config.range" />
   </div>
+  <a-form-item label="自定义校验规则">
+    <a-textarea v-model="config.config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+  </a-form-item>
 </template>
 
 <script setup lang="ts">
