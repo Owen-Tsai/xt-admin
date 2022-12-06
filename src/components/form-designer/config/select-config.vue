@@ -76,7 +76,7 @@
     <a-input v-model="config.defaultValue" />
   </a-form-item>
 
-  <div class="boolean-config">
+  <div class="boolean-config mt-4">
     <span class="label">允许搜索</span>
     <a-switch v-model="config.allowSearch" />
   </div>
