@@ -73,7 +73,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       ]
     }
   },
-  inputnumber: {
+  inputNumber: {
     type: 'inputNumber',
     name: '数字输入框',
     uid: '',
@@ -165,7 +165,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       disabled: false
     }
   },
-  textarea: {
+  textArea: {
     type: 'textarea',
     name: '文本域',
     uid: '',
