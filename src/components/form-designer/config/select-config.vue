@@ -14,33 +14,19 @@
   </a-form-item>
   <a-form-item label="可选数量">
     <a-input-number v-model="config.limit" />
-    <template #extra>
-      当数量不为0时开启多选
-    </template>
+    <template #extra> 当数量不为0时开启多选 </template>
   </a-form-item>
   <div>
     <span class="label">可选值</span>
-    <a-tabs
-      v-model:active-key="config.optionsType"
-      type="line"
-      size="mini"
-    >
+    <a-tabs v-model:active-key="config.optionsType" type="line" size="mini">
       <a-tab-pane key="fixed" title="固定值">
         <div
           v-for="(opt, i) in config.options"
           :key="i"
           class="flex items-center gap-2 mt-2 first:mt-0"
         >
-          <a-input
-            v-model="opt.label"
-            class="!w-24"
-            placeholder="选项名称"
-          />
-          <a-input
-            v-model="opt.value"
-            class="!w-16"
-            placeholder="值"
-          />
+          <a-input v-model="opt.label" class="!w-24" placeholder="选项名称" />
+          <a-input v-model="opt.value" class="!w-16" placeholder="值" />
           <a-button status="danger" @click="removeOption(i)">
             <template #icon>
               <icon-minus />
@@ -48,12 +34,7 @@
           </a-button>
         </div>
 
-        <a-button
-          long
-          class="mt-2"
-          type="outline"
-          @click="addOption"
-        >
+        <a-button long class="mt-2" type="outline" @click="addOption">
           <template #icon>
             <icon-plus />
           </template>
@@ -66,7 +47,8 @@
             v-for="(item, i) in ctx?.ast.value.dataSources"
             :key="i"
             :value="item.url"
-          >{{ item.name }}</a-option>
+            >{{ item.name }}</a-option
+          >
         </a-select>
       </a-tab-pane>
     </a-tabs>
@@ -101,22 +83,17 @@
     <a-switch v-model="config.disabled" />
   </div>
   <a-form-item label="自定义校验规则">
-    <a-textarea v-model="config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+    <a-textarea
+      v-model="config.rules"
+      :auto-size="{ minRows: 4, maxRows: 6 }"
+    />
   </a-form-item>
 </template>
 
 <script lang="ts" setup>
-import {
-  computed,
-  inject,
-  PropType
-} from 'vue'
+import { computed, inject, PropType } from 'vue'
 import { merge } from 'lodash'
-import {
-  IConfigSelect,
-  FormDesignerContext,
-  contextSymbol
-} from '../types'
+import { IConfigSelect, FormDesignerContext, contextSymbol } from '../types'
 
 const emit = defineEmits(['update:widgetCofnig'])
 const ctx = inject<FormDesignerContext>(contextSymbol)
@@ -124,15 +101,15 @@ const ctx = inject<FormDesignerContext>(contextSymbol)
 const props = defineProps({
   widgetConfig: {
     type: Object as PropType<IConfigSelect>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const config = computed({
   get: () => props.widgetConfig.config,
   set: (val) => {
     emit('update:widgetCofnig', merge(props.widgetConfig, val))
-  }
+  },
 })
 
 const removeOption = (i: number) => {
@@ -142,7 +119,7 @@ const removeOption = (i: number) => {
 const addOption = () => {
   config.value.options?.push({
     label: '',
-    value: ''
+    value: '',
   })
 }
 </script>

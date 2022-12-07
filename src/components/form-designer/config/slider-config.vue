@@ -35,27 +35,30 @@
     <a-switch v-model="config.config.range" />
   </div>
   <a-form-item label="自定义校验规则">
-    <a-textarea v-model="config.config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+    <a-textarea
+      v-model="config.config.rules"
+      :auto-size="{ minRows: 4, maxRows: 6 }"
+    />
   </a-form-item>
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from 'vue';
-import { IConfigSlider } from '../types';
+import { computed, PropType } from 'vue'
+import { IConfigSlider } from '../types'
 
-const emit = defineEmits(['update:widgetConfig']);
+const emit = defineEmits(['update:widgetConfig'])
 const props = defineProps({
   widgetConfig: {
     type: Object as PropType<IConfigSlider>,
     required: true,
   },
-});
+})
 const config = computed({
   get: () => props.widgetConfig,
   set: (val) => {
-    emit('update:widgetConfig', val);
+    emit('update:widgetConfig', val)
   },
-});
+})
 </script>
 
 <style lang="scss" scoped></style>

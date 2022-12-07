@@ -9,7 +9,7 @@ const userRoutes: AppRouteRecordRaw = {
     locale: 'menu.user',
     requireAuth: true,
     order: 2,
-    icon: 'icon-user'
+    icon: 'icon-user',
   },
   children: [
     {
@@ -19,10 +19,10 @@ const userRoutes: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.user.info',
         requireAuth: true,
-        roles: ['*']
-      }
-    }
-  ]
+        roles: ['*'],
+      },
+    },
+  ],
 }
 
 export default userRoutes

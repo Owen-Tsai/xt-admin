@@ -14,7 +14,7 @@ const useLoading = (initValue = false) => {
   return {
     isLoading,
     setLoading,
-    toggle
+    toggle,
   }
 }
 

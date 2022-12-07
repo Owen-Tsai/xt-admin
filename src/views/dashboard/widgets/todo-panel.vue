@@ -6,11 +6,7 @@
     </div>
 
     <div class="mt-4">
-      <a-table
-        :columns="cols"
-        :data="data"
-        :pagination="false"
-      >
+      <a-table :columns="cols" :data="data" :pagination="false">
         <template #action>
           <a-button size="small">查看</a-button>
         </template>
@@ -26,11 +22,13 @@
 import { ref } from 'vue'
 import { getTodoTable, TodoTableItem } from '@/api/dashboard'
 
-const cols = ref<{
-  title: string;
-  dataIndex?: string;
-  slotName?: string;
-}[]>([
+type ColData = {
+  title: string
+  dataIndex?: string
+  slotName?: string
+}
+
+const cols = ref<ColData[]>([
   { dataIndex: 'title', title: '业务名称' },
   { dataIndex: 'progress', slotName: 'progress', title: '审核进度' },
   { dataIndex: 'todo', title: '待审数量' },

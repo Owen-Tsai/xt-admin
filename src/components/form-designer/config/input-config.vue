@@ -35,15 +35,15 @@
     <a-switch v-model="config.required" />
   </div>
   <a-form-item label="自定义校验规则">
-    <a-textarea v-model="config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+    <a-textarea
+      v-model="config.rules"
+      :auto-size="{ minRows: 4, maxRows: 6 }"
+    />
   </a-form-item>
 </template>
 
 <script lang="ts" setup>
-import {
-  computed,
-  PropType
-} from 'vue'
+import { computed, PropType } from 'vue'
 import { merge } from 'lodash'
 import type { IConfigInput } from '../types'
 
@@ -52,14 +52,14 @@ const emit = defineEmits(['update:widgetCofnig'])
 const props = defineProps({
   widgetConfig: {
     type: Object as PropType<IConfigInput>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const config = computed({
   get: () => props.widgetConfig.config,
   set: (val) => {
     emit('update:widgetCofnig', merge(props.widgetConfig, val))
-  }
+  },
 })
 </script>

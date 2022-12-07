@@ -10,11 +10,7 @@
 
       <div class="s-section mt-4">
         <h2 class="mb-4 text-lg font-bold">扶持对象</h2>
-        <a-space
-          direction="vertical"
-          :size="32"
-          class="w-full"
-        >
+        <a-space direction="vertical" :size="32" class="w-full">
           <div
             v-for="(item, i) in data.personnelInfo"
             :key="i"
@@ -68,12 +64,12 @@ import { useUserStore } from '@/store'
 const props = defineProps({
   id: {
     type: String,
-    required: true
+    required: true,
   },
   type: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const router = useRouter()
@@ -108,13 +104,25 @@ const data = reactive({
         { label: '上年度收入', value: '18.7 万元', mark: true },
         { label: '上年度纳税', value: '1.6 万元', mark: true },
         { label: '奖励比例', value: '0.4', mark: true },
-        { label: '奖励金额', value: '0.65 万元', mark: true }
+        { label: '奖励金额', value: '0.65 万元', mark: true },
       ],
       attachments: [
-        { id: 1, name: '身份证正面', src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp' },
-        { id: 2, name: '身份证反面', src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp' },
-        { id: 3, name: '个人履历和研究成果', src: 'http://www.jigaorencai.com:8088/servlet/attach?type=attach&id=8441' },
-      ]
+        {
+          id: 1,
+          name: '身份证正面',
+          src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp',
+        },
+        {
+          id: 2,
+          name: '身份证反面',
+          src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp',
+        },
+        {
+          id: 3,
+          name: '个人履历和研究成果',
+          src: 'http://www.jigaorencai.com:8088/servlet/attach?type=attach&id=8441',
+        },
+      ],
     },
     {
       name: '李四',
@@ -127,13 +135,25 @@ const data = reactive({
         { label: '上年度收入', value: '18.7 万元', mark: true },
         { label: '上年度纳税', value: '1.6 万元', mark: true },
         { label: '奖励比例', value: '0.4', mark: true },
-        { label: '奖励金额', value: '0.65 万元', mark: true }
+        { label: '奖励金额', value: '0.65 万元', mark: true },
       ],
       attachments: [
-        { id: 1, name: '身份证正面', src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp' },
-        { id: 2, name: '身份证反面', src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp' },
-        { id: 3, name: '个人履历和研究成果', src: 'http://www.jigaorencai.com:8088/servlet/attach?type=attach&id=8441' },
-      ]
+        {
+          id: 1,
+          name: '身份证正面',
+          src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp',
+        },
+        {
+          id: 2,
+          name: '身份证反面',
+          src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp',
+        },
+        {
+          id: 3,
+          name: '个人履历和研究成果',
+          src: 'http://www.jigaorencai.com:8088/servlet/attach?type=attach&id=8441',
+        },
+      ],
     },
     {
       name: '王二麻子',
@@ -146,14 +166,26 @@ const data = reactive({
         { label: '上年度收入', value: '18.7 万元', mark: true },
         { label: '上年度纳税', value: '1.6 万元', mark: true },
         { label: '奖励比例', value: '0.4', mark: true },
-        { label: '奖励金额', value: '0.65 万元', mark: true }
+        { label: '奖励金额', value: '0.65 万元', mark: true },
       ],
       attachments: [
-        { id: 1, name: '身份证正面', src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp' },
-        { id: 2, name: '身份证反面', src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp' },
-        { id: 3, name: '个人履历和研究成果', src: 'http://www.jigaorencai.com:8088/servlet/attach?type=attach&id=8441' },
-      ]
-    }
-  ]
+        {
+          id: 1,
+          name: '身份证正面',
+          src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp',
+        },
+        {
+          id: 2,
+          name: '身份证反面',
+          src: 'https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp',
+        },
+        {
+          id: 3,
+          name: '个人履历和研究成果',
+          src: 'http://www.jigaorencai.com:8088/servlet/attach?type=attach&id=8441',
+        },
+      ],
+    },
+  ],
 })
 </script>

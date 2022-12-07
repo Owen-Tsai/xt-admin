@@ -1,10 +1,10 @@
-import type { Router, RouteRecordNormalized } from 'vue-router'
 import NProgress from 'nprogress'
-import { menuFromServer, toNoPermissionPage } from '@config'
 import usePermission from '@/hooks/use-permission'
 import { useUserStore, useMenuStore } from '@/store'
+import { menuFromServer, toNoPermissionPage } from '@config'
 import { appRoutes } from '../routes'
 import { whiteList } from '../constants'
+import type { Router, RouteRecordNormalized } from 'vue-router'
 
 const setupPermissionGuard = (router: Router) => {
   router.beforeEach(async (to, from, next) => {
@@ -16,8 +16,8 @@ const setupPermissionGuard = (router: Router) => {
     if (menuFromServer) {
       // TODO: implement permisison logic
       if (
-        !menuStore.asyncMenu.length
-        && !whiteList.find((el) => el.name === to.name)
+        !menuStore.asyncMenu.length &&
+        !whiteList.find((el) => el.name === to.name)
       ) {
         await menuStore.fetchMenuConfig()
       }
@@ -29,7 +29,7 @@ const setupPermissionGuard = (router: Router) => {
         const el = serverMenuConfig.shift()
         if (el?.name === to.name) exist = true
         if (el?.children) {
-          serverMenuConfig.push(...el.children as RouteRecordNormalized[])
+          serverMenuConfig.push(...(el.children as RouteRecordNormalized[]))
         }
       }
 

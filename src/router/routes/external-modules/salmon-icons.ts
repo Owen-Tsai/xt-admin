@@ -5,6 +5,6 @@ export default {
     locale: 'menu.salmon-icons',
     requireAuth: true,
     order: 9,
-    icon: 'icon-link'
-  }
+    icon: 'icon-link',
+  },
 }

@@ -12,11 +12,7 @@
           :justify="item.config.justify"
           :gutter="item.config.gutter"
         >
-          <a-col
-            v-for="(col, j) in item.cols"
-            :key="j"
-            :span="col.span"
-          >
+          <a-col v-for="(col, j) in item.cols" :key="j" :span="col.span">
             <form-preview-item
               v-if="col.widgets.length >= 1"
               :widget="col.widgets[0]"
@@ -32,20 +28,16 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  ref,
-  provide,
-  PropType
-} from 'vue'
-import FormPreviewItem from './s-form-item.vue'
+import { ref, provide, PropType } from 'vue'
 import type { AST } from '@/components/form-designer/types'
+import FormPreviewItem from './s-form-item.vue'
 import { formData } from './use-form-preview'
 
 defineProps({
   ast: {
     type: Object as PropType<AST>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const data = ref({})

@@ -5,6 +5,6 @@ export default {
     locale: 'menu.github',
     requireAuth: true,
     order: 10,
-    icon: 'icon-github'
-  }
+    icon: 'icon-github',
+  },
 }

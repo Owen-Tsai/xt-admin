@@ -25,10 +25,10 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { menuWidth as w } from '@config'
 import { useMenuStore } from '@/store'
 import ToolBar from '@/components/tool-bar.vue'
 import SMenu from '@/components/menu/index.vue'
+import { menuWidth as w } from '@config'
 import PageView from './inner-layout.vue'
 
 const menuStore = useMenuStore()

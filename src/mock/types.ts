@@ -1,10 +1,10 @@
 export interface MockParams {
-  url: string,
-  type: string,
+  url: string
+  type: string
   body: string
 }
 
 export interface MockGetParams {
-  url: string,
+  url: string
   type: string
 }

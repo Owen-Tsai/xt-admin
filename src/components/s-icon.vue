@@ -1,8 +1,5 @@
 <template>
-  <span
-    class="sui-icon"
-    :style="styles"
-  >
+  <span class="sui-icon" :style="styles">
     <slot>
       <component :is="name" />
     </slot>
@@ -11,25 +8,21 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import type {
-  StyleValue,
-  PropType,
-  Component
-} from 'vue'
+import type { StyleValue, PropType, Component } from 'vue'
 
 const props = defineProps({
   color: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   size: {
     type: Number,
-    default: undefined
+    default: undefined,
   },
   name: {
     type: Object as PropType<Component>,
-    default: undefined
-  }
+    default: undefined,
+  },
 })
 const styles = computed(() => {
   const result: StyleValue = {}

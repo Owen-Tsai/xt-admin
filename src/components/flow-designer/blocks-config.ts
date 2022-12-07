@@ -8,35 +8,35 @@ const getPortAttrsByColor = (color: string) => ({
     stroke: color,
     strokeWidth: 1,
     fill: '#fff',
-    style: { visibility: 'hidden' }
-  }
+    style: { visibility: 'hidden' },
+  },
 })
 
 const getPortConfigByColor = (color: string) => ({
   groups: {
     top: {
       position: 'top',
-      attrs: getPortAttrsByColor(color)
+      attrs: getPortAttrsByColor(color),
     },
     bottom: {
       position: 'bottom',
-      attrs: getPortAttrsByColor(color)
+      attrs: getPortAttrsByColor(color),
     },
     left: {
       position: 'left',
-      attrs: getPortAttrsByColor(color)
+      attrs: getPortAttrsByColor(color),
     },
     right: {
       position: 'right',
-      attrs: getPortAttrsByColor(color)
+      attrs: getPortAttrsByColor(color),
     },
   },
   items: [
     { group: 'top' },
     { group: 'bottom' },
     { group: 'left' },
-    { group: 'right' }
-  ]
+    { group: 'right' },
+  ],
 })
 
 export const buildingBlocks: Node.Metadata[] = [
@@ -49,13 +49,13 @@ export const buildingBlocks: Node.Metadata[] = [
       body: {
         fill: '#E8FFEA',
         stroke: '#00B42A',
-        strokeWidth: 1
+        strokeWidth: 1,
       },
       label: {
-        fill: '#00B42A'
-      }
+        fill: '#00B42A',
+      },
     },
-    ports: getPortConfigByColor('#00B42A')
+    ports: getPortConfigByColor('#00B42A'),
   },
   {
     label: '结束',
@@ -66,13 +66,13 @@ export const buildingBlocks: Node.Metadata[] = [
       body: {
         fill: '#fff1f2',
         stroke: '#f43f5e',
-        strokeWidth: 2.5
+        strokeWidth: 2.5,
       },
       label: {
-        fill: '#f43f5e'
-      }
+        fill: '#f43f5e',
+      },
     },
-    ports: getPortConfigByColor('#f43f5e')
+    ports: getPortConfigByColor('#f43f5e'),
   },
   {
     label: '审批',
@@ -83,13 +83,13 @@ export const buildingBlocks: Node.Metadata[] = [
       body: {
         fill: '#E8F3FF',
         stroke: '#165DFF',
-        strokeWidth: 1
+        strokeWidth: 1,
       },
       label: {
-        fill: '#165DFF'
-      }
+        fill: '#165DFF',
+      },
     },
-    ports: getPortConfigByColor('#165DFF')
+    ports: getPortConfigByColor('#165DFF'),
   },
   {
     label: '抄送',
@@ -100,13 +100,13 @@ export const buildingBlocks: Node.Metadata[] = [
       body: {
         fill: '#f8fafc',
         stroke: '#64748b',
-        strokeWidth: 1
+        strokeWidth: 1,
       },
       label: {
-        fill: '#64748b'
-      }
+        fill: '#64748b',
+      },
     },
-    ports: getPortConfigByColor('#64748b')
+    ports: getPortConfigByColor('#64748b'),
   },
   {
     label: '网关',
@@ -121,11 +121,11 @@ export const buildingBlocks: Node.Metadata[] = [
         refPoints: '0,10 10,0 20,10 10,20',
       },
       label: {
-        fill: '#F77234'
-      }
+        fill: '#F77234',
+      },
     },
-    ports: getPortConfigByColor('#F77234')
-  }
+    ports: getPortConfigByColor('#F77234'),
+  },
 ]
 
 export const edge = {
@@ -140,5 +140,5 @@ export const edge = {
       },
     },
   },
-  zIndex: 0
+  zIndex: 0,
 }

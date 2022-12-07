@@ -4,7 +4,7 @@ import en from './en-US'
 
 export const localeOptions = [
   { label: '中文', value: 'zh-CN' },
-  { label: 'English', value: 'en-US' }
+  { label: 'English', value: 'en-US' },
 ]
 
 const defaultLocale = localStorage.getItem('locale') || 'zh-CN'
@@ -15,8 +15,8 @@ const i18n = createI18n({
   allowComposition: true,
   messages: {
     'en-US': en,
-    'zh-CN': zh
-  }
+    'zh-CN': zh,
+  },
 })
 
 export default i18n

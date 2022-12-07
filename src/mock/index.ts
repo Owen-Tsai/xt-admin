@@ -9,5 +9,5 @@ import './advanced-form'
 import './dashboard'
 
 Mock.setup({
-  timeout: '600-1200'
+  timeout: '600-1200',
 })

@@ -32,7 +32,8 @@
           v-for="(opt, i) in widget.config.options"
           :key="i"
           :value="opt.value"
-        >{{ opt.label }}</a-option>
+          >{{ opt.label }}</a-option
+        >
       </a-select>
     </template>
     <template v-if="widget.type === 'radio'">
@@ -83,16 +84,13 @@
         :indeterminate="widget.config.indeterminate"
         :defaultchecked="widget.config.defaultChecked"
       >
-        <template
-          v-for="(item, i) in widget.config.options"
-          :key="i"
-        >
+        <template v-for="(item, i) in widget.config.options" :key="i">
           <a-checkbox :value="item.value">
             {{ item.label }}
           </a-checkbox>
         </template>
-
-      </a-checkbox-group></template>
+      </a-checkbox-group></template
+    >
     <template v-if="widget.type === 'switch'">
       <a-switch
         :disabled="widget.config.disabled"
@@ -190,36 +188,31 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  PropType,
-  inject,
-  computed
-} from 'vue'
-import {
-  DragMove,
-  DeleteBinFill
-} from '@salmon-ui/icons'
+import { PropType, inject, computed } from 'vue'
+import { DragMove, DeleteBinFill } from '@salmon-ui/icons'
 import {
   WidgetsConfig,
   IConfigGrid,
   FormDesignerContext,
-  contextSymbol
+  contextSymbol,
 } from './types'
 
 const props = defineProps({
   widget: {
     type: Object as PropType<Exclude<WidgetsConfig, IConfigGrid>>,
-    required: true
+    required: true,
   },
   index: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const context = inject(contextSymbol) as FormDesignerContext
 
-const isSelected = computed(() => context.selectedUID.value === props.widget.uid)
+const isSelected = computed(
+  () => context.selectedUID.value === props.widget.uid
+)
 
 const onWidgetSelect = () => {
   context.setSelectedUID(props.widget.uid)
@@ -227,10 +220,10 @@ const onWidgetSelect = () => {
 </script>
 
 <style lang="scss" scoped>
-.widget-wrapper::before{
+.widget-wrapper::before {
   z-index: 10;
 }
-.arco-picker{
+.arco-picker {
   width: 100%;
 }
 </style>

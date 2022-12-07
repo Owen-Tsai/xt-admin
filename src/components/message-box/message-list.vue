@@ -6,17 +6,16 @@
       action-layout="vertical"
       @click="onClick(item)"
     >
-      <a-list-item-meta
-        :title="item.title"
-        :description="item.content"
-      >
+      <a-list-item-meta :title="item.title" :description="item.content">
         <template #avatar>
           <a-avatar shape="circle">
-            <img :src="item.avatar">
+            <img :src="item.avatar" />
           </a-avatar>
         </template>
       </a-list-item-meta>
-      <span class="block text-xs text-gray-400 pl-[56px]">{{ fromNow(item.time) }}</span>
+      <span class="block text-xs text-gray-400 pl-[56px]">{{
+        fromNow(item.time)
+      }}</span>
     </a-list-item>
   </a-list>
 </template>
@@ -29,8 +28,8 @@ import { fromNow } from '@/utils/time'
 defineProps({
   list: {
     type: Array as PropType<MessageRecord[]>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const emit = defineEmits(['item-click'])

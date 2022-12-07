@@ -136,13 +136,13 @@ const searchFormModelFactory = () => ({
   category: -1,
   time: '',
   updatedTime: '',
-  status: -1
+  status: -1,
 })
 
 const paginationFactory = {
   current: 1,
   pageSize: 20,
-  total: 0
+  total: 0,
 }
 
 const searchForm = ref(searchFormModelFactory())
@@ -159,9 +159,7 @@ const getDotCls = (status: BusinessRecord['status']) => {
   return 'dot inactive'
 }
 
-const fetchData = async (
-  params = { current: 1, pageSize: 20 }
-) => {
+const fetchData = async (params = { current: 1, pageSize: 20 }) => {
   setLoading(true)
   try {
     const { data } = await getRecords(params)
@@ -178,9 +176,8 @@ const onPageChange = (current: number) => {
   fetchData({ ...paginationFactory, current })
 }
 
-const formatUpdatedTime = (time: BusinessRecord['updatedTime']) => (
+const formatUpdatedTime = (time: BusinessRecord['updatedTime']) =>
   time ? fromNow(time) : '无'
-)
 
 const formatStatus = (code: BusinessRecord['status']) => {
   switch (code) {

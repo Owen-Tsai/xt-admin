@@ -2,7 +2,7 @@ import {
   getDegreeOptions,
   getDiplomaOptions,
   getFieldOptions,
-  getGenderOptions
+  getGenderOptions,
 } from '@/api/common'
 
 const useOptions = async () => {

@@ -10,7 +10,7 @@ export const openWindow = (
     target,
     Object.entries(others)
       .reduce((preValue: string[], curValue) => {
-        const [key, value] = curValue;
+        const [key, value] = curValue
         return [...preValue, `${key}=${value}`]
       }, [])
       .join(',')
@@ -29,8 +29,9 @@ export const processSize = (val: number | string): string => {
 
 export const generateUID = (len = 8) => {
   let result = ''
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  const charactersLength = characters.length;
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const charactersLength = characters.length
   for (let i = 0; i < len; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength))
   }

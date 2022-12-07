@@ -5,12 +5,7 @@
       <a-link>编辑</a-link>
     </div>
 
-    <a-grid
-      class="mt-6 mb-4"
-      :cols="3"
-      :col-gap="16"
-      :row-gap="24"
-    >
+    <a-grid class="mt-6 mb-4" :cols="3" :col-gap="16" :row-gap="24">
       <a-grid-item v-for="act in actions" :key="act.text">
         <div class="entry">
           <div>
@@ -36,7 +31,7 @@ import {
   CalendarEvent,
   Article,
   Archive,
-  Add
+  Add,
 } from '@salmon-ui/icons'
 
 const actions = shallowRef([
@@ -44,7 +39,7 @@ const actions = shallowRef([
   { text: '用户画像', icon: FingerPrint },
   { text: '待办事项', icon: CalendarEvent },
   { text: '内容管理', icon: Article },
-  { text: '人才档案', icon: Archive }
+  { text: '人才档案', icon: Archive },
 ])
 </script>
 

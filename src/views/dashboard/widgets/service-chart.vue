@@ -10,8 +10,8 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { EChartsOption } from 'echarts'
 import SChart from '@/components/s-chart.vue'
+import type { EChartsOption } from 'echarts'
 
 const option = ref<EChartsOption>({
   legend: {
@@ -21,11 +21,11 @@ const option = ref<EChartsOption>({
     icon: 'circle',
     itemWidth: 8,
     textStyle: {
-      color: '#4E5969'
+      color: '#4E5969',
     },
     itemStyle: {
-      borderWidth: 0
-    }
+      borderWidth: 0,
+    },
   },
   title: {
     text: '总服务人次',
@@ -34,15 +34,15 @@ const option = ref<EChartsOption>({
     left: 'center',
     textStyle: {
       fontSize: 14,
-      color: '#272E3B'
+      color: '#272E3B',
     },
     subtextStyle: {
       fontSize: 16,
-      color: '#4E5969'
-    }
+      color: '#4E5969',
+    },
   },
   tooltip: {
-    className: 's-chart-tooltip'
+    className: 's-chart-tooltip',
   },
   series: [
     {
@@ -54,31 +54,31 @@ const option = ref<EChartsOption>({
         fontSize: 12,
         color: '#4E5969',
         alignTo: 'edge',
-        edgeDistance: 24
+        edgeDistance: 24,
       },
       data: [
         {
           value: 1023,
           name: '人事档案',
-          itemStyle: { color: '#249EFF' }
+          itemStyle: { color: '#249EFF' },
         },
         {
           value: 743,
           name: '政策兑现',
-          itemStyle: { color: '#313CA9' }
+          itemStyle: { color: '#313CA9' },
         },
         {
           value: 201,
           name: '人才黑卡',
-          itemStyle: { color: '#21CCFF' }
+          itemStyle: { color: '#21CCFF' },
         },
         {
           value: 260,
           name: '职称评定',
-          itemStyle: { color: '#3D72F6' }
+          itemStyle: { color: '#3D72F6' },
         },
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 })
 </script>

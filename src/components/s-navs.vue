@@ -3,30 +3,27 @@
     <a-breadcrumb-item>
       <icon-apps />
     </a-breadcrumb-item>
-    <a-breadcrumb-item
-      v-for="(item) in navs"
-      :key="item"
-    >
+    <a-breadcrumb-item v-for="item in navs" :key="item">
       {{ useLocale ? t(item) : item }}
     </a-breadcrumb-item>
   </a-breadcrumb>
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
+import type { PropType } from 'vue'
 
 const { t } = useI18n()
 
 defineProps({
   navs: {
     type: Array as PropType<string[]>,
-    default: () => []
+    default: () => [],
   },
   useLocale: {
     type: Boolean,
-    default: true
-  }
+    default: true,
+  },
 })
 </script>
 

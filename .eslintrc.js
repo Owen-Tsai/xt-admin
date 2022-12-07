@@ -1,7 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path')
+
 module.exports = {
   env: {
-    node: true,
-    'vue/setup-compiler-macros': true
+    'node': true,
+    'vue/setup-compiler-macros': true,
   },
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -12,56 +15,92 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: [
-    '@typescript-eslint'
-  ],
+  plugins: ['@typescript-eslint'],
   extends: [
-    'eslint:recommended',
     'airbnb-base',
-    'plugin:vue/base',
-    'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'plugin:vue/vue3-recommended',
+    'plugin:prettier/recommended',
   ],
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project: path.resolve(__dirname, './tsconfig.json'),
+      },
+    },
+  },
   globals: {
-    JSX: true
+    JSX: true,
   },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'vue/block-tag-newline': 'warn',
+    'prettier/prettier': 2,
+    // report debug messages on production
+    'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    // vue-eslint rules modification
+    'vue/block-tag-newline': 1,
     'vue/script-indent': [
-      'error', 2, {
-        switchCase: 1
-      }
-    ],
-    'comma-dangle': 'off',
-    'semi': 'off',
-    'quote-props': 'off',
-    'import/no-unresolved': 'off',
-    'linebreak-style': 'off',
-    'max-len': 'off',
-    'import/no-extraneous-dependencies': 'off',
-    'import/extensions': 'off',
-    'vue/singleline-html-element-content-newline': 'off',
-    'vue/no-v-html': 'off',
-    'vue/multiline-html-element-content-newline': 'off',
-    'no-param-reassign': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    'prefer-regex-literals': 'off',
-    'vue/multi-word-component-names': 'off',
-    'no-plusplus': 'off',
-    'class-methods-use-this': 'off',
-    'vue/max-attributes-per-line': ['error', {
-      'singleline': {
-        'max': 2
+      'error',
+      2,
+      {
+        switchCase: 1,
       },
-      'multiline': {
-        'max': 1
-      }
-    }],
-    'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error', {
-      'typedefs': false
-    }]
-  }
+    ],
+    'vue/singleline-html-element-content-newline': 0,
+    'vue/no-v-html': 0,
+    'vue/no-v-text': 1,
+    'vue/multiline-html-element-content-newline': 0,
+    'vue/multi-word-component-names': 0,
+    // import-plugin rules modification
+    'import/no-extraneous-dependencies': 0,
+    'import/extensions': [
+      2,
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'import/order': [
+      1,
+      {
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'external',
+            position: 'after',
+          },
+        ],
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'unknown',
+          'parent',
+          'sibling',
+          'index',
+          'object',
+          'type',
+        ],
+      },
+    ],
+    // other rules modification
+    'no-param-reassign': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    'prefer-regex-literals': 0,
+    'no-plusplus': 0,
+    'class-methods-use-this': 0,
+    'vue/max-attributes-per-line': 0,
+    'no-use-before-define': 0,
+    '@typescript-eslint/no-use-before-define': [
+      1,
+      {
+        typedefs: false,
+      },
+    ],
+  },
 }

@@ -10,7 +10,7 @@ const exAbilityRoutes: AppRouteRecordRaw = {
     order: 5,
     requireAuth: true,
     icon: 'icon-scissor',
-    openInNewWindow: true
+    openInNewWindow: true,
   },
   children: [
     {
@@ -20,10 +20,10 @@ const exAbilityRoutes: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.extended-ability.form-designer',
         requireAuth: true,
-        openInNewWindow: true
-      }
-    }
-  ]
+        openInNewWindow: true,
+      },
+    },
+  ],
 }
 
 export default exAbilityRoutes

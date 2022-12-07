@@ -10,7 +10,7 @@ import { appRoutes, subModuleRoutes } from './routes'
 import createRouteGuards from './guards'
 
 NProgress.configure({
-  showSpinner: false
+  showSpinner: false,
 })
 
 const router = createRouter({
@@ -18,27 +18,27 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: 'login'
+      redirect: 'login',
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/login/index.vue')
+      component: () => import('@/views/login/index.vue'),
     },
     ...appRoutes,
     ...subModuleRoutes,
     {
       path: '/not-allowed',
       name: 'not-allowed',
-      component: () => import('@/views/exception/not-allowed.vue')
+      component: () => import('@/views/exception/not-allowed.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
-      component: () => import('@/views/exception/not-found.vue')
-    }
+      component: () => import('@/views/exception/not-found.vue'),
+    },
   ],
-  scrollBehavior: () => ({ top: 0 })
+  scrollBehavior: () => ({ top: 0 }),
 })
 
 createRouteGuards(router)

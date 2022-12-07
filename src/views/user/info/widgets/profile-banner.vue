@@ -1,11 +1,7 @@
 <template>
   <div class="flex items-center">
-    <a-avatar
-      :size="100"
-      shape="circle"
-      class="avatar"
-    >
-      <img :src="userInfo.avatar">
+    <a-avatar :size="100" shape="circle" class="avatar">
+      <img :src="userInfo.avatar" />
       <template #trigger-icon>
         <s-icon :name="CameraFill" />
       </template>
@@ -28,19 +24,19 @@ const { userInfo } = useUserStore()
 const data = computed(() => [
   {
     label: '姓名',
-    value: userInfo.name || ''
+    value: userInfo.name || '',
   },
   {
     label: '所在部门',
-    value: userInfo.dept || ''
+    value: userInfo.dept || '',
   },
   {
     label: '工作岗位',
-    value: userInfo.job || ''
+    value: userInfo.job || '',
   },
   {
     label: '电子邮件',
-    value: userInfo.email || ''
+    value: userInfo.email || '',
   },
 ])
 </script>

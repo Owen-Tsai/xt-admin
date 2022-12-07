@@ -21,5 +21,5 @@ export default {
   'menu.sub-system': 'Sub System',
   'menu.sub-system.main': 'Main',
   'menu.complex': 'Details page',
-  'menu.complex.detailspage': 'Advanced Details Page'
+  'menu.complex.detailspage': 'Advanced Details Page',
 }

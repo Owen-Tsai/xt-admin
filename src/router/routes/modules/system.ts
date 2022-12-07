@@ -19,9 +19,9 @@ const systemRoutes: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.system.flow-designer',
         requireAuth: true,
-      }
-    }
-  ]
+      },
+    },
+  ],
 }
 
 export default systemRoutes

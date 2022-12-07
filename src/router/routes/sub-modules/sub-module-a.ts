@@ -11,7 +11,7 @@ const listRoutes: AppRouteRecordRaw = {
     order: 0,
     hideChildrenInMenu: true,
     icon: 'icon-star',
-    openInNewWindow: true
+    openInNewWindow: true,
   },
   children: [
     {
@@ -22,15 +22,15 @@ const listRoutes: AppRouteRecordRaw = {
         locale: 'menu.sub-system.main',
         requireAuth: true,
         rules: ['*'],
-      }
+      },
     },
     {
       path: 'detail/:type/:id',
       name: 'detail',
       component: () => import('@/views/detail/index.vue'),
-      props: true
-    }
-  ]
+      props: true,
+    },
+  ],
 }
 
 export default listRoutes

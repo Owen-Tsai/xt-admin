@@ -10,9 +10,4 @@ const clearToken = () => {
   localStorage.removeItem('token')
 }
 
-export {
-  isAuthed,
-  getToken,
-  setToken,
-  clearToken
-}
+export { isAuthed, getToken, setToken, clearToken }

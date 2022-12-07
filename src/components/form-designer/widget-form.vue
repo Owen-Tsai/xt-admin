@@ -14,7 +14,7 @@
             group: 'widgets',
             ghostClass: 'ghost',
             animation: 200,
-            handle: '.drag-handler'
+            handle: '.drag-handler',
           }"
           class="min-h-full flex-grow p-6"
           :swap-threshold="0.05"
@@ -25,7 +25,9 @@
             <template v-if="element.type === 'grid'">
               <a-row
                 class="widget-wrapper !mx-0 !px-2 !py-3"
-                :class="{ 'is-selected': context?.selectedUID.value === element.uid }"
+                :class="{
+                  'is-selected': context?.selectedUID.value === element.uid,
+                }"
                 :align="element.config.align"
                 :justify="element.config.justify"
                 :gutter="element.config.gutter"
@@ -49,21 +51,19 @@
                   >
                     <s-icon :name="DeleteBinFill" :size="16" />
                   </button>
-                  <button class="widget-action-icon absolute top-0 left-0 cursor-move drag-handler z-50">
+                  <button
+                    class="widget-action-icon absolute top-0 left-0 cursor-move drag-handler z-50"
+                  >
                     <s-icon :name="DragMove" :size="16" />
                   </button>
                 </template>
               </a-row>
             </template>
             <template v-else>
-              <widget-form-item
-                :widget="element"
-                :index="index"
-              />
+              <widget-form-item :widget="element" :index="index" />
             </template>
           </template>
         </draggable>
-
       </a-form>
     </div>
   </div>
@@ -74,7 +74,7 @@ import {
   PropType,
   // computed,
   ref,
-  inject
+  inject,
 } from 'vue'
 import Draggable from 'vuedraggable'
 import { DeleteBinFill, DragMove } from '@salmon-ui/icons'
@@ -86,15 +86,15 @@ import {
   contextSymbol,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ItemSlot,
-  IConfigCol
+  IConfigCol,
 } from './types'
 import WidgetFormItem from './widget-form-item.vue'
 
 const props = defineProps({
   ast: {
     type: Object as PropType<AST>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 // an empty reactive data for form model

@@ -5,14 +5,8 @@
       <div class="px-4">
         <a-divider />
         <a-space class="w-full" direction="vertical">
-          <a-button
-            long
-            type="outline"
-          >复制 AST 源码</a-button>
-          <a-button
-            long
-            type="primary"
-          >保存流程</a-button>
+          <a-button long type="outline">复制 AST 源码</a-button>
+          <a-button long type="primary">保存流程</a-button>
         </a-space>
       </div>
     </div>
@@ -46,7 +40,7 @@ onMounted(() => {
   graph.value.on('selection:changed', ({ selected }) => {
     if (selected.length > 0) {
       if (selected.length === 1) {
-        [selectedCell.value] = selected
+        ;[selectedCell.value] = selected
       } else {
         selectedCell.value = null
       }

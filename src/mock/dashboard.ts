@@ -1,22 +1,19 @@
 import Mock from 'mockjs'
-import setupMock, {
-  responseWrap,
-  failedResponseWrap
-} from '@/utils/mock'
+import setupMock, { responseWrap, failedResponseWrap } from '@/utils/mock'
 import { isAuthed } from '@/utils/auth'
 import type {
   DataPanelItem,
   TalentChartData,
-  TodoTableItem
+  TodoTableItem,
 } from '@/api/dashboard'
 
 const chartDataTemplate = Mock.mock({
   'list|12': [
     {
       'x|+1': 1,
-      'y|1000-3000': 1
-    }
-  ]
+      'y|1000-3000': 1,
+    },
+  ],
 })
 
 const todoTableTemplate = Mock.mock({
@@ -24,9 +21,9 @@ const todoTableTemplate = Mock.mock({
     {
       'title': '业务的名称',
       'progress|1-100': 14,
-      'todo|1-30': 12
-    }
-  ]
+      'todo|1-30': 12,
+    },
+  ],
 })
 
 setupMock({
@@ -36,8 +33,8 @@ setupMock({
         return responseWrap<DataPanelItem>({
           talent: Mock.Random.integer(328000, 332000),
           consultation: Mock.Random.integer(200, 400),
-          fund: Mock.Random.float(100.00, 300.00),
-          storage: Mock.Random.float(20, 40)
+          fund: Mock.Random.float(100.0, 300.0),
+          storage: Mock.Random.float(20, 40),
         })
       }
       return failedResponseWrap(null, '未登录', 50000)
@@ -58,5 +55,5 @@ setupMock({
 
       return failedResponseWrap(null, '未登录', 50000)
     })
-  }
+  },
 })

@@ -21,5 +21,5 @@ export default {
   'menu.sub-system': '政策兑现管理',
   'menu.sub-system.main': '待审核',
   'menu.complex': '详情页',
-  'menu.complex.detailspage': '高级详情页'
+  'menu.complex.detailspage': '高级详情页',
 }

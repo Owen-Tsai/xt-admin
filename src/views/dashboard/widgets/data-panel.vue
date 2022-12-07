@@ -1,12 +1,8 @@
 <template>
-  <a-grid
-    :col-gap="16"
-    class="panel"
-    :cols="23"
-  >
+  <a-grid :col-gap="16" class="panel" :cols="23">
     <a-grid-item :span="5">
       <div class="data-item">
-        <img src="@/assets/dashboard-icon-1.svg">
+        <img src="@/assets/dashboard-icon-1.svg" />
         <div class="flex-grow">
           <a-skeleton v-if="isLoading">
             <a-skeleton-line :rows="2" :widths="['100%']" />
@@ -27,7 +23,7 @@
     </a-grid-item>
     <a-grid-item :span="5">
       <div class="data-item">
-        <img src="@/assets/dashboard-icon-2.svg">
+        <img src="@/assets/dashboard-icon-2.svg" />
         <div class="flex-grow">
           <a-skeleton v-if="isLoading">
             <a-skeleton-line :rows="2" :widths="['100%']" />
@@ -48,7 +44,7 @@
     </a-grid-item>
     <a-grid-item :span="5">
       <div class="data-item">
-        <img src="@/assets/dashboard-icon-3.svg">
+        <img src="@/assets/dashboard-icon-3.svg" />
         <div class="flex-grow">
           <a-skeleton v-if="isLoading">
             <a-skeleton-line :rows="2" :widths="['100%']" />
@@ -69,7 +65,7 @@
     </a-grid-item>
     <a-grid-item :span="5">
       <div class="data-item">
-        <img src="@/assets/dashboard-icon-4.svg">
+        <img src="@/assets/dashboard-icon-4.svg" />
         <div class="flex-grow">
           <a-skeleton v-if="isLoading">
             <a-skeleton-line :rows="2" :widths="['100%']" />
@@ -90,10 +86,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import {
-  getDashboardData,
-  DataPanelItem
-} from '@/api/dashboard'
+import { getDashboardData, DataPanelItem } from '@/api/dashboard'
 import useLoading from '@/hooks/use-loading'
 
 const data = ref<DataPanelItem>()

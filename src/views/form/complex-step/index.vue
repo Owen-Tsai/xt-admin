@@ -4,9 +4,7 @@
 
     <div class="s-section">
       <div class="flex items-start h-full">
-        <a-tabs
-          v-model:active-key="activeTab"
-        >
+        <a-tabs v-model:active-key="activeTab">
           <a-tab-pane key="0" title="基本信息">
             <basic-form />
           </a-tab-pane>
@@ -23,11 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  ref,
-  reactive,
-  provide
-} from 'vue'
+import { ref, reactive, provide } from 'vue'
 import basicForm from './widgets/form.vue'
 import tableForm from './widgets/table-form.vue'
 import attachmentsForm from './widgets/attachments.vue'
@@ -39,7 +33,7 @@ const commonProps = reactive({
   // 申报的类型
   type: 1,
   // 当前操作的类型
-  cmd: 'create'
+  cmd: 'create',
 })
 
 provide('commonProps', commonProps)

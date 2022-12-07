@@ -1,7 +1,5 @@
 <template>
-  <a-form
-    :model="data"
-  >
+  <a-form :model="data">
     <a-form-item label="请假人">
       <a-input v-model="data.user" readonly />
     </a-form-item>
@@ -15,8 +13,11 @@
       <a-range-picker class="w-full" />
     </a-form-item>
     <a-form-item>
-      <div class="px-4 py-3 border bg-blue-50 border-blue-300 text-gray-700 leading-5">
-        您当前还有<b class="mx-1">5日</b>未兑现年假及<b class="mx-1">12日</b>未兑现调休。建议您优先选择带薪年假或调休作为休假类型，避免到期无法兑现。
+      <div
+        class="px-4 py-3 border bg-blue-50 border-blue-300 text-gray-700 leading-5"
+      >
+        您当前还有<b class="mx-1">5日</b>未兑现年假及<b class="mx-1">12日</b
+        >未兑现调休。建议您优先选择带薪年假或调休作为休假类型，避免到期无法兑现。
       </div>
     </a-form-item>
     <a-form-item>
@@ -34,7 +35,7 @@ const { userInfo } = useUserStore()
 const emit = defineEmits(['step-change'])
 
 const data = ref({
-  user: userInfo.name
+  user: userInfo.name,
 })
 
 const toNextStep = () => {

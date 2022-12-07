@@ -9,7 +9,7 @@ const formRoutes: AppRouteRecordRaw = {
     icon: 'icon-file',
     requireAuth: true,
     order: 1,
-    locale: 'menu.form'
+    locale: 'menu.form',
   },
   children: [
     {
@@ -19,8 +19,8 @@ const formRoutes: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.form.complex-step',
         requireAuth: true,
-        role: ['*']
-      }
+        role: ['*'],
+      },
     },
     {
       path: 'advanced-form',
@@ -29,8 +29,8 @@ const formRoutes: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.form.advanced-form',
         requireAuth: true,
-        role: ['*']
-      }
+        role: ['*'],
+      },
     },
     {
       path: 'step',
@@ -39,8 +39,8 @@ const formRoutes: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.form.step',
         requireAuth: true,
-        role: ['*']
-      }
+        role: ['*'],
+      },
     },
     {
       path: 'dynamic-forms',
@@ -49,10 +49,10 @@ const formRoutes: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.form.dynamic',
         requireAuth: true,
-        role: ['*']
-      }
+        role: ['*'],
+      },
     },
-  ]
+  ],
 }
 
 export default formRoutes

@@ -23,20 +23,20 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     cols: [
       {
         span: 12,
-        widgets: []
+        widgets: [],
       },
       {
         span: 12,
-        widgets: []
-      }
+        widgets: [],
+      },
     ],
     uid: '',
     config: {
       width: '100%',
       gutter: 16,
       justify: 'start',
-      align: 'start'
-    }
+      align: 'start',
+    },
   },
   input: {
     type: 'input',
@@ -52,8 +52,8 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       placeholder: '',
       readonly: false,
       required: false,
-      showWordLimit: false
-    }
+      showWordLimit: false,
+    },
   },
   checkbox: {
     type: 'checkbox',
@@ -69,9 +69,9 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       options: [
         { label: '选项1', value: 0 },
         { label: '选项2', value: 1 },
-        { label: '选项3', value: 3 }
-      ]
-    }
+        { label: '选项3', value: 3 },
+      ],
+    },
   },
   inputNumber: {
     type: 'inputNumber',
@@ -86,8 +86,8 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       placeholder: '',
       disabled: false,
       error: false,
-      size: 'medium'
-    }
+      size: 'medium',
+    },
   },
   select: {
     type: 'select',
@@ -108,9 +108,9 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       options: [
         { label: '选项1', value: '1' },
         { label: '选项2', value: '2' },
-        { label: '选项3', value: '3' }
-      ]
-    }
+        { label: '选项3', value: '3' },
+      ],
+    },
   },
   radio: {
     type: 'radio',
@@ -128,9 +128,9 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
         { label: '选项0', value: '0' },
         { label: '选项1', value: '1' },
         { label: '选项2', value: '2' },
-        { label: '选项3', value: '3' }
-      ]
-    }
+        { label: '选项3', value: '3' },
+      ],
+    },
   },
   slider: {
     type: 'slider',
@@ -149,7 +149,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       showInput: false,
       range: false,
       width: '200px',
-    }
+    },
   },
   switch: {
     type: 'switch',
@@ -162,8 +162,8 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       size: 'medium',
       checkedValue: true,
       uncheckedValue: false,
-      disabled: false
-    }
+      disabled: false,
+    },
   },
   textArea: {
     type: 'textarea',
@@ -178,8 +178,8 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       showWordLimit: false,
       allowClear: false,
       autoSize: false,
-      value: ''
-    }
+      value: '',
+    },
   },
   cascader: {
     type: 'cascader',
@@ -211,10 +211,10 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
                 },
               ],
             },
-          ]
-        }
-      ]
-    }
+          ],
+        },
+      ],
+    },
   },
   datePicker: {
     type: 'date-picker',
@@ -229,7 +229,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       size: 'medium',
       disabled: false,
       showTime: false,
-    }
+    },
   },
   rate: {
     type: 'rate',
@@ -243,7 +243,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       grading: false,
       readonly: false,
       disabled: false,
-    }
+    },
   },
   timePicker: {
     type: 'time-picker',
@@ -259,7 +259,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       error: false,
       size: 'medium',
       placeholder: '',
-    }
+    },
   },
   upload: {
     type: 'upload',
@@ -272,7 +272,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       disabled: false,
       multiple: false,
       limit: 9,
-    }
+    },
   },
 }
 

@@ -14,13 +14,13 @@ const useLogout = () => {
       name: to || 'login',
       query: {
         ...router.currentRoute.value.query,
-        redirect: currentRoute.name as string
-      }
+        redirect: currentRoute.name as string,
+      },
     })
   }
 
   return {
-    logout
+    logout,
   }
 }
 

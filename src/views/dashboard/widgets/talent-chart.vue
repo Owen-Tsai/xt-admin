@@ -18,10 +18,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import {
-  EChartsOption,
-  graphic
-} from 'echarts'
+import { EChartsOption, graphic } from 'echarts'
 import SChart from '@/components/s-chart.vue'
 import useLoading from '@/hooks/use-loading'
 import { getTalentChartData } from '@/api/dashboard'
@@ -37,22 +34,22 @@ const option = ref<EChartsOption>({
     left: 0,
     top: 10,
     bottom: 24,
-    containLabel: true
+    containLabel: true,
   },
   xAxis: {
     type: 'category',
     offset: 2,
     data: xAxis.value,
     axisLabel: {
-      color: '#4E5969'
+      color: '#4E5969',
     },
     axisTick: {
       lineStyle: {
-        color: '#E5E8EF'
-      }
+        color: '#E5E8EF',
+      },
     },
     axisLine: {
-      show: false
+      show: false,
     },
     splitLine: {
       show: true,
@@ -62,27 +59,27 @@ const option = ref<EChartsOption>({
       },
       lineStyle: {
         color: '#E5E8EF',
-        type: 'dashed'
-      }
-    }
+        type: 'dashed',
+      },
+    },
   },
   yAxis: {
     type: 'value',
     splitLine: {
       lineStyle: {
-        type: 'dashed'
-      }
+        type: 'dashed',
+      },
     },
     axisLabel: {
       formatter: (val: number, idx: number) => {
         if (idx === 0) return `${val}`
         return `${val / 1000}k`
-      }
-    }
+      },
+    },
   },
   tooltip: {
     trigger: 'axis',
-    className: 's-chart-tooltip'
+    className: 's-chart-tooltip',
   },
   series: [
     {
@@ -95,7 +92,7 @@ const option = ref<EChartsOption>({
         focus: 'series',
         itemStyle: {
           borderWidth: 3,
-        }
+        },
       },
       lineStyle: {
         width: 3,
@@ -127,8 +124,8 @@ const option = ref<EChartsOption>({
           },
         ]),
       },
-    }
-  ]
+    },
+  ],
 })
 
 const fetchData = async () => {

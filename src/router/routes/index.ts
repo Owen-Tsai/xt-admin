@@ -4,10 +4,10 @@ const modules = import.meta.glob('./modules/*.ts', {
   eager: true,
 })
 const externalModules = import.meta.glob('./external-modules/*.ts', {
-  eager: true
+  eager: true,
 })
 const subModules = import.meta.glob('./sub-modules/*.ts', {
-  eager: true
+  eager: true,
 })
 
 const formatRoutes = (_modules: any, result: RouteRecordNormalized[]) => {

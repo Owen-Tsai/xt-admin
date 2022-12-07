@@ -17,22 +17,14 @@
           <div class="mt-2 flex items-center gap-2">
             <a-input v-model="item.label" class="w-1/3" />
             <a-input-number v-model="item.value" class="w-1/3" />
-            <a-button
-              status="danger"
-              class="flex-shrink-0"
-              @click="remove(i)"
-            >
+            <a-button status="danger" class="flex-shrink-0" @click="remove(i)">
               <template #icon>
                 <icon-minus />
               </template>
             </a-button>
           </div>
         </div>
-        <a-button
-          long
-          class="mt-2"
-          @click="add"
-        >
+        <a-button long class="mt-2" @click="add">
           <template #icon>
             <icon-plus />
           </template>
@@ -40,12 +32,16 @@
         </a-button>
       </a-tab-pane>
       <a-tab-pane key="remote" title="从接口获取">
-        <a-select v-model="config.config.optionsUrl" placeholder="选择一个数据源">
+        <a-select
+          v-model="config.config.optionsUrl"
+          placeholder="选择一个数据源"
+        >
           <a-option
             v-for="(item, i) in ctx?.ast.value.dataSources"
             :key="i"
             :value="item.url"
-          >{{ item.name }}</a-option>
+            >{{ item.name }}</a-option
+          >
         </a-select>
       </a-tab-pane>
     </a-tabs>
@@ -67,47 +63,40 @@
     <a-switch v-model="config.config.defaultChecked" />
   </div>
   <a-form-item label="自定义校验规则">
-    <a-textarea v-model="config.config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+    <a-textarea
+      v-model="config.config.rules"
+      :auto-size="{ minRows: 4, maxRows: 6 }"
+    />
   </a-form-item>
 </template>
 
 <script setup lang="ts">
-import {
-  computed,
-  PropType,
-  inject,
-} from 'vue'
+import { computed, PropType, inject } from 'vue'
 import { merge } from 'lodash'
-import {
-  IConfigCheckbox,
-  FormDesignerContext,
-  contextSymbol
-} from '../types';
+import { IConfigCheckbox, FormDesignerContext, contextSymbol } from '../types'
 
 const ctx = inject<FormDesignerContext>(contextSymbol)
 const emit = defineEmits(['update:widgetConfig'])
 const props = defineProps({
   widgetConfig: {
     type: Object as PropType<IConfigCheckbox>,
-    required: true
-  }
+    required: true,
+  },
 })
 const config = computed({
   get: () => props.widgetConfig,
   set: (val) => {
     emit('update:widgetConfig', merge(props.widgetConfig, val))
-  }
+  },
 })
 const remove = (index: number) => {
-  (config.value as IConfigCheckbox).config.options?.splice(index, 1)
+  ;(config.value as IConfigCheckbox).config.options?.splice(index, 1)
 }
 const add = () => {
-  (config.value as IConfigCheckbox).config.options?.push({
+  ;(config.value as IConfigCheckbox).config.options?.push({
     label: '',
   })
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

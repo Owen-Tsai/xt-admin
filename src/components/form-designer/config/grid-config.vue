@@ -4,10 +4,7 @@
       <a-input v-model="config.name" allow-clear />
     </a-form-item>
     <a-form-item label="宽度">
-      <a-input
-        v-model="config.config.width"
-        allow-clear
-      />
+      <a-input v-model="config.config.width" allow-clear />
     </a-form-item>
     <span class="label">栅格列</span>
     <div>
@@ -23,11 +20,7 @@
           </template>
         </a-button>
       </div>
-      <a-button
-        long
-        class="mt-2"
-        @click="addColToGrid"
-      >
+      <a-button long class="mt-2" @click="addColToGrid">
         <template #icon>
           <icon-plus />
         </template>
@@ -57,39 +50,34 @@
 </template>
 
 <script setup lang="ts">
-import {
-  computed,
-  PropType
-} from 'vue'
+import { computed, PropType } from 'vue'
 import { sumBy } from 'lodash'
-import { IConfigGrid } from '../types';
+import { IConfigGrid } from '../types'
 
 const emit = defineEmits(['update:widgetConfig'])
 const props = defineProps({
   widgetConfig: {
     type: Object as PropType<IConfigGrid>,
-    required: true
-  }
+    required: true,
+  },
 })
 const config = computed({
   get: () => props.widgetConfig,
   set: (val) => {
     emit('update:widgetConfig', val)
-  }
+  },
 })
 const removeColFromGrid = (index: number) => {
-  (config.value as IConfigGrid).cols.splice(index, 1)
+  ;(config.value as IConfigGrid).cols.splice(index, 1)
 }
 
 const addColToGrid = () => {
-  const remains = sumBy((config.value as IConfigGrid).cols, (e) => e.span);
-  (config.value as IConfigGrid).cols.push({
+  const remains = sumBy((config.value as IConfigGrid).cols, (e) => e.span)
+  ;(config.value as IConfigGrid).cols.push({
     span: remains > 0 ? 24 - remains : 0,
-    widgets: []
+    widgets: [],
   })
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

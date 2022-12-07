@@ -9,30 +9,26 @@
 
 <script lang="ts" setup>
 import Chart from 'vue-echarts'
-import {
-  ref,
-  computed,
-  nextTick
-} from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import { processSize } from '@/utils'
 
 const props = defineProps({
   height: {
     type: [String, Number],
-    default: '100%'
+    default: '100%',
   },
   width: {
     type: [String, Number],
-    default: '100%'
+    default: '100%',
   },
   autoResize: {
     type: Boolean,
-    default: true
+    default: true,
   },
   option: {
     type: Object,
-    default: () => ({})
-  }
+    default: () => ({}),
+  },
 })
 
 const renderChart = ref(false)
@@ -43,7 +39,7 @@ const computedSize = computed(() => {
 
   return {
     height: h,
-    width: w
+    width: w,
   }
 })
 

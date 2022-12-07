@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import Arco from '@arco-design/web-vue'
 import ArcoIcon from '@arco-design/web-vue/es/icon'
-import App from './App.vue'
+import App from '@/App.vue'
 import router from '@/router'
 import store from '@/store'
 import directives from '@/directives'

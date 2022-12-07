@@ -26,10 +26,10 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { menuWidth as w } from '@config'
 import { useMenuStore } from '@/store'
 import ToolBar from '@/components/tool-bar.vue'
 import SMenu from '@/components/menu/manual-menu.vue'
+import { menuWidth as w } from '@config'
 import PageView from './inner-layout.vue'
 
 const menuStore = useMenuStore()
@@ -45,9 +45,9 @@ const menu = [
     label: '政策兑现审核',
     icon: 'icon-star',
     children: [
-      { key: 'sub-system-main', label: '待审核', path: '/sub-system/main' }
-    ]
-  }
+      { key: 'sub-system-main', label: '待审核', path: '/sub-system/main' },
+    ],
+  },
 ]
 </script>
 

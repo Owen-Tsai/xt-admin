@@ -29,7 +29,10 @@
     <a-switch v-model="config.config.disabled" />
   </div>
   <a-form-item label="自定义校验规则">
-    <a-textarea v-model="config.config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+    <a-textarea
+      v-model="config.config.rules"
+      :auto-size="{ minRows: 4, maxRows: 6 }"
+    />
   </a-form-item>
 </template>
 
@@ -41,17 +44,15 @@ const emit = defineEmits(['update:widgetConfig'])
 const props = defineProps({
   widgetConfig: {
     type: Object as PropType<IConfigRate>,
-    required: true
-  }
+    required: true,
+  },
 })
 const config = computed({
   get: () => props.widgetConfig,
   set: (val) => {
     emit('update:widgetConfig', val)
-  }
+  },
 })
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

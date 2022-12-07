@@ -1,8 +1,5 @@
 <template>
-  <a-alert
-    v-if="errorMessage"
-    type="error"
-  >{{ errorMessage }}</a-alert>
+  <a-alert v-if="errorMessage" type="error">{{ errorMessage }}</a-alert>
   <a-form
     ref="loginForm"
     :model="loginInfo"
@@ -17,15 +14,9 @@
       validate-trigger="blur"
       hide-label
     >
-      <a-input
-        v-model="loginInfo.username"
-        placeholder="用户名"
-      >
+      <a-input v-model="loginInfo.username" placeholder="用户名">
         <template #prefix>
-          <s-icon
-            :name="UserFill"
-            :size="20"
-          />
+          <s-icon :name="UserFill" :size="20" />
         </template>
       </a-input>
     </a-form-item>
@@ -35,23 +26,18 @@
       validate-trigger="blur"
       hide-label
     >
-      <a-input-password
-        v-model="loginInfo.password"
-        placeholder="密码"
-      >
+      <a-input-password v-model="loginInfo.password" placeholder="密码">
         <template #prefix>
-          <s-icon
-            :name="LockFill"
-            :size="20"
-          />
+          <s-icon :name="LockFill" :size="20" />
         </template>
       </a-input-password>
     </a-form-item>
     <div class="flex items-center justify-between">
       <a-checkbox
         v-model="loginConfig.shouldStorePassword"
-        @change="(setRememberPassword as any)"
-      >记住密码</a-checkbox>
+        @change="setRememberPassword as any"
+        >记住密码</a-checkbox
+      >
       <a-link>忘记密码</a-link>
     </div>
     <div class="mt-6">
@@ -61,22 +47,16 @@
         size="large"
         html-type="submit"
         :loading="isLoading"
-      >登录</a-button>
+        >登录</a-button
+      >
     </div>
   </a-form>
 </template>
 
 <script lang="ts" setup>
-import {
-  ref,
-  reactive
-} from 'vue'
+import { ref, reactive } from 'vue'
 import { UserFill, LockFill } from '@salmon-ui/icons'
-import {
-  FieldRule,
-  Message,
-  ValidatedError
-} from '@arco-design/web-vue'
+import { FieldRule, Message, ValidatedError } from '@arco-design/web-vue'
 import { useStorage } from '@vueuse/core'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store'
@@ -92,12 +72,12 @@ const loginForm = ref()
 
 const loginInfo = reactive({
   username: '',
-  password: ''
+  password: '',
 })
 const loginConfig = useStorage('login-config', {
   shouldStorePassword: false,
   username: '',
-  password: ''
+  password: '',
 })
 
 const rules: Record<string, FieldRule> = {
@@ -107,14 +87,15 @@ const rules: Record<string, FieldRule> = {
   },
   password: {
     required: true,
-    message: '请填写密码'
-  }
+    message: '请填写密码',
+  },
 }
 
 const onSubmit = async ({
-  errors, values
+  errors,
+  values,
 }: {
-  errors: Record<string, ValidatedError> | undefined,
+  errors: Record<string, ValidatedError> | undefined
   values: Record<string, any>
 }) => {
   if (isLoading.value) return
@@ -128,8 +109,8 @@ const onSubmit = async ({
       router.push({
         name: (redirect as string) || 'workplace',
         query: {
-          ...otherParams
-        }
+          ...otherParams,
+        },
       })
       // display successful hint
       Message.success('登录成功')

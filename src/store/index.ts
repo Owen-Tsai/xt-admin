@@ -5,8 +5,5 @@ import useMenuStore from './modules/menu'
 
 const pinia = createPinia()
 
-export {
-  useUserStore,
-  useMenuStore
-}
+export { useUserStore, useMenuStore }
 export default pinia

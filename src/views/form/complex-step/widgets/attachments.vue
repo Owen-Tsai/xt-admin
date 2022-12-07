@@ -6,7 +6,9 @@
         <template #upload-button>
           <div class="mb-2">
             <a-button type="outline">选择文件</a-button>
-            <span class="text-gray-500 inline-block text-sm ml-4">允许的格式：jpg, png, pdf</span>
+            <span class="text-gray-500 inline-block text-sm ml-4"
+              >允许的格式：jpg, png, pdf</span
+            >
           </div>
         </template>
       </a-upload>
@@ -18,7 +20,9 @@
         <template #upload-button>
           <div class="mb-2">
             <a-button type="outline">选择文件</a-button>
-            <span class="text-gray-500 inline-block text-sm ml-4">允许的格式：jpg, png, pdf</span>
+            <span class="text-gray-500 inline-block text-sm ml-4"
+              >允许的格式：jpg, png, pdf</span
+            >
           </div>
         </template>
       </a-upload>
@@ -26,10 +30,7 @@
 
     <div class="mt-4">
       <span class="label">发票截图</span>
-      <a-upload
-        :list-type="'picture-card'"
-        image-preview
-      />
+      <a-upload :list-type="'picture-card'" image-preview />
     </div>
   </div>
 </template>

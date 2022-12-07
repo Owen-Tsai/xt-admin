@@ -1,7 +1,7 @@
-import type { Router, LocationQueryRaw } from 'vue-router'
 import NProgress from 'nprogress'
 import { useUserStore } from '@/store'
 import { isAuthed } from '@/utils/auth'
+import type { Router, LocationQueryRaw } from 'vue-router'
 
 const setupLoginGuard = (router: Router) => {
   router.beforeEach(async (to, from, next) => {
@@ -21,8 +21,8 @@ const setupLoginGuard = (router: Router) => {
             name: 'login',
             query: {
               redirect: to.name,
-              ...to.query
-            } as LocationQueryRaw
+              ...to.query,
+            } as LocationQueryRaw,
           })
         } // end of try-catch userInfo
       }
@@ -36,8 +36,8 @@ const setupLoginGuard = (router: Router) => {
         name: 'login',
         query: {
           redirect: to.name,
-          ...to.query
-        } as LocationQueryRaw
+          ...to.query,
+        } as LocationQueryRaw,
       })
     }
   })

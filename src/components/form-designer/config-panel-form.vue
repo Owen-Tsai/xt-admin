@@ -24,17 +24,14 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  PropType,
-  computed
-} from 'vue'
+import { PropType, computed } from 'vue'
 import { FormConfig } from './types'
 
 const props = defineProps({
   config: {
     type: Object as PropType<FormConfig>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const emit = defineEmits(['update:config'])
@@ -43,6 +40,6 @@ const formConfig = computed({
   get: () => props.config,
   set: (val) => {
     emit('update:config', val)
-  }
+  },
 })
 </script>

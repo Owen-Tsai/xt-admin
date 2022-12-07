@@ -1,22 +1,27 @@
 import { computed } from 'vue'
 import { RouteRecordRaw, RouteRecordNormalized } from 'vue-router'
-import { menuFromServer } from '@config'
 import usePermission from '@/hooks/use-permission'
 import appClientMenus from '@/router/menu'
 import { useMenuStore } from '@/store'
+import { menuFromServer } from '@config'
 
 const useMenuTree = () => {
   const permission = usePermission()
   const menuStore = useMenuStore()
 
-  const appRoute = computed(() => (
+  const appRoute = computed(() =>
     menuFromServer ? menuStore.asyncMenu : appClientMenus
-  ))
+  )
 
   const menuTree = computed(() => {
     // get a copy of the router
-    const routerClone: RouteRecordNormalized[] = JSON.parse(JSON.stringify(appRoute.value))
-    routerClone.sort((a, b) => (a.meta?.order as number || 0) - (b.meta?.order as number || 0))
+    const routerClone: RouteRecordNormalized[] = JSON.parse(
+      JSON.stringify(appRoute.value)
+    )
+    routerClone.sort(
+      (a, b) =>
+        ((a.meta?.order as number) || 0) - ((b.meta?.order as number) || 0)
+    )
 
     const travel = (_routes: RouteRecordRaw[], layer: number) => {
       if (!_routes) return null
@@ -51,7 +56,7 @@ const useMenuTree = () => {
   })
 
   return {
-    menuTree
+    menuTree,
   }
 }
 

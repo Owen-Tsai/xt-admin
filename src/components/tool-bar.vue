@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="left-sec">
-      <img src="@/assets/logo-temp.svg">
+      <img src="@/assets/logo-temp.svg" />
       <h1>
         XT Admin
         <span v-if="title">
@@ -20,11 +20,7 @@
         >
           <div class="">
             <a-badge :count="9">
-              <a-button
-                type="outline"
-                shape="circle"
-                class="btn"
-              >
+              <a-button type="outline" shape="circle" class="btn">
                 <template #icon>
                   <icon-notification />
                 </template>
@@ -39,28 +35,20 @@
       <li>
         <a-dropdown trigger="click">
           <a-tooltip position="bottom" content="语言">
-            <a-button
-              type="outline"
-              shape="circle"
-              class="btn"
-            >
+            <a-button type="outline" shape="circle" class="btn">
               <icon-language />
             </a-button>
           </a-tooltip>
           <template #content>
-            <a-doption
-              @click="changeLocale('zh-CN')"
-            >中文</a-doption>
-            <a-doption
-              @click="changeLocale('en-US')"
-            >English</a-doption>
+            <a-doption @click="changeLocale('zh-CN')">中文</a-doption>
+            <a-doption @click="changeLocale('en-US')">English</a-doption>
           </template>
         </a-dropdown>
       </li>
       <li>
         <a-dropdown trigger="click">
           <a-avatar :size="32" class="cursor-pointer mr-2">
-            <img :src="avatar">
+            <img :src="avatar" />
           </a-avatar>
           <template #content>
             <a-doption>
@@ -90,25 +78,18 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import {
-  IconNotification,
-  IconLanguage
-} from '@arco-design/web-vue/es/icon'
-import {
-  Settings,
-  LogoutBox,
-  User
-} from '@salmon-ui/icons'
-import MessageBox from './message-box/index.vue'
+import { IconNotification, IconLanguage } from '@arco-design/web-vue/es/icon'
+import { Settings, LogoutBox, User } from '@salmon-ui/icons'
 import { useUserStore } from '@/store'
 import useLogout from '@/hooks/use-logout'
 import useLocale from '@/hooks/use-locale'
+import MessageBox from './message-box/index.vue'
 
 defineProps({
   title: {
     type: String,
-    default: undefined
-  }
+    default: undefined,
+  },
 })
 
 const userStore = useUserStore()

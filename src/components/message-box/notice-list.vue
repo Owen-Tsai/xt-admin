@@ -13,15 +13,14 @@
             class="text-white"
             :style="{ backgroundColor: getFillColor(item.type) }"
           >
-            <s-icon
-              :name="getIcon(item.type)"
-              :size="24"
-            />
+            <s-icon :name="getIcon(item.type)" :size="24" />
           </a-avatar>
         </div>
         <div>
           <div>{{ item.title }}</div>
-          <span class="block text-xs text-gray-400">{{ fromNow(item.time) }}</span>
+          <span class="block text-xs text-gray-400">{{
+            fromNow(item.time)
+          }}</span>
         </div>
       </div>
     </a-list-item>
@@ -30,15 +29,15 @@
 
 <script lang="ts" setup>
 import { PropType } from 'vue'
-import { noticeTypeMap } from '@config'
 import { NoticeRecord } from '@/api/message'
 import { fromNow } from '@/utils/time'
+import { noticeTypeMap } from '@config'
 
 defineProps({
   list: {
     type: Array as PropType<NoticeRecord[]>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const getFillColor = (type: string) => {

@@ -23,22 +23,13 @@
         <div class="m-4">
           <div class="font-bold">操作</div>
           <a-space direction="vertical" class="mt-4 w-full">
-            <a-button
-              type="outline"
-              long
-              :disabled="copied"
-              @click="copy()"
-            >{{ copied ? '已复制' : '复制 AST 源码' }}</a-button>
-            <a-button
-              type="outline"
-              long
-              @click="copy()"
-            >编辑数据源</a-button>
-            <a-button
-              type="primary"
-              long
-              @click="showPreview"
-            >预览表单</a-button>
+            <a-button type="outline" long :disabled="copied" @click="copy()">{{
+              copied ? '已复制' : '复制 AST 源码'
+            }}</a-button>
+            <a-button type="outline" long @click="copy()">编辑数据源</a-button>
+            <a-button type="primary" long @click="showPreview"
+              >预览表单</a-button
+            >
           </a-space>
         </div>
       </a-layout-sider>
@@ -52,12 +43,14 @@
             class="panel-tab"
             :class="{ active: activeTab === 0 }"
             @click="activeTab = 0"
-          >表单配置</div>
+            >表单配置</div
+          >
           <div
             class="panel-tab"
             :class="{ active: activeTab !== 0 }"
             @click="activeTab = 1"
-          >控件配置</div>
+            >控件配置</div
+          >
         </div>
         <div class="p-4">
           <config-panel-form
@@ -86,43 +79,39 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  ref,
-  provide,
-  computed
-} from 'vue'
+import { ref, provide, computed } from 'vue'
 import Draggable from 'vuedraggable'
 import { cloneDeep } from 'lodash'
 import { useClipboard } from '@vueuse/core'
+import { generateUID } from '@/utils'
+import SForm from '../s-form/index.vue'
 import { fields, findWidgetWithUID } from './use-draggable-data'
 import WidgetForm from './widget-form.vue'
 import ConfigPanelForm from './config-panel-form.vue'
 import ConfigPanelWidget from './config-panel-widget.vue'
-import SForm from '../s-form/index.vue'
-import { generateUID } from '@/utils'
 import {
   // imported type used in template incorrectly throws warning
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   WidgetsConfig,
   AST,
   FormDesignerContext,
-  contextSymbol
+  contextSymbol,
 } from './types'
 
 const ast = ref<AST>({
   formConfig: {
     labelAlign: 'right',
     layout: 'vertical',
-    size: 'medium'
+    size: 'medium',
   },
   dataSources: [],
-  widgetsConfig: []
+  widgetsConfig: [],
 })
 
 const source = computed(() => JSON.stringify(ast.value))
 
 const { copy, copied } = useClipboard({
-  source
+  source,
 })
 
 const activeTab = ref(0)
@@ -171,7 +160,9 @@ const addWidget = (widget: WidgetsConfig, idx?: number) => {
 }
 
 const selectedUID = ref<string>('')
-const selectedWidget = computed(() => findWidgetWithUID(ast.value.widgetsConfig, selectedUID.value))
+const selectedWidget = computed(() =>
+  findWidgetWithUID(ast.value.widgetsConfig, selectedUID.value)
+)
 
 const setSelectedUID = (uid: string) => {
   selectedUID.value = uid
@@ -187,7 +178,7 @@ provide<FormDesignerContext>(contextSymbol, {
   addWidget,
   removeWidget,
   duplicateWidget,
-  ast
+  ast,
 })
 </script>
 

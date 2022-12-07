@@ -1,27 +1,20 @@
 <script lang="tsx">
-import {
-  defineComponent,
-  ref,
-  h,
-  computed,
-  compile,
-  PropType
-} from 'vue'
+import { defineComponent, ref, h, computed, compile, PropType } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { listenRouteChange } from '@/utils/route-listener'
 import { openWindow, regexUrl } from '@/utils'
 import { useMenuStore } from '@/store'
 import useMenuTree from './use-menu'
+import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 
 export default defineComponent({
   props: {
     collpased: Boolean,
     menu: {
       type: Object as PropType<any>,
-      default: undefined
-    }
+      default: undefined,
+    },
   },
   emits: ['collapse'],
   setup(props) {
@@ -42,7 +35,7 @@ export default defineComponent({
       },
       set(val: boolean) {
         menuStore.updateMenuCollpase(val)
-      }
+      },
     })
 
     const goTo = (item: RouteRecordRaw, urlPrefix?: string) => {
@@ -110,35 +103,47 @@ export default defineComponent({
         openKeys.value = [...keySet]
 
         selectedKeys.value = [
-          (activeMenu as string | undefined) || menuOpenKeys[menuOpenKeys.length - 1]
+          (activeMenu as string | undefined) ||
+            menuOpenKeys[menuOpenKeys.length - 1],
         ]
       }
     }, true)
 
     const renderSubMenu = () => {
-      const travel = (_route: RouteRecordRaw[], nodes = [], pathPrefix: string | undefined = undefined) => {
+      const travel = (
+        _route: RouteRecordRaw[],
+        nodes = [],
+        pathPrefix: string | undefined = undefined
+      ) => {
         if (_route) {
           _route.forEach((el) => {
             const icon = el?.meta?.icon
               ? () => h(compile(`<${el?.meta?.icon}/>`))
               : null
 
-            const node = el?.children && el?.children.length !== 0
-              ? (
+            const node =
+              el?.children && el?.children.length !== 0 ? (
                 <a-sub-menu
                   key={el?.name}
                   v-slots={{
-                    title: () => h(compile(t(el?.meta?.locale as string || ''))),
-                    icon
+                    title: () =>
+                      h(compile(t((el?.meta?.locale as string) || ''))),
+                    icon,
                   }}
                 >
-                  {travel(el?.children, [], pathPrefix ? pathPrefix + el.path : el.path)}
+                  {travel(
+                    el?.children,
+                    [],
+                    pathPrefix ? pathPrefix + el.path : el.path
+                  )}
                 </a-sub-menu>
               ) : (
                 <a-menu-item
                   key={el?.name}
                   v-slots={{ icon }}
-                  onClick={() => goTo(el, el?.meta?.openInNewWindow ? pathPrefix : undefined)}
+                  onClick={() =>
+                    goTo(el, el?.meta?.openInNewWindow ? pathPrefix : undefined)
+                  }
                 >
                   {t(el?.meta?.locale as string)}
                 </a-menu-item>
@@ -172,7 +177,7 @@ export default defineComponent({
         {renderSubMenu()}
       </a-menu>
     )
-  }
+  },
 })
 </script>
 

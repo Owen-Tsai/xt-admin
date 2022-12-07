@@ -1,17 +1,13 @@
 <template>
   <h2 class="font-light text-base">仓库管理</h2>
-  <a-divider style="margin: 16px 0;" />
-  <a-form
-    ref="form"
-    :model="formData"
-    layout="vertical"
-  >
+  <a-divider style="margin: 16px 0" />
+  <a-form ref="form" :model="formData" layout="vertical">
     <a-row :gutter="24">
       <a-col :span="8">
         <a-form-item
           label="仓库名"
           field="repoName"
-          :rules="[{required:true,message:'请输入仓库名称'}]"
+          :rules="[{ required: true, message: '请输入仓库名称' }]"
         >
           <a-input v-model="formData.repoName" placeholder="repo-sidj93" />
         </a-form-item>
@@ -23,12 +19,8 @@
           :rules="[{ required: true, message: '请输入' }]"
         >
           <a-input v-model="formData.domainName" placeholder="请输入">
-            <template #prepend>
-              http://
-            </template>
-            <template #append>
-              .com
-            </template>
+            <template #prepend> http:// </template>
+            <template #append> .com </template>
           </a-input>
         </a-form-item>
       </a-col>
@@ -36,12 +28,9 @@
         <a-form-item
           label="仓库管理员"
           field="manager"
-          :rules="[{ required:true,message:'请选择管理员' }]"
+          :rules="[{ required: true, message: '请选择管理员' }]"
         >
-          <a-select
-            v-model="formData.manager"
-            placeholder="请选择管理员"
-          >
+          <a-select v-model="formData.manager" placeholder="请选择管理员">
             <a-option>蔡仲晨</a-option>
             <a-option>张三</a-option>
             <a-option>李四</a-option>
@@ -90,7 +79,7 @@ const formData = ref<RepoFormData>({
   keyword: [],
   manager: '',
   repoName: '',
-  type: 0
+  type: 0,
 })
 
 const handleValidate = () => {
@@ -98,6 +87,6 @@ const handleValidate = () => {
 }
 
 defineExpose({
-  handleValidate
+  handleValidate,
 })
 </script>

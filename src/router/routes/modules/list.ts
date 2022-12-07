@@ -9,7 +9,7 @@ const listRoutes: AppRouteRecordRaw = {
     locale: 'menu.list',
     requireAuth: true,
     order: 0,
-    icon: 'icon-list'
+    icon: 'icon-list',
   },
   children: [
     {
@@ -19,8 +19,8 @@ const listRoutes: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.list.card',
         requireAuth: true,
-        rules: ['*']
-      }
+        rules: ['*'],
+      },
     },
     {
       path: 'normal',
@@ -29,10 +29,10 @@ const listRoutes: AppRouteRecordRaw = {
       meta: {
         locale: 'menu.list.normal',
         requireAuth: true,
-        rules: ['*']
-      }
-    }
-  ]
+        rules: ['*'],
+      },
+    },
+  ],
 }
 
 export default listRoutes

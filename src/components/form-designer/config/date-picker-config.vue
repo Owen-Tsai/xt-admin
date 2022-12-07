@@ -19,9 +19,7 @@
   </a-form-item>
   <div class="flex justify-between items-center">
     <span>是否允许清除</span>
-    <a-switch
-      v-model="config.config.allowClear"
-    />
+    <a-switch v-model="config.config.allowClear" />
   </div>
   <div class="boolean-config mt-4">
     <span class="label">是否为只读</span>
@@ -40,7 +38,10 @@
     <a-switch v-model="config.config.showTime" />
   </div>
   <a-form-item label="自定义校验规则">
-    <a-textarea v-model="config.config.rules" :auto-size="{ minRows: 4, maxRows: 6 }" />
+    <a-textarea
+      v-model="config.config.rules"
+      :auto-size="{ minRows: 4, maxRows: 6 }"
+    />
   </a-form-item>
 </template>
 
@@ -52,17 +53,15 @@ const emit = defineEmits(['update:widgetConfig'])
 const props = defineProps({
   widgetConfig: {
     type: Object as PropType<IConfigDatePicker>,
-    required: true
-  }
+    required: true,
+  },
 })
 const config = computed({
   get: () => props.widgetConfig,
   set: (val) => {
     emit('update:widgetConfig', val)
-  }
+  },
 })
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

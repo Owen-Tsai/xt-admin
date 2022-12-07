@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 
 const useLocale = () => {
   const i18n = useI18n()
-  const currentLocale = computed(() => (i18n.locale.value))
+  const currentLocale = computed(() => i18n.locale.value)
 
   const changeLocale = (val: string) => {
     i18n.locale.value = val
@@ -12,7 +12,7 @@ const useLocale = () => {
 
   return {
     currentLocale,
-    changeLocale
+    changeLocale,
   }
 }
 

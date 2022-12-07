@@ -1,20 +1,15 @@
-import {
-  Graph, Addon, Node, Shape
-} from '@antv/x6'
+import { Graph, Addon, Node, Shape } from '@antv/x6'
+import { buildingBlocks, edge } from './blocks-config'
 import type { Options } from '@antv/x6/lib/graph/options'
-import {
-  buildingBlocks,
-  edge
-} from './blocks-config'
 
 export const defaultConfig: Options.Manual = {
   grid: true,
   mousewheel: {
-    enabled: true
+    enabled: true,
   },
   panning: {
     enabled: true,
-    eventTypes: ['rightMouseDown']
+    eventTypes: ['rightMouseDown'],
   },
   selecting: {
     enabled: true,
@@ -26,18 +21,18 @@ export const defaultConfig: Options.Manual = {
   connecting: {
     router: {
       name: 'manhattan',
-      args: { padding: 10 }
+      args: { padding: 10 },
     },
     connector: {
       name: 'rounded',
-      args: { radius: 4 }
+      args: { radius: 4 },
     },
     allowBlank: false,
     snap: {
-      radius: 16
+      radius: 16,
     },
     createEdge: () => new Shape.Edge(edge),
-    validateConnection: ({ targetMagnet }) => !!targetMagnet
+    validateConnection: ({ targetMagnet }) => !!targetMagnet,
   },
   highlighting: {
     magnetAdsorbed: {
@@ -46,16 +41,16 @@ export const defaultConfig: Options.Manual = {
         padding: 1,
         attrs: {
           strokeWidth: 2,
-          stroke: '#00B42A'
-        }
-      }
-    }
+          stroke: '#00B42A',
+        },
+      },
+    },
   },
   keyboard: true,
   snapline: true,
   resizing: true,
   clipboard: true,
-  history: true
+  history: true,
 }
 
 const setupStencil = (container: HTMLElement, target: Graph) => {
@@ -68,9 +63,9 @@ const setupStencil = (container: HTMLElement, target: Graph) => {
       {
         name: 'default',
         title: '流程与环节',
-        collapsable: false
-      }
-    ]
+        collapsable: false,
+      },
+    ],
   })
 
   const nodes: Node[] = []
@@ -143,12 +138,16 @@ const setupPortEvents = (container: HTMLElement, graph: Graph) => {
   }
 
   graph.on('node:mouseenter', () => {
-    const ports = container.querySelectorAll('.x6-port-body') as NodeListOf<SVGAElement>
+    const ports = container.querySelectorAll(
+      '.x6-port-body'
+    ) as NodeListOf<SVGAElement>
     showPorts(ports, true)
   })
 
   graph.on('node:mouseleave', () => {
-    const ports = container.querySelectorAll('.x6-port-body') as NodeListOf<SVGAElement>
+    const ports = container.querySelectorAll(
+      '.x6-port-body'
+    ) as NodeListOf<SVGAElement>
     showPorts(ports, false)
   })
 }
@@ -159,7 +158,7 @@ export const useGraphInit = (
 ) => {
   const graphInstance = new Graph({
     ...defaultConfig,
-    container: canvas
+    container: canvas,
   })
 
   setupKeyboardHotkeys(graphInstance)

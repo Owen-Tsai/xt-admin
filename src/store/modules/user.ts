@@ -1,21 +1,21 @@
 import { defineStore } from 'pinia'
-import type { UserRole } from '@config'
 import {
   login as doLogin,
   logout as doLogout,
   LoginData,
-  getUserInfo
+  getUserInfo,
 } from '@/api/user'
 import { clearToken, setToken } from '@/utils/auth'
 import { removeListener } from '@/utils/route-listener'
-import { useMenuStore } from '@/store'
+import useMenuStore from '@/store/modules/menu'
+import type { UserRole } from '@config'
 
 export interface UserState {
-  name?: string,
-  dept?: string,
-  role: UserRole,
-  avatar?: string,
-  job?: string,
+  name?: string
+  dept?: string
+  role: UserRole
+  avatar?: string
+  job?: string
   email?: string
 }
 
@@ -26,13 +26,13 @@ const useUserStore = defineStore('user', {
     role: '',
     avatar: undefined,
     email: undefined,
-    job: undefined
+    job: undefined,
   }),
 
   getters: {
     userInfo(state: UserState): UserState {
       return { ...state }
-    }
+    },
   },
 
   actions: {
@@ -65,8 +65,8 @@ const useUserStore = defineStore('user', {
         removeListener()
         this.resetInfo()
       }
-    }
-  }
+    },
+  },
 })
 
 export default useUserStore

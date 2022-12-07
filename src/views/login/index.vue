@@ -3,25 +3,16 @@
     <header>XT Admin {{ version }}</header>
     <main>
       <h1>
-        <img
-          src="@/assets/logo-temp.svg"
-          class="w-10 h-10 mr-4"
-        >
+        <img src="@/assets/logo-temp.svg" class="w-10 h-10 mr-4" />
         XT Admin
       </h1>
       <p>中协通下一代中后台应用框架的前端解决方案</p>
 
       <a-tabs class="login-tabs">
-        <a-tab-pane
-          key="password-login"
-          title="账号密码登录"
-        >
+        <a-tab-pane key="password-login" title="账号密码登录">
           <login-form />
         </a-tab-pane>
-        <a-tab-pane
-          key="mobile-login"
-          title="手机验证码登录"
-        >
+        <a-tab-pane key="mobile-login" title="手机验证码登录">
           <mobile-login-form />
         </a-tab-pane>
       </a-tabs>
@@ -29,10 +20,7 @@
 
     <footer>
       &copy; 2022 Created with
-      <s-icon
-        :name="HeartFill"
-        class="text-red-500"
-      />
+      <s-icon :name="HeartFill" class="text-red-500" />
       by 蔡仲晨
     </footer>
   </div>
@@ -60,7 +48,7 @@ main {
   @apply min-w-[340px] w-[340px] max-w-lg mx-auto text-center mt-20 flex-1;
   h1 {
     @apply text-gray-800 font-bold text-3xl flex items-center justify-center;
-    background: -webkit-linear-gradient(315deg,#330ddc 25%,#20a2ff);
+    background: -webkit-linear-gradient(315deg, #330ddc 25%, #20a2ff);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

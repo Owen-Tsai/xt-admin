@@ -1,6 +1,10 @@
 <template>
   <div class="px-4">
-    <a-alert>从左侧输入框内输入姓名进行过滤查找，点击查找结果将对应的人员添加到扶持对象列表内。<b>注意，您可能需要补充额外的信息方可提交。</b></a-alert>
+    <a-alert
+      >从左侧输入框内输入姓名进行过滤查找，点击查找结果将对应的人员添加到扶持对象列表内。<b
+        >注意，您可能需要补充额外的信息方可提交。</b
+      ></a-alert
+    >
     <div class="my-4 flex items-stretch">
       <div class="w-60 pr-4 mr-4 border-r">
         <a-input-search
@@ -19,7 +23,7 @@
             <a-list-item-meta :title="item.name" :description="item.cardNo">
               <template #avatar>
                 <a-avatar>
-                  <img :src="item.avatar">
+                  <img :src="item.avatar" />
                 </a-avatar>
               </template>
             </a-list-item-meta>
@@ -37,12 +41,16 @@
           <a-table-column title="证件号" data-index="cardNo" />
           <a-table-column title="学历" data-index="degree">
             <template #cell="{ record }">
-              {{ degrees.filter((e) => e.value === record.degree)[0]?.label || '' }}
+              {{
+                degrees.filter((e) => e.value === record.degree)[0]?.label || ''
+              }}
             </template>
           </a-table-column>
           <a-table-column title="研究领域" data-index="field">
             <template #cell="{ record }">
-              {{ degrees.filter((e) => e.value === record.field)[0]?.label || '' }}
+              {{
+                degrees.filter((e) => e.value === record.field)[0]?.label || ''
+              }}
             </template>
           </a-table-column>
           <a-table-column title="申请额度" data-index="fund">
@@ -53,14 +61,21 @@
           <a-table-column title="操作" data-index="actions">
             <template #cell="{ record, rowIndex }">
               <a-space>
-                <a-button size="small" @click="handleEdit(record, rowIndex)">编辑</a-button>
-                <a-button size="small" @click="handleRemove(record)">移除</a-button>
+                <a-button size="small" @click="handleEdit(record, rowIndex)"
+                  >编辑</a-button
+                >
+                <a-button size="small" @click="handleRemove(record)"
+                  >移除</a-button
+                >
               </a-space>
             </template>
           </a-table-column>
         </template>
         <template #empty>
-          <a-empty class="min-h-[300px] flex flex-col items-center justify-center">没有已添加的扶持对象<br>请从左侧输入框内输入姓名搜索</a-empty>
+          <a-empty
+            class="min-h-[300px] flex flex-col items-center justify-center"
+            >没有已添加的扶持对象<br />请从左侧输入框内输入姓名搜索</a-empty
+          >
         </template>
       </a-table>
     </div>
@@ -115,20 +130,20 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { SelectOptionData as Opts } from '@arco-design/web-vue'
 import avatar from '@/assets/avatar-user.png'
 import useOptions from './use-select-options'
+import type { SelectOptionData as Opts } from '@arco-design/web-vue'
 
 type PersonnelData = {
-  id?: number,
-  avatar?: string,
-  name?: string,
-  gender?: number,
-  cardNo?: string,
-  degree?: number | string,
-  diploma?: number | string,
-  field?: number | string,
-  fund?: number,
+  id?: number
+  avatar?: string
+  name?: string
+  gender?: number
+  cardNo?: string
+  degree?: number | string
+  diploma?: number | string
+  field?: number | string
+  fund?: number
 }
 
 const degrees = ref<Opts[]>([])
@@ -167,7 +182,10 @@ const handleRemove = (row: PersonnelData) => {
   console.log(row)
 }
 const saveEdittedRecord = () => {
-  if (edittingIndex.value > -1 && tableData.value.length > edittingIndex.value) {
+  if (
+    edittingIndex.value > -1 &&
+    tableData.value.length > edittingIndex.value
+  ) {
     tableData.value[edittingIndex.value] = form.value
   }
 }
@@ -176,13 +194,13 @@ const filteredList = ref<PersonnelData[]>([
   {
     name: '张三',
     cardNo: '370102199001010101',
-    avatar
+    avatar,
   },
   {
     name: '李四',
     cardNo: '370101199001010001',
-    avatar
-  }
+    avatar,
+  },
 ])
 
 const updateTableData = (idx: number) => {

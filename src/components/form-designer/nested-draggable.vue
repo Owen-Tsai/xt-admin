@@ -5,16 +5,13 @@
       group: 'widgets',
       ghostClass: 'ghost',
       animation: 200,
-      handle: '.drag-handler'
+      handle: '.drag-handler',
     }"
     item-key="uid"
     @end="handleEnd"
   >
     <template #item="{ element, index }">
-      <widget-form-item
-        :widget="element"
-        :index="index"
-      />
+      <widget-form-item :widget="element" :index="index" />
     </template>
   </draggable>
 </template>
@@ -23,16 +20,13 @@
 import { PropType } from 'vue'
 import Draggable from 'vuedraggable'
 import WidgetFormItem from './widget-form-item.vue'
-import type {
-  IConfigGrid,
-  WidgetsConfig
-} from './types'
+import type { IConfigGrid, WidgetsConfig } from './types'
 
 defineProps({
   nestedList: {
     type: Array as PropType<Exclude<WidgetsConfig, IConfigGrid>[]>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const handleEnd = (e: any) => {

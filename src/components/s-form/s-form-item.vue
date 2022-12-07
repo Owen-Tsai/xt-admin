@@ -3,7 +3,7 @@
     :label="widget.config.label || widget.name"
     :required="widget.config.required"
     :field="widget.uid"
-    :rules="(JSON.parse(widget.config.rules || '[]') || undefined)"
+    :rules="JSON.parse(widget.config.rules || '[]') || undefined"
     :validate-trigger="['blur']"
   >
     <template v-if="widget.type === 'input'">
@@ -39,16 +39,13 @@
         :indeterminate="widget.config.indeterminate"
         :defaultchecked="widget.config.defaultChecked"
       >
-        <template
-          v-for="(item, i) in widget.config.options"
-          :key="i"
-        >
+        <template v-for="(item, i) in widget.config.options" :key="i">
           <a-checkbox :value="item.value">
             {{ item.label }}
           </a-checkbox>
         </template>
-
-      </a-checkbox-group></template>
+      </a-checkbox-group></template
+    >
     <template v-if="widget.type === 'select'">
       <a-select
         v-model="ctx[widget.uid]"
@@ -63,7 +60,8 @@
           v-for="(opt, i) in widget.config.options"
           :key="i"
           :value="opt.value"
-        >{{ opt.label }}</a-option>
+          >{{ opt.label }}</a-option
+        >
       </a-select>
     </template>
     <template v-if="widget.type === 'radio'">
@@ -182,21 +180,18 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  PropType,
-  inject
-} from 'vue'
+import { PropType, inject } from 'vue'
 import type {
   WidgetsConfig,
-  IConfigGrid
+  IConfigGrid,
 } from '@/components/form-designer/types'
 import { formData } from './use-form-preview'
 
 defineProps({
   widget: {
     type: Object as PropType<Exclude<WidgetsConfig, IConfigGrid>>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 const ctx = inject(formData) as any

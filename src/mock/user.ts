@@ -1,8 +1,5 @@
 import Mock from 'mockjs'
-import setupMock, {
-  responseWrap,
-  failedResponseWrap
-} from '@/utils/mock'
+import setupMock, { responseWrap, failedResponseWrap } from '@/utils/mock'
 import { isAuthed } from '@/utils/auth'
 import avatarExample from '@/assets/avatar-user.png'
 
@@ -22,13 +19,13 @@ setupMock({
       if (username === 'admin' && password === 'admin') {
         window.localStorage.setItem('userRole', 'admin')
         return responseWrap({
-          token: 'admin12345'
+          token: 'admin12345',
         })
       }
       if (username === 'user' && password === 'user') {
         window.localStorage.setItem('userRole', 'user')
         return responseWrap({
-          token: 'user12345'
+          token: 'user12345',
         })
       }
 
@@ -44,7 +41,7 @@ setupMock({
           email: 'owentsai.v@gmail.com',
           job: '前端工程师',
           dept: '软件部',
-          role
+          role,
         })
       }
 
@@ -59,31 +56,33 @@ setupMock({
       return failedResponseWrap(null, '未登录', 50008)
     })
 
-    Mock.mock('/api/user/menu', () => responseWrap([
-      {
-        path: '/dashboard',
-        name: 'dashboard',
-        redirect: '/dashboard/workplace',
-        meta: {
-          locale: 'menu.dashboard',
-          requireAuth: true,
-          order: 0,
-          icon: 'icon-apps',
-          hideChildrenInMenu: true
+    Mock.mock('/api/user/menu', () =>
+      responseWrap([
+        {
+          path: '/dashboard',
+          name: 'dashboard',
+          redirect: '/dashboard/workplace',
+          meta: {
+            locale: 'menu.dashboard',
+            requireAuth: true,
+            order: 0,
+            icon: 'icon-apps',
+            hideChildrenInMenu: true,
+          },
+          children: [
+            {
+              path: 'workplace',
+              name: 'workplace',
+              meta: {
+                locale: 'menu.dashboard.workplace',
+                requireAuth: true,
+                roles: ['*'],
+                activeMenu: 'dashboard',
+              },
+            },
+          ],
         },
-        children: [
-          {
-            path: 'workplace',
-            name: 'workplace',
-            meta: {
-              locale: 'menu.dashboard.workplace',
-              requireAuth: true,
-              roles: ['*'],
-              activeMenu: 'dashboard'
-            }
-          }
-        ]
-      }
-    ]))
-  }
+      ])
+    )
+  },
 })

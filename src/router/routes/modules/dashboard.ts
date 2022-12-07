@@ -11,7 +11,7 @@ const dashboardRoutes: AppRouteRecordRaw = {
     requireAuth: true,
     order: 0,
     icon: 'icon-apps',
-    hideChildrenInMenu: true
+    hideChildrenInMenu: true,
   },
   children: [
     {
@@ -22,10 +22,10 @@ const dashboardRoutes: AppRouteRecordRaw = {
         locale: 'menu.dashboard.workplace',
         requireAuth: true,
         roles: ['*'],
-        activeMenu: 'dashboard'
-      }
-    }
-  ]
+        activeMenu: 'dashboard',
+      },
+    },
+  ],
 }
 
 export default dashboardRoutes

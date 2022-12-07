@@ -32,36 +32,31 @@
           v-for="child in item.children"
           :key="child.key"
           @click="goTo(child.path)"
-        >{{ child.label }}</a-menu-item>
+          >{{ child.label }}</a-menu-item
+        >
       </a-sub-menu>
     </template>
   </a-menu>
 </template>
 
 <script lang="ts" setup>
-import {
-  h,
-  compile,
-  computed,
-  ref,
-  PropType
-} from 'vue'
+import { h, compile, computed, ref, PropType } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useMenuStore } from '@/store'
 
 type MenuItem = {
-  key: string,
-  path?: string,
-  label: string,
-  icon?: string,
+  key: string
+  path?: string
+  label: string
+  icon?: string
   children?: Record<'key' | 'path' | 'label', string>[]
 }
 
 defineProps({
   menu: {
     type: Array as PropType<MenuItem[]>,
-    required: true
-  }
+    required: true,
+  },
 })
 
 defineEmits(['collpase'])
@@ -77,7 +72,7 @@ const isCollpased = computed({
   },
   set(val: boolean) {
     menuStore.updateMenuCollpase(val)
-  }
+  },
 })
 
 const renderIcon = (iconName: string) => h(compile(`<${iconName} />`))

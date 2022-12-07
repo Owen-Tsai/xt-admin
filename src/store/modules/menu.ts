@@ -2,13 +2,13 @@
  * 此文件包含所有应用层级的状态管理，通常情况下你无需更改这些逻辑
  */
 import { defineStore } from 'pinia'
-import type { RouteRecordNormalized } from 'vue-router'
-import { namesRouteCached } from '@config'
 import { getMenu } from '@/api/user'
+import { namesRouteCached } from '@config'
+import type { RouteRecordNormalized } from 'vue-router'
 
 type MenuState = {
-  asyncMenu: RouteRecordNormalized[],
-  isMenuCollapsed: boolean,
+  asyncMenu: RouteRecordNormalized[]
+  isMenuCollapsed: boolean
   cachedRoutes: Set<string>
 }
 
@@ -16,7 +16,7 @@ const menuStore = defineStore('menu', {
   state: (): MenuState => ({
     asyncMenu: [],
     isMenuCollapsed: false,
-    cachedRoutes: new Set(namesRouteCached)
+    cachedRoutes: new Set(namesRouteCached),
   }),
 
   getters: {
@@ -25,7 +25,7 @@ const menuStore = defineStore('menu', {
     },
     getCachedRoutes(state: MenuState) {
       return state.cachedRoutes
-    }
+    },
   },
 
   actions: {
@@ -42,8 +42,8 @@ const menuStore = defineStore('menu', {
     },
     updateMenuCollpase(val: boolean) {
       this.isMenuCollapsed = val
-    }
-  }
+    },
+  },
 })
 
 export default menuStore
