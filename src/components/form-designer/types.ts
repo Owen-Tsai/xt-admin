@@ -1,5 +1,7 @@
 import type { Ref } from 'vue'
 
+export type InputEvent = 'input' | 'change' | 'focus' | 'blur'
+
 export type ItemSlot = {
   element: WidgetsConfig
   index: number
@@ -275,6 +277,7 @@ export type IConfigInput = {
   uid: string
   config: IOptInput & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -284,6 +287,7 @@ export type IConfigSelect = {
   uid: string
   config: IOptSelect & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -293,6 +297,7 @@ export type IConfigInputNumber = {
   uid: string
   config: IOptInputNumber & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -302,6 +307,7 @@ export type IConfigCheckbox = {
   uid: string
   config: IOptCheckbox & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -311,6 +317,7 @@ export type IConfigRadio = {
   uid: string
   config: IOptRadio & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -320,6 +327,7 @@ export type IConfigSwitch = {
   uid: string
   config: IOptSwitch & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -329,6 +337,7 @@ export type IConfigSlider = {
   uid: string
   config: IOptSlider & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -338,6 +347,7 @@ export type IConfigCascader = {
   uid: string
   config: IOptCascader & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -347,6 +357,7 @@ export type IConfigTextarea = {
   uid: string
   config: IOptinTextarea & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -356,6 +367,7 @@ export type IConfigDatePicker = {
   uid: string
   config: IOptDatePicker & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -365,6 +377,7 @@ export type IConfigRate = {
   uid: string
   config: IOptRate & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -374,6 +387,7 @@ export type IConfigTimePicker = {
   uid: string
   config: IOptTimePicker & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 
@@ -383,6 +397,7 @@ export type IConfigUpload = {
   uid: string
   config: IOptUpload & {
     rules?: string
+    trigger?: InputEvent | InputEvent[]
   }
 }
 

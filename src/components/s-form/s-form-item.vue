@@ -4,7 +4,7 @@
     :required="widget.config.required"
     :field="widget.uid"
     :rules="JSON.parse(widget.config.rules || '[]') || undefined"
-    :validate-trigger="['blur']"
+    :validate-trigger="widget.config.trigger"
   >
     <template v-if="widget.type === 'input'">
       <a-input
