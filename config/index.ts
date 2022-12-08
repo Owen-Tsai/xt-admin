@@ -1,21 +1,17 @@
 /**
  * 本文件包含项目中所使用的各项公共配置
  */
-import {
-  FileEditFill,
-  MailFill,
-  ClipboardFill
-} from '@salmon-ui/icons'
+import { FileEditFill, MailFill, ClipboardFill } from '@salmon-ui/icons'
 
 // 用户角色权限组，其中 * 表示通配符
 export type UserRole = '' | '*' | 'admin' | 'user'
 
 // HTTP 响应的类型断言
 export interface HTTPResponse<T = unknown> {
-  data: T;
-  status: number;
-  msg: string;
-  code: number;
+  data: T
+  status: number
+  msg: string
+  code: number
 }
 
 // HTTP 请求的公共路径前缀
@@ -38,18 +34,18 @@ export const noticeTypeMap = [
   {
     type: 'report',
     icon: FileEditFill,
-    bg: '#f43f5e'
+    bg: '#f43f5e',
   },
   {
     type: 'normal',
     icon: MailFill,
-    bg: '#3b82f6'
+    bg: '#3b82f6',
   },
   {
     type: 'audit',
     icon: ClipboardFill,
-    bg: '#f59e0b'
-  }
+    bg: '#f59e0b',
+  },
 ]
 
 // 需要缓存的路由的名称

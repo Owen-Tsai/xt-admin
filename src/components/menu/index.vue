@@ -127,6 +127,7 @@ export default defineComponent({
                   key={el?.name}
                   v-slots={{
                     title: () =>
+                      el?.meta?.text ||
                       h(compile(t((el?.meta?.locale as string) || ''))),
                     icon,
                   }}
@@ -145,7 +146,7 @@ export default defineComponent({
                     goTo(el, el?.meta?.openInNewWindow ? pathPrefix : undefined)
                   }
                 >
-                  {t(el?.meta?.locale as string)}
+                  {el?.meta?.text || t(el?.meta?.locale as string)}
                 </a-menu-item>
               )
 

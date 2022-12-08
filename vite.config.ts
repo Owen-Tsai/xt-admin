@@ -1,8 +1,8 @@
+import * as path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import eslint from 'vite-plugin-eslint'
-import * as path from 'path'
 
 export default defineConfig({
   plugins: [
@@ -22,12 +22,12 @@ export default defineConfig({
       },
       {
         find: '@',
-        replacement: path.resolve(__dirname, './src')
+        replacement: path.resolve(__dirname, './src'),
       },
       {
         find: '@config',
-        replacement: path.resolve(__dirname, './config/index.ts')
-      }
+        replacement: path.resolve(__dirname, './config/index.ts'),
+      },
     ],
     extensions: ['.ts', '.js'],
   },

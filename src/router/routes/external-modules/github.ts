@@ -1,8 +1,8 @@
 export default {
-  path: 'https://www.github.com/Owen-Tsai',
+  path: 'https://github.com/Owen-Tsai/xt-admin',
   name: 'github',
   meta: {
-    locale: 'menu.github',
+    text: 'Github 仓库',
     requireAuth: true,
     order: 10,
     icon: 'icon-github',
