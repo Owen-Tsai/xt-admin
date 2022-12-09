@@ -84,11 +84,22 @@
       :auto-size="{ minRows: 4, maxRows: 6 }"
     />
   </a-form-item>
+  <a-form-item label="校验触发时机">
+    <a-select v-model="config.config.trigger" :allow-search="false" multiple>
+      <a-option
+        v-for="opt in inputEventNames"
+        :key="opt"
+        :value="opt"
+        :label="opt"
+      />
+    </a-select>
+  </a-form-item>
 </template>
 
 <script lang="ts" setup>
 import { inject, computed, PropType } from 'vue'
 import { IConfigRadio, FormDesignerContext, contextSymbol } from '../types'
+import { inputEventNames } from '../utils'
 
 const emit = defineEmits(['update:widgetConfig'])
 const ctx = inject<FormDesignerContext>(contextSymbol)
