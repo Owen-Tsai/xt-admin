@@ -1,10 +1,9 @@
 <template>
   <div class="px-4">
-    <a-alert
-      >从左侧输入框内输入姓名进行过滤查找，点击查找结果将对应的人员添加到扶持对象列表内。<b
-        >注意，您可能需要补充额外的信息方可提交。</b
-      ></a-alert
-    >
+    <a-alert>
+      从左侧输入框内输入姓名进行过滤查找，点击查找结果将对应的人员添加到扶持对象列表内。
+      <b>注意，您可能需要补充额外的信息方可提交。</b>
+    </a-alert>
     <div class="my-4 flex items-stretch">
       <div class="w-60 pr-4 mr-4 border-r">
         <a-input-search
@@ -54,19 +53,17 @@
             </template>
           </a-table-column>
           <a-table-column title="申请额度" data-index="fund">
-            <template #cell="{ record }">
-              {{ record.fund || 0 }} 万元
-            </template>
+            <template #cell="{ record }">{{ record.fund || 0 }} 万元</template>
           </a-table-column>
           <a-table-column title="操作" data-index="actions">
             <template #cell="{ record, rowIndex }">
               <a-space>
-                <a-button size="small" @click="handleEdit(record, rowIndex)"
-                  >编辑</a-button
-                >
-                <a-button size="small" @click="handleRemove(record)"
-                  >移除</a-button
-                >
+                <a-button size="small" @click="handleEdit(record, rowIndex)">
+                  编辑
+                </a-button>
+                <a-button size="small" @click="handleRemove(record)">
+                  移除
+                </a-button>
               </a-space>
             </template>
           </a-table-column>
@@ -74,8 +71,11 @@
         <template #empty>
           <a-empty
             class="min-h-[300px] flex flex-col items-center justify-center"
-            >没有已添加的扶持对象<br />请从左侧输入框内输入姓名搜索</a-empty
           >
+            没有已添加的扶持对象
+            <br />
+            请从左侧输入框内输入姓名搜索
+          </a-empty>
         </template>
       </a-table>
     </div>

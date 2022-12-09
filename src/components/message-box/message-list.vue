@@ -13,9 +13,9 @@
           </a-avatar>
         </template>
       </a-list-item-meta>
-      <span class="block text-xs text-gray-400 pl-[56px]">{{
-        fromNow(item.time)
-      }}</span>
+      <span class="block text-xs text-gray-400 pl-[56px]">
+        {{ fromNow(item.time) }}
+      </span>
     </a-list-item>
   </a-list>
 </template>

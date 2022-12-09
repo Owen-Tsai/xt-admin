@@ -18,9 +18,9 @@
         </div>
         <div>
           <div>{{ item.title }}</div>
-          <span class="block text-xs text-gray-400">{{
-            fromNow(item.time)
-          }}</span>
+          <span class="block text-xs text-gray-400">
+            {{ fromNow(item.time) }}
+          </span>
         </div>
       </div>
     </a-list-item>

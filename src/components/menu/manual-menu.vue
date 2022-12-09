@@ -32,8 +32,9 @@
           v-for="child in item.children"
           :key="child.key"
           @click="goTo(child.path)"
-          >{{ child.label }}</a-menu-item
         >
+          {{ child.label }}
+        </a-menu-item>
       </a-sub-menu>
     </template>
   </a-menu>

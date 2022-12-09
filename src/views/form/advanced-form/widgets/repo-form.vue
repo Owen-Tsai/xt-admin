@@ -19,8 +19,8 @@
           :rules="[{ required: true, message: '请输入' }]"
         >
           <a-input v-model="formData.domainName" placeholder="请输入">
-            <template #prepend> http:// </template>
-            <template #append> .com </template>
+            <template #prepend>http://</template>
+            <template #append>.com</template>
           </a-input>
         </a-form-item>
       </a-col>

@@ -36,8 +36,9 @@
       <a-checkbox
         v-model="loginConfig.shouldStorePassword"
         @change="setRememberPassword as any"
-        >记住密码</a-checkbox
       >
+        记住密码
+      </a-checkbox>
       <a-link>忘记密码</a-link>
     </div>
     <div class="mt-6">
@@ -47,8 +48,9 @@
         size="large"
         html-type="submit"
         :loading="isLoading"
-        >登录</a-button
       >
+        登录
+      </a-button>
     </div>
   </a-form>
 </template>

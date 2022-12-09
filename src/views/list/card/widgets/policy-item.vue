@@ -22,9 +22,9 @@
 
       <a-space class="mt-4 justify-end w-full">
         <a-button size="small">办理指南</a-button>
-        <a-button type="primary" size="small" :disabled="!active"
-          >前往申报</a-button
-        >
+        <a-button type="primary" size="small" :disabled="!active">
+          前往申报
+        </a-button>
       </a-space>
     </template>
   </a-card>

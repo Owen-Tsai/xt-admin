@@ -14,7 +14,7 @@
   </a-form-item>
   <a-form-item label="可选数量">
     <a-input-number v-model="config.limit" />
-    <template #extra> 当数量不为0时开启多选 </template>
+    <template #extra>当数量不为0时开启多选</template>
   </a-form-item>
   <div>
     <span class="label">可选值</span>
@@ -47,8 +47,9 @@
             v-for="(item, i) in ctx?.ast.value.dataSources"
             :key="i"
             :value="item.url"
-            >{{ item.name }}</a-option
           >
+            {{ item.name }}
+          </a-option>
         </a-select>
       </a-tab-pane>
     </a-tabs>

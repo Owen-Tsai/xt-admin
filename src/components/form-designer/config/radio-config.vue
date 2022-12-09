@@ -27,8 +27,9 @@
         v-for="(item, i) in config.config.options"
         :key="i"
         :value="item.value"
-        >{{ item.label }}</a-option
       >
+        {{ item.label }}
+      </a-option>
     </a-select>
   </a-form-item>
   <div class="mb-4">
@@ -66,8 +67,9 @@
             v-for="(item, i) in ctx?.ast.value.dataSources"
             :key="i"
             :value="item.url"
-            >{{ item.name }}</a-option
           >
+            {{ item.name }}
+          </a-option>
         </a-select>
       </a-tab-pane>
     </a-tabs>

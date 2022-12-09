@@ -6,9 +6,9 @@
         <template #upload-button>
           <div class="mb-2">
             <a-button type="outline">选择文件</a-button>
-            <span class="text-gray-500 inline-block text-sm ml-4"
-              >允许的格式：jpg, png, pdf</span
-            >
+            <span class="text-gray-500 inline-block text-sm ml-4">
+              允许的格式：jpg, png, pdf
+            </span>
           </div>
         </template>
       </a-upload>
@@ -20,9 +20,9 @@
         <template #upload-button>
           <div class="mb-2">
             <a-button type="outline">选择文件</a-button>
-            <span class="text-gray-500 inline-block text-sm ml-4"
-              >允许的格式：jpg, png, pdf</span
-            >
+            <span class="text-gray-500 inline-block text-sm ml-4">
+              允许的格式：jpg, png, pdf
+            </span>
           </div>
         </template>
       </a-upload>

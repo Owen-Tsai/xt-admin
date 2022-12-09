@@ -65,7 +65,7 @@
       <a-col :span="8">
         <a-form-item label="申报年度纳税额" field="tax">
           <a-input-number v-model="formData.tax" hide-button>
-            <template #append> 万元 </template>
+            <template #append>万元</template>
           </a-input-number>
         </a-form-item>
       </a-col>
@@ -76,15 +76,15 @@
             hide-button
             placeholder="自动计算，无需填写"
           >
-            <template #append> 万元 </template>
+            <template #append>万元</template>
           </a-input-number>
         </a-form-item>
       </a-col>
       <a-col :span="24" class="mt-4">
         <div class="font-bold">承诺书</div>
-        <p class="mt-2 leading-5"
-          >我、我所代表的法律实体以及该法律实体的法定代表人承诺，在本次业务办理过程中所填写的全部信息和提交的全部材料准确、真实、及时，不存在错、漏、瞒报现象。如果发现任何形式的违规申报，将按照相关规定取消政策兑现资格，直至追究法律责任。</p
-        >
+        <p class="mt-2 leading-5">
+          我、我所代表的法律实体以及该法律实体的法定代表人承诺，在本次业务办理过程中所填写的全部信息和提交的全部材料准确、真实、及时，不存在错、漏、瞒报现象。如果发现任何形式的违规申报，将按照相关规定取消政策兑现资格，直至追究法律责任。
+        </p>
       </a-col>
     </a-row>
 

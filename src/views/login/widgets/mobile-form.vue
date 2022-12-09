@@ -24,15 +24,15 @@
           </template>
         </a-input>
 
-        <a-button :disabled="!!timer" @click="onVerificationCodeSend">{{
-          buttonLabel
-        }}</a-button>
+        <a-button :disabled="!!timer" @click="onVerificationCodeSend">
+          {{ buttonLabel }}
+        </a-button>
       </div>
     </a-form-item>
     <div class="mt-6">
-      <a-button type="primary" long size="large" html-type="submit"
-        >登录</a-button
-      >
+      <a-button type="primary" long size="large" html-type="submit">
+        登录
+      </a-button>
     </div>
   </a-form>
 </template>

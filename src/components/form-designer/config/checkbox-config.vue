@@ -40,8 +40,9 @@
             v-for="(item, i) in ctx?.ast.value.dataSources"
             :key="i"
             :value="item.url"
-            >{{ item.name }}</a-option
           >
+            {{ item.name }}
+          </a-option>
         </a-select>
       </a-tab-pane>
     </a-tabs>

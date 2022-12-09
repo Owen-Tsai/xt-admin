@@ -17,13 +17,14 @@
           :key="i"
           class="overflow-hidden flex items-center text-gray-500 my-2 cursor-pointer group"
         >
-          <a-tag :color="item.color" size="small" class="flex-shrink-0">{{
-            item.label
-          }}</a-tag>
+          <a-tag :color="item.color" size="small" class="flex-shrink-0">
+            {{ item.label }}
+          </a-tag>
           <span
             class="truncate flex-grow ml-2 text-[13px] group-hover:text-gray-800"
-            >{{ item.title }}</span
           >
+            {{ item.title }}
+          </span>
         </li>
       </ul>
       <div class="text-right">

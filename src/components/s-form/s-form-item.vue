@@ -44,8 +44,8 @@
             {{ item.label }}
           </a-checkbox>
         </template>
-      </a-checkbox-group></template
-    >
+      </a-checkbox-group>
+    </template>
     <template v-if="widget.type === 'select'">
       <a-select
         v-model="ctx[widget.uid]"
@@ -56,12 +56,20 @@
         :limit="widget.config.limit"
         :placeholder="widget.config.placeholder"
       >
-        <a-option
-          v-for="(opt, i) in widget.config.options"
-          :key="i"
-          :value="opt.value"
-          >{{ opt.label }}</a-option
-        >
+        <template v-if="widget.config.optionsType === 'fixed'">
+          <a-option
+            v-for="(opt, i) in widget.config.options"
+            :key="i"
+            :value="opt.value"
+          >
+            {{ opt.label }}
+          </a-option>
+        </template>
+        <template v-else>
+          <a-option v-for="(opt, i) in remoteData" :key="i" :value="opt.value">
+            {{ opt.label }}
+          </a-option>
+        </template>
       </a-select>
     </template>
     <template v-if="widget.type === 'radio'">
@@ -180,14 +188,15 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, inject } from 'vue'
+import { ref, PropType, inject } from 'vue'
+import axios from 'axios'
 import type {
   WidgetsConfig,
   IConfigGrid,
 } from '@/components/form-designer/types'
 import { formData } from './use-form-preview'
 
-defineProps({
+const props = defineProps({
   widget: {
     type: Object as PropType<Exclude<WidgetsConfig, IConfigGrid>>,
     required: true,
@@ -195,4 +204,23 @@ defineProps({
 })
 
 const ctx = inject(formData) as any
+
+const remoteData = ref<any>()
+
+if (props.widget.type === 'select') {
+  console.log(props.widget.config.optionsType, props.widget.config.optionsUrl)
+  if (
+    props.widget.config.optionsType === 'remote' &&
+    props.widget.config.optionsUrl
+  ) {
+    axios
+      .get(props.widget.config.optionsUrl)
+      .then((res) => {
+        remoteData.value = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+}
 </script>

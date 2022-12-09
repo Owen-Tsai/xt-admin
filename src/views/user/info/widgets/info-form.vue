@@ -10,9 +10,9 @@
 
     <a-form-item label="所在部门" field="dept" required>
       <a-select v-model="form.dept">
-        <a-option v-for="opt in depts" :key="opt.value" :value="opt.value">{{
-          opt.label
-        }}</a-option>
+        <a-option v-for="opt in depts" :key="opt.value" :value="opt.value">
+          {{ opt.label }}
+        </a-option>
       </a-select>
     </a-form-item>
 

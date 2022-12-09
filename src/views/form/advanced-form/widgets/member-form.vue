@@ -23,9 +23,9 @@
       </a-table-column>
       <a-table-column title="操作">
         <template #cell="{ rowIndex }">
-          <a-link v-if="editLine !== rowIndex" @click="handleEdit(rowIndex)"
-            >编辑</a-link
-          >
+          <a-link v-if="editLine !== rowIndex" @click="handleEdit(rowIndex)">
+            编辑
+          </a-link>
 
           <template v-else>
             <a-link @click="saveRow(rowIndex)">保存</a-link>

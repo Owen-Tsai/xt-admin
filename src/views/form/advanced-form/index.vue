@@ -14,9 +14,9 @@
       <div class="w-full bg-white text-right px-6 py-3">
         <a-space>
           <a-button>重置</a-button>
-          <a-button html-type="submit" type="primary" @click="submit"
-            >提交</a-button
-          >
+          <a-button html-type="submit" type="primary" @click="submit">
+            提交
+          </a-button>
         </a-space>
       </div>
     </div>

@@ -5,6 +5,6 @@
   "singleQuote": true,
   "quoteProps": "consistent",
   "bracketSameLine": false,
-  "htmlWhitespaceSensitivity": "strict",
+  "htmlWhitespaceSensitivity": "ignore",
   "endOfLine": "crlf"
 }

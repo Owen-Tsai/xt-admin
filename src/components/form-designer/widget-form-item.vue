@@ -32,8 +32,9 @@
           v-for="(opt, i) in widget.config.options"
           :key="i"
           :value="opt.value"
-          >{{ opt.label }}</a-option
         >
+          {{ opt.label }}
+        </a-option>
       </a-select>
     </template>
     <template v-if="widget.type === 'radio'">
@@ -89,8 +90,8 @@
             {{ item.label }}
           </a-checkbox>
         </template>
-      </a-checkbox-group></template
-    >
+      </a-checkbox-group>
+    </template>
     <template v-if="widget.type === 'switch'">
       <a-switch
         :disabled="widget.config.disabled"
