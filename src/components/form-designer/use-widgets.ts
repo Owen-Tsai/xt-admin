@@ -1,4 +1,71 @@
-import type { WidgetsConfig } from './types'
+import { provide, ref, computed, Ref } from 'vue'
+import { cloneDeep } from 'lodash'
+import { generateUID } from '@/utils'
+import { findWidgetWithUID } from './utils'
+import { AST, WidgetsConfig, FormDesignerContext, contextSymbol } from './types'
+
+// widget actions injected to widget-form-items
+export const useWidgetActions = (ast: Ref<AST>) => {
+  const selectedUID = ref<string>('')
+  const selectedWidget = computed(() =>
+    findWidgetWithUID(ast.value.widgetsConfig, selectedUID.value)
+  )
+
+  const setSelectedUID = (uid: string) => {
+    selectedUID.value = uid
+  }
+
+  const cloneWidgetConfigFromRaw = (config: WidgetsConfig) => {
+    const uid = generateUID()
+    config.uid = uid
+    return cloneDeep(config)
+  }
+
+  const removeWidget = (idx: number, uid: string) => {
+    console.log(`delete ${idx} element with uid ${uid}`)
+    if (ast.value.widgetsConfig[idx].uid === uid) {
+      ast.value.widgetsConfig.splice(idx, 1)
+    } else {
+      for (let i = 0; i < ast.value.widgetsConfig.length; i++) {
+        const widget = ast.value.widgetsConfig[i]
+        if (widget.type === 'grid' && widget.cols.length > 0) {
+          for (let j = 0; j < widget.cols.length; j++) {
+            const subWidgets = widget.cols[j].widgets
+            for (let k = 0; k < widget.cols[j].widgets.length; k++) {
+              if (subWidgets[k].uid === uid) {
+                subWidgets.splice(k, 1)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  const duplicateWidget = (idx: number) => {
+    const newWidgetConfig = { ...ast.value.widgetsConfig[idx] }
+    ast.value.widgetsConfig.splice(idx, 0, newWidgetConfig)
+  }
+
+  const addWidget = (widget: WidgetsConfig, idx?: number) => {
+    if (!idx) {
+      ast.value.widgetsConfig.push(widget)
+    } else {
+      ast.value.widgetsConfig.splice(idx, 0, widget)
+    }
+  }
+
+  provide<FormDesignerContext>(contextSymbol, {
+    selectedUID,
+    setSelectedUID,
+    addWidget,
+    removeWidget,
+    duplicateWidget,
+    ast,
+  })
+
+  return { cloneWidgetConfigFromRaw, selectedWidget }
+}
 
 /**
  * input

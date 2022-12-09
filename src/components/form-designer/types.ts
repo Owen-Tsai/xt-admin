@@ -14,6 +14,7 @@ export interface FormConfig {
 }
 
 export interface DataSourceConfig {
+  key: string
   name: string
   url: string
 }
@@ -50,7 +51,7 @@ export interface IOptSelect {
     label?: string
     value?: string
   }>
-  optionsUrl?: number
+  optionsUrl?: string
 }
 
 export interface IOptRadio {
@@ -66,7 +67,7 @@ export interface IOptRadio {
     label?: string
     value?: string
   }>
-  optionsUrl?: number
+  optionsUrl?: string
 }
 
 export interface IOptSwitch {
@@ -152,7 +153,7 @@ export interface IOptCheckbox {
   value?: string | number
   indeterminate?: boolean
   defaultChecked?: boolean
-  optionsUrl?: number
+  optionsUrl?: string
   options?: Array<{
     label?: string
     value?: number

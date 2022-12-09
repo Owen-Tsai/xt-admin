@@ -41,7 +41,7 @@
     />
   </a-form-item>
   <a-form-item label="校验触发时机">
-    <a-select v-model="config.trigger" :allow-search="false" multiple>
+    <a-select v-model="config.trigger" multiple :allow-search="false">
       <a-option
         v-for="opt in inputEventNames"
         :key="opt"

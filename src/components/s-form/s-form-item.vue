@@ -188,7 +188,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, PropType, inject } from 'vue'
+import { ref, PropType, inject, nextTick } from 'vue'
 import axios from 'axios'
 import type {
   WidgetsConfig,
@@ -207,20 +207,22 @@ const ctx = inject(formData) as any
 
 const remoteData = ref<any>()
 
-if (props.widget.type === 'select') {
-  console.log(props.widget.config.optionsType, props.widget.config.optionsUrl)
-  if (
-    props.widget.config.optionsType === 'remote' &&
-    props.widget.config.optionsUrl
-  ) {
-    axios
-      .get(props.widget.config.optionsUrl)
-      .then((res) => {
-        remoteData.value = res.data
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+nextTick(() => {
+  if (props.widget.type === 'select') {
+    console.log(props.widget.config)
+    if (
+      props.widget.config.optionsType === 'remote' &&
+      props.widget.config.optionsUrl
+    ) {
+      axios
+        .get(props.widget.config.optionsUrl)
+        .then((res) => {
+          remoteData.value = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   }
-}
+})
 </script>

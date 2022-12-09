@@ -23,13 +23,15 @@
         <div class="m-4">
           <div class="font-bold">操作</div>
           <a-space direction="vertical" class="mt-4 w-full">
-            <a-button type="outline" long :disabled="copied" @click="copy()">{{
-              copied ? '已复制' : '复制 AST 源码'
-            }}</a-button>
-            <a-button type="outline" long @click="copy()">编辑数据源</a-button>
-            <a-button type="primary" long @click="showPreview"
-              >预览表单</a-button
-            >
+            <a-button type="outline" long :disabled="copied" @click="copy()">
+              {{ copied ? '已复制' : '复制 AST 源码' }}
+            </a-button>
+            <a-button type="outline" long @click="showDataSourceEditor">
+              编辑数据源
+            </a-button>
+            <a-button type="primary" long @click="showPreview">
+              预览表单
+            </a-button>
           </a-space>
         </div>
       </a-layout-sider>
@@ -43,14 +45,16 @@
             class="panel-tab"
             :class="{ active: activeTab === 0 }"
             @click="activeTab = 0"
-            >表单配置</div
           >
+            表单配置
+          </div>
           <div
             class="panel-tab"
             :class="{ active: activeTab !== 0 }"
             @click="activeTab = 1"
-            >控件配置</div
           >
+            控件配置
+          </div>
         </div>
         <div class="p-4">
           <config-panel-form
@@ -72,115 +76,40 @@
       <s-form :ast="ast" />
     </a-modal>
 
-    <a-modal v-model:visible="dataSourcesEditorVisible" fullscreen>
+    <a-modal v-model:visible="dataSourceEditorVisible">
       <template #title>数据源编辑</template>
+      <data-src-editor v-model:config="ast.dataSources" />
     </a-modal>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, provide, computed } from 'vue'
+import { ref } from 'vue'
 import Draggable from 'vuedraggable'
-import { cloneDeep } from 'lodash'
-import { useClipboard } from '@vueuse/core'
-import { generateUID } from '@/utils'
 import SForm from '../s-form/index.vue'
-import { fields } from './use-draggable-data'
-import { findWidgetWithUID } from './utils'
+import { fields, useWidgetActions } from './use-widgets'
 import WidgetForm from './widget-form.vue'
 import ConfigPanelForm from './config-panel-form.vue'
 import ConfigPanelWidget from './config-panel-widget.vue'
-import {
-  // imported type used in template incorrectly throws warning
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  WidgetsConfig,
-  AST,
-  FormDesignerContext,
-  contextSymbol,
-} from './types'
-
-const ast = ref<AST>({
-  formConfig: {
-    labelAlign: 'right',
-    layout: 'vertical',
-    size: 'medium',
-  },
-  dataSources: [],
-  widgetsConfig: [],
-})
-
-const source = computed(() => JSON.stringify(ast.value))
-
-const { copy, copied } = useClipboard({
-  source,
-})
+import DataSrcEditor from './data-source-editor.vue'
+import { useFormDesigner, useFormDesignerActions } from './use-form-designer'
+// imported type used in template incorrectly throws warning
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { WidgetsConfig } from './types'
 
 const activeTab = ref(0)
 
-const previewVisible = ref(false)
-const dataSourcesEditorVisible = ref(false)
+const { ast } = useFormDesigner()
+const {
+  copied,
+  copy,
+  dataSourceEditorVisible,
+  previewVisible,
+  showDataSourceEditor,
+  showPreview,
+} = useFormDesignerActions(ast)
 
-const cloneWidgetConfigFromRaw = (config: WidgetsConfig) => {
-  const uid = generateUID()
-  config.uid = uid
-  return cloneDeep(config)
-}
-
-const removeWidget = (idx: number, uid: string) => {
-  console.log(`delete ${idx} element with uid ${uid}`)
-  if (ast.value.widgetsConfig[idx].uid === uid) {
-    ast.value.widgetsConfig.splice(idx, 1)
-  } else {
-    for (let i = 0; i < ast.value.widgetsConfig.length; i++) {
-      const widget = ast.value.widgetsConfig[i]
-      if (widget.type === 'grid' && widget.cols.length > 0) {
-        for (let j = 0; j < widget.cols.length; j++) {
-          const subWidgets = widget.cols[j].widgets
-          for (let k = 0; k < widget.cols[j].widgets.length; k++) {
-            if (subWidgets[k].uid === uid) {
-              subWidgets.splice(k, 1)
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-const duplicateWidget = (idx: number) => {
-  const newWidgetConfig = { ...ast.value.widgetsConfig[idx] }
-  ast.value.widgetsConfig.splice(idx, 0, newWidgetConfig)
-}
-
-const addWidget = (widget: WidgetsConfig, idx?: number) => {
-  if (!idx) {
-    ast.value.widgetsConfig.push(widget)
-  } else {
-    ast.value.widgetsConfig.splice(idx, 0, widget)
-  }
-}
-
-const selectedUID = ref<string>('')
-const selectedWidget = computed(() =>
-  findWidgetWithUID(ast.value.widgetsConfig, selectedUID.value)
-)
-
-const setSelectedUID = (uid: string) => {
-  selectedUID.value = uid
-}
-
-const showPreview = () => {
-  previewVisible.value = true
-}
-
-provide<FormDesignerContext>(contextSymbol, {
-  selectedUID,
-  setSelectedUID,
-  addWidget,
-  removeWidget,
-  duplicateWidget,
-  ast,
-})
+const { selectedWidget, cloneWidgetConfigFromRaw } = useWidgetActions(ast)
 </script>
 
 <style lang="scss" scoped>
