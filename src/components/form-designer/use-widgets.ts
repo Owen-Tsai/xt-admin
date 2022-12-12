@@ -132,6 +132,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       defaultChecked: false,
       disabled: false,
       direction: 'horizontal',
+      optionsType: 'fixed',
       indeterminate: false,
       options: [
         { label: '选项1', value: 0 },

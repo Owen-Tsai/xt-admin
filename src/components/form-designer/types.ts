@@ -153,6 +153,7 @@ export interface IOptCheckbox {
   value?: string | number
   indeterminate?: boolean
   defaultChecked?: boolean
+  optionsType: DataSourceType
   optionsUrl?: string
   options?: Array<{
     label?: string

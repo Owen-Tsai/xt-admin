@@ -44,6 +44,20 @@
             {{ item.label }}
           </a-checkbox>
         </template>
+        <template v-if="widget.config.optionsType === 'fixed'">
+          <a-option
+            v-for="(opt, i) in widget.config.options"
+            :key="i"
+            :value="opt.value"
+          >
+            {{ opt.label }}
+          </a-option>
+        </template>
+        <template v-else>
+          <a-option v-for="(opt, i) in remoteData" :key="i" :value="opt.value">
+            {{ opt.label }}
+          </a-option>
+        </template>
       </a-checkbox-group>
     </template>
     <template v-if="widget.type === 'select'">
@@ -86,6 +100,20 @@
         >
           {{ item.label }}
         </a-radio>
+        <template v-if="widget.config.optionsType === 'fixed'">
+          <a-option
+            v-for="(opt, i) in widget.config.options"
+            :key="i"
+            :value="opt.value"
+          >
+            {{ opt.label }}
+          </a-option>
+        </template>
+        <template v-else>
+          <a-option v-for="(opt, i) in remoteData" :key="i" :value="opt.value">
+            {{ opt.label }}
+          </a-option>
+        </template>
       </a-radio-group>
     </template>
     <template v-if="widget.type === 'slider'">
