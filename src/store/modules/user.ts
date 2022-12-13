@@ -4,15 +4,14 @@ import {
   logout as doLogout,
   LoginData,
   getUserInfo,
-  // getUserInfo
 } from '@/api/user'
-import { clearToken, isAuthed, setToken } from '@/utils/auth'
+import { clearToken, setToken } from '@/utils/auth'
 import { removeListener } from '@/utils/route-listener'
-import { UserRole } from '@config'
-import useMenuStore from './menu'
+import useMenuStore from '@/store/modules/menu'
+import type { UserRole } from '@config'
 
 export interface UserState {
-  realname?: string
+  name?: string
   dept?: string
   role: UserRole
   avatar?: string
@@ -22,7 +21,7 @@ export interface UserState {
 
 const useUserStore = defineStore('user', {
   state: (): UserState => ({
-    realname: undefined,
+    name: undefined,
     dept: undefined,
     role: '',
     avatar: undefined,
@@ -44,11 +43,8 @@ const useUserStore = defineStore('user', {
       this.$reset()
     },
     async info() {
-      // console.log(isAuthed());
-      if (isAuthed()) {
-        const res = await getUserInfo()
-        this.setInfo(res.data.userInfo)
-      }
+      const res = await getUserInfo()
+      this.setInfo(res.data)
     },
     async login(data: LoginData) {
       try {

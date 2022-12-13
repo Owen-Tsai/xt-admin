@@ -18,14 +18,14 @@
 import { ref, PropType } from 'vue'
 import { Cell } from '@antv/x6'
 
-defineProps({
+const props = defineProps({
   cell: {
     type: Object as PropType<Cell | null>,
     required: true,
   },
 })
 
-defineEmits(['update:cell'])
+const emit = defineEmits(['update:cell'])
 
 const data = ref({})
 </script>
