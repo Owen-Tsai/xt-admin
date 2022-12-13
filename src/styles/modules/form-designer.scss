@@ -17,7 +17,7 @@
     @apply outline outline-2 outline-blue-400;
   }
 
-  .widget-wrapper {
+  .widget-wrapper:not(.grid-nested-wrapper) {
     @apply px-2 #{!important};
   }
 }
