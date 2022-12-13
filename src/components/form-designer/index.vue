@@ -39,7 +39,7 @@
         <!-- insert widget-form -->
         <widget-form v-model:ast="ast" />
       </a-layout-content>
-      <a-layout-sider :width="240" data-simplebar>
+      <a-layout-sider :width="240">
         <div class="flex">
           <div
             class="panel-tab"
@@ -56,18 +56,18 @@
             控件配置
           </div>
         </div>
-        <div class="p-4">
+        <a-scrollbar class="p-4 pb-16 overflow-auto">
           <config-panel-form
             v-show="activeTab === 0"
             :config="ast.formConfig"
           />
           <div v-show="activeTab !== 0">
             <config-panel-widget
-              v-if="selectedWidget"
+              v-if="selectedWidget !== undefined"
               v-model:widget-config="selectedWidget"
             />
           </div>
-        </div>
+        </a-scrollbar>
       </a-layout-sider>
     </a-layout>
 
@@ -125,5 +125,12 @@ const { selectedWidget, cloneWidgetConfigFromRaw } = useWidgetActions(ast)
   &.active {
     @apply bg-white text-blue-500;
   }
+}
+:deep(.arco-layout-sider-children) {
+  @apply overflow-hidden;
+}
+:deep(.arco-scrollbar),
+:deep(.arco-scrollbar-container) {
+  height: 100%;
 }
 </style>
