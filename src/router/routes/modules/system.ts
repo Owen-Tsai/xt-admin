@@ -21,15 +21,6 @@ const systemRoutes: AppRouteRecordRaw = {
         requireAuth: true,
       },
     },
-    {
-      path: 'department-management',
-      name: 'department-management',
-      component: () => import('@/views/system/department-management/index.vue'),
-      meta: {
-        locale: 'menu.system.department-management',
-        requireAuth: true,
-      },
-    },
   ],
 }
 
