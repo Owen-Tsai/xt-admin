@@ -31,13 +31,15 @@ export default defineConfig({
     ],
     extensions: ['.ts', '.js'],
   },
-  // server: {
-  //   proxy: {
-  //     '/api': {
-  //       target: 'http://localhost:8080',
-  //       changeOrigin: true
-  //     }
-  //   },
-  //   cors: true
-  // }
+  server: {
+    proxy: {
+      '/sys': {
+        target: 'http://www.zxietong.com:82',
+        // target: 'http://localhost:8080',
+        // target: 'http://192.168.0.88',
+        changeOrigin: true,
+      },
+    },
+    cors: true,
+  },
 })

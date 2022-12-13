@@ -32,6 +32,25 @@
         </template>
       </a-input-password>
     </a-form-item>
+    <a-form-item
+      field="captcha"
+      :rules="rules.captchas"
+      validate-trigger="blur"
+      hide-label
+    >
+      <a-input v-model="loginInfo.captcha" placeholder="验证码">
+        <template #prefix>
+          <s-icon :name="EmotionHappy" :size="20" />
+        </template>
+        <template #append>
+          <img
+            :src="imgUrl"
+            style="height: 100%"
+            @click="refreshVerification()"
+          />
+        </template>
+      </a-input>
+    </a-form-item>
     <div class="flex items-center justify-between">
       <a-checkbox
         v-model="loginConfig.shouldStorePassword"
@@ -57,14 +76,14 @@
 
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
-import { UserFill, LockFill } from '@salmon-ui/icons'
+import { UserFill, LockFill, EmotionHappy } from '@salmon-ui/icons'
 import { FieldRule, Message, ValidatedError } from '@arco-design/web-vue'
 import { useStorage } from '@vueuse/core'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/store'
 import useLoading from '@/hooks/use-loading'
 import { encrypt } from '@/utils/encryption'
-import { LoginData } from '@/api/user'
+import { LoginData, randomImage } from '@/api/user'
 
 const { isLoading, setLoading } = useLoading()
 const errorMessage = ref('')
@@ -75,13 +94,14 @@ const loginForm = ref()
 const loginInfo = reactive({
   username: '',
   password: '',
+  captcha: '',
+  checkKey: Math.random() * (99999 - 10000) + 10000,
 })
 const loginConfig = useStorage('login-config', {
   shouldStorePassword: false,
   username: '',
   password: '',
 })
-
 const rules: Record<string, FieldRule> = {
   username: {
     required: true,
@@ -91,8 +111,21 @@ const rules: Record<string, FieldRule> = {
     required: true,
     message: '请填写密码',
   },
+  captchas: {
+    required: true,
+    message: '请填写验证码',
+  },
 }
-
+const imgUrl = ref()
+const refreshVerification = () => {
+  console.log(loginInfo.checkKey)
+  randomImage(loginInfo.checkKey).then((res) => {
+    // console.log(base64ImgtoFile(res.data));
+    imgUrl.value = res.data
+    // console.log(imgUrl.value);
+  })
+}
+refreshVerification()
 const onSubmit = async ({
   errors,
   values,
@@ -106,6 +139,7 @@ const onSubmit = async ({
     setLoading(true)
     try {
       await userStore.login(values as LoginData)
+      // console.log(userStore.name);
       // check for redirect
       const { redirect, ...otherParams } = router.currentRoute.value.query
       router.push({
