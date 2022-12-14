@@ -1,14 +1,14 @@
 import { provide, ref, computed, Ref } from 'vue'
 import { cloneDeep } from 'lodash'
 import { generateUID } from '@/utils'
-import { findWidgetWithUID } from './utils'
+import { getWidgetByUID, removeWidgetByUID } from './utils'
 import { AST, WidgetsConfig, FormDesignerContext, contextSymbol } from './types'
 
 // widget actions injected to widget-form-items
 export const useWidgetActions = (ast: Ref<AST>) => {
   const selectedUID = ref<string>('')
   const selectedWidget = computed(() =>
-    findWidgetWithUID(ast.value.widgetsConfig, selectedUID.value)
+    getWidgetByUID(ast.value.widgetsConfig, selectedUID.value)
   )
 
   const setSelectedUID = (uid: string) => {
@@ -22,24 +22,7 @@ export const useWidgetActions = (ast: Ref<AST>) => {
   }
 
   const removeWidget = (idx: number, uid: string) => {
-    console.log(`delete ${idx} element with uid ${uid}`)
-    if (ast.value.widgetsConfig[idx].uid === uid) {
-      ast.value.widgetsConfig.splice(idx, 1)
-    } else {
-      for (let i = 0; i < ast.value.widgetsConfig.length; i++) {
-        const widget = ast.value.widgetsConfig[i]
-        if (widget.type === 'grid' && widget.cols.length > 0) {
-          for (let j = 0; j < widget.cols.length; j++) {
-            const subWidgets = widget.cols[j].widgets
-            for (let k = 0; k < widget.cols[j].widgets.length; k++) {
-              if (subWidgets[k].uid === uid) {
-                subWidgets.splice(k, 1)
-              }
-            }
-          }
-        }
-      }
-    }
+    removeWidgetByUID(ast.value.widgetsConfig, idx, uid)
   }
 
   const duplicateWidget = (idx: number) => {
@@ -103,6 +86,25 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       gutter: 16,
       justify: 'start',
       align: 'start',
+    },
+  },
+  tab: {
+    type: 'tab',
+    name: '标签页',
+    uid: '',
+    panes: [
+      {
+        name: '标签页1',
+        widgets: [],
+      },
+      {
+        name: '标签页2',
+        widgets: [],
+      },
+    ],
+    config: {
+      type: 'line',
+      width: '100%',
     },
   },
   input: {
