@@ -20,6 +20,9 @@
           </a-col>
         </a-row>
       </template>
+      <template v-else-if="item.type === 'tab'">
+        <!-- TODO: tab -->
+      </template>
       <template v-else>
         <form-preview-item :widget="item" />
       </template>

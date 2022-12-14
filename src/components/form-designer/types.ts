@@ -183,6 +183,12 @@ export interface IOptGrid {
   align: 'start' | 'center' | 'end' | 'stretch'
 }
 
+export type IOptTab = {
+  width?: string
+  type: 'line' | 'card' | 'card-gutter' | 'text' | 'rounded' | 'capsule'
+  size?: 'mini' | 'small' | 'medium' | 'large'
+}
+
 export interface IOptCascader {
   required?: boolean
   label?: string
@@ -236,6 +242,11 @@ export type IConfigCol = {
   widgets: Exclude<WidgetsConfig, IConfigGrid>[]
 }
 
+export type IConfigTabPane = {
+  name: string
+  widgets: Exclude<WidgetsConfig, IConfigTab>[]
+}
+
 export interface IOptUpload {
   required?: boolean
   label: string
@@ -271,6 +282,14 @@ export type IConfigGrid = {
   uid: string
   config: IOptGrid
   cols: Array<IConfigCol>
+}
+
+export type IConfigTab = {
+  type: 'tab'
+  name: string
+  uid: string
+  config: IOptTab
+  panes: Array<IConfigTabPane>
 }
 
 export type IConfigInput = {
@@ -407,6 +426,7 @@ export type WidgetsConfig =
   | IConfigInput
   | IConfigSelect
   | IConfigGrid
+  | IConfigTab
   | IConfigRadio
   | IConfigSlider
   | IConfigSwitch
@@ -418,6 +438,10 @@ export type WidgetsConfig =
   | IConfigUpload
   | IConfigInputNumber
   | IConfigCheckbox
+
+export type AllowedNestedWidget =
+  | Exclude<WidgetsConfig, IConfigGrid>
+  | Exclude<WidgetsConfig, IConfigTab>
 
 export type AST = {
   formConfig: FormConfig

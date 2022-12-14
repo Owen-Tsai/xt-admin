@@ -1,5 +1,6 @@
 <template>
   <a-form-item
+    v-if="widget.type !== 'grid' && widget.type !== 'tab'"
     :label="widget.config.label || widget.name"
     class="group widget-wrapper bg-white z-50"
     :class="{ 'is-selected': isSelected }"
@@ -24,7 +25,7 @@
         :allow-clear="widget.config.allowClear"
         :allow-create="widget.config.allowCreate"
         :allow-search="widget.config.allowSearch"
-        :multiple="widget.config.limit !== undefined && widget.config.limit > 0"
+        :multiple="!!widget.config.limit && widget.config.limit > 0"
         :limit="widget.config.limit"
         :placeholder="widget.config.placeholder"
       >
@@ -166,9 +167,6 @@
         :limit="widget.config.limit"
       />
     </template>
-    <template v-if="(widget as any).type === 'grid'">
-      <div class="text-red-500 font-bold">栅格布局不可嵌套，请移除此控件</div>
-    </template>
 
     <!-- drag handler -->
     <button
@@ -191,21 +189,20 @@
 <script lang="ts" setup>
 import { PropType, inject, computed } from 'vue'
 import { DragMove, DeleteBinFill } from '@salmon-ui/icons'
-import {
-  WidgetsConfig,
-  IConfigGrid,
-  FormDesignerContext,
-  contextSymbol,
-} from './types'
+import { WidgetsConfig, FormDesignerContext, contextSymbol } from './types'
 
 const props = defineProps({
   widget: {
-    type: Object as PropType<Exclude<WidgetsConfig, IConfigGrid>>,
+    type: Object as PropType<WidgetsConfig>,
     required: true,
   },
   index: {
     type: Number,
     required: true,
+  },
+  parentType: {
+    type: String,
+    default: undefined,
   },
 })
 
@@ -226,5 +223,9 @@ const onWidgetSelect = () => {
 }
 .arco-picker {
   width: 100%;
+}
+.nested-widget-list {
+  min-height: 32px;
+  align-self: stretch;
 }
 </style>
