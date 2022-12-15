@@ -73,9 +73,9 @@ export interface IOptRadio {
 export interface IOptSwitch {
   width?: string
   size?: 'small' | 'medium'
-  checkedValue?: string
+  checkedValue?: boolean
   required?: boolean
-  uncheckedValue?: string
+  uncheckedValue?: boolean
   defaultChecked?: boolean
   defaultValue?: boolean
   type?: 'circle' | 'round' | 'line'
