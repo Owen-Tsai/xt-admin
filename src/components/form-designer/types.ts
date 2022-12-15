@@ -139,7 +139,7 @@ export interface IOptInputNumber {
   min?: number
   size?: 'mini' | 'small' | 'medium' | 'large'
   error?: boolean
-  step?: boolean
+  step?: number
 }
 
 export interface IOptCheckbox {
@@ -147,7 +147,7 @@ export interface IOptCheckbox {
   max?: number
   label?: string
   required?: boolean
-  defaultValue?: string | number | boolean
+  defaultValue?: string
   disabled?: boolean
   direction?: 'vertical' | 'horizontal'
   value?: string | number

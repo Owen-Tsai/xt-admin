@@ -12,16 +12,14 @@
   <a-form-item label="默认值">
     <a-input-number v-model="config.config.defaultValue" allow-clear />
   </a-form-item>
-  <a-form-item label="提示数字">
-    <a-input v-model="config.config.placeholder" class="mt-2" />
+  <a-form-item label="提示文字">
+    <a-input v-model="config.config.placeholder" />
   </a-form-item>
-  <a-form-item label="大小">
-    <a-select v-model="config.config.size">
-      <a-option value="mini">最小</a-option>
-      <a-option value="small">小</a-option>
-      <a-option value="medium">中</a-option>
-      <a-option value="large">大</a-option>
-    </a-select>
+  <a-form-item label="精度">
+    <a-input-number v-model="config.config.precision" />
+  </a-form-item>
+  <a-form-item label="步长">
+    <a-input-number v-model="config.config.step" />
   </a-form-item>
   <div class="boolean-config mt-4">
     <span class="label">是否禁用</span>
@@ -36,12 +34,8 @@
     <a-switch v-model="config.config.readonly" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否清除输入框</span>
+    <span class="label">允许清除</span>
     <a-switch v-model="config.config.allowClear" />
-  </div>
-  <div class="boolean-config my-4">
-    <span class="label">是否为错误状态</span>
-    <a-switch v-model="config.config.error" />
   </div>
   <a-form-item label="自定义校验规则">
     <a-textarea
