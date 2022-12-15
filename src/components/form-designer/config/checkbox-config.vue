@@ -9,26 +9,28 @@
       allow-clear
     />
   </a-form-item>
-  <div class="mb-4">
+  <div>
     <span class="label">可选值</span>
-    <a-tabs>
+    <a-tabs type="line" size="mini">
       <a-tab-pane key="fixed" title="固定值">
-        <div v-for="(item, i) in config.config.options" :key="i">
-          <div class="mt-2 flex items-center gap-2">
-            <a-input v-model="item.label" class="w-1/3" />
-            <a-input-number v-model="item.value" class="w-1/3" />
-            <a-button status="danger" class="flex-shrink-0" @click="remove(i)">
-              <template #icon>
-                <icon-minus />
-              </template>
-            </a-button>
-          </div>
+        <div
+          v-for="(item, i) in config.config.options"
+          :key="i"
+          class="flex items-center gap-2 mt-2 first:mt-0"
+        >
+          <a-input v-model="item.label" class="!w-24" />
+          <a-input-number v-model="item.value" class="!w-16" />
+          <a-button status="danger" @click="remove(i)">
+            <template #icon>
+              <icon-minus />
+            </template>
+          </a-button>
         </div>
-        <a-button long class="mt-2" @click="add">
+        <a-button long class="mt-2" type="outline" @click="add">
           <template #icon>
             <icon-plus />
           </template>
-          增加列
+          增加一个选项
         </a-button>
       </a-tab-pane>
       <a-tab-pane key="remote" title="从接口获取">
@@ -55,13 +57,16 @@
     <span class="label">是否必填</span>
     <a-switch v-model="config.config.required" />
   </div>
-  <div class="boolean-config mt-4">
-    <span class="label">是否为半选状态</span>
-    <a-switch v-model="config.config.indeterminate" />
+  <div class="mt-4">
+    <span class="label">默认值</span>
+    <a-input v-model="config.config.defaultValue" />
   </div>
-  <div class="boolean-config my-4">
-    <span class="label">是否为选中状态</span>
-    <a-switch v-model="config.config.defaultChecked" />
+  <div class="mt-4">
+    <span class="label">可选数量</span>
+    <a-input-number
+      v-model="config.config.max"
+      :max="config.config.options?.length"
+    />
   </div>
   <a-form-item label="自定义校验规则">
     <a-textarea
