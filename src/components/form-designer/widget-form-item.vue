@@ -28,6 +28,7 @@
         :multiple="!!widget.config.limit && widget.config.limit > 0"
         :limit="widget.config.limit"
         :placeholder="widget.config.placeholder"
+        :style="{ width: widget.config.width }"
       >
         <a-option
           v-for="(opt, i) in widget.config.options"
@@ -43,6 +44,7 @@
         :direction="widget.config.direction"
         :type="widget.config.type"
         :disabled="widget.config.disabled"
+        :style="{ width: widget.config.width }"
       >
         <a-radio
           v-for="(item, i) in widget.config.options"
@@ -76,7 +78,10 @@
         :readonly="widget.config.readonly"
         :disabled="widget.config.disabled"
         :error="widget.config.error"
+        :style="{ width: widget.config.width }"
         :size="widget.config.size"
+        :step="widget.config.step"
+        :precision="widget.config.precision"
       />
     </template>
     <template v-if="widget.type === 'checkbox'">
@@ -85,6 +90,9 @@
         :direction="widget.config.direction"
         :indeterminate="widget.config.indeterminate"
         :defaultchecked="widget.config.defaultChecked"
+        :style="{ width: widget.config.width }"
+        :defaultvalue="widget.config.defaultValue"
+        :max="widget.config.max"
       >
         <template v-for="(item, i) in widget.config.options" :key="i">
           <a-checkbox :value="item.value">

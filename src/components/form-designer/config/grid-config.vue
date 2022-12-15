@@ -1,8 +1,5 @@
 <template>
   <div class="mb-6">
-    <a-form-item label="字段名称">
-      <a-input v-model="config.name" allow-clear />
-    </a-form-item>
     <a-form-item label="宽度">
       <a-input v-model="config.config.width" allow-clear />
     </a-form-item>
