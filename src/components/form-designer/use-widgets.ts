@@ -218,7 +218,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       showTicks: false,
       showInput: false,
       range: false,
-      width: '200px',
+      width: '100%',
     },
   },
   switch: {
