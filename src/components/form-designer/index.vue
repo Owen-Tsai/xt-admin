@@ -40,34 +40,38 @@
         <widget-form v-model:ast="ast" />
       </a-layout-content>
       <a-layout-sider :width="240">
-        <div class="flex">
-          <div
-            class="panel-tab"
-            :class="{ active: activeTab === 0 }"
-            @click="activeTab = 0"
-          >
-            表单配置
+        <div class="h-full">
+          <div class="flex">
+            <div
+              class="panel-tab"
+              :class="{ active: activeTab === 0 }"
+              @click="activeTab = 0"
+            >
+              表单配置
+            </div>
+            <div
+              class="panel-tab"
+              :class="{ active: activeTab !== 0 }"
+              @click="activeTab = 1"
+            >
+              控件配置
+            </div>
           </div>
-          <div
-            class="panel-tab"
-            :class="{ active: activeTab !== 0 }"
-            @click="activeTab = 1"
-          >
-            控件配置
-          </div>
+          <a-scrollbar class="h-full overflow-auto">
+            <div class="p-4 pb-16">
+              <config-panel-form
+                v-show="activeTab === 0"
+                :config="ast.formConfig"
+              />
+              <div v-show="activeTab !== 0">
+                <config-panel-widget
+                  v-if="selectedWidget !== undefined"
+                  v-model:widget-config="selectedWidget"
+                />
+              </div>
+            </div>
+          </a-scrollbar>
         </div>
-        <a-scrollbar class="p-4 pb-16 overflow-auto">
-          <config-panel-form
-            v-show="activeTab === 0"
-            :config="ast.formConfig"
-          />
-          <div v-show="activeTab !== 0">
-            <config-panel-widget
-              v-if="selectedWidget !== undefined"
-              v-model:widget-config="selectedWidget"
-            />
-          </div>
-        </a-scrollbar>
       </a-layout-sider>
     </a-layout>
 
@@ -97,7 +101,7 @@ import { useFormDesigner, useFormDesignerActions } from './use-form-designer'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { WidgetsConfig } from './types'
 
-const activeTab = ref(0)
+const activeTab = ref(1)
 
 const { ast } = useFormDesigner()
 const {
