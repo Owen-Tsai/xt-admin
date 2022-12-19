@@ -1,6 +1,6 @@
 <template>
-  <div class="x6-widget-stencil-group">
-    <div class="x6-widget-stencil-group-title">节点配置</div>
+  <div class="p-4">
+    <div class="font-bold">节点配置</div>
     <div class="p-3">
       <div v-if="cell === null" class="text-center text-gray-500 pt-6">
         选择1个节点进行配置

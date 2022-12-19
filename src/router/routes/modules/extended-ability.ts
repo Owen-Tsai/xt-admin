@@ -25,11 +25,12 @@ const exAbilityRoutes: AppRouteRecordRaw = {
     },
     {
       path: 'flow-designer',
-      name: 'flow-designer',
-      component: () => import('@/views/system/flow-designer/index.vue'),
+      name: 'extended.flow-designer',
+      component: () => import('@/views/extended/flow-designer/index.vue'),
       meta: {
         locale: 'menu.system.flow-designer',
         requireAuth: true,
+        openInNewWindow: true,
       },
     },
   ],

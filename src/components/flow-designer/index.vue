@@ -1,5 +1,30 @@
 <template>
-  <div class="flex flow-designer-wrapper">
+  <div>
+    <a-layout class="h-full">
+      <a-layout-sider :width="240">
+        <div class="m-4">
+          <div class="font-bold">组件</div>
+          <div ref="stencilEl" class="stencil-container" />
+          <!-- <div class="px-4">
+            <a-divider />
+            <a-space class="w-full" direction="vertical">
+              <a-button long type="outline">复制 AST 源码</a-button>
+              <a-button long type="primary">保存流程</a-button>
+            </a-space>
+          </div> -->
+        </div>
+      </a-layout-sider>
+      <a-layout-content class="p-4 bg-gray-50">
+        <div class="h-full w-full bg-white">
+          <div id="canvas" ref="canvas" />
+        </div>
+      </a-layout-content>
+      <a-layout-sider :width="240">
+        <config-panel :cell="(selectedCell as Cell | null)" />
+      </a-layout-sider>
+    </a-layout>
+  </div>
+  <!-- <div class="flex flow-designer-wrapper">
     <div class="w-52 flex-shrink-0 flex flex-col border-r">
       <div ref="stencilEl" class="relative" />
       <div class="px-4">
@@ -14,7 +39,7 @@
     <div ref="configPanelEl" class="w-52 flex-shrink-0 border-l">
       <config-panel :cell="(selectedCell as Cell | null)" />
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script lang="ts" setup>
@@ -54,8 +79,8 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-#canvas {
-  height: calc(100vh - 140px);
-  @apply flex-grow;
+.stencil-container {
+  @apply relative h-full;
+  min-height: 300px;
 }
 </style>
