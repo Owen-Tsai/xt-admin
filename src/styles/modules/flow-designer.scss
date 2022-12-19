@@ -1,18 +1,24 @@
-.flow-designer-wrapper {
-  $s: '.x6-widget-stencil';
+$ns: '.x6-widget';
 
-  #{$s} {
-    @apply bg-white h-full relative;
+// selection box around single node
+#{$ns}-selection-box {
+  @apply border border-dashed;
+}
+
+// selection box of the whole group
+#{$ns}-selection-inner {
+  @apply border;
+}
+
+// stencil
+#{$ns}-stencil {
+  &-title {
+    @apply hidden;
   }
-  #{$s}-group {
-    &-title {
-      @apply bg-gray-50 border border-r-0 border-l-0 text-gray-700 hover:text-gray-700 text-center;
-    }
+  &-content {
+    @apply bg-white;
   }
-  #{$s}-content {
-    @apply h-full relative;
-  }
-  #{$s}-title {
+  &-group-title {
     @apply hidden;
   }
 }
