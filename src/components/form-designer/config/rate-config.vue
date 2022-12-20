@@ -5,6 +5,9 @@
   <a-form-item label="分数上限">
     <a-input-number v-model="config.config.count" />
   </a-form-item>
+  <a-form-item label="自定义颜色">
+    <a-input v-model="config.config.color" allow-clear />
+  </a-form-item>
   <div class="boolean-config">
     <span class="label">允许半选</span>
     <a-switch v-model="config.config.allowHalf" />
