@@ -2,26 +2,15 @@
   <a-form-item label="字段名称">
     <a-input v-model="config.config.label" allow-clear />
   </a-form-item>
-  <a-form-item label="宽度">
-    <a-input
-      v-model="config.config.width"
-      placeholder="输入含单位(%/px)的数值"
-      allow-clear
-    />
-  </a-form-item>
-  <a-form-item label="评分的总数">
+  <a-form-item label="分数上限">
     <a-input-number v-model="config.config.count" />
   </a-form-item>
   <div class="boolean-config">
-    <span class="label">是否允许半选</span>
+    <span class="label">允许半选</span>
     <a-switch v-model="config.config.allowHalf" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否开启笑脸分级</span>
-    <a-switch v-model="config.config.grading" />
-  </div>
-  <div class="boolean-config mt-4">
-    <span class="label">是否为只读</span>
+    <span class="label">是否只读</span>
     <a-switch v-model="config.config.readonly" />
   </div>
   <div class="boolean-config my-4">
