@@ -17,11 +17,11 @@
     <a-switch v-model="config.config.disabled" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否显示刻度线</span>
+    <span class="label">显示刻度线</span>
     <a-switch v-model="config.config.showTicks" />
   </div>
   <div class="boolean-config my-4">
-    <span class="label">是否开启范围选择</span>
+    <span class="label">允许选择范围</span>
     <a-switch v-model="config.config.range" />
   </div>
   <a-form-item label="自定义校验规则">

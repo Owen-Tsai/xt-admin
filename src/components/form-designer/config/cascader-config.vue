@@ -9,34 +9,27 @@
       allow-clear
     />
   </a-form-item>
-  <a-form-item label="展开下一级的触发方式">
-    <a-select v-model="config.config.expandTrigger">
-      <a-option value="click">点击</a-option>
-      <a-option value="hover">悬浮</a-option>
-    </a-select>
+  <a-form-item label="默认值">
+    <a-input v-model="config.config.placeholder" />
   </a-form-item>
-  <div>
-    <span>默认内容</span>
-    <a-input v-model="config.config.placeholder" class="mt-2" />
-  </div>
   <div class="boolean-config mt-4">
     <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否允许搜索</span>
+    <span class="label">允许搜索</span>
     <a-switch v-model="config.config.allowSearch" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否允许清除</span>
+    <span class="label">允许清除</span>
     <a-switch v-model="config.config.allowClear" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否为多选状态</span>
+    <span class="label">允许多选</span>
     <a-switch v-model="config.config.multiple" />
   </div>
   <div class="boolean-config my-4">
-    <span class="label">是否开启严格选择模式</span>
+    <span class="label">严格选择模式</span>
     <a-switch v-model="config.config.checkStrictly" />
   </div>
   <a-form-item label="自定义校验规则">

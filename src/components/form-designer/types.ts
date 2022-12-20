@@ -33,7 +33,16 @@ export interface IOptInput {
   defaultValue?: string
   placeholder?: string
 }
-
+export interface IOptInputTag {
+  required?: boolean
+  label?: string
+  width?: string
+  disabled?: boolean
+  readonly?: boolean
+  allowClear?: boolean
+  maxTagCount?: number
+  defaultValue?: (string | number)[]
+}
 export interface IOptSelect {
   required?: boolean
   disabled?: boolean
@@ -73,9 +82,9 @@ export interface IOptRadio {
 export interface IOptSwitch {
   width?: string
   size?: 'small' | 'medium'
-  checkedValue?: string
+  checkedValue?: boolean
   required?: boolean
-  uncheckedValue?: string
+  uncheckedValue?: boolean
   defaultChecked?: boolean
   defaultValue?: boolean
   type?: 'circle' | 'round' | 'line'
@@ -121,7 +130,7 @@ export interface IOptRate {
   grading?: boolean
   readonly?: boolean
   disabled?: boolean
-  color?: string | Record<string, string>
+  color?: string
   width?: string
 }
 
@@ -301,6 +310,15 @@ export type IConfigInput = {
     trigger?: InputEvent | InputEvent[]
   }
 }
+export type IConfigInputTag = {
+  type: 'inputTag'
+  name: string
+  uid: string
+  config: IOptInputTag & {
+    rules?: string
+    trigger?: InputEvent | InputEvent[]
+  }
+}
 
 export type IConfigSelect = {
   type: 'select'
@@ -438,6 +456,7 @@ export type WidgetsConfig =
   | IConfigUpload
   | IConfigInputNumber
   | IConfigCheckbox
+  | IConfigInputTag
 
 export type AllowedNestedWidget =
   | Exclude<WidgetsConfig, IConfigGrid>

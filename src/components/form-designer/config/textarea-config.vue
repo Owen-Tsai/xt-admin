@@ -9,29 +9,29 @@
       allow-clear
     />
   </a-form-item>
-  <a-form-item label="提示内容">
+  <a-form-item label="提示文字">
     <a-input v-model="config.config.placeholder" allow-clear />
   </a-form-item>
-  <a-form-item label="最大数字">
+  <a-form-item label="输入长度限制">
     <a-input-number v-model="config.config.maxLength" allow-clear />
   </a-form-item>
-  <a-form-item label="内容">
-    <a-textarea :model-value="config.config.value" class="mt-2" />
+  <a-form-item label="默认值">
+    <a-textarea :model-value="config.config.value" />
   </a-form-item>
   <div class="boolean-config mt-4">
     <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否显示字数统计</span>
+    <span class="label">是否显示输入计数</span>
     <a-switch v-model="config.config.showWordLimit" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否允许清空文本域</span>
+    <span class="label">允许清除</span>
     <a-switch v-model="config.config.allowClear" />
   </div>
   <div class="boolean-config my-4">
-    <span class="label">是否让文本框自适应内容高度</span>
+    <span class="label">自适应高度</span>
     <a-switch v-model="config.config.autoSize" />
   </div>
   <a-form-item label="自定义校验规则">

@@ -159,6 +159,15 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       size: 'medium',
     },
   },
+  inputTag: {
+    type: 'inputTag',
+    name: '标签输入框',
+    uid: '',
+    config: {
+      label: '标签输入框',
+      width: '100%',
+    },
+  },
   select: {
     type: 'select',
     name: '下拉选择器',
@@ -218,7 +227,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       showTicks: false,
       showInput: false,
       range: false,
-      width: '200px',
+      width: '100%',
     },
   },
   switch: {
@@ -307,8 +316,8 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     uid: '',
     config: {
       label: '评分',
-      width: '100%',
       count: 5,
+      color: 'orange',
       allowHalf: false,
       grading: false,
       readonly: false,
