@@ -5,13 +5,15 @@
         <div class="m-4">
           <div class="font-bold">组件</div>
           <div ref="stencilEl" class="stencil-container" />
-          <!-- <div class="px-4">
+          <div>
             <a-divider />
             <a-space class="w-full" direction="vertical">
-              <a-button long type="outline">复制 AST 源码</a-button>
+              <a-button long type="outline" :disabled="copied" @click="copy()">
+                {{ copied ? '已复制' : '复制 AST 源码' }}
+              </a-button>
               <a-button long type="primary">保存流程</a-button>
             </a-space>
-          </div> -->
+          </div>
         </div>
       </a-layout-sider>
       <a-layout-content class="p-4 bg-gray-50">
@@ -24,37 +26,25 @@
       </a-layout-sider>
     </a-layout>
   </div>
-  <!-- <div class="flex flow-designer-wrapper">
-    <div class="w-52 flex-shrink-0 flex flex-col border-r">
-      <div ref="stencilEl" class="relative" />
-      <div class="px-4">
-        <a-divider />
-        <a-space class="w-full" direction="vertical">
-          <a-button long type="outline">复制 AST 源码</a-button>
-          <a-button long type="primary">保存流程</a-button>
-        </a-space>
-      </div>
-    </div>
-    <div id="canvas" ref="canvas" />
-    <div ref="configPanelEl" class="w-52 flex-shrink-0 border-l">
-      <config-panel :cell="(selectedCell as Cell | null)" />
-    </div>
-  </div> -->
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { Graph, Cell } from '@antv/x6'
+import { useClipboard } from '@vueuse/core'
 import { useGraphInit } from './use-graph-data'
 import ConfigPanel from './config-panel.vue'
 
 const canvas = ref<HTMLDivElement>()
 const stencilEl = ref<HTMLDivElement>()
-const configPanelEl = ref<HTMLDivElement>()
 const graph = ref<Graph>()
 
 const ast = ref({})
 const selectedCell = ref<Cell | null>(null)
+
+const source = computed(() => JSON.stringify(graph.value?.toJSON()))
+
+const { copied, copy } = useClipboard({ source })
 
 onMounted(() => {
   graph.value = useGraphInit(
@@ -80,7 +70,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .stencil-container {
-  @apply relative h-full;
+  @apply relative h-full w-full;
   min-height: 300px;
 }
 </style>
