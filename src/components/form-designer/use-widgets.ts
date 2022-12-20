@@ -307,8 +307,8 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     uid: '',
     config: {
       label: '评分',
-      width: '100%',
       count: 5,
+      color: 'orange',
       allowHalf: false,
       grading: false,
       readonly: false,
