@@ -1,4 +1,4 @@
-import { Graph, Node } from '@antv/x6'
+import { Graph, Node, Shape } from '@antv/x6'
 import { Transform } from '@antv/x6-plugin-transform'
 import { Snapline } from '@antv/x6-plugin-snapline'
 import { Stencil } from '@antv/x6-plugin-stencil'
@@ -6,7 +6,7 @@ import { Clipboard } from '@antv/x6-plugin-clipboard'
 import { Selection } from '@antv/x6-plugin-selection'
 import { History } from '@antv/x6-plugin-history'
 import { Keyboard } from '@antv/x6-plugin-keyboard'
-import { buildingBlocks } from './blocks-config'
+import { buildingBlocks, edge } from './blocks-config'
 import type { Options } from '@antv/x6/lib/graph/options'
 
 export const defaultConfig: Options.Manual = {
@@ -37,6 +37,9 @@ export const defaultConfig: Options.Manual = {
     },
     validateConnection({ targetMagnet }) {
       return !!targetMagnet
+    },
+    createEdge() {
+      return new Shape.Edge(edge)
     },
   },
   highlighting: {
