@@ -159,6 +159,15 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       size: 'medium',
     },
   },
+  inputTag: {
+    type: 'inputTag',
+    name: '标签输入框',
+    uid: '',
+    config: {
+      label: '标签输入框',
+      width: '100%',
+    },
+  },
   select: {
     type: 'select',
     name: '下拉选择器',

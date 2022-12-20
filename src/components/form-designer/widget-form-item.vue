@@ -84,6 +84,12 @@
         :precision="widget.config.precision"
       />
     </template>
+    <template v-if="widget.type === 'inputTag'">
+      <a-input-tag
+        :style="{ width: widget.config.width }"
+        :default-value="widget.config.defaultValue"
+      />
+    </template>
     <template v-if="widget.type === 'checkbox'">
       <a-checkbox-group
         :disabled="widget.config.disabled"
@@ -146,6 +152,7 @@
     <template v-if="widget.type === 'cascader'">
       <a-cascader
         :options="widget.config.options"
+        :style="{ width: widget.config.width }"
         :placeholder="widget.config.placeholder"
         :default-value="widget.config.defaultValue"
         :disabled="widget.config.disabled"
