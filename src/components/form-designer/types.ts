@@ -130,7 +130,7 @@ export interface IOptRate {
   grading?: boolean
   readonly?: boolean
   disabled?: boolean
-  color?: string | Record<string, string>
+  color?: string
   width?: string
 }
 

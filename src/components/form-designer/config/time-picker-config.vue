@@ -15,32 +15,20 @@
       <a-option value="time-range">范围选择器</a-option>
     </a-select>
   </a-form-item>
-  <a-form-item label="按钮尺寸">
-    <a-select v-model="config.config.size">
-      <a-option value="mini">迷你</a-option>
-      <a-option value="small">小</a-option>
-      <a-option value="medium">中</a-option>
-      <a-option value="large">大</a-option>
-    </a-select>
-  </a-form-item>
   <a-form-item label="提示文案">
     <a-input v-model="config.config.placeholder" />
   </a-form-item>
-  <div class="flex justify-between items-center">
-    <span>是否禁用</span>
+  <div class="boolean-config">
+    <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否允许清除</span>
+    <span class="label">允许清除</span>
     <a-switch v-model="config.config.allowClear" />
   </div>
-  <div class="boolean-config mt-4">
-    <span class="label">是否为只读</span>
-    <a-switch v-model="config.config.readonly" />
-  </div>
   <div class="boolean-config my-4">
-    <span class="label">是否为错误状态</span>
-    <a-switch v-model="config.config.error" />
+    <span class="label">是否只读</span>
+    <a-switch v-model="config.config.readonly" />
   </div>
   <a-form-item label="自定义校验规则">
     <a-textarea

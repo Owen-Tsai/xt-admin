@@ -135,6 +135,7 @@
         :grading="widget.config.grading"
         :readonly="widget.config.readonly"
         :disabled="widget.config.disabled"
+        :color="widget.config.color"
       />
     </template>
     <template v-if="widget.type === 'time-picker'">
