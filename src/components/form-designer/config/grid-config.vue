@@ -65,7 +65,7 @@ const config = computed({
   },
 })
 const removeColFromGrid = (index: number) => {
-  ;(config.value as IConfigGrid).cols.splice(index, 1)
+  config.value.cols.splice(index, 1)
 }
 
 const addColToGrid = () => {

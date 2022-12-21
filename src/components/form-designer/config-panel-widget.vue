@@ -42,6 +42,7 @@
       v-model:widgetConfig="config"
     />
     <grid-config v-if="config.type === 'grid'" v-model:widgetConfig="config" />
+    <tab-config v-if="config.type === 'tab'" v-model:widgetConfig="config" />
     <input-config
       v-if="config.type === 'input'"
       v-model:widgetConfig="config"
@@ -73,6 +74,7 @@ import RateConfig from './config/rate-config.vue'
 import TimePickerConfig from './config/time-picker-config.vue'
 import UploadConfig from './config/upload-config.vue'
 import GridConfig from './config/grid-config.vue'
+import TabConfig from './config/tab-config.vue'
 import InputConfig from './config/input-config.vue'
 import SelectConfig from './config/select-config.vue'
 
