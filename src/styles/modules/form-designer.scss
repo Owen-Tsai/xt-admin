@@ -42,3 +42,14 @@
     }
   }
 }
+
+.arco-tabs-pane {
+  // for the selection outline box to show correctly:
+  & > .nested-widget-list {
+    padding: 2px;
+  }
+  // remove padding of the nested widgets inside nested rows:
+  & .widget-wrapper.arco-row {
+    @apply px-0 #{!important};
+  }
+}
