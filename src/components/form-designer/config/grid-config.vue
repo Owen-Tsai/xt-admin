@@ -3,8 +3,8 @@
     <a-form-item label="宽度">
       <a-input v-model="config.config.width" allow-clear />
     </a-form-item>
-    <span class="label">栅格列</span>
     <div>
+      <span class="label">栅格列</span>
       <div
         v-for="(col, i) in config.cols"
         :key="i"
@@ -17,7 +17,7 @@
           </template>
         </a-button>
       </div>
-      <a-button long class="mt-2" @click="addColToGrid">
+      <a-button long type="outline" class="mt-2" @click="addColToGrid">
         <template #icon>
           <icon-plus />
         </template>

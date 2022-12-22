@@ -13,7 +13,23 @@
         </template>
       </a-button>
     </div>
+    <a-button long type="outline" class="mt-2" @click="addPane">
+      <template #icon>
+        <icon-plus />
+      </template>
+      增加标签页
+    </a-button>
   </div>
+  <a-form-item label="标签页外观">
+    <a-select v-model="config.config.type">
+      <a-option value="line">线形</a-option>
+      <a-option value="card">卡片</a-option>
+      <a-option value="card-gutter">带有间距的卡片</a-option>
+      <a-option value="text">纯文本</a-option>
+      <a-option value="rounded">圆滑</a-option>
+      <a-option value="capsule">胶囊</a-option>
+    </a-select>
+  </a-form-item>
 </template>
 
 <script lang="ts" setup>
@@ -36,5 +52,12 @@ const config = computed({
 
 const removePaneFromTab = (idx: number) => {
   config.value.panes.splice(idx, 1)
+}
+
+const addPane = () => {
+  config.value.panes.push({
+    name: '标签页',
+    widgets: [],
+  })
 }
 </script>
