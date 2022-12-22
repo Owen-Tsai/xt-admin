@@ -205,28 +205,20 @@ export interface IOptCascader {
   label?: string
   width?: string
   placeholder?: string
-  defaultValue?:
-    | string
-    | number
-    | Record<string, any>
-    | (
-        | string
-        | number
-        | Record<string, any>
-        | (string | number | Record<string, any>)[]
-      )[]
-    | undefined
+  defaultValue?: string
   disabled?: boolean
   allowSearch?: boolean
   allowClear?: boolean
   multiple?: boolean
   checkStrictly?: boolean
   expandTrigger?: 'click' | 'hover'
-  options: Array<{
-    label?: string
-    value?: number | string
-    children?: IOptCascaderChildren[]
-  }>
+  options:
+    | Array<{
+        label?: string
+        value?: number | string
+        children?: IOptCascaderChildren[]
+      }>
+    | string
   optionsType: DataSourceType
   optionsUrl?: string
 }
