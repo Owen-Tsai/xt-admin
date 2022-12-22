@@ -154,7 +154,11 @@
     </template>
     <template v-if="widget.type === 'cascader'">
       <a-cascader
-        :options="widget.config.options"
+        :options="
+          typeof widget.config.options === 'string'
+            ? JSON.parse(widget.config.options)
+            : widget.config.options
+        "
         :style="{ width: widget.config.width }"
         :placeholder="widget.config.placeholder"
         :default-value="widget.config.defaultValue"

@@ -276,24 +276,8 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       checkStrictly: false,
       expandTrigger: 'click',
       optionsType: 'fixed',
-      options: [
-        {
-          value: 'beijing',
-          label: 'Beijing',
-          children: [
-            {
-              value: 'chaoyang',
-              label: 'ChaoYang',
-              children: [
-                {
-                  value: 'datunli',
-                  label: 'Datunli',
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      options:
+        '[{"value":"beijing","label":"Beijing","children":[{"value":"chaoyang","label":"ChaoYang","children":[{"value":"datunli","label":"Datunli"}]}]}]',
     },
   },
   datePicker: {
