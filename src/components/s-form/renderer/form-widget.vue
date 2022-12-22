@@ -223,13 +223,14 @@ import { ref, PropType, inject, nextTick } from 'vue'
 import axios from 'axios'
 import type {
   WidgetsConfig,
+  IConfigTab,
   IConfigGrid,
 } from '@/components/form-designer/types'
 import { formData } from './use-form-preview'
 
 const props = defineProps({
   widget: {
-    type: Object as PropType<Exclude<WidgetsConfig, IConfigGrid>>,
+    type: Object as PropType<Exclude<WidgetsConfig, IConfigTab | IConfigGrid>>,
     required: true,
   },
 })
@@ -239,7 +240,12 @@ const ctx = inject(formData) as any
 const remoteData = ref<any>()
 
 nextTick(() => {
-  if (props.widget.type === 'select') {
+  if (
+    props.widget.type === 'select' ||
+    props.widget.type === 'checkbox' ||
+    props.widget.type === 'radio' ||
+    props.widget.type === 'cascader'
+  ) {
     console.log(props.widget.config)
     if (
       props.widget.config.optionsType === 'remote' &&

@@ -275,6 +275,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       multiple: false,
       checkStrictly: false,
       expandTrigger: 'click',
+      optionsType: 'fixed',
       options: [
         {
           value: 'beijing',

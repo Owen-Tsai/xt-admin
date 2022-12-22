@@ -227,6 +227,8 @@ export interface IOptCascader {
     value?: number | string
     children?: IOptCascaderChildren[]
   }>
+  optionsType: DataSourceType
+  optionsUrl?: string
 }
 
 export interface IOptinTextarea {
