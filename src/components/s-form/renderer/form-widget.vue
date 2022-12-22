@@ -184,7 +184,11 @@
     <template v-if="widget.type === 'cascader'">
       <a-cascader
         v-model="ctx[widget.uid]"
-        :options="widget.config.options"
+        :options="
+          typeof widget.config.options === 'string'
+            ? JSON.parse(widget.config.options)
+            : widget.config.options
+        "
         :placeholder="widget.config.placeholder"
         :default-value="widget.config.defaultValue"
         :disabled="widget.config.disabled"
