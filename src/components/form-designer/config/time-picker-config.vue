@@ -18,6 +18,12 @@
   <a-form-item label="提示文案">
     <a-input v-model="config.config.placeholder" />
   </a-form-item>
+  <a-form-item label="格式">
+    <a-input v-model="config.config.format" />
+  </a-form-item>
+  <!-- <a-form-item label="步长">
+    <a-input v-model="config.config.step" />
+  </a-form-item> -->
   <div class="boolean-config">
     <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
