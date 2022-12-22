@@ -172,6 +172,8 @@ export interface IOptTimePicker {
   error?: boolean
   size?: 'mini' | 'small' | 'medium' | 'large'
   placeholder?: string
+  format?: string
+  step?: { hour?: number; minute?: number; second?: number }
   width?: string
   style?: string
 }

@@ -150,8 +150,8 @@
         :allow-clear="widget.config.allowClear"
         :readonly="widget.config.readonly"
         :error="widget.config.error"
-        :size="widget.config.size"
         :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
         :style="{ width: widget.config.width }"
       />
     </template>
@@ -176,6 +176,8 @@
         :error="widget.config.error"
         :size="widget.config.size"
         :placeholder="widget.config.placeholder"
+        :format="widget.config.format"
+        :step="widget.config.step"
         :style="{ width: widget.config.width }"
       />
     </template>

@@ -296,7 +296,6 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       allowClear: true,
       readonly: false,
       error: false,
-      size: 'medium',
       disabled: false,
       showTime: false,
     },
@@ -329,6 +328,12 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       error: false,
       size: 'medium',
       placeholder: '',
+      format: 'HH:mm:ss',
+      step: {
+        hour: 1,
+        minute: 1,
+        second: 1,
+      },
     },
   },
   upload: {
