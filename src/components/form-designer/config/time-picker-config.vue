@@ -21,9 +21,20 @@
   <a-form-item label="格式">
     <a-input v-model="config.config.format" />
   </a-form-item>
-  <!-- <a-form-item label="步长">
-    <a-input v-model="config.config.step" />
-  </a-form-item> -->
+  <a-form-item label="步长" class="step">
+    <div class="flex items-center">
+      <span>时：</span>
+      <a-input-number v-model="config.config.step.hour" :min="1" :max="23" />
+    </div>
+    <div class="flex items-center mt-2">
+      <span>分：</span>
+      <a-input-number v-model="config.config.step.minute" :min="1" :max="60" />
+    </div>
+    <div class="flex items-center mt-2">
+      <span>秒：</span>
+      <a-input-number v-model="config.config.step.second" :min="1" :max="60" />
+    </div>
+  </a-form-item>
   <div class="boolean-config">
     <span class="label">是否禁用</span>
     <a-switch v-model="config.config.disabled" />
@@ -77,5 +88,9 @@ const config = computed({
 <style lang="scss" scoped>
 .arco-picker {
   width: 100%;
+}
+::v-deep .arco-form-item-content-flex {
+  display: flex;
+  flex-direction: column;
 }
 </style>
