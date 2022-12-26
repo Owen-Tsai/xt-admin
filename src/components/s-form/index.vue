@@ -6,7 +6,7 @@
     :label-align="ast.formConfig.labelAlign"
   >
     <template v-for="(item, i) in ast.widgetsConfig" :key="i">
-      <widget-renderer :widget="item" />
+      <widget-renderer v-if="item !== undefined" :widget="item" />
     </template>
   </a-form>
 </template>
