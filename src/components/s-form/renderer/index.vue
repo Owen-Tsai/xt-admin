@@ -11,7 +11,10 @@
         :key="i"
         :span="widget.cols[i].span"
       >
-        <widget-renderer :widget="col.widgets[0]" />
+        <widget-renderer
+          v-if="col.widgets.length > 0 && col.widgets[0] !== undefined"
+          :widget="col.widgets[0]"
+        />
       </a-col>
     </a-row>
   </template>
@@ -20,7 +23,10 @@
     <a-tabs :type="widget.config.type">
       <a-tab-pane v-for="(pane, i) in widget.panes" :key="i" :title="pane.name">
         <template v-for="nestedWidget in pane.widgets" :key="nestedWidget.uid">
-          <widget-renderer :widget="nestedWidget" />
+          <widget-renderer
+            v-if="nestedWidget !== undefined"
+            :widget="nestedWidget"
+          />
         </template>
       </a-tab-pane>
     </a-tabs>
