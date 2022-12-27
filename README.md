@@ -16,7 +16,7 @@ XT Admin 是前端中、后台的前端应用级框架，使用了如下的技�
 - **推荐**：[eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - **推荐**：[Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
-> **注意：**不要使用 vuter 插件，该扩展专为 Vue 2 开发，现已不再维护。官方推荐使用 Volar 代替。
+> **注意：** 不要使用 vuter 插件，该扩展专为 Vue 2 开发，现已不再维护。官方推荐使用 Volar 代替。
 
 ## 命令说明
 
@@ -30,6 +30,9 @@ npm install
 
 ```sh
 npm run dev
+
+# 如需运行服务并暴露到局域网，则使用`--host`参数：
+npm run dev -- --host
 ```
 
 检查和自动修正代码：
