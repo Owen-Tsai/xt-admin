@@ -473,8 +473,6 @@ export type AST = {
 }
 
 export type FormDesignerContext = {
-  selectedUID?: Ref<string>
-  setSelectedUID?: (uid: string) => void
   selectedWidget: Ref<WidgetsConfig | undefined>
   setSelectedWidget: (widget: WidgetsConfig) => void
   addWidget: (widget: WidgetsConfig, idx?: number) => void

@@ -1,16 +1,15 @@
-import type { WidgetsConfig } from './types'
+import type { WidgetsConfig, NormalFormWidget } from './types'
 
-// TODO: remove useless searching when already found a match
-export const getWidgetByUID = (
+export const getWidgetByKey = (
   widgets: WidgetsConfig[],
-  uid: string
+  key: string /* uid or config.name */
 ): WidgetsConfig | undefined => {
   let result: WidgetsConfig | undefined
 
   for (let i = 0; i < widgets.length; i++) {
     const widget = widgets[i]
 
-    if (widget.uid === uid) {
+    if (widget.uid === key || (widget as NormalFormWidget).config.id === key) {
       result = widget
       return result
     }
@@ -21,7 +20,7 @@ export const getWidgetByUID = (
       result === undefined
     ) {
       for (let j = 0; j < widget.cols.length; j++) {
-        result = getWidgetByUID(widget.cols[j].widgets, uid)
+        result = getWidgetByKey(widget.cols[j].widgets, key)
         if (result !== undefined) {
           return result
         }
@@ -34,7 +33,7 @@ export const getWidgetByUID = (
       result === undefined
     ) {
       for (let j = 0; j < widget.panes.length; j++) {
-        result = getWidgetByUID(widget.panes[j].widgets, uid)
+        result = getWidgetByKey(widget.panes[j].widgets, key)
         if (result !== undefined) {
           return result
         }
@@ -43,6 +42,13 @@ export const getWidgetByUID = (
   }
 
   return result
+}
+
+export const getWidgetByUID = (
+  widgets: WidgetsConfig[],
+  uid: string
+): WidgetsConfig | undefined => {
+  return getWidgetByKey(widgets, uid)
 }
 
 export const removeWidgetByUID = (

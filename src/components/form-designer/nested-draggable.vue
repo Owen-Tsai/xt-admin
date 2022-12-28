@@ -17,25 +17,25 @@
           v-if="element.type === 'grid'"
           class="widget-wrapper !mx-0 !px-2 !py-3 bg-white"
           :class="{
-            'is-selected': context?.selectedUID.value === element.uid,
+            'is-selected': isWidgetSelected(element.uid),
           }"
           :align="element.config.align"
           :justify="element.config.justify"
           :gutter="element.config.gutter"
-          @click.self="context?.setSelectedUID(element.uid)"
+          @click.self="onWidgetSelect(index)"
         >
           <a-col
             v-for="(col, i) in element.cols"
             :key="i"
             :span="col.span || 0"
             class="relative first:pl-0 last:pr-0 z-10"
-            @click="onNestedWidgetWrapperClick(element.uid, col)"
+            @click="onNestedWidgetWrapperClick(index, col)"
           >
             <div class="nested-widget-list bg-green-50">
               <nested-draggable :nested-list="col.widgets" />
             </div>
           </a-col>
-          <template v-if="context?.selectedUID.value === element.uid">
+          <template v-if="isWidgetSelected(element.uid)">
             <button
               class="widget-action-icon absolute bottom-0 right-0 z-20"
               @click="context?.removeWidget(index, element.uid)"
@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, PropType } from 'vue'
+import { ref, inject, PropType } from 'vue'
 import Draggable from 'vuedraggable'
 import { DeleteBinFill, DragMove } from '@salmon-ui/icons'
 import WidgetFormItem from './widget-form-item.vue'
@@ -68,22 +68,32 @@ import {
   contextSymbol,
 } from './types'
 
-defineProps({
+const props = defineProps({
   nestedList: {
     type: Array as PropType<WidgetsConfig[]>,
     required: true,
   },
 })
 
+const widgetsList = ref(props.nestedList)
+
 const context = inject<FormDesignerContext>(contextSymbol)
 
 const onNestedWidgetWrapperClick = (
-  uid: string,
+  index: number,
   col: IConfigCol | IConfigTabPane
 ) => {
   if (col.widgets.length === 0) {
-    context?.setSelectedUID(uid)
+    context?.setSelectedWidget(widgetsList.value[index])
   }
+}
+
+const isWidgetSelected = (uid: string) => {
+  return context?.selectedWidget.value?.uid === uid
+}
+
+const onWidgetSelect = (idx: number) => {
+  context?.setSelectedWidget(widgetsList.value[idx])
 }
 </script>
 
