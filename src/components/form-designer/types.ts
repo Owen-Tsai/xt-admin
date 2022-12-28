@@ -22,6 +22,7 @@ export interface DataSourceConfig {
 export type DataSourceType = 'fixed' | 'remote'
 
 export interface IOptInput {
+  id?: string
   required?: boolean
   disabled?: boolean
   readonly?: boolean
@@ -32,8 +33,11 @@ export interface IOptInput {
   showWordLimit?: boolean
   defaultValue?: string
   placeholder?: string
+  prefix?: string
+  affix?: string
 }
 export interface IOptInputTag {
+  id?: string
   required?: boolean
   label?: string
   width?: string
@@ -44,6 +48,7 @@ export interface IOptInputTag {
   defaultValue?: (string | number)[]
 }
 export interface IOptSelect {
+  id?: string
   required?: boolean
   disabled?: boolean
   readonly?: boolean
@@ -64,6 +69,7 @@ export interface IOptSelect {
 }
 
 export interface IOptRadio {
+  id?: string
   required?: boolean
   label: string
   disabled?: boolean
@@ -80,6 +86,7 @@ export interface IOptRadio {
 }
 
 export interface IOptSwitch {
+  id?: string
   width?: string
   size?: 'small' | 'medium'
   checkedValue?: boolean
@@ -93,6 +100,7 @@ export interface IOptSwitch {
 }
 
 export interface IOptSlider {
+  id?: string
   required?: boolean
   label: string
   defaultValue?: number | [number, number]
@@ -109,6 +117,7 @@ export interface IOptSlider {
 }
 
 export interface IOptDatePicker {
+  id?: string
   required?: boolean
   label: string
   allowClear?: boolean
@@ -123,6 +132,7 @@ export interface IOptDatePicker {
 }
 
 export interface IOptRate {
+  id?: string
   required?: boolean
   label: string
   count?: number
@@ -136,6 +146,7 @@ export interface IOptRate {
 }
 
 export interface IOptInputNumber {
+  id?: string
   required?: boolean
   disabled?: boolean
   readonly?: boolean
@@ -153,6 +164,7 @@ export interface IOptInputNumber {
 }
 
 export interface IOptCheckbox {
+  id?: string
   width?: string
   max?: number
   label?: string
@@ -172,6 +184,7 @@ export interface IOptCheckbox {
 }
 
 export interface IOptTimePicker {
+  id?: string
   required?: boolean
   label?: string
   type?: 'time' | 'time-range'
@@ -202,6 +215,7 @@ export type IOptTab = {
 }
 
 export interface IOptCascader {
+  id?: string
   required?: boolean
   label?: string
   width?: string
@@ -224,7 +238,8 @@ export interface IOptCascader {
   optionsUrl?: string
 }
 
-export interface IOptinTextarea {
+export interface IOptTextarea {
+  id?: string
   required?: boolean
   label?: string
   width?: string
@@ -254,6 +269,7 @@ export type IConfigTabPane = {
 }
 
 export interface IOptUpload {
+  id?: string
   required?: boolean
   label: string
   action?: string
@@ -272,13 +288,6 @@ export interface IOptUpload {
   download?: boolean
   showLink?: boolean
   imagePreview?: boolean
-}
-
-export interface IOptTextarea {
-  width?: string
-  rows?: number
-  limit?: number
-  placeholder?: string
 }
 
 export type IConfigGrid = {
@@ -391,7 +400,7 @@ export type IConfigTextarea = {
   type: 'textarea'
   name: string
   uid: string
-  config: IOptinTextarea & {
+  config: IOptTextarea & {
     rules?: string
     trigger?: InputEvent | InputEvent[]
   }
@@ -455,9 +464,7 @@ export type WidgetsConfig =
   | IConfigCheckbox
   | IConfigInputTag
 
-export type AllowedNestedWidget =
-  | Exclude<WidgetsConfig, IConfigGrid>
-  | Exclude<WidgetsConfig, IConfigTab>
+export type NormalFormWidget = Exclude<WidgetsConfig, IConfigTab | IConfigGrid>
 
 export type AST = {
   formConfig: FormConfig
@@ -466,8 +473,10 @@ export type AST = {
 }
 
 export type FormDesignerContext = {
-  selectedUID: Ref<string>
-  setSelectedUID: (uid: string) => void
+  selectedUID?: Ref<string>
+  setSelectedUID?: (uid: string) => void
+  selectedWidget: Ref<WidgetsConfig | undefined>
+  setSelectedWidget: (widget: WidgetsConfig) => void
   addWidget: (widget: WidgetsConfig, idx?: number) => void
   removeWidget: (index: number, uid: string) => void
   duplicateWidget: (index: number) => void
