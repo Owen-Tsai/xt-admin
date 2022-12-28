@@ -1,5 +1,8 @@
 <template>
-  <a-form-item label="字段名称">
+  <a-form-item label="字段标识">
+    <a-input v-model="config.id" allow-clear />
+  </a-form-item>
+  <a-form-item label="字段标签">
     <a-input v-model="config.label" allow-clear />
   </a-form-item>
   <a-form-item label="宽度">
@@ -17,6 +20,12 @@
   </a-form-item>
   <a-form-item label="输入长度限制">
     <a-input-number v-model="config.maxLength" allow-clear />
+  </a-form-item>
+  <a-form-item label="前缀">
+    <a-input v-model="config.prefix" allow-clear />
+  </a-form-item>
+  <a-form-item label="后缀">
+    <a-input v-model="config.affix" allow-clear />
   </a-form-item>
   <div class="boolean-config">
     <span class="label">是否禁用</span>
