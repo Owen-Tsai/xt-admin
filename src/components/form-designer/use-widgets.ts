@@ -1,7 +1,6 @@
 import { provide, ref, Ref } from 'vue'
 import { cloneDeep } from 'lodash'
 import { generateUID } from '@/utils'
-import { removeWidgetByUID } from './utils'
 import { AST, WidgetsConfig, FormDesignerContext, contextSymbol } from './types'
 
 // widget actions injected to widget-form-items
@@ -16,10 +15,6 @@ export const useWidgetActions = (ast: Ref<AST>) => {
     const uid = generateUID()
     config.uid = uid
     return cloneDeep(config)
-  }
-
-  const removeWidget = (idx: number, uid: string) => {
-    removeWidgetByUID(ast.value.widgetsConfig, idx, uid)
   }
 
   const duplicateWidget = (idx: number) => {
@@ -39,7 +34,6 @@ export const useWidgetActions = (ast: Ref<AST>) => {
     selectedWidget,
     setSelectedWidget,
     addWidget,
-    removeWidget,
     duplicateWidget,
     ast,
   })

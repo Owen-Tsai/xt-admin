@@ -209,7 +209,7 @@
     <button
       v-show="isSelected"
       class="widget-action-icon absolute bottom-0 right-0 z-50"
-      @click="context.removeWidget(index, widget.uid)"
+      @click="onWidgetDelete(index)"
     >
       <s-icon :name="DeleteBinFill" :size="16" />
     </button>
@@ -217,7 +217,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, inject, computed } from 'vue'
+import { PropType, inject, computed, ref } from 'vue'
 import { DragMove, DeleteBinFill } from '@salmon-ui/icons'
 import { WidgetsConfig, FormDesignerContext, contextSymbol } from './types'
 
@@ -230,13 +230,15 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  parentType: {
-    type: String,
-    default: undefined,
+  parentLevelConfig: {
+    type: Array as PropType<WidgetsConfig[]>,
+    required: true,
   },
 })
 
 const context = inject(contextSymbol) as FormDesignerContext
+
+const widgetsList = ref(props.parentLevelConfig)
 
 const isSelected = computed(
   () => context.selectedWidget.value?.uid === props.widget.uid
@@ -244,6 +246,10 @@ const isSelected = computed(
 
 const onWidgetSelect = () => {
   context.setSelectedWidget(props.widget)
+}
+
+const onWidgetDelete = (idx: number) => {
+  widgetsList.value.splice(idx, 1)
 }
 </script>
 

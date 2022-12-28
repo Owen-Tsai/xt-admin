@@ -475,7 +475,6 @@ export type FormDesignerContext = {
   selectedWidget: Ref<WidgetsConfig | undefined>
   setSelectedWidget: (widget: WidgetsConfig) => void
   addWidget: (widget: WidgetsConfig, idx?: number) => void
-  removeWidget: (index: number, uid: string) => void
   duplicateWidget: (index: number) => void
   ast: Ref<AST>
 }
