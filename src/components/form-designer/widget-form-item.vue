@@ -276,6 +276,14 @@
       />
     </template>
 
+    <!-- uid display -->
+    <span
+      class="absolute top-0 right-0 text-blue-500 px-2 py-1 text-xs font-bold opacity-30"
+      :class="{ 'opacity-100': isSelected }"
+    >
+      {{ widget.uid }}
+    </span>
+
     <!-- drag handler -->
     <button
       v-show="isSelected"
