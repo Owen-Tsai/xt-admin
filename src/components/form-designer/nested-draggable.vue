@@ -38,7 +38,7 @@
           <template v-if="isWidgetSelected(element.uid)">
             <button
               class="widget-action-icon absolute bottom-0 right-0 z-20"
-              @click="context?.removeWidget(index, element.uid)"
+              @click="onWidgetDelete(index)"
             >
               <s-icon :name="DeleteBinFill" :size="16" />
             </button>
@@ -49,7 +49,11 @@
             </button>
           </template>
         </a-row>
-        <widget-form-item :widget="element" :index="index" />
+        <widget-form-item
+          :widget="element"
+          :index="index"
+          :parent-level-config="nestedList"
+        />
       </div>
     </template>
   </draggable>
@@ -94,6 +98,10 @@ const isWidgetSelected = (uid: string) => {
 
 const onWidgetSelect = (idx: number) => {
   context?.setSelectedWidget(widgetsList.value[idx])
+}
+
+const onWidgetDelete = (idx: number) => {
+  widgetsList.value.splice(idx, 1)
 }
 </script>
 
