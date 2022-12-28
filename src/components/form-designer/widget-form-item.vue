@@ -239,11 +239,11 @@ const props = defineProps({
 const context = inject(contextSymbol) as FormDesignerContext
 
 const isSelected = computed(
-  () => context.selectedUID.value === props.widget.uid
+  () => context.selectedWidget.value?.uid === props.widget.uid
 )
 
 const onWidgetSelect = () => {
-  context.setSelectedUID(props.widget.uid)
+  context.setSelectedWidget(props.widget)
 }
 </script>
 
