@@ -22,7 +22,6 @@ export interface DataSourceConfig {
 export type DataSourceType = 'fixed' | 'remote'
 
 export interface IOptInput {
-  id?: string
   required?: boolean
   disabled?: boolean
   readonly?: boolean
@@ -37,7 +36,6 @@ export interface IOptInput {
   affix?: string
 }
 export interface IOptInputTag {
-  id?: string
   required?: boolean
   label?: string
   width?: string
@@ -48,7 +46,6 @@ export interface IOptInputTag {
   defaultValue?: (string | number)[]
 }
 export interface IOptSelect {
-  id?: string
   required?: boolean
   disabled?: boolean
   readonly?: boolean
@@ -69,7 +66,6 @@ export interface IOptSelect {
 }
 
 export interface IOptRadio {
-  id?: string
   required?: boolean
   label: string
   disabled?: boolean
@@ -86,7 +82,6 @@ export interface IOptRadio {
 }
 
 export interface IOptSwitch {
-  id?: string
   width?: string
   size?: 'small' | 'medium'
   checkedValue?: boolean
@@ -100,7 +95,6 @@ export interface IOptSwitch {
 }
 
 export interface IOptSlider {
-  id?: string
   required?: boolean
   label: string
   defaultValue?: number | [number, number]
@@ -117,7 +111,6 @@ export interface IOptSlider {
 }
 
 export interface IOptDatePicker {
-  id?: string
   required?: boolean
   label: string
   allowClear?: boolean
@@ -132,7 +125,6 @@ export interface IOptDatePicker {
 }
 
 export interface IOptRate {
-  id?: string
   required?: boolean
   label: string
   count?: number
@@ -146,7 +138,6 @@ export interface IOptRate {
 }
 
 export interface IOptInputNumber {
-  id?: string
   required?: boolean
   disabled?: boolean
   readonly?: boolean
@@ -164,7 +155,6 @@ export interface IOptInputNumber {
 }
 
 export interface IOptCheckbox {
-  id?: string
   width?: string
   max?: number
   label?: string
@@ -184,7 +174,6 @@ export interface IOptCheckbox {
 }
 
 export interface IOptTimePicker {
-  id?: string
   required?: boolean
   label?: string
   type?: 'time' | 'time-range'
@@ -215,7 +204,6 @@ export type IOptTab = {
 }
 
 export interface IOptCascader {
-  id?: string
   required?: boolean
   label?: string
   width?: string
@@ -239,7 +227,6 @@ export interface IOptCascader {
 }
 
 export interface IOptTextarea {
-  id?: string
   required?: boolean
   label?: string
   width?: string
@@ -269,7 +256,6 @@ export type IConfigTabPane = {
 }
 
 export interface IOptUpload {
-  id?: string
   required?: boolean
   label: string
   action?: string
