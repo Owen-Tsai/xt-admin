@@ -292,6 +292,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       error: false,
       disabled: false,
       showTime: false,
+      modeSelection: 'date',
     },
   },
   rate: {

@@ -9,6 +9,20 @@
       allow-clear
     />
   </a-form-item>
+  <a-form-item label="模式">
+    <a-select v-model="config.config.modeSelection" default-value="date">
+      <a-option value="date">日期选择</a-option>
+      <a-option value="week">周选择</a-option>
+      <a-option value="month">月份选择</a-option>
+      <a-option value="quarter">季度选择</a-option>
+      <a-option value="year">年份选择</a-option>
+      <a-option value="date-range">日期范围选择</a-option>
+      <a-option value="week-range">周范围选择</a-option>
+      <a-option value="month-range">月份范围选择</a-option>
+      <a-option value="quarter-range">季度范围选择</a-option>
+      <a-option value="year-range">年份范围选择</a-option>
+    </a-select>
+  </a-form-item>
   <div class="boolean-config">
     <span class="label">允许清除</span>
     <a-switch v-model="config.config.allowClear" />
