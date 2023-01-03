@@ -1,3 +1,4 @@
+import { TagData } from '@arco-design/web-vue'
 import type { Ref } from 'vue'
 
 export type InputEvent = 'input' | 'change' | 'focus' | 'blur'
@@ -42,8 +43,11 @@ export interface IOptInputTag {
   disabled?: boolean
   readonly?: boolean
   allowClear?: boolean
+  placeholder?: string
   maxTagCount?: number
-  defaultValue?: (string | number)[]
+  defaultValue?: string[]
+  prefix?: string
+  affix?: string
 }
 export interface IOptSelect {
   required?: boolean
@@ -163,12 +167,11 @@ export interface IOptCheckbox {
   direction?: 'vertical' | 'horizontal'
   value?: string | number
   indeterminate?: boolean
-  defaultChecked?: boolean
   optionsType: DataSourceType
   optionsUrl?: string
   options?: Array<{
     label?: string
-    value?: number
+    value?: string
   }>
 }
 
@@ -214,6 +217,7 @@ export interface IOptCascader {
   multiple?: boolean
   checkStrictly?: boolean
   expandTrigger?: 'click' | 'hover'
+  readonly?: boolean | string
   options:
     | Array<{
         label?: string
@@ -234,8 +238,10 @@ export interface IOptTextarea {
   maxLength?: number
   showWordLimit?: boolean
   allowClear?: boolean
-  autoSize?: boolean
+  autoSize?: boolean | { minRows?: number; maxRows?: number }
+  isautoSize?: boolean
   value?: string
+  readonly?: boolean | string
 }
 
 export interface IOptCascaderChildren {
