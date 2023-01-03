@@ -1,28 +1,20 @@
-import { provide, ref, computed, Ref } from 'vue'
+import { provide, ref, Ref } from 'vue'
 import { cloneDeep } from 'lodash'
 import { generateUID } from '@/utils'
-import { getWidgetByUID, removeWidgetByUID } from './utils'
 import { AST, WidgetsConfig, FormDesignerContext, contextSymbol } from './types'
 
 // widget actions injected to widget-form-items
 export const useWidgetActions = (ast: Ref<AST>) => {
-  const selectedUID = ref<string>('')
-  const selectedWidget = computed(() =>
-    getWidgetByUID(ast.value.widgetsConfig, selectedUID.value)
-  )
+  const selectedWidget = ref<WidgetsConfig>()
 
-  const setSelectedUID = (uid: string) => {
-    selectedUID.value = uid
+  const setSelectedWidget = (widget: WidgetsConfig) => {
+    selectedWidget.value = widget
   }
 
   const cloneWidgetConfigFromRaw = (config: WidgetsConfig) => {
     const uid = generateUID()
     config.uid = uid
     return cloneDeep(config)
-  }
-
-  const removeWidget = (idx: number, uid: string) => {
-    removeWidgetByUID(ast.value.widgetsConfig, idx, uid)
   }
 
   const duplicateWidget = (idx: number) => {
@@ -39,10 +31,9 @@ export const useWidgetActions = (ast: Ref<AST>) => {
   }
 
   provide<FormDesignerContext>(contextSymbol, {
-    selectedUID,
-    setSelectedUID,
+    selectedWidget,
+    setSelectedWidget,
     addWidget,
-    removeWidget,
     duplicateWidget,
     ast,
   })

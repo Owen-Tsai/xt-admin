@@ -32,6 +32,8 @@ export interface IOptInput {
   showWordLimit?: boolean
   defaultValue?: string
   placeholder?: string
+  prefix?: string
+  affix?: string
 }
 export interface IOptInputTag {
   required?: boolean
@@ -224,7 +226,7 @@ export interface IOptCascader {
   optionsUrl?: string
 }
 
-export interface IOptinTextarea {
+export interface IOptTextarea {
   required?: boolean
   label?: string
   width?: string
@@ -272,13 +274,6 @@ export interface IOptUpload {
   download?: boolean
   showLink?: boolean
   imagePreview?: boolean
-}
-
-export interface IOptTextarea {
-  width?: string
-  rows?: number
-  limit?: number
-  placeholder?: string
 }
 
 export type IConfigGrid = {
@@ -391,7 +386,7 @@ export type IConfigTextarea = {
   type: 'textarea'
   name: string
   uid: string
-  config: IOptinTextarea & {
+  config: IOptTextarea & {
     rules?: string
     trigger?: InputEvent | InputEvent[]
   }
@@ -455,9 +450,7 @@ export type WidgetsConfig =
   | IConfigCheckbox
   | IConfigInputTag
 
-export type AllowedNestedWidget =
-  | Exclude<WidgetsConfig, IConfigGrid>
-  | Exclude<WidgetsConfig, IConfigTab>
+export type NormalFormWidget = Exclude<WidgetsConfig, IConfigTab | IConfigGrid>
 
 export type AST = {
   formConfig: FormConfig
@@ -466,10 +459,9 @@ export type AST = {
 }
 
 export type FormDesignerContext = {
-  selectedUID: Ref<string>
-  setSelectedUID: (uid: string) => void
+  selectedWidget: Ref<WidgetsConfig | undefined>
+  setSelectedWidget: (widget: WidgetsConfig) => void
   addWidget: (widget: WidgetsConfig, idx?: number) => void
-  removeWidget: (index: number, uid: string) => void
   duplicateWidget: (index: number) => void
   ast: Ref<AST>
 }
