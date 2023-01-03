@@ -89,7 +89,7 @@ const config = computed({
 .arco-picker {
   width: 100%;
 }
-::v-deep .arco-form-item-content-flex {
+:deep .arco-form-item-content-flex {
   display: flex;
   flex-direction: column;
 }

@@ -123,8 +123,9 @@ export interface IOptDatePicker {
   size?: 'mini' | 'small' | 'medium' | 'large'
   disabled?: boolean
   showTime?: boolean
-  mode?: 'date' | 'year' | 'quarter' | 'month' | 'week'
+  // mode?: 'date' | 'year' | 'quarter' | 'month' | 'week'
   width?: string
+  modeSelection?: string
 }
 
 export interface IOptRate {

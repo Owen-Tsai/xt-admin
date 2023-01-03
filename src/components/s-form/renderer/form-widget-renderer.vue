@@ -146,7 +146,102 @@
     </template>
     <template v-if="widget.type === 'date-picker'">
       <a-date-picker
+        v-if="widget.config.modeSelection === 'date'"
         v-model="ctx[widget.uid]"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-week-picker
+        v-else-if="widget.config.modeSelection === 'week'"
+        v-model="ctx[widget.uid]"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-month-picker
+        v-else-if="widget.config.modeSelection === 'month'"
+        v-model="ctx[widget.uid]"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-quarter-picker
+        v-else-if="widget.config.modeSelection === 'quarter'"
+        v-model="ctx[widget.uid]"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-year-picker
+        v-else-if="widget.config.modeSelection === 'year'"
+        v-model="ctx[widget.uid]"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-range-picker
+        v-else-if="widget.config.modeSelection === 'date-range'"
+        v-model="ctx[widget.uid]"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-range-picker
+        v-else-if="widget.config.modeSelection === 'week-range'"
+        v-model="ctx[widget.uid]"
+        mode="week"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-range-picker
+        v-else-if="widget.config.modeSelection === 'month-range'"
+        v-model="ctx[widget.uid]"
+        mode="month"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-range-picker
+        v-else-if="widget.config.modeSelection === 'quarter-range'"
+        v-model="ctx[widget.uid]"
+        mode="quarter"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-range-picker
+        v-else-if="widget.config.modeSelection === 'year-range'"
+        v-model="ctx[widget.uid]"
+        mode="year"
         :allow-clear="widget.config.allowClear"
         :readonly="widget.config.readonly"
         :error="widget.config.error"
