@@ -41,6 +41,14 @@
     <a-switch v-model="config.disabled" />
   </div>
   <div class="boolean-config mt-4">
+    <span class="label">是否只读</span>
+    <a-switch v-model="config.readonly" />
+  </div>
+  <div class="boolean-config my-4">
+    <span class="label">是否必填</span>
+    <a-switch v-model="config.required" />
+  </div>
+  <div class="boolean-config mt-4">
     <span class="label">允许搜索</span>
     <a-switch v-model="config.allowSearch" />
   </div>

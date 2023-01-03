@@ -47,6 +47,10 @@
       v-if="config.type === 'input'"
       v-model:widgetConfig="config"
     />
+    <InputTagConfig
+      v-if="config.type === 'inputTag'"
+      v-model:widgetConfig="config"
+    />
     <select-config
       v-if="config.type === 'select'"
       v-model:widgetConfig="config"
@@ -77,6 +81,7 @@ import GridConfig from './config/grid-config.vue'
 import TabConfig from './config/tab-config.vue'
 import InputConfig from './config/input-config.vue'
 import SelectConfig from './config/select-config.vue'
+import InputTagConfig from './config/inputtag-config.vue'
 
 const props = defineProps({
   widgetConfig: {

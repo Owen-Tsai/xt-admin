@@ -23,6 +23,14 @@
     <a-switch v-model="config.config.disabled" />
   </div>
   <div class="boolean-config mt-4">
+    <span class="label">是否只读</span>
+    <a-switch v-model="config.config.readonly" />
+  </div>
+  <div class="boolean-config my-4">
+    <span class="label">是否必填</span>
+    <a-switch v-model="config.config.required" />
+  </div>
+  <div class="boolean-config mt-4">
     <span class="label">是否显示输入计数</span>
     <a-switch v-model="config.config.showWordLimit" />
   </div>
@@ -32,7 +40,16 @@
   </div>
   <div class="boolean-config my-4">
     <span class="label">自适应高度</span>
-    <a-switch v-model="config.config.autoSize" />
+    <a-switch
+      v-model="config.config.isautoSize"
+      @change="isauto(config.config.isautoSize)"
+    />
+  </div>
+  <div v-if="config.config.isautoSize" class="mb-2">
+    <span class="label">最小行数</span>
+    <a-input-number v-model="minrow" @change="ischange"></a-input-number>
+    <span class="label">最大行数</span>
+    <a-input-number v-model="maxrow" @change="ischange"></a-input-number>
   </div>
   <a-form-item label="自定义校验规则">
     <a-textarea
@@ -53,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, PropType } from 'vue'
+import { computed, PropType, ref } from 'vue'
 import { IConfigTextarea } from '../types'
 import { inputEventNames } from '../utils'
 
@@ -70,6 +87,23 @@ const config = computed({
     emit('update:widgetConfig', val)
   },
 })
+const maxrow = ref(0)
+const minrow = ref(0)
+const ischange = () => {
+  config.value.config.autoSize = {
+    minRows: minrow.value,
+    maxRows: maxrow.value,
+  }
+}
+const isauto = (val: any) => {
+  if (val) {
+    config.value.config.autoSize = true
+    ischange()
+  }
+  if (val === false) {
+    config.value.config.autoSize = false
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>
