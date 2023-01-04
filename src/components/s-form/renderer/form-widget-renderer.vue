@@ -37,26 +37,20 @@
         :disabled="widget.config.disabled"
         :direction="widget.config.direction"
         :indeterminate="widget.config.indeterminate"
-        :defaultchecked="widget.config.defaultChecked"
       >
-        <template v-for="(item, i) in widget.config.options" :key="i">
-          <a-checkbox :value="item.value">
-            {{ item.label }}
-          </a-checkbox>
-        </template>
         <template v-if="widget.config.optionsType === 'fixed'">
-          <a-option
-            v-for="(opt, i) in widget.config.options"
-            :key="i"
-            :value="opt.value"
-          >
-            {{ opt.label }}
-          </a-option>
+          <template v-for="(item, i) in widget.config.options" :key="i">
+            <a-checkbox :value="item.value">
+              {{ item.label }}
+            </a-checkbox>
+          </template>
         </template>
         <template v-else>
-          <a-option v-for="(opt, i) in remoteData" :key="i" :value="opt.value">
-            {{ opt.label }}
-          </a-option>
+          <template v-for="(item, i) in remoteData" :key="i">
+            <a-checkbox :value="item.value">
+              {{ item.label }}
+            </a-checkbox>
+          </template>
         </template>
       </a-checkbox-group>
     </template>
@@ -93,21 +87,14 @@
         :type="widget.config.type"
         :disabled="widget.config.disabled"
       >
-        <a-radio
-          v-for="(item, i) in widget.config.options"
-          :key="i"
-          :value="item.value"
-        >
-          {{ item.label }}
-        </a-radio>
         <template v-if="widget.config.optionsType === 'fixed'">
-          <a-option
-            v-for="(opt, i) in widget.config.options"
+          <a-radio
+            v-for="(item, i) in widget.config.options"
             :key="i"
-            :value="opt.value"
+            :value="item.value"
           >
-            {{ opt.label }}
-          </a-option>
+            {{ item.label }}
+          </a-radio>
         </template>
         <template v-else>
           <a-option v-for="(opt, i) in remoteData" :key="i" :value="opt.value">
