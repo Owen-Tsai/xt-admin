@@ -1,6 +1,6 @@
 <template>
   <a-form-item label="字段标识">
-    <a-input v-model="config.uid" allow-clear />
+    <a-input v-model="config.config.id" allow-clear />
   </a-form-item>
   <a-form-item label="字段标签">
     <a-input v-model="config.config.label" allow-clear />
