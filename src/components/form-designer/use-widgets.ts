@@ -122,15 +122,14 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     config: {
       label: '复选框',
       width: '100%',
-      defaultChecked: false,
       disabled: false,
       direction: 'horizontal',
       optionsType: 'fixed',
       indeterminate: false,
       options: [
-        { label: '选项1', value: 0 },
-        { label: '选项2', value: 1 },
-        { label: '选项3', value: 3 },
+        { label: '选项1', value: '0' },
+        { label: '选项2', value: '1' },
+        { label: '选项3', value: '3' },
       ],
     },
   },

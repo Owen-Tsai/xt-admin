@@ -88,6 +88,11 @@
       <a-input-tag
         :style="{ width: widget.config.width }"
         :default-value="widget.config.defaultValue"
+        :disabled="widget.config.disabled"
+        :readonly="widget.config.readonly"
+        :allow-clear="widget.config.allowClear"
+        :placeholder="widget.config.placeholder"
+        :max-tag-count="widget.config.maxTagCount"
       />
     </template>
     <template v-if="widget.type === 'checkbox'">
@@ -95,9 +100,8 @@
         :disabled="widget.config.disabled"
         :direction="widget.config.direction"
         :indeterminate="widget.config.indeterminate"
-        :defaultchecked="widget.config.defaultChecked"
         :style="{ width: widget.config.width }"
-        :defaultvalue="widget.config.defaultValue"
+        :default-value="widget.config.defaultValue?.split(',')"
         :max="widget.config.max"
       >
         <template v-for="(item, i) in widget.config.options" :key="i">
