@@ -37,7 +37,6 @@
         :disabled="widget.config.disabled"
         :direction="widget.config.direction"
         :indeterminate="widget.config.indeterminate"
-        :defaultchecked="widget.config.defaultChecked"
       >
         <template v-for="(item, i) in widget.config.options" :key="i">
           <a-checkbox :value="item.value">
