@@ -22,7 +22,7 @@
           class="flex items-center gap-2 mt-2 first:mt-0"
         >
           <a-input v-model="item.label" class="!w-24" />
-          <a-input-number v-model="item.value" class="!w-16" />
+          <a-input v-model="item.value" class="!w-16" />
           <a-button status="danger" @click="remove(i)">
             <template #icon>
               <icon-minus />
