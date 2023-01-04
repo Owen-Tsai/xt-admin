@@ -1,5 +1,8 @@
 <template>
-  <a-form-item label="字段名称">
+  <a-form-item label="字段标识">
+    <a-input v-model="config.uid" allow-clear />
+  </a-form-item>
+  <a-form-item label="字段标签">
     <a-input v-model="config.config.label" allow-clear />
   </a-form-item>
   <a-form-item label="开关形状">

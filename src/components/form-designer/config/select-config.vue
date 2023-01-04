@@ -1,27 +1,34 @@
 <template>
-  <a-form-item label="字段名称">
-    <a-input v-model="config.label" allow-clear />
+  <a-form-item label="字段标识">
+    <a-input v-model="config.uid" allow-clear />
+  </a-form-item>
+  <a-form-item label="字段标签">
+    <a-input v-model="config.config.label" allow-clear />
   </a-form-item>
   <a-form-item label="宽度">
     <a-input
-      v-model="config.width"
+      v-model="config.config.width"
       placeholder="输入含单位(%/px)的数值"
       allow-clear
     />
   </a-form-item>
   <a-form-item label="提示文字">
-    <a-input v-model="config.placeholder" allow-clear />
+    <a-input v-model="config.config.placeholder" allow-clear />
   </a-form-item>
   <a-form-item label="可选数量">
-    <a-input-number v-model="config.limit" />
+    <a-input-number v-model="config.config.limit" />
     <template #extra>当数量不为0时开启多选</template>
   </a-form-item>
   <div>
     <span class="label">可选值</span>
-    <a-tabs v-model:active-key="config.optionsType" type="line" size="mini">
+    <a-tabs
+      v-model:active-key="config.config.optionsType"
+      type="line"
+      size="mini"
+    >
       <a-tab-pane key="fixed" title="固定值">
         <div
-          v-for="(opt, i) in config.options"
+          v-for="(opt, i) in config.config.options"
           :key="i"
           class="flex items-center gap-2 mt-2 first:mt-0"
         >
@@ -42,7 +49,10 @@
         </a-button>
       </a-tab-pane>
       <a-tab-pane key="remote" title="从接口获取">
-        <a-select v-model="config.optionsUrl" placeholder="选择一个数据源">
+        <a-select
+          v-model="config.config.optionsUrl"
+          placeholder="选择一个数据源"
+        >
           <a-option
             v-for="(item, i) in ctx?.ast.value.dataSources"
             :key="i"
@@ -55,42 +65,42 @@
     </a-tabs>
   </div>
 
-  <a-form-item label="默认值" class="mt-4">
-    <a-input v-model="config.defaultValue" />
+  <a-form-item label="选择器配置" class="mt-4">
+    <a-input v-model="config.config.defaultValue" />
   </a-form-item>
 
   <div class="boolean-config mt-4">
     <span class="label">允许搜索</span>
-    <a-switch v-model="config.allowSearch" />
+    <a-switch v-model="config.config.allowSearch" />
   </div>
   <div class="boolean-config mt-4">
     <span class="label">允许新增选项</span>
-    <a-switch v-model="config.allowCreate" />
+    <a-switch v-model="config.config.allowCreate" />
   </div>
   <div class="boolean-config mt-4">
     <span class="label">允许清除</span>
-    <a-switch v-model="config.allowClear" />
+    <a-switch v-model="config.config.allowClear" />
   </div>
   <div class="boolean-config mt-4">
     <span class="label">是否只读</span>
-    <a-switch v-model="config.readonly" />
+    <a-switch v-model="config.config.readonly" />
   </div>
   <div class="boolean-config mt-4">
     <span class="label">是否必填</span>
-    <a-switch v-model="config.required" />
+    <a-switch v-model="config.config.required" />
   </div>
   <div class="boolean-config my-4">
     <span class="label">是否禁用</span>
-    <a-switch v-model="config.disabled" />
+    <a-switch v-model="config.config.disabled" />
   </div>
   <a-form-item label="自定义校验规则">
     <a-textarea
-      v-model="config.rules"
+      v-model="config.config.rules"
       :auto-size="{ minRows: 4, maxRows: 6 }"
     />
   </a-form-item>
   <a-form-item label="校验触发时机">
-    <a-select v-model="config.trigger" :allow-search="false" multiple>
+    <a-select v-model="config.config.trigger" :allow-search="false" multiple>
       <a-option
         v-for="opt in inputEventNames"
         :key="opt"
@@ -118,18 +128,18 @@ const props = defineProps({
 })
 
 const config = computed({
-  get: () => props.widgetConfig.config,
+  get: () => props.widgetConfig,
   set: (val) => {
     emit('update:widgetCofnig', merge(props.widgetConfig, val))
   },
 })
 
 const removeOption = (i: number) => {
-  config.value.options?.splice(i, 1)
+  config.value.config.options?.splice(i, 1)
 }
 
 const addOption = () => {
-  config.value.options?.push({
+  config.value.config.options?.push({
     label: '',
     value: '',
   })
