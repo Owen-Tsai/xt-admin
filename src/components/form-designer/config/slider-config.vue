@@ -1,40 +1,40 @@
 <template>
   <a-form-item label="字段标识">
-    <a-input v-model="config.config.id" allow-clear />
+    <a-input v-model="widget.id" allow-clear />
   </a-form-item>
   <a-form-item label="字段标签">
-    <a-input v-model="config.config.label" allow-clear />
+    <a-input v-model="widget.label" allow-clear />
   </a-form-item>
   <a-form-item label="滑动步长">
-    <a-input-number v-model="config.config.step" />
+    <a-input-number v-model="widget.step" />
   </a-form-item>
   <a-form-item label="宽度">
     <a-input
-      v-model="config.config.width"
+      v-model="widget.width"
       placeholder="输入含单位(%/px)的数值"
       allow-clear
     />
   </a-form-item>
   <div class="boolean-config">
     <span class="label">是否禁用</span>
-    <a-switch v-model="config.config.disabled" />
+    <a-switch v-model="widget.disabled" />
   </div>
   <div class="boolean-config mt-4">
     <span class="label">显示刻度线</span>
-    <a-switch v-model="config.config.showTicks" />
+    <a-switch v-model="widget.showTicks" />
   </div>
   <div class="boolean-config my-4">
     <span class="label">允许选择范围</span>
-    <a-switch v-model="config.config.range" />
+    <a-switch v-model="widget.range" />
   </div>
   <a-form-item label="自定义校验规则">
     <a-textarea
-      v-model="config.config.rules"
+      v-model="widget.rules"
       :auto-size="{ minRows: 4, maxRows: 6 }"
     />
   </a-form-item>
   <a-form-item label="校验触发时机">
-    <a-select v-model="config.config.trigger" :allow-search="false" multiple>
+    <a-select v-model="widget.trigger" :allow-search="false" multiple>
       <a-option
         v-for="opt in inputEventNames"
         :key="opt"
@@ -57,8 +57,8 @@ const props = defineProps({
     required: true,
   },
 })
-const config = computed({
-  get: () => props.widgetConfig,
+const widget = computed({
+  get: () => props.widgetConfig.config,
   set: (val) => {
     emit('update:widgetConfig', val)
   },

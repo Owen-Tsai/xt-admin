@@ -2,7 +2,7 @@
   <div class="mb-4">
     <span class="label">标签页</span>
     <div
-      v-for="(item, i) in config.panes"
+      v-for="(item, i) in widget.panes"
       :key="i"
       class="flex items-center justify-between gap-4 mt-2 first:mt-0"
     >
@@ -21,7 +21,7 @@
     </a-button>
   </div>
   <a-form-item label="标签页外观">
-    <a-select v-model="config.config.type">
+    <a-select v-model="widget.config.type">
       <a-option value="line">线形</a-option>
       <a-option value="card">卡片</a-option>
       <a-option value="card-gutter">带有间距的卡片</a-option>
@@ -43,7 +43,7 @@ const props = defineProps({
     required: true,
   },
 })
-const config = computed({
+const widget = computed({
   get: () => props.widgetConfig,
   set: (val) => {
     emit('update:widgetConfig', val)
@@ -51,11 +51,11 @@ const config = computed({
 })
 
 const removePaneFromTab = (idx: number) => {
-  config.value.panes.splice(idx, 1)
+  widget.value.panes.splice(idx, 1)
 }
 
 const addPane = () => {
-  config.value.panes.push({
+  widget.value.panes.push({
     name: '标签页',
     widgets: [],
   })
