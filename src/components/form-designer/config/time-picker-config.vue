@@ -18,11 +18,8 @@
       <a-option value="time-range">范围选择器</a-option>
     </a-select>
   </a-form-item>
-  <a-form-item label="提示文案">
-    <a-input v-model="widget.placeholder" />
-  </a-form-item>
   <a-form-item label="格式">
-    <a-input v-model="widget.format" />
+    <a-input v-model="widget.format" placeholder="HH:mm:ss" />
   </a-form-item>
   <a-form-item label="步长" class="step">
     <div class="flex items-center">

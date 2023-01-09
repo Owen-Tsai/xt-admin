@@ -32,7 +32,7 @@
     <a-select v-model="widget.config.justify">
       <a-option value="start">左对齐</a-option>
       <a-option value="center">居中</a-option>
-      <a-option value="end">左对齐</a-option>
+      <a-option value="end">右对齐</a-option>
       <a-option value="space-around">均匀分布</a-option>
       <a-option value="space-between">两端对齐</a-option>
     </a-select>

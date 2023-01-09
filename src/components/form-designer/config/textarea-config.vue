@@ -18,18 +18,11 @@
   <a-form-item label="输入长度限制">
     <a-input-number v-model="widget.config.maxLength" allow-clear />
   </a-form-item>
-  <a-form-item label="默认值">
-    <a-textarea :model-value="widget.config.value" />
-  </a-form-item>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config">
     <span class="label">是否禁用</span>
     <a-switch v-model="widget.config.disabled" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否只读</span>
-    <a-switch v-model="widget.config.readonly" />
-  </div>
-  <div class="boolean-config my-4">
     <span class="label">是否必填</span>
     <a-switch v-model="widget.config.required" />
   </div>

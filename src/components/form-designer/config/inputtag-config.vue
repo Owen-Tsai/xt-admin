@@ -21,12 +21,6 @@
   <a-form-item label="最多展示的标签个数">
     <a-input-number v-model="widget.maxTagCount" allow-clear />
   </a-form-item>
-  <a-form-item label="前缀">
-    <a-input v-model="widget.prefix" allow-clear />
-  </a-form-item>
-  <a-form-item label="后缀">
-    <a-input v-model="widget.affix" allow-clear />
-  </a-form-item>
   <div class="boolean-config">
     <span class="label">是否禁用</span>
     <a-switch v-model="widget.disabled" />

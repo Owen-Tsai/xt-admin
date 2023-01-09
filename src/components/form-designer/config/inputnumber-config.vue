@@ -19,12 +19,12 @@
     <a-input v-model="widget.placeholder" />
   </a-form-item>
   <a-form-item label="精度">
-    <a-input-number v-model="widget.precision" />
+    <a-input-number v-model="widget.precision" :min="0" />
   </a-form-item>
   <a-form-item label="步长">
     <a-input-number v-model="widget.step" />
   </a-form-item>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config">
     <span class="label">是否禁用</span>
     <a-switch v-model="widget.disabled" />
   </div>
@@ -36,7 +36,7 @@
     <span class="label">是否只读</span>
     <a-switch v-model="widget.readonly" />
   </div>
-  <div class="boolean-config mt-4">
+  <div class="boolean-config my-4">
     <span class="label">允许清除</span>
     <a-switch v-model="widget.allowClear" />
   </div>

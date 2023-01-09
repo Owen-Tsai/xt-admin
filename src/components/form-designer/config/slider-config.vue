@@ -5,6 +5,12 @@
   <a-form-item label="字段标签">
     <a-input v-model="widget.label" allow-clear />
   </a-form-item>
+  <a-form-item label="最小值">
+    <a-input-number v-model="widget.min" />
+  </a-form-item>
+  <a-form-item label="最大值">
+    <a-input-number v-model="widget.max" />
+  </a-form-item>
   <a-form-item label="滑动步长">
     <a-input-number v-model="widget.step" />
   </a-form-item>

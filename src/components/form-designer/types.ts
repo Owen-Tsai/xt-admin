@@ -55,7 +55,6 @@ export interface IOptSelect {
   id?: string
   required?: boolean
   disabled?: boolean
-  readonly?: boolean
   label?: string
   width?: string
   allowClear?: boolean
@@ -63,7 +62,11 @@ export interface IOptSelect {
   allowCreate?: boolean
   limit?: number
   placeholder?: string
-  defaultValue?: string
+  defaultValue?:
+    | string
+    | number
+    | Record<string, unknown>
+    | (string | number | Record<string, unknown>)[]
   optionsType: DataSourceType
   options: Array<{
     label?: string
@@ -172,7 +175,7 @@ export interface IOptCheckbox {
   max?: number
   label?: string
   required?: boolean
-  defaultValue?: string
+  defaultValue?: string[]
   disabled?: boolean
   direction?: 'vertical' | 'horizontal'
   value?: string | number
@@ -196,7 +199,6 @@ export interface IOptTimePicker {
   readonly?: boolean
   error?: boolean
   size?: 'mini' | 'small' | 'medium' | 'large'
-  placeholder?: string
   format?: string
   step: { hour?: number; minute?: number; second?: number }
   width?: string
@@ -253,8 +255,6 @@ export interface IOptTextarea {
   allowClear?: boolean
   autoSize?: boolean | { minRows?: number; maxRows?: number }
   isautoSize?: boolean
-  value?: string
-  readonly?: boolean | string
 }
 
 export interface IOptCascaderChildren {

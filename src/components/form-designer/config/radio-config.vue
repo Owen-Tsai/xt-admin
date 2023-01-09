@@ -27,8 +27,20 @@
   <a-form-item label="是否可选">
     <a-switch v-model="widget.config.required" />
   </a-form-item>
-  <a-form-item label="选择器配置">
-    <a-input v-model="widget.config.defaultValue" allow-clear />
+  <a-form-item label="默认值">
+    <a-select
+      v-model="widget.config.defaultValue"
+      placeholder="请选择默认值"
+      allow-clear
+    >
+      <a-option
+        v-for="(item, i) in widget.config.options"
+        :key="i"
+        :value="item.value"
+      >
+        {{ item.label }}
+      </a-option>
+    </a-select>
   </a-form-item>
   <div class="mb-4">
     <span class="label">可选值</span>

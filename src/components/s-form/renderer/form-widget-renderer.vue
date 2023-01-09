@@ -29,14 +29,18 @@
         :disabled="widget.config.disabled"
         :error="widget.config.error"
         :size="widget.config.size"
+        :step="widget.config.step"
+        :precision="widget.config.precision"
       />
     </template>
     <template v-if="widget.type === 'checkbox'">
       <a-checkbox-group
         v-model="ctx[widget.uid]"
+        :default-value="widget.config.defaultValue"
         :disabled="widget.config.disabled"
         :direction="widget.config.direction"
         :indeterminate="widget.config.indeterminate"
+        :max="widget.config.max"
       >
         <template v-if="widget.config.optionsType === 'fixed'">
           <template v-for="(item, i) in widget.config.options" :key="i">
@@ -60,9 +64,12 @@
         :allow-clear="widget.config.allowClear"
         :allow-create="widget.config.allowCreate"
         :allow-search="widget.config.allowSearch"
+        :default-value="widget.config.defaultValue"
+        :disabled="widget.config.disabled"
         :multiple="widget.config.limit !== undefined && widget.config.limit > 0"
         :limit="widget.config.limit"
         :placeholder="widget.config.placeholder"
+        :style="{ width: widget.config.width }"
       >
         <template v-if="widget.config.optionsType === 'fixed'">
           <a-option
@@ -84,6 +91,7 @@
       <a-radio-group
         v-model="ctx[widget.uid]"
         :direction="widget.config.direction"
+        :default-value="widget.config.defaultValue"
         :type="widget.config.type"
         :disabled="widget.config.disabled"
       >
@@ -257,7 +265,6 @@
         :readonly="widget.config.readonly"
         :error="widget.config.error"
         :size="widget.config.size"
-        :placeholder="widget.config.placeholder"
         :format="widget.config.format"
         :step="widget.config.step"
         :style="{ width: widget.config.width }"
@@ -279,6 +286,7 @@
         :multiple="widget.config.multiple"
         :check-strictly="widget.config.checkStrictly"
         :expand-trigger="widget.config.expandTrigger"
+        :style="{ width: widget.config.width }"
       />
     </template>
     <template v-if="widget.type === 'textarea'">
@@ -290,6 +298,7 @@
         :show-word-limit="widget.config.showWordLimit"
         :allow-clear="widget.config.allowClear"
         :auto-size="widget.config.autoSize"
+        :style="{ width: widget.config.width }"
       />
     </template>
     <template v-if="widget.type === 'upload'">

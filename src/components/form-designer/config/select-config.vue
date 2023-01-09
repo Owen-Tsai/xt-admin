@@ -64,12 +64,22 @@
       </a-tab-pane>
     </a-tabs>
   </div>
-
-  <a-form-item label="选择器配置" class="mt-4">
-    <a-input v-model="widget.config.defaultValue" />
+  <a-form-item label="默认值" class="mt-4">
+    <a-select
+      v-model="widget.config.defaultValue"
+      placeholder="请选择默认值"
+      allow-clear
+    >
+      <a-option
+        v-for="(item, i) in widget.config.options"
+        :key="i"
+        :value="item.value"
+      >
+        {{ item.label }}
+      </a-option>
+    </a-select>
   </a-form-item>
-
-  <div class="boolean-config mt-4">
+  <div class="boolean-config">
     <span class="label">允许搜索</span>
     <a-switch v-model="widget.config.allowSearch" />
   </div>
@@ -80,10 +90,6 @@
   <div class="boolean-config mt-4">
     <span class="label">允许清除</span>
     <a-switch v-model="widget.config.allowClear" />
-  </div>
-  <div class="boolean-config mt-4">
-    <span class="label">是否只读</span>
-    <a-switch v-model="widget.config.readonly" />
   </div>
   <div class="boolean-config mt-4">
     <span class="label">是否必填</span>

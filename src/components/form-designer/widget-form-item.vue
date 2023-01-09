@@ -25,6 +25,8 @@
         :allow-clear="widget.config.allowClear"
         :allow-create="widget.config.allowCreate"
         :allow-search="widget.config.allowSearch"
+        :default-value="widget.config.defaultValue"
+        :disabled="widget.config.disabled"
         :multiple="!!widget.config.limit && widget.config.limit > 0"
         :limit="widget.config.limit"
         :placeholder="widget.config.placeholder"
@@ -44,6 +46,7 @@
         :direction="widget.config.direction"
         :type="widget.config.type"
         :disabled="widget.config.disabled"
+        :default-value="widget.config.defaultValue"
         :style="{ width: widget.config.width }"
       >
         <a-radio
@@ -101,7 +104,7 @@
         :direction="widget.config.direction"
         :indeterminate="widget.config.indeterminate"
         :style="{ width: widget.config.width }"
-        :default-value="widget.config.defaultValue?.split(',')"
+        :default-value="widget.config.defaultValue"
         :max="widget.config.max"
       >
         <template v-for="(item, i) in widget.config.options" :key="i">
@@ -236,7 +239,6 @@
         :readonly="widget.config.readonly"
         :error="widget.config.error"
         :size="widget.config.size"
-        :placeholder="widget.config.placeholder"
         :format="widget.config.format"
         :step="widget.config.step"
         :style="{ width: widget.config.width }"
@@ -262,13 +264,13 @@
     </template>
     <template v-if="widget.type === 'textarea'">
       <a-textarea
-        :model-value="widget.config.value"
         :placeholder="widget.config.placeholder"
         :disabled="widget.config.disabled"
         :max-length="widget.config.maxLength"
         :show-word-limit="widget.config.showWordLimit"
         :allow-clear="widget.config.allowClear"
         :auto-size="widget.config.autoSize"
+        :style="{ width: widget.config.width }"
       />
     </template>
     <template v-if="widget.type === 'upload'">

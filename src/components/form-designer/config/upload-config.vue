@@ -5,13 +5,6 @@
   <a-form-item label="字段标签">
     <a-input v-model="widget.label" allow-clear />
   </a-form-item>
-  <a-form-item label="宽度">
-    <a-input
-      v-model="widget.width"
-      placeholder="输入含单位(%/px)的数值"
-      allow-clear
-    />
-  </a-form-item>
   <a-form-item label="上传的URL">
     <a-input v-model="widget.action" />
   </a-form-item>

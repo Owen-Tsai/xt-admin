@@ -1,13 +1,13 @@
 <template>
   <a-form-item label="字段标识">
-    <a-input v-model="config.config.id" allow-clear />
+    <a-input v-model="widget.config.id" allow-clear />
   </a-form-item>
   <a-form-item label="字段标签">
-    <a-input v-model="config.config.label" allow-clear />
+    <a-input v-model="widget.config.label" allow-clear />
   </a-form-item>
   <a-form-item label="宽度">
     <a-input
-      v-model="config.config.width"
+      v-model="widget.config.width"
       placeholder="输入含单位(%/px)的数值"
       allow-clear
     />
@@ -17,7 +17,7 @@
     <a-tabs type="line" size="mini">
       <a-tab-pane key="fixed" title="固定值">
         <div
-          v-for="(item, i) in config.config.options"
+          v-for="(item, i) in widget.config.options"
           :key="i"
           class="flex items-center gap-2 mt-2 first:mt-0"
         >
@@ -38,7 +38,7 @@
       </a-tab-pane>
       <a-tab-pane key="remote" title="从接口获取">
         <a-select
-          v-model="config.config.optionsUrl"
+          v-model="widget.config.optionsUrl"
           placeholder="选择一个数据源"
         >
           <a-option
@@ -54,31 +54,45 @@
   </div>
   <div class="boolean-config mt-4">
     <span class="label">是否禁用</span>
-    <a-switch v-model="config.config.disabled" />
+    <a-switch v-model="widget.config.disabled" />
   </div>
   <div class="boolean-config mt-4">
     <span class="label">是否必填</span>
-    <a-switch v-model="config.config.required" />
+    <a-switch v-model="widget.config.required" />
   </div>
-  <div class="mt-4">
-    <span class="label">选择器配置</span>
-    <a-input v-model="config.config.defaultValue" />
-  </div>
-  <div class="mt-4">
+  <a-form-item label="默认值" class="mt-4">
+    <a-select
+      v-model="widget.config.defaultValue"
+      placeholder="请选择默认值"
+      multiple
+      :max-tag-count="4"
+      allow-clear
+      scrollbar
+    >
+      <a-option
+        v-for="(item, i) in widget.config.options"
+        :key="i"
+        :value="item.value"
+      >
+        {{ item.label }}
+      </a-option>
+    </a-select>
+  </a-form-item>
+  <div>
     <span class="label">可选数量</span>
     <a-input-number
-      v-model="config.config.max"
-      :max="config.config.options?.length"
+      v-model="widget.config.max"
+      :max="widget.config.options?.length"
     />
   </div>
   <a-form-item label="自定义校验规则">
     <a-textarea
-      v-model="config.config.rules"
+      v-model="widget.config.rules"
       :auto-size="{ minRows: 4, maxRows: 6 }"
     />
   </a-form-item>
   <a-form-item label="校验触发时机">
-    <a-select v-model="config.config.trigger" :allow-search="false" multiple>
+    <a-select v-model="widget.config.trigger" :allow-search="false" multiple>
       <a-option
         v-for="opt in inputEventNames"
         :key="opt"
@@ -103,17 +117,17 @@ const props = defineProps({
     required: true,
   },
 })
-const config = computed({
+const widget = computed({
   get: () => props.widgetConfig,
   set: (val) => {
     emit('update:widgetConfig', merge(props.widgetConfig, val))
   },
 })
 const remove = (index: number) => {
-  ;(config.value as IConfigCheckbox).config.options?.splice(index, 1)
+  ;(widget.value as IConfigCheckbox).config.options?.splice(index, 1)
 }
 const add = () => {
-  ;(config.value as IConfigCheckbox).config.options?.push({
+  ;(widget.value as IConfigCheckbox).config.options?.push({
     label: '',
   })
 }

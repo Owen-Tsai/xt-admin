@@ -122,6 +122,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     config: {
       label: '复选框',
       width: '100%',
+      defaultValue: [],
       disabled: false,
       direction: 'horizontal',
       optionsType: 'fixed',
@@ -147,6 +148,8 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       disabled: false,
       error: false,
       size: 'medium',
+      precision: 1,
+      step: 1,
     },
   },
   inputTag: {
@@ -168,10 +171,10 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       allowClear: false,
       allowCreate: false,
       allowSearch: false,
+      defaultValue: '',
       disabled: false,
       limit: 0,
       placeholder: '',
-      readonly: false,
       required: false,
       optionsType: 'fixed',
       options: [
@@ -189,7 +192,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       label: '单选框',
       disabled: false,
       direction: 'horizontal',
-      defaultValue: '0',
+      defaultValue: '',
       type: 'radio',
       width: '100%',
       optionsType: 'fixed',
@@ -217,7 +220,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       showTicks: false,
       showInput: false,
       range: false,
-      width: '100%',
+      width: '99%',
     },
   },
   switch: {
@@ -243,11 +246,10 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       width: '100%',
       placeholder: '',
       disabled: false,
-      maxLength: 0,
+      maxLength: 100,
       showWordLimit: false,
       allowClear: false,
       autoSize: false,
-      value: '',
     },
   },
   cascader: {
@@ -312,7 +314,6 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       readonly: false,
       error: false,
       size: 'medium',
-      placeholder: '',
       format: 'HH:mm:ss',
       step: {
         hour: 1,
@@ -327,7 +328,6 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     uid: '',
     config: {
       label: '上传',
-      width: '100%',
       action: '',
       disabled: false,
       multiple: false,
