@@ -1,5 +1,6 @@
 <template>
   <a-form-item
+    v-if="widget.type !== 'grid' && widget.type !== 'tab'"
     :label="widget.config.label || widget.name"
     class="group widget-wrapper bg-white z-50"
     :class="{ 'is-selected': isSelected }"
@@ -24,9 +25,10 @@
         :allow-clear="widget.config.allowClear"
         :allow-create="widget.config.allowCreate"
         :allow-search="widget.config.allowSearch"
-        :multiple="widget.config.limit !== undefined && widget.config.limit > 0"
+        :multiple="!!widget.config.limit && widget.config.limit > 0"
         :limit="widget.config.limit"
         :placeholder="widget.config.placeholder"
+        :style="{ width: widget.config.width }"
       >
         <a-option
           v-for="(opt, i) in widget.config.options"
@@ -42,6 +44,7 @@
         :direction="widget.config.direction"
         :type="widget.config.type"
         :disabled="widget.config.disabled"
+        :style="{ width: widget.config.width }"
       >
         <a-radio
           v-for="(item, i) in widget.config.options"
@@ -75,7 +78,21 @@
         :readonly="widget.config.readonly"
         :disabled="widget.config.disabled"
         :error="widget.config.error"
+        :style="{ width: widget.config.width }"
         :size="widget.config.size"
+        :step="widget.config.step"
+        :precision="widget.config.precision"
+      />
+    </template>
+    <template v-if="widget.type === 'inputTag'">
+      <a-input-tag
+        :style="{ width: widget.config.width }"
+        :default-value="widget.config.defaultValue"
+        :disabled="widget.config.disabled"
+        :readonly="widget.config.readonly"
+        :allow-clear="widget.config.allowClear"
+        :placeholder="widget.config.placeholder"
+        :max-tag-count="widget.config.maxTagCount"
       />
     </template>
     <template v-if="widget.type === 'checkbox'">
@@ -83,7 +100,9 @@
         :disabled="widget.config.disabled"
         :direction="widget.config.direction"
         :indeterminate="widget.config.indeterminate"
-        :defaultchecked="widget.config.defaultChecked"
+        :style="{ width: widget.config.width }"
+        :default-value="widget.config.defaultValue?.split(',')"
+        :max="widget.config.max"
       >
         <template v-for="(item, i) in widget.config.options" :key="i">
           <a-checkbox :value="item.value">
@@ -105,11 +124,97 @@
     </template>
     <template v-if="widget.type === 'date-picker'">
       <a-date-picker
+        v-if="widget.config.modeSelection === 'date'"
         :allow-clear="widget.config.allowClear"
         :readonly="widget.config.readonly"
         :error="widget.config.error"
-        :size="widget.config.size"
         :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-week-picker
+        v-else-if="widget.config.modeSelection === 'week'"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-month-picker
+        v-else-if="widget.config.modeSelection === 'month'"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-quarter-picker
+        v-else-if="widget.config.modeSelection === 'quarter'"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-year-picker
+        v-else-if="widget.config.modeSelection === 'year'"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-range-picker
+        v-else-if="widget.config.modeSelection === 'date-range'"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-range-picker
+        v-else-if="widget.config.modeSelection === 'week-range'"
+        mode="week"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-range-picker
+        v-else-if="widget.config.modeSelection === 'month-range'"
+        mode="month"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-range-picker
+        v-else-if="widget.config.modeSelection === 'quarter-range'"
+        mode="quarter"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
+        :style="{ width: widget.config.width }"
+      />
+      <a-range-picker
+        v-else-if="widget.config.modeSelection === 'year-range'"
+        mode="year"
+        :allow-clear="widget.config.allowClear"
+        :readonly="widget.config.readonly"
+        :error="widget.config.error"
+        :disabled="widget.config.disabled"
+        :show-time="widget.config.showTime"
         :style="{ width: widget.config.width }"
       />
     </template>
@@ -120,6 +225,7 @@
         :grading="widget.config.grading"
         :readonly="widget.config.readonly"
         :disabled="widget.config.disabled"
+        :color="widget.config.color"
       />
     </template>
     <template v-if="widget.type === 'time-picker'">
@@ -131,12 +237,19 @@
         :error="widget.config.error"
         :size="widget.config.size"
         :placeholder="widget.config.placeholder"
+        :format="widget.config.format"
+        :step="widget.config.step"
         :style="{ width: widget.config.width }"
       />
     </template>
     <template v-if="widget.type === 'cascader'">
       <a-cascader
-        :options="widget.config.options"
+        :options="
+          typeof widget.config.options === 'string'
+            ? JSON.parse(widget.config.options)
+            : widget.config.options
+        "
+        :style="{ width: widget.config.width }"
         :placeholder="widget.config.placeholder"
         :default-value="widget.config.defaultValue"
         :disabled="widget.config.disabled"
@@ -166,9 +279,14 @@
         :limit="widget.config.limit"
       />
     </template>
-    <template v-if="(widget as any).type === 'grid'">
-      <div class="text-red-500 font-bold">栅格布局不可嵌套，请移除此控件</div>
-    </template>
+
+    <!-- uid display -->
+    <span
+      class="absolute top-0 right-0 text-blue-500 px-2 py-1 text-xs font-bold opacity-30"
+      :class="{ 'opacity-100': isSelected }"
+    >
+      {{ widget.uid }}
+    </span>
 
     <!-- drag handler -->
     <button
@@ -181,7 +299,7 @@
     <button
       v-show="isSelected"
       class="widget-action-icon absolute bottom-0 right-0 z-50"
-      @click="context.removeWidget(index, widget.uid)"
+      @click="onWidgetDelete(index)"
     >
       <s-icon :name="DeleteBinFill" :size="16" />
     </button>
@@ -189,34 +307,39 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, inject, computed } from 'vue'
+import { PropType, inject, computed, ref } from 'vue'
 import { DragMove, DeleteBinFill } from '@salmon-ui/icons'
-import {
-  WidgetsConfig,
-  IConfigGrid,
-  FormDesignerContext,
-  contextSymbol,
-} from './types'
+import { WidgetsConfig, FormDesignerContext, contextSymbol } from './types'
 
 const props = defineProps({
   widget: {
-    type: Object as PropType<Exclude<WidgetsConfig, IConfigGrid>>,
+    type: Object as PropType<WidgetsConfig>,
     required: true,
   },
   index: {
     type: Number,
     required: true,
   },
+  parentLevelConfig: {
+    type: Array as PropType<WidgetsConfig[]>,
+    required: true,
+  },
 })
 
 const context = inject(contextSymbol) as FormDesignerContext
 
+const widgetsList = ref(props.parentLevelConfig)
+
 const isSelected = computed(
-  () => context.selectedUID.value === props.widget.uid
+  () => context.selectedWidget.value?.uid === props.widget.uid
 )
 
 const onWidgetSelect = () => {
-  context.setSelectedUID(props.widget.uid)
+  context.setSelectedWidget(props.widget)
+}
+
+const onWidgetDelete = (idx: number) => {
+  widgetsList.value.splice(idx, 1)
 }
 </script>
 
@@ -226,5 +349,9 @@ const onWidgetSelect = () => {
 }
 .arco-picker {
   width: 100%;
+}
+.nested-widget-list {
+  min-height: 32px;
+  align-self: stretch;
 }
 </style>

@@ -17,7 +17,7 @@
     @apply outline outline-2 outline-blue-400;
   }
 
-  .widget-wrapper {
+  .widget-wrapper:not(.grid-nested-wrapper) {
     @apply px-2 #{!important};
   }
 }
@@ -40,5 +40,16 @@
     .label {
       @apply mb-0;
     }
+  }
+}
+
+.arco-tabs-pane {
+  // for the selection outline box to show correctly:
+  & > .nested-widget-list {
+    padding: 2px;
+  }
+  // remove padding of the nested widgets inside nested rows:
+  & .widget-wrapper.arco-row {
+    @apply px-0 #{!important};
   }
 }

@@ -1,45 +1,20 @@
-import { provide, ref, computed, Ref } from 'vue'
+import { provide, ref, Ref } from 'vue'
 import { cloneDeep } from 'lodash'
 import { generateUID } from '@/utils'
-import { findWidgetWithUID } from './utils'
 import { AST, WidgetsConfig, FormDesignerContext, contextSymbol } from './types'
 
 // widget actions injected to widget-form-items
 export const useWidgetActions = (ast: Ref<AST>) => {
-  const selectedUID = ref<string>('')
-  const selectedWidget = computed(() =>
-    findWidgetWithUID(ast.value.widgetsConfig, selectedUID.value)
-  )
+  const selectedWidget = ref<WidgetsConfig>()
 
-  const setSelectedUID = (uid: string) => {
-    selectedUID.value = uid
+  const setSelectedWidget = (widget: WidgetsConfig) => {
+    selectedWidget.value = widget
   }
 
   const cloneWidgetConfigFromRaw = (config: WidgetsConfig) => {
     const uid = generateUID()
     config.uid = uid
     return cloneDeep(config)
-  }
-
-  const removeWidget = (idx: number, uid: string) => {
-    console.log(`delete ${idx} element with uid ${uid}`)
-    if (ast.value.widgetsConfig[idx].uid === uid) {
-      ast.value.widgetsConfig.splice(idx, 1)
-    } else {
-      for (let i = 0; i < ast.value.widgetsConfig.length; i++) {
-        const widget = ast.value.widgetsConfig[i]
-        if (widget.type === 'grid' && widget.cols.length > 0) {
-          for (let j = 0; j < widget.cols.length; j++) {
-            const subWidgets = widget.cols[j].widgets
-            for (let k = 0; k < widget.cols[j].widgets.length; k++) {
-              if (subWidgets[k].uid === uid) {
-                subWidgets.splice(k, 1)
-              }
-            }
-          }
-        }
-      }
-    }
   }
 
   const duplicateWidget = (idx: number) => {
@@ -56,10 +31,9 @@ export const useWidgetActions = (ast: Ref<AST>) => {
   }
 
   provide<FormDesignerContext>(contextSymbol, {
-    selectedUID,
-    setSelectedUID,
+    selectedWidget,
+    setSelectedWidget,
     addWidget,
-    removeWidget,
     duplicateWidget,
     ast,
   })
@@ -105,6 +79,25 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       align: 'start',
     },
   },
+  tab: {
+    type: 'tab',
+    name: '标签页',
+    uid: '',
+    panes: [
+      {
+        name: '标签页1',
+        widgets: [],
+      },
+      {
+        name: '标签页2',
+        widgets: [],
+      },
+    ],
+    config: {
+      type: 'line',
+      width: '100%',
+    },
+  },
   input: {
     type: 'input',
     name: '输入框',
@@ -129,15 +122,14 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     config: {
       label: '复选框',
       width: '100%',
-      defaultChecked: false,
       disabled: false,
       direction: 'horizontal',
       optionsType: 'fixed',
       indeterminate: false,
       options: [
-        { label: '选项1', value: 0 },
-        { label: '选项2', value: 1 },
-        { label: '选项3', value: 3 },
+        { label: '选项1', value: '0' },
+        { label: '选项2', value: '1' },
+        { label: '选项3', value: '3' },
       ],
     },
   },
@@ -155,6 +147,15 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       disabled: false,
       error: false,
       size: 'medium',
+    },
+  },
+  inputTag: {
+    type: 'inputTag',
+    name: '标签输入框',
+    uid: '',
+    config: {
+      label: '标签输入框',
+      width: '100%',
     },
   },
   select: {
@@ -216,7 +217,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       showTicks: false,
       showInput: false,
       range: false,
-      width: '200px',
+      width: '100%',
     },
   },
   switch: {
@@ -264,24 +265,9 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       multiple: false,
       checkStrictly: false,
       expandTrigger: 'click',
-      options: [
-        {
-          value: 'beijing',
-          label: 'Beijing',
-          children: [
-            {
-              value: 'chaoyang',
-              label: 'ChaoYang',
-              children: [
-                {
-                  value: 'datunli',
-                  label: 'Datunli',
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      optionsType: 'fixed',
+      options:
+        '[{"value":"beijing","label":"Beijing","children":[{"value":"chaoyang","label":"ChaoYang","children":[{"value":"datunli","label":"Datunli"}]}]}]',
     },
   },
   datePicker: {
@@ -294,9 +280,9 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       allowClear: true,
       readonly: false,
       error: false,
-      size: 'medium',
       disabled: false,
       showTime: false,
+      modeSelection: 'date',
     },
   },
   rate: {
@@ -305,8 +291,8 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     uid: '',
     config: {
       label: '评分',
-      width: '100%',
       count: 5,
+      color: 'orange',
       allowHalf: false,
       grading: false,
       readonly: false,
@@ -327,6 +313,12 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       error: false,
       size: 'medium',
       placeholder: '',
+      format: 'HH:mm:ss',
+      step: {
+        hour: 1,
+        minute: 1,
+        second: 1,
+      },
     },
   },
   upload: {

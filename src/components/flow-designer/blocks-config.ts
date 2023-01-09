@@ -43,8 +43,8 @@ export const buildingBlocks: Node.Metadata[] = [
   {
     label: '开始',
     shape: 'circle',
-    width: 48,
-    height: 48,
+    width: 50,
+    height: 50,
     attrs: {
       body: {
         fill: '#E8FFEA',
@@ -60,8 +60,8 @@ export const buildingBlocks: Node.Metadata[] = [
   {
     label: '结束',
     shape: 'circle',
-    width: 48,
-    height: 48,
+    width: 50,
+    height: 50,
     attrs: {
       body: {
         fill: '#fff1f2',
@@ -77,7 +77,7 @@ export const buildingBlocks: Node.Metadata[] = [
   {
     label: '审批',
     shape: 'rect',
-    height: 48,
+    height: 50,
     width: 80,
     attrs: {
       body: {
@@ -94,7 +94,7 @@ export const buildingBlocks: Node.Metadata[] = [
   {
     label: '抄送',
     shape: 'rect',
-    height: 48,
+    height: 50,
     width: 80,
     attrs: {
       body: {
@@ -111,8 +111,8 @@ export const buildingBlocks: Node.Metadata[] = [
   {
     label: '网关',
     shape: 'polygon',
-    height: 58,
-    width: 58,
+    height: 60,
+    width: 60,
     attrs: {
       body: {
         fill: '#FFF3E8',

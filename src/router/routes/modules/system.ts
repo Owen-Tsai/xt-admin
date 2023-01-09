@@ -11,26 +11,7 @@ const systemRoutes: AppRouteRecordRaw = {
     requireAuth: true,
     icon: 'icon-settings',
   },
-  children: [
-    {
-      path: 'flow-designer',
-      name: 'flow-designer',
-      component: () => import('@/views/system/flow-designer/index.vue'),
-      meta: {
-        locale: 'menu.system.flow-designer',
-        requireAuth: true,
-      },
-    },
-    {
-      path: 'department-management',
-      name: 'department-management',
-      component: () => import('@/views/system/department-management/index.vue'),
-      meta: {
-        locale: 'menu.system.department-management',
-        requireAuth: true,
-      },
-    },
-  ],
+  children: [],
 }
 
 export default systemRoutes

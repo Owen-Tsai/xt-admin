@@ -1,38 +1,46 @@
-import { Graph, Addon, Node, Shape } from '@antv/x6'
+import { Graph, Node, Shape } from '@antv/x6'
+import { Transform } from '@antv/x6-plugin-transform'
+import { Snapline } from '@antv/x6-plugin-snapline'
+import { Stencil } from '@antv/x6-plugin-stencil'
+import { Clipboard } from '@antv/x6-plugin-clipboard'
+import { Selection } from '@antv/x6-plugin-selection'
+import { History } from '@antv/x6-plugin-history'
+import { Keyboard } from '@antv/x6-plugin-keyboard'
 import { buildingBlocks, edge } from './blocks-config'
 import type { Options } from '@antv/x6/lib/graph/options'
 
 export const defaultConfig: Options.Manual = {
-  grid: true,
-  mousewheel: {
-    enabled: true,
+  grid: {
+    visible: true,
+    type: 'doubleMesh',
   },
   panning: {
     enabled: true,
-    eventTypes: ['rightMouseDown'],
+    eventTypes: ['rightMouseDown', 'mouseWheel'],
   },
-  selecting: {
+  mousewheel: {
     enabled: true,
-    rubberband: true,
-    showEdgeSelectionBox: true,
-    multiple: true,
-    showNodeSelectionBox: true,
+    modifiers: ['ctrl'],
   },
+  autoResize: true,
   connecting: {
+    snap: true,
+    allowBlank: false,
+    allowEdge: false,
     router: {
       name: 'manhattan',
-      args: { padding: 10 },
+      args: { padding: 20 },
     },
     connector: {
       name: 'rounded',
       args: { radius: 4 },
     },
-    allowBlank: false,
-    snap: {
-      radius: 16,
+    validateConnection({ targetMagnet }) {
+      return !!targetMagnet
     },
-    createEdge: () => new Shape.Edge(edge),
-    validateConnection: ({ targetMagnet }) => !!targetMagnet,
+    createEdge() {
+      return new Shape.Edge(edge)
+    },
   },
   highlighting: {
     magnetAdsorbed: {
@@ -46,23 +54,17 @@ export const defaultConfig: Options.Manual = {
       },
     },
   },
-  keyboard: true,
-  snapline: true,
-  resizing: true,
-  clipboard: true,
-  history: true,
 }
 
 const setupStencil = (container: HTMLElement, target: Graph) => {
   // create stencil
-  const stencil = new Addon.Stencil({
+  const stencil = new Stencil({
     target,
-    stencilGraphWidth: 200,
+    stencilGraphWidth: 208,
     stencilGraphHeight: 240,
     groups: [
       {
         name: 'default',
-        title: '流程与环节',
         collapsable: false,
       },
     ],
@@ -116,15 +118,15 @@ const setupKeyboardHotkeys = (graph: Graph) => {
   })
 
   graph.bindKey('ctrl+z', () => {
-    if (graph.history.canUndo()) {
-      graph.history.undo()
+    if (graph.canUndo()) {
+      graph.undo()
     }
     return false
   })
 
   graph.bindKey('ctrl+y', () => {
-    if (graph.history.canRedo()) {
-      graph.history.redo()
+    if (graph.canRedo()) {
+      graph.redo()
     }
     return false
   })
@@ -152,6 +154,70 @@ const setupPortEvents = (container: HTMLElement, graph: Graph) => {
   })
 }
 
+const useTransformPlugin = (graph: Graph) => {
+  graph.use(
+    new Transform({
+      resizing: {
+        enabled: true,
+      },
+    })
+  )
+}
+
+const useSnapPlugin = (graph: Graph) => {
+  graph.use(
+    new Snapline({
+      enabled: true,
+      resizing: true,
+    })
+  )
+}
+
+const useClipboardPlugin = (graph: Graph) => {
+  graph.use(
+    new Clipboard({
+      enabled: true,
+    })
+  )
+}
+
+const useSelectionPlugin = (graph: Graph) => {
+  graph.use(
+    new Selection({
+      enabled: true,
+      multiple: true,
+      rubberband: true,
+      showEdgeSelectionBox: true,
+      showNodeSelectionBox: true,
+    })
+  )
+}
+
+const useHistoryPlugin = (graph: Graph) => {
+  graph.use(
+    new History({
+      enabled: true,
+    })
+  )
+}
+
+const useKeyboardPlugin = (graph: Graph) => {
+  graph.use(
+    new Keyboard({
+      enabled: true,
+    })
+  )
+}
+
+const setupPlugins = (graph: Graph) => {
+  useTransformPlugin(graph)
+  useSnapPlugin(graph)
+  useClipboardPlugin(graph)
+  useSelectionPlugin(graph)
+  useHistoryPlugin(graph)
+  useKeyboardPlugin(graph)
+}
+
 export const useGraphInit = (
   canvas: HTMLDivElement,
   stencilPanel: HTMLDivElement
@@ -161,6 +227,7 @@ export const useGraphInit = (
     container: canvas,
   })
 
+  setupPlugins(graphInstance)
   setupKeyboardHotkeys(graphInstance)
   setupPortEvents(canvas, graphInstance)
   setupStencil(stencilPanel, graphInstance)

@@ -32,6 +32,7 @@ import { menuWidth as w } from '@config'
 import PageView from './inner-layout.vue'
 
 const menuStore = useMenuStore()
+
 const collapsed = computed(() => menuStore.isMenuCollapsed)
 const setCollapsed = (val: boolean) => {
   menuStore.updateMenuCollpase(val)

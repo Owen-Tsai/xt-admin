@@ -65,9 +65,4 @@ footer {
     justify-content: center;
   }
 }
-* {
-  :deep(.arco-input-append) {
-    background-color: transparent;
-  }
-}
 </style>

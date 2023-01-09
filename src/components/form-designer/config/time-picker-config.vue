@@ -1,55 +1,63 @@
 <template>
-  <a-form-item label="字段名称">
-    <a-input v-model="config.config.label" allow-clear />
+  <a-form-item label="字段标识">
+    <a-input v-model="widget.id" allow-clear />
+  </a-form-item>
+  <a-form-item label="字段标签">
+    <a-input v-model="widget.label" allow-clear />
   </a-form-item>
   <a-form-item label="宽度">
     <a-input
-      v-model="config.config.width"
+      v-model="widget.width"
       placeholder="输入含单位(%/px)的数值"
       allow-clear
     />
   </a-form-item>
   <a-form-item label="选择器类型">
-    <a-select v-model="config.config.type">
+    <a-select v-model="widget.type">
       <a-option value="time">时间输入器</a-option>
       <a-option value="time-range">范围选择器</a-option>
     </a-select>
   </a-form-item>
-  <a-form-item label="按钮尺寸">
-    <a-select v-model="config.config.size">
-      <a-option value="mini">迷你</a-option>
-      <a-option value="small">小</a-option>
-      <a-option value="medium">中</a-option>
-      <a-option value="large">大</a-option>
-    </a-select>
-  </a-form-item>
   <a-form-item label="提示文案">
-    <a-input v-model="config.config.placeholder" />
+    <a-input v-model="widget.placeholder" />
   </a-form-item>
-  <div class="flex justify-between items-center">
-    <span>是否禁用</span>
-    <a-switch v-model="config.config.disabled" />
+  <a-form-item label="格式">
+    <a-input v-model="widget.format" />
+  </a-form-item>
+  <a-form-item label="步长" class="step">
+    <div class="flex items-center">
+      <span>时：</span>
+      <a-input-number v-model="widget.step.hour" :min="1" :max="23" />
+    </div>
+    <div class="flex items-center mt-2">
+      <span>分：</span>
+      <a-input-number v-model="widget.step.minute" :min="1" :max="60" />
+    </div>
+    <div class="flex items-center mt-2">
+      <span>秒：</span>
+      <a-input-number v-model="widget.step.second" :min="1" :max="60" />
+    </div>
+  </a-form-item>
+  <div class="boolean-config">
+    <span class="label">是否禁用</span>
+    <a-switch v-model="widget.disabled" />
   </div>
   <div class="boolean-config mt-4">
-    <span class="label">是否允许清除</span>
-    <a-switch v-model="config.config.allowClear" />
-  </div>
-  <div class="boolean-config mt-4">
-    <span class="label">是否为只读</span>
-    <a-switch v-model="config.config.readonly" />
+    <span class="label">允许清除</span>
+    <a-switch v-model="widget.allowClear" />
   </div>
   <div class="boolean-config my-4">
-    <span class="label">是否为错误状态</span>
-    <a-switch v-model="config.config.error" />
+    <span class="label">是否只读</span>
+    <a-switch v-model="widget.readonly" />
   </div>
   <a-form-item label="自定义校验规则">
     <a-textarea
-      v-model="config.config.rules"
+      v-model="widget.rules"
       :auto-size="{ minRows: 4, maxRows: 6 }"
     />
   </a-form-item>
   <a-form-item label="校验触发时机">
-    <a-select v-model="config.config.trigger" :allow-search="false" multiple>
+    <a-select v-model="widget.trigger" :allow-search="false" multiple>
       <a-option
         v-for="opt in inputEventNames"
         :key="opt"
@@ -72,8 +80,8 @@ const props = defineProps({
     required: true,
   },
 })
-const config = computed({
-  get: () => props.widgetConfig,
+const widget = computed({
+  get: () => props.widgetConfig.config,
   set: (val) => {
     emit('update:widgetConfig', val)
   },
@@ -83,5 +91,9 @@ const config = computed({
 <style lang="scss" scoped>
 .arco-picker {
   width: 100%;
+}
+:deep .arco-form-item-content-flex {
+  display: flex;
+  flex-direction: column;
 }
 </style>

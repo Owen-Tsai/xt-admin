@@ -1,15 +1,12 @@
 <template>
   <div class="mb-6">
-    <a-form-item label="字段名称">
-      <a-input v-model="config.name" allow-clear />
-    </a-form-item>
     <a-form-item label="宽度">
-      <a-input v-model="config.config.width" allow-clear />
+      <a-input v-model="widget.config.width" allow-clear />
     </a-form-item>
-    <span class="label">栅格列</span>
     <div>
+      <span class="label">栅格列</span>
       <div
-        v-for="(col, i) in config.cols"
+        v-for="(col, i) in widget.cols"
         :key="i"
         class="flex items-center gap-4 mt-2 first:mt-0"
       >
@@ -20,7 +17,7 @@
           </template>
         </a-button>
       </div>
-      <a-button long class="mt-2" @click="addColToGrid">
+      <a-button long type="outline" class="mt-2" @click="addColToGrid">
         <template #icon>
           <icon-plus />
         </template>
@@ -29,10 +26,10 @@
     </div>
   </div>
   <a-form-item label="栅格间距">
-    <a-input-number v-model="config.config.gutter" />
+    <a-input-number v-model="widget.config.gutter" />
   </a-form-item>
   <a-form-item label="水平排列方式">
-    <a-select v-model="config.config.justify">
+    <a-select v-model="widget.config.justify">
       <a-option value="start">左对齐</a-option>
       <a-option value="center">居中</a-option>
       <a-option value="end">左对齐</a-option>
@@ -41,7 +38,7 @@
     </a-select>
   </a-form-item>
   <a-form-item label="垂直排列方式">
-    <a-select v-model="config.config.align">
+    <a-select v-model="widget.config.align">
       <a-option value="start">顶部对齐</a-option>
       <a-option value="center">居中</a-option>
       <a-option value="end">底部对齐</a-option>
@@ -61,19 +58,19 @@ const props = defineProps({
     required: true,
   },
 })
-const config = computed({
+const widget = computed({
   get: () => props.widgetConfig,
   set: (val) => {
     emit('update:widgetConfig', val)
   },
 })
 const removeColFromGrid = (index: number) => {
-  ;(config.value as IConfigGrid).cols.splice(index, 1)
+  widget.value.cols.splice(index, 1)
 }
 
 const addColToGrid = () => {
-  const remains = sumBy((config.value as IConfigGrid).cols, (e) => e.span)
-  ;(config.value as IConfigGrid).cols.push({
+  const remains = sumBy((widget.value as IConfigGrid).cols, (e) => e.span)
+  ;(widget.value as IConfigGrid).cols.push({
     span: remains > 0 ? 24 - remains : 0,
     widgets: [],
   })

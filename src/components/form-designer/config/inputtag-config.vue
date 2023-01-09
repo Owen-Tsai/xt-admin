@@ -16,10 +16,10 @@
     <a-input v-model="widget.placeholder" allow-clear />
   </a-form-item>
   <a-form-item label="默认值">
-    <a-input v-model="widget.defaultValue" allow-clear />
+    <a-input-tag v-model="widget.defaultValue" allow-clear />
   </a-form-item>
-  <a-form-item label="输入长度限制">
-    <a-input-number v-model="widget.maxLength" allow-clear />
+  <a-form-item label="最多展示的标签个数">
+    <a-input-number v-model="widget.maxTagCount" allow-clear />
   </a-form-item>
   <a-form-item label="前缀">
     <a-input v-model="widget.prefix" allow-clear />
@@ -34,10 +34,6 @@
   <div class="boolean-config mt-4">
     <span class="label">是否只读</span>
     <a-switch v-model="widget.readonly" />
-  </div>
-  <div class="boolean-config mt-4">
-    <span class="label">是否显示输入计数</span>
-    <a-switch v-model="widget.showWordLimit" />
   </div>
   <div class="boolean-config my-4">
     <span class="label">是否必填</span>
@@ -64,13 +60,13 @@
 <script lang="ts" setup>
 import { computed, PropType } from 'vue'
 import { inputEventNames } from '../utils'
-import type { IConfigInput } from '../types'
+import type { IConfigInputTag } from '../types'
 
 const emit = defineEmits(['update:widgetCofnig'])
 
 const props = defineProps({
   widgetConfig: {
-    type: Object as PropType<IConfigInput>,
+    type: Object as PropType<IConfigInputTag>,
     required: true,
   },
 })

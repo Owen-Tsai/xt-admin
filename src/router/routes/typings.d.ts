@@ -6,6 +6,7 @@ declare module 'vue-router' {
     requireAuth: boolean
     icon?: string
     locale?: string
+    text?: string
     hideInMenu?: boolean
     hideChildrenInMenu?: boolean
     activeMenu?: string

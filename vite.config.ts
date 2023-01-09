@@ -14,6 +14,11 @@ export default defineConfig({
       exclude: ['node_modules'],
     }),
   ],
+  build: {
+    rollupOptions: {
+      external: '@antv/x6-plugin-dnd',
+    },
+  },
   resolve: {
     alias: [
       {

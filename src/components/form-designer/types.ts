@@ -1,3 +1,4 @@
+import { TagData } from '@arco-design/web-vue'
 import type { Ref } from 'vue'
 
 export type InputEvent = 'input' | 'change' | 'focus' | 'blur'
@@ -22,6 +23,7 @@ export interface DataSourceConfig {
 export type DataSourceType = 'fixed' | 'remote'
 
 export interface IOptInput {
+  id?: string
   required?: boolean
   disabled?: boolean
   readonly?: boolean
@@ -32,9 +34,25 @@ export interface IOptInput {
   showWordLimit?: boolean
   defaultValue?: string
   placeholder?: string
+  prefix?: string
+  affix?: string
 }
-
+export interface IOptInputTag {
+  id?: string
+  required?: boolean
+  label?: string
+  width?: string
+  disabled?: boolean
+  readonly?: boolean
+  allowClear?: boolean
+  placeholder?: string
+  maxTagCount?: number
+  defaultValue?: string[]
+  prefix?: string
+  affix?: string
+}
 export interface IOptSelect {
+  id?: string
   required?: boolean
   disabled?: boolean
   readonly?: boolean
@@ -55,6 +73,7 @@ export interface IOptSelect {
 }
 
 export interface IOptRadio {
+  id?: string
   required?: boolean
   label: string
   disabled?: boolean
@@ -71,19 +90,21 @@ export interface IOptRadio {
 }
 
 export interface IOptSwitch {
+  id?: string
   width?: string
-  required?: boolean
-  defaultChecked?: boolean
-  type?: 'circle' | 'round' | 'line'
   size?: 'small' | 'medium'
-  checkedValue?: string | number | boolean
-  uncheckedValue?: string | number | boolean
+  checkedValue?: boolean
+  required?: boolean
+  uncheckedValue?: boolean
+  defaultChecked?: boolean
+  defaultValue?: boolean
+  type?: 'circle' | 'round' | 'line'
   disabled?: boolean
-  loading?: boolean
   label?: string
 }
 
 export interface IOptSlider {
+  id?: string
   required?: boolean
   label: string
   defaultValue?: number | [number, number]
@@ -100,6 +121,7 @@ export interface IOptSlider {
 }
 
 export interface IOptDatePicker {
+  id?: string
   required?: boolean
   label: string
   allowClear?: boolean
@@ -108,11 +130,12 @@ export interface IOptDatePicker {
   size?: 'mini' | 'small' | 'medium' | 'large'
   disabled?: boolean
   showTime?: boolean
-  mode?: 'date' | 'year' | 'quarter' | 'month' | 'week'
   width?: string
+  modeSelection?: string
 }
 
 export interface IOptRate {
+  id?: string
   required?: boolean
   label: string
   count?: number
@@ -121,11 +144,12 @@ export interface IOptRate {
   grading?: boolean
   readonly?: boolean
   disabled?: boolean
-  color?: string | Record<string, string>
+  color?: string
   width?: string
 }
 
 export interface IOptInputNumber {
+  id?: string
   required?: boolean
   disabled?: boolean
   readonly?: boolean
@@ -139,29 +163,30 @@ export interface IOptInputNumber {
   min?: number
   size?: 'mini' | 'small' | 'medium' | 'large'
   error?: boolean
-  step?: boolean
+  step?: number
 }
 
 export interface IOptCheckbox {
+  id?: string
   width?: string
   max?: number
   label?: string
   required?: boolean
-  defaultValue?: string | number | boolean
+  defaultValue?: string
   disabled?: boolean
   direction?: 'vertical' | 'horizontal'
   value?: string | number
   indeterminate?: boolean
-  defaultChecked?: boolean
   optionsType: DataSourceType
   optionsUrl?: string
   options?: Array<{
     label?: string
-    value?: number
+    value?: string
   }>
 }
 
 export interface IOptTimePicker {
+  id?: string
   required?: boolean
   label?: string
   type?: 'time' | 'time-range'
@@ -172,6 +197,8 @@ export interface IOptTimePicker {
   error?: boolean
   size?: 'mini' | 'small' | 'medium' | 'large'
   placeholder?: string
+  format?: string
+  step: { hour?: number; minute?: number; second?: number }
   width?: string
   style?: string
 }
@@ -183,36 +210,39 @@ export interface IOptGrid {
   align: 'start' | 'center' | 'end' | 'stretch'
 }
 
+export type IOptTab = {
+  width?: string
+  type: 'line' | 'card' | 'card-gutter' | 'text' | 'rounded' | 'capsule'
+  size?: 'mini' | 'small' | 'medium' | 'large'
+}
+
 export interface IOptCascader {
+  id?: string
   required?: boolean
   label?: string
   width?: string
   placeholder?: string
-  defaultValue?:
-    | string
-    | number
-    | Record<string, any>
-    | (
-        | string
-        | number
-        | Record<string, any>
-        | (string | number | Record<string, any>)[]
-      )[]
-    | undefined
+  defaultValue?: string
   disabled?: boolean
   allowSearch?: boolean
   allowClear?: boolean
   multiple?: boolean
   checkStrictly?: boolean
   expandTrigger?: 'click' | 'hover'
-  options: Array<{
-    label?: string
-    value?: number | string
-    children?: IOptCascaderChildren[]
-  }>
+  readonly?: boolean | string
+  options:
+    | Array<{
+        label?: string
+        value?: number | string
+        children?: IOptCascaderChildren[]
+      }>
+    | string
+  optionsType: DataSourceType
+  optionsUrl?: string
 }
 
-export interface IOptinTextarea {
+export interface IOptTextarea {
+  id?: string
   required?: boolean
   label?: string
   width?: string
@@ -221,8 +251,10 @@ export interface IOptinTextarea {
   maxLength?: number
   showWordLimit?: boolean
   allowClear?: boolean
-  autoSize?: boolean
+  autoSize?: boolean | { minRows?: number; maxRows?: number }
+  isautoSize?: boolean
   value?: string
+  readonly?: boolean | string
 }
 
 export interface IOptCascaderChildren {
@@ -236,7 +268,13 @@ export type IConfigCol = {
   widgets: Exclude<WidgetsConfig, IConfigGrid>[]
 }
 
+export type IConfigTabPane = {
+  name: string
+  widgets: Exclude<WidgetsConfig, IConfigTab>[]
+}
+
 export interface IOptUpload {
+  id?: string
   required?: boolean
   label: string
   action?: string
@@ -257,13 +295,6 @@ export interface IOptUpload {
   imagePreview?: boolean
 }
 
-export interface IOptTextarea {
-  width?: string
-  rows?: number
-  limit?: number
-  placeholder?: string
-}
-
 export type IConfigGrid = {
   width?: string
   type: 'grid'
@@ -273,11 +304,28 @@ export type IConfigGrid = {
   cols: Array<IConfigCol>
 }
 
+export type IConfigTab = {
+  type: 'tab'
+  name: string
+  uid: string
+  config: IOptTab
+  panes: Array<IConfigTabPane>
+}
+
 export type IConfigInput = {
   type: 'input'
   name: string
   uid: string
   config: IOptInput & {
+    rules?: string
+    trigger?: InputEvent | InputEvent[]
+  }
+}
+export type IConfigInputTag = {
+  type: 'inputTag'
+  name: string
+  uid: string
+  config: IOptInputTag & {
     rules?: string
     trigger?: InputEvent | InputEvent[]
   }
@@ -357,7 +405,7 @@ export type IConfigTextarea = {
   type: 'textarea'
   name: string
   uid: string
-  config: IOptinTextarea & {
+  config: IOptTextarea & {
     rules?: string
     trigger?: InputEvent | InputEvent[]
   }
@@ -407,6 +455,7 @@ export type WidgetsConfig =
   | IConfigInput
   | IConfigSelect
   | IConfigGrid
+  | IConfigTab
   | IConfigRadio
   | IConfigSlider
   | IConfigSwitch
@@ -418,6 +467,9 @@ export type WidgetsConfig =
   | IConfigUpload
   | IConfigInputNumber
   | IConfigCheckbox
+  | IConfigInputTag
+
+export type NormalFormWidget = Exclude<WidgetsConfig, IConfigTab | IConfigGrid>
 
 export type AST = {
   formConfig: FormConfig
@@ -426,10 +478,9 @@ export type AST = {
 }
 
 export type FormDesignerContext = {
-  selectedUID: Ref<string>
-  setSelectedUID: (uid: string) => void
+  selectedWidget: Ref<WidgetsConfig | undefined>
+  setSelectedWidget: (widget: WidgetsConfig) => void
   addWidget: (widget: WidgetsConfig, idx?: number) => void
-  removeWidget: (index: number, uid: string) => void
   duplicateWidget: (index: number) => void
   ast: Ref<AST>
 }
