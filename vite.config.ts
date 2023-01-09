@@ -34,9 +34,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/sys': {
-        target: 'http://www.zxietong.com:82',
+        // target: 'http://www.zxietong.com:82',
         // target: 'http://localhost:8080',
-        // target: 'http://192.168.0.88',
+        target: 'http://192.168.0.88',
         changeOrigin: true,
       },
     },
