@@ -16,6 +16,7 @@ export default {
   'menu.extended-ability.form-designer': '表单设计器',
   'menu.system': '系统管理',
   'menu.system.flow-designer': '流程编辑器',
+  'menu.system.department-management': '部门管理',
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': '我的 Github',
   'menu.sub-system': '政策兑现管理',

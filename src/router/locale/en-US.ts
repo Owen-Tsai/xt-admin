@@ -16,6 +16,7 @@ export default {
   'menu.extended-ability.form-designer': 'Form Designer',
   'menu.system': 'System',
   'menu.system.flow-designer': 'Flow Designer',
+  'menu.system.department-management': 'Department Management',
   'menu.salmon-icons': 'Salmon Icons',
   'menu.github': 'My Github',
   'menu.sub-system': 'Sub System',
