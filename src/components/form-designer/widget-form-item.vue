@@ -18,7 +18,14 @@
         :readonly="widget.config.readonly"
         :disabled="widget.config.disabled"
         :style="{ width: widget.config.width }"
-      />
+      >
+        <template v-if="widget.config.prefix" #prepend>
+          {{ widget.config.prefix }}
+        </template>
+        <template v-if="widget.config.affix" #append>
+          {{ widget.config.affix }}
+        </template>
+      </a-input>
     </template>
     <template v-if="widget.type === 'select'">
       <a-select

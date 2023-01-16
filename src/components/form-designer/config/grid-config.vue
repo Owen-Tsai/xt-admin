@@ -1,8 +1,5 @@
 <template>
   <div class="mb-6">
-    <a-form-item label="宽度">
-      <a-input v-model="widget.config.width" allow-clear />
-    </a-form-item>
     <div>
       <span class="label">栅格列</span>
       <div

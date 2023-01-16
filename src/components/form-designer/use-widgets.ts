@@ -159,6 +159,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
     config: {
       label: '标签输入框',
       width: '100%',
+      defaultValue: ['123', '456'],
     },
   },
   select: {
