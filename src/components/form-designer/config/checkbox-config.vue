@@ -65,7 +65,6 @@
       v-model="widget.config.defaultValue"
       placeholder="请选择默认值"
       multiple
-      :max-tag-count="4"
       allow-clear
       scrollbar
     >

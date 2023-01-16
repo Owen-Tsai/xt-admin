@@ -19,7 +19,11 @@
     <a-input v-model="widget.defaultValue" allow-clear />
   </a-form-item>
   <a-form-item label="输入长度限制">
-    <a-input-number v-model="widget.maxLength" allow-clear />
+    <a-input-number
+      v-model="widget.maxLength"
+      placeholder="显示输入计数需要长度限制"
+      allow-clear
+    />
   </a-form-item>
   <a-form-item label="前缀">
     <a-input v-model="widget.prefix" allow-clear />

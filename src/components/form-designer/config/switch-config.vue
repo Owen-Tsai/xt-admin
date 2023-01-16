@@ -18,7 +18,7 @@
   </div>
   <div class="boolean-config my-4">
     <span class="label">默认值</span>
-    <a-switch v-model="widget.defaultValue" />
+    <a-switch v-model="widget.defaultChecked" />
   </div>
   <a-form-item label="自定义校验规则">
     <a-textarea

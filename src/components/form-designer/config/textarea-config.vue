@@ -16,7 +16,11 @@
     <a-input v-model="widget.config.placeholder" allow-clear />
   </a-form-item>
   <a-form-item label="输入长度限制">
-    <a-input-number v-model="widget.config.maxLength" allow-clear />
+    <a-input-number
+      v-model="widget.config.maxLength"
+      placeholder="显示输入计数需要长度限制"
+      allow-clear
+    />
   </a-form-item>
   <div class="boolean-config">
     <span class="label">是否禁用</span>

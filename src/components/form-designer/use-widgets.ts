@@ -108,7 +108,7 @@ export const fieldsMap: Record<string, WidgetsConfig> = {
       allowClear: false,
       defaultValue: '',
       disabled: false,
-      maxLength: undefined,
+      maxLength: 10,
       placeholder: '',
       readonly: false,
       required: false,
