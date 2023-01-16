@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-model -->
 <template>
   <a-form-item label="字段标识">
     <a-input v-model="widget.id" allow-clear />
@@ -16,7 +17,26 @@
     <a-input v-model="widget.placeholder" allow-clear />
   </a-form-item>
   <a-form-item label="默认值">
-    <a-input-tag v-model="widget.defaultValue" allow-clear />
+    <template v-if="widget.defaultValue !== undefined">
+      <div
+        v-for="(item, i) in widget.defaultValue"
+        :key="i"
+        class="flex items-center gap-4 mt-2 first:mt-0"
+      >
+        <a-input v-model="widget.defaultValue[i]" class="" />
+        <a-button status="danger" @click="remove(i)">
+          <template #icon>
+            <icon-minus />
+          </template>
+        </a-button>
+      </div>
+      <a-button long class="mt-2" type="outline" @click="add">
+        <template #icon>
+          <icon-plus />
+        </template>
+        增加一个选项
+      </a-button>
+    </template>
   </a-form-item>
   <a-form-item label="最多展示的标签个数">
     <a-input-number v-model="widget.maxTagCount" allow-clear />
@@ -71,4 +91,17 @@ const widget = computed({
     emit('update:widgetCofnig', val)
   },
 })
+const remove = (index: number) => {
+  widget.value.defaultValue?.splice(index, 1)
+}
+const add = () => {
+  widget.value.defaultValue?.push('')
+}
 </script>
+<style lang="scss" scoped>
+* {
+  :deep(.arco-form-item-content-flex) {
+    @apply block;
+  }
+}
+</style>

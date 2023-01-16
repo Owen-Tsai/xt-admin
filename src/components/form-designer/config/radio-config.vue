@@ -24,7 +24,7 @@
       <a-option value="button">按钮</a-option>
     </a-select>
   </a-form-item>
-  <a-form-item label="是否可选">
+  <a-form-item label="是否必填">
     <a-switch v-model="widget.config.required" />
   </a-form-item>
   <a-form-item label="默认值">

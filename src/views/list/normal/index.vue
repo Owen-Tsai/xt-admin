@@ -122,6 +122,7 @@
 </template>
 
 <script lang="ts" setup>
+import { type } from 'os'
 import { ref } from 'vue'
 import { IconSearch, IconRefresh } from '@arco-design/web-vue/es/icon'
 import useLoading from '@/hooks/use-loading'
@@ -144,7 +145,6 @@ const paginationFactory = {
   pageSize: 20,
   total: 0,
 }
-
 const searchForm = ref(searchFormModelFactory())
 const renderData = ref<BusinessRecord[]>([])
 const pagination = ref(paginationFactory)
