@@ -31,7 +31,6 @@ export const externalRoutes = formatRoutes(externalModules, [])
 export const subModuleRoutes = formatRoutes(subModules, [])
 
 export const defaultRouteName = 'workplace'
-
 export const defaultRoute = {
   title: '工作台',
   name: defaultRouteName,

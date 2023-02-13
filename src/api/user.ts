@@ -17,3 +17,5 @@ export const getUserInfo = () => axios.post<UserState>('/api/user/info')
 export const getMenu = () =>
   axios.post<RouteRecordNormalized[]>('/api/user/menu')
 export const logout = () => axios.post('/api/user/logout')
+export const randomImage = (data: number) =>
+  axios.get(`/sys/randomImage/${data}`)
